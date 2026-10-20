@@ -1,0 +1,1 @@
+export const project = function project([lon,lat]) { const rad=0.017453292519943295,F=1.7820866103161193,n=0.7970749194779432,r0=0.7274074293279595;const r=F/Math.pow(Math.tan(Math.PI/4+lat*rad/2),n),a=n*(lon-12)*rad;return [500+1120*r*Math.sin(a),400+1120*(r*Math.cos(a)-r0)]; };

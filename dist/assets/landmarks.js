@@ -1,247 +1,91 @@
-// Little painted souvenirs, built once and merged by colour. No textures,
-// animation loop, or additional runtime dependencies are needed.
-export function addLandmarks({ THREE, scene, worldPoint, mobile = false }) {
-  const colors = {
-    cream: 0xffe9bd, white: 0xfff7df, butter: 0xf5c657,
-    coral: 0xe87557, red: 0xc95643, pink: 0xe8a18d,
-    brick: 0xb8674d, roof: 0xb94739, teal: 0x387e78,
-    glass: 0x78c7c2, ink: 0x284c52, wood: 0x856345,
-    stone: 0xc7bc92, leaf: 0x589451, lime: 0x8cb75c,
-    water: 0x409b9d, gold: 0xffda76,
-  };
-  const materials = Object.fromEntries(Object.entries(colors).map(([name, color]) => [
-    name, new THREE.MeshStandardMaterial({ color, roughness: .86, metalness: 0 }),
-  ]));
-  materials.shadow = new THREE.MeshBasicMaterial({
-    color: 0x153c36, transparent: true, opacity: .16,
-    depthWrite: false, side: THREE.DoubleSide,
+import { modelKit } from './cartographic-models.js';
+
+// Footprint in map-world units relative to the city anchor. The west forecourt
+// remains empty for the journey car; all solid Opera geometry lies to the east.
+export const OPERA_FOOTPRINT=Object.freeze({coordinates:[10.75,59.91],minX:.1,maxX:4.9,minZ:-1.55,maxZ:1.65});
+const landmarks=[
+  {title:'Bergen · Bryggen',coordinates:[5.32,60.39],asset:'bryggen',scale:1.08},
+  {title:'Oslo · Opera House',coordinates:[10.75,59.91],asset:'oslo',scale:1},
+  {title:'Stockholm · City Hall',coordinates:[18.07,59.33],asset:'stockholm',scale:1.1},
+  {title:'Copenhagen · Nyhavn',coordinates:[12.57,55.68],asset:'nyhavn',scale:1.12},
+  {title:'Warsaw · Royal Castle',coordinates:[21.01,52.25],asset:'warsaw',scale:1.1},
+  {title:'Holland · Windmill',coordinates:[4.5,52.1],asset:'windmill',scale:1.12},
+  {title:'Gdańsk · Żuraw',coordinates:[18.66,54.35],asset:'gdansk',scale:1.1},
+  {title:'London · Tower Bridge',coordinates:[-.075,51.505],asset:'london',scale:1.12}
+];
+
+function makeLandmark(THREE,kit,kind){
+  const group=new THREE.Group(),{box,cylinder,beam,ball,polygon,house,roof,flag,shadow,line}=kit;
+  if(kind==='bryggen'||kind==='nyhavn'){
+    const colors=kind==='bryggen'?['rust','ochre','cream','red','ochre']:['ochre','red','sage','cream','rust'];
+    box(group,[5.45,.17,1.5],[0,.08,0],'stone',true);
+    colors.forEach((color,i)=>house(group,(i-2)*1.02,.91,1.7+[0,.3,-.1,.4,.15][i],1.05,color));
+    for(let i=0;i<7;i++)cylinder(group,.055,.065,.44,[-2.7+i*.9,.04,1],'wood',6);
+    shadow(group,7,3);
+  }else if(kind==='oslo'){
+    // Solid sloping marble roofs and a recessed glass foyer facing the water.
+    const wedge=polygon(group,[[.25,.08],[4.85,.08],[4.85,1.38],[3.15,1.38]],2.85,'white',[0,0,-1.425]);
+    box(group,[1.6,.83,1.83],[3.5,.54,-.16],'teal',true);box(group,[1.78,.18,2.02],[3.5,1.05,-.16],'cream',true);
+    box(group,[1.2,.7,.72],[3.42,1.55,-.25],'white',true);
+    for(let i=0;i<5;i++)beam(group,[2.78+i*.3,.15,.78],[2.78+i*.3,.98,.78],.022,'cream');
+    for(let i=1;i<5;i++)line(group,[[.25+i*.63,.09,-1.43],[3.15+i*.26,1.39,-1.43]]);
+    box(group,[4.8,.1,.13],[2.5,.06,1.49],'stone');
+    for(let x=1;x<4.8;x+=1.1)cylinder(group,.045,.05,.3,[x,.15,1.6],'wood',6);
+    const contact=shadow(group,6.6,4);contact.position.x=2.6;wedge.userData.walkableRoof=true;
+  }else if(kind==='stockholm'){
+    box(group,[4.6,1.55,1.6],[0,.8,0],'rust',true);roof(group,4.85,.5,1.85,[0,1.57,0],'red');
+    box(group,[1.15,3.5,1.15],[-1.75,1.77,0],'rust',true);box(group,[1.28,.25,1.28],[-1.75,3.45,0],'cream',true);
+    cylinder(group,.34,.46,.55,[-1.75,3.85,0],'dark',8,true);cylinder(group,0,.42,.75,[-1.75,4.45,0],'dark',8,true);
+    beam(group,[-1.75,4.8,0],[-1.75,5.05,0],.035,'gold');
+    for(let i=0;i<3;i++)ball(group,.12,[-1.93+i*.18,5.08,0],[1,1,1],'gold',0);
+    for(let x=-.8;x<2.2;x+=.5){box(group,[.2,.58,.03],[x,.95,.82],'cream');box(group,[.12,.45,.04],[x,.95,.84],'dark')}
+    box(group,[5,.12,2.15],[0,.05,0],'stone');shadow(group,7,3.5);
+  }else if(kind==='warsaw'){
+    box(group,[5.1,1.55,1.65],[0,.8,0],'rust',true);roof(group,5.3,.68,1.85,[0,1.57,0]);
+    box(group,[1.03,2.9,1.3],[0,1.48,.1],'rust',true);box(group,[1.16,.25,1.43],[0,2.88,.1],'cream',true);
+    cylinder(group,.3,.47,.62,[0,3.25,.1],'dark',8);cylinder(group,0,.34,.76,[0,3.93,.1],'dark',8,true);flag(group,[0,4.3,.1],.6);
+    for(let x=-2.1;x<=2.1;x+=.6)box(group,[.17,.4,.03],[x,1.02,.84],'cream');
+    const clock=cylinder(group,.19,.19,.04,[0,2.5,.78],'cream',20);clock.rotation.x=Math.PI/2;
+    beam(group,[0,2.5,.82],[0,2.62,.82],.018,'ink');beam(group,[0,2.5,.82],[.09,2.46,.82],.018,'ink');
+    box(group,[5.4,.14,2.1],[0,.05,0],'stone');shadow(group,7,3.6);
+  }else if(kind==='windmill'){
+    cylinder(group,.6,1.03,2.4,[0,1.25,0],'cream',8,true);cylinder(group,.72,.85,.85,[0,2.83,0],'wood',8,true);cylinder(group,0,.9,.9,[0,3.68,0],'red',8,true);
+    const sails=new THREE.Group();sails.position.set(0,2.9,.96);sails.rotation.z=.22;group.add(sails);
+    for(let i=0;i<4;i++){
+      const arm=new THREE.Group();arm.rotation.z=i*Math.PI/2;sails.add(arm);box(arm,[.09,2.5,.09],[0,1,0],'wood',true);box(arm,[.47,1.45,.055],[.2,1.2,.04],'cream',true);
+      for(let j=0;j<5;j++)box(arm,[.49,.035,.04],[.2,.62+j*.28,.08],'wood');
+    }
+    ball(group,.19,[0,2.9,1.04],[1,1,.5],'gold',1);box(group,[.38,.7,.05],[0,.4,1.01],'wood');shadow(group,5,4);
+    for(let i=0;i<3;i++)ball(group,.3,[-1.1-i*.35,.2,.3-i*.4],[1,.65,1],'sage',0);
+  }else if(kind==='gdansk'){
+    cylinder(group,.55,.67,2.7,[-.94,1.4,0],'rust',10,true);cylinder(group,.55,.67,2.7,[.94,1.4,0],'rust',10,true);
+    cylinder(group,0,.72,.95,[-.94,3.19,0],'red',10,true);cylinder(group,0,.72,.95,[.94,3.19,0],'red',10,true);
+    box(group,[1.9,1.7,1.5],[0,2.5,.13],'wood',true);roof(group,2.15,.77,1.7,[0,3.36,.13],'dark');box(group,[1.3,.6,1.7],[0,1.29,.3],'wood',true);
+    for(let x=-.6;x<=.6;x+=.4)beam(group,[x,1.03,1.16],[x,3.17,1.16],.04,'ink');
+    beam(group,[-.6,1.55,1.17],[.6,3.13,1.17],.04,'ink');beam(group,[.6,1.55,1.17],[-.6,3.13,1.17],.04,'ink');
+    beam(group,[0,2.1,1.14],[0,1.1,1.85],.045,'wood');box(group,[.48,.45,.45],[0,.72,1.85],'ochre',true);
+    box(group,[3.8,.15,2.4],[0,.04,.12],'stone');shadow(group,5.5,4);
+  }else if(kind==='london'){
+    for(const x of [-1.85,1.85]){
+      box(group,[1.05,2.8,1.2],[x,1.55,0],'stone',true);box(group,[1.32,.27,1.45],[x,2.85,0],'cream',true);
+      for(const dx of [-.4,.4])for(const z of [-.43,.43]){box(group,[.28,.8,.3],[x+dx,3.17,z],'cream',true);cylinder(group,0,.28,.62,[x+dx,3.86,z],'dark',4,true)}
+      box(group,[.25,1.25,.035],[x,1.92,.62],'dark');
+    }
+    box(group,[7.3,.22,1.16],[0,.49,0],'cream',true);box(group,[3.8,.22,.73],[0,2.85,0],'teal',true);
+    for(const z of [-.52,.52])for(const side of [-1,1]){
+      const points=[];for(let i=0;i<=14;i++){const t=i/14;points.push([side*(1.85+t*1.8),2.9-2.2*t+.38*Math.sin(t*Math.PI),z])}line(group,points);
+      for(let i=1;i<6;i++){const t=i/6,x=side*(1.85+t*1.8),h=2.9-2.2*t+.38*Math.sin(t*Math.PI);beam(group,[x,.63,z],[x,h,z],.025,'teal')}
+    }
+    for(let i=-3;i<=3;i++)box(group,[.055,.27,.055],[i,.76,.55],'teal');flag(group,[-1.85,4.13,0],.65);shadow(group,9,3.8);
+  }
+  return group;
+}
+
+export function addLandmarks({THREE,scene,worldPoint,mobile=false}){
+  const kit=modelKit(THREE),objects=landmarks.map(({title,coordinates,asset,scale})=>{
+    const model=kit.batch(makeLandmark(THREE,kit,asset));model.name=`landmark-${asset}`;model.position.copy(worldPoint(coordinates,.035));
+    model.scale.setScalar(scale*(mobile&&asset!=='oslo'?.94:1));
+    model.userData={...model.userData,title,coordinates:[...coordinates],kind:'landmark',style:'sculpted-cartographic',...(asset==='oslo'?{footprint:OPERA_FOOTPRINT}:{})};scene.add(model);return model;
   });
-  const sphere = new THREE.SphereGeometry(1, mobile ? 8 : 12, mobile ? 6 : 8);
-  const cylinder = new THREE.CylinderGeometry(1, 1, 1, 12);
-  const cone = new THREE.ConeGeometry(1, 1, 12);
-  const disk = new THREE.CircleGeometry(1, 24);
-  const geometryCache = new Map();
-  const originals = new Set([sphere, cylinder, cone, disk]);
-
-  function softBox(w, h, d) {
-    const key = `box:${w}:${h}:${d}`;
-    if (geometryCache.has(key)) return geometryCache.get(key);
-    const r = Math.min(.045, w * .15, h * .15, d * .15);
-    const shape = new THREE.Shape();
-    const x = w / 2 - r, y = h / 2 - r;
-    shape.moveTo(-x, -y); shape.lineTo(x, -y);
-    shape.lineTo(x, y); shape.lineTo(-x, y); shape.closePath();
-    const g = new THREE.ExtrudeGeometry(shape, {
-      depth: d - r * 2, steps: 1, bevelEnabled: true,
-      bevelSegments: 2, bevelSize: r, bevelThickness: r, curveSegments: 1,
-    });
-    g.translate(0, 0, -d / 2 + r);
-    geometryCache.set(key, g); originals.add(g); return g;
-  }
-  function roofGeometry(w, h, d) {
-    const key = `roof:${w}:${h}:${d}`;
-    if (geometryCache.has(key)) return geometryCache.get(key);
-    const s = new THREE.Shape();
-    s.moveTo(-w / 2, 0); s.lineTo(0, h); s.lineTo(w / 2, 0); s.closePath();
-    const g = new THREE.ExtrudeGeometry(s, {
-      depth: d, steps: 1, bevelEnabled: true, bevelSize: .025,
-      bevelThickness: .025, bevelSegments: 2, curveSegments: 1,
-    });
-    g.translate(0, 0, -d / 2);
-    geometryCache.set(key, g); originals.add(g); return g;
-  }
-
-  function souvenir(title, coordinates, rotation = -.12) {
-    const group = new THREE.Group();
-    group.name = `landmark-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-    group.position.copy(worldPoint(coordinates, .1)); group.rotation.y = rotation;
-    group.userData = { title, coordinates: [...coordinates], kind: 'landmark' };
-    const batches = new Map();
-    function part(geometry, material, position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0]) {
-      const matrix = new THREE.Matrix4().compose(
-        new THREE.Vector3(...position),
-        new THREE.Quaternion().setFromEuler(new THREE.Euler(...rotation)),
-        new THREE.Vector3(...scale),
-      );
-      const transformed = (geometry.index ? geometry.toNonIndexed() : geometry.clone()).applyMatrix4(matrix);
-      if (!batches.has(material)) batches.set(material, []);
-      batches.get(material).push(transformed);
-    }
-    const box = (w, h, d, color, x, y, z, rotation = [0, 0, 0]) =>
-      part(softBox(w, h, d), color, [x, y, z], [1, 1, 1], rotation);
-    const ball = (rx, ry, rz, color, x, y, z) => part(sphere, color, [x, y, z], [rx, ry, rz]);
-    const pillar = (r, h, color, x, y, z) => part(cylinder, color, [x, y, z], [r, h, r]);
-    const roof = (w, h, d, color, x, y, z) => part(roofGeometry(w, h, d), color, [x, y, z]);
-    function tree(x, z, size = 1) {
-      pillar(.07 * size, .55 * size, 'wood', x, .28 * size, z);
-      ball(.38 * size, .48 * size, .36 * size, 'leaf', x, .72 * size, z);
-      ball(.25 * size, .31 * size, .26 * size, 'lime', x - .13 * size, .86 * size, z + .08 * size);
-    }
-    function window(x, y, z, w = .16, h = .21) {
-      box(w + .045, h + .045, .035, 'cream', x, y, z);
-      box(w, h, .041, 'ink', x, y, z + .022);
-    }
-    function finish() {
-      // One draw call per paint colour, rather than one per little window.
-      for (const [color, pieces] of batches) {
-        let length = 0;
-        for (const piece of pieces) length += piece.attributes.position.array.length;
-        const positions = new Float32Array(length), normals = new Float32Array(length);
-        let offset = 0;
-        for (const piece of pieces) {
-          positions.set(piece.attributes.position.array, offset);
-          normals.set(piece.attributes.normal.array, offset);
-          offset += piece.attributes.position.array.length; piece.dispose();
-        }
-        const geometry = new THREE.BufferGeometry();
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
-        geometry.computeBoundingSphere();
-        const mesh = new THREE.Mesh(geometry, materials[color]);
-        mesh.name = `${group.name}-${color}`; group.add(mesh);
-      }
-      group.userData.drawCalls = group.children.length;
-      scene.add(group); return group;
-    }
-    part(disk, 'shadow', [0, .014, 0], [1.8, 1.25, 1], [-Math.PI / 2, 0, 0]);
-    return { group, box, ball, pillar, roof, tree, window, part, finish };
-  }
-  const objects = [];
-
-  // Bryggen: the close row of painted, gabled timber warehouses on the quay.
-  {
-    const k = souvenir('Bergen · Bryggen', [5.32, 60.39], -.18);
-    k.box(3.15, .15, 1.6, 'stone', 0, .075, .12);
-    const paint = ['red', 'butter', 'cream', 'coral'];
-    [-1.05, -.35, .35, 1.05].forEach((x, i) => {
-      const h = [1.02, 1.19, 1.06, 1.15][i];
-      k.box(.64, h, .9, paint[i], x, .15 + h / 2, -.06);
-      k.roof(.69, .45, .98, i === 1 ? 'brick' : 'roof', x, .15 + h, -.06);
-      k.window(x - .14, .88, .412, .1, .17); k.window(x + .14, .88, .412, .1, .17);
-      k.box(.18, .33, .04, 'wood', x, .32, .42);
-      k.box(.045, h * .9, .04, 'cream', x - .29, .18 + h / 2, .425);
-    });
-    k.box(3.2, .1, .27, 'wood', 0, .17, .82);
-    k.tree(1.57, -.55, .72); k.tree(-1.57, -.48, .66);
-    objects.push(k.finish());
-  }
-
-  // Oslo Opera House: the walkable white roof rises out of the fjord.
-  {
-    const k = souvenir('Oslo · Opera House', [10.75, 59.91], -.2);
-    const shape = new THREE.Shape();
-    shape.moveTo(-.9, 0); shape.lineTo(.9, 0);
-    shape.lineTo(.9, .79); shape.lineTo(-.9, .09); shape.closePath();
-    const slope = new THREE.ExtrudeGeometry(shape, { depth: 2.95, bevelEnabled: false, steps: 1 });
-    slope.rotateY(Math.PI / 2); slope.translate(-1.475, .035, 0);
-    originals.add(slope); k.part(slope, 'white');
-    k.box(1.5, .64, .87, 'glass', .2, 1.02, -.48);
-    k.box(1.6, .12, .96, 'white', .2, 1.4, -.48);
-    k.box(.48, .58, .88, 'wood', -.83, 1, -.49);
-    for (const x of [-.38, 0, .38, .75]) k.box(.035, .61, .025, 'teal', x, 1.04, -.027);
-    for (const x of [-.91, -.3, .31, .92])
-      k.box(.018, .012, 1.89, 'stone', x, .48, -.02, [Math.atan(.7 / 1.8), 0, 0]);
-    k.tree(1.5, -.85, .67); k.tree(-1.55, -.9, .62);
-    objects.push(k.finish());
-  }
-
-  // City Hall's copper cap and little golden crowns above the brick tower.
-  {
-    const k = souvenir('Stockholm · City Hall', [18.07, 59.33], -.16);
-    k.box(3, .13, 1.65, 'stone', 0, .065, 0);
-    k.box(2.1, .92, 1.05, 'brick', .24, .58, -.08);
-    k.roof(2.25, .36, 1.17, 'teal', .24, 1.04, -.08);
-    k.box(.61, 2.13, .64, 'brick', -1.01, 1.18, -.06);
-    k.box(.7, .13, .73, 'cream', -1.01, 2.08, -.06);
-    k.box(.48, .38, .5, 'teal', -1.01, 2.44, -.06);
-    k.part(cone, 'teal', [-1.01, 2.83, -.06], [.4, .48, .4]);
-    k.pillar(.035, .35, 'gold', -1.01, 3.15, -.06);
-    for (const x of [-1.15, -1.01, -.87]) {
-      k.ball(.065, .07, .06, 'gold', x, 3.36, -.06);
-      k.pillar(.025, .13, 'gold', x, 3.28, -.06);
-    }
-    for (const x of [-.5, -.03, .44, .91]) k.window(x, .65, .463, .18, .33);
-    k.window(-1.01, 1.65, .278, .2, .37);
-    k.box(.32, .42, .04, 'ink', -1.01, .37, .28);
-    k.tree(1.4, -.43, .77); k.tree(1.38, .64, .58);
-    objects.push(k.finish());
-  }
-
-  // Nyhavn has a different silhouette: tall candy-coloured canal houses,
-  // copper dormers, a little moored boat, and a Danish flag.
-  {
-    const k = souvenir('Copenhagen · Nyhavn', [12.57, 55.68], -.13);
-    k.box(3.2, .12, 1.3, 'stone', 0, .06, -.22);
-    k.box(3.3, .035, .7, 'water', 0, .04, .83);
-    [-1.02, -.34, .34, 1.02].forEach((x, i) => {
-      const h = [1.37, 1.57, 1.43, 1.32][i];
-      k.box(.62, h, .82, ['butter', 'pink', 'coral', 'glass'][i], x, .12 + h / 2, -.25);
-      k.roof(.68, .32, .9, 'teal', x, .12 + h, -.25);
-      for (const y of [.63, 1.12]) {
-        k.window(x - .14, y, .179, .1, .18); k.window(x + .14, y, .179, .1, .18);
-      }
-      k.box(.16, .3, .04, 'wood', x, .28, .18);
-    });
-    k.box(1.2, .18, .35, 'ink', -.25, .16, .86);
-    k.box(.5, .24, .3, 'cream', -.13, .35, .86);
-    k.box(.28, .1, .035, 'glass', -.13, .37, 1.02);
-    k.pillar(.025, .85, 'wood', -.65, .62, .86);
-    k.box(.28, .18, .02, 'red', -.5, .95, .86);
-    k.box(.035, .18, .025, 'white', -.55, .95, .86);
-    k.box(.28, .035, .025, 'white', -.5, .95, .86);
-    k.tree(1.54, -.64, .66);
-    objects.push(k.finish());
-  }
-
-  // Warsaw's terracotta Royal Castle, with a clock and green baroque cupola.
-  {
-    const k = souvenir('Warsaw · Royal Castle', [21.01, 52.25], -.14);
-    k.box(3.25, .12, 1.8, 'stone', 0, .06, 0);
-    k.box(2.72, 1.06, 1.12, 'coral', 0, .65, -.08);
-    k.roof(2.85, .38, 1.25, 'roof', 0, 1.18, -.08);
-    k.box(.58, 1.93, .64, 'coral', 0, 1.09, .24);
-    k.box(.68, .12, .74, 'cream', 0, 1.98, .24);
-    k.box(.47, .3, .53, 'teal', 0, 2.2, .24);
-    k.ball(.32, .25, .32, 'teal', 0, 2.49, .24);
-    k.part(cone, 'teal', [0, 2.82, .24], [.16, .38, .16]);
-    k.ball(.065, .075, .065, 'gold', 0, 3.05, .24);
-    k.ball(.18, .18, .037, 'cream', 0, 1.57, .575);
-    k.box(.025, .12, .018, 'ink', 0, 1.61, .617);
-    k.box(.09, .025, .018, 'ink', .035, 1.57, .619);
-    for (const x of [-1.08, -.66, .66, 1.08]) {
-      k.window(x, .9, .5, .14, .22); k.window(x, .46, .5, .14, .22);
-    }
-    k.box(.29, .45, .045, 'wood', 0, .36, .585);
-    k.tree(-1.51, -.57, .75); k.tree(1.5, -.52, .66);
-    objects.push(k.finish());
-  }
-
-  // A Dutch windmill, with broad ivory sails and small sunny tulip beds.
-  {
-    const k = souvenir('Holland · Windmill', [4.5, 52.1], -.17);
-    k.part(cylinder, 'lime', [0, .045, 0], [1.42, .09, 1.12]);
-    const taper = new THREE.CylinderGeometry(.31, .53, 1.63, 12);
-    originals.add(taper); k.part(taper, 'cream', [0, .91, 0]);
-    k.pillar(.57, .12, 'wood', 0, .35, 0);
-    k.part(cone, 'teal', [0, 2.02, 0], [.64, .72, .64]);
-    k.box(.27, .4, .04, 'wood', 0, .32, .53);
-    k.window(-.14, 1.22, .4, .12, .19);
-    for (const angle of [Math.PI / 4, Math.PI * 3 / 4]) {
-      k.box(.095, 2.95, .085, 'wood', 0, 1.85, .58, [0, 0, angle]);
-      k.box(.23, 2.72, .035, 'white', 0, 1.85, .63, [0, 0, angle]);
-      k.box(.045, 2.84, .048, 'butter', 0, 1.85, .655, [0, 0, angle]);
-    }
-    k.ball(.16, .16, .12, 'gold', 0, 1.85, .72);
-    k.box(.67, .07, .4, 'butter', -.91, .12, .58);
-    k.box(.67, .07, .4, 'coral', .91, .12, .58);
-    for (const x of [-1.12, -.89, -.66, .66, .89, 1.12]) {
-      k.pillar(.025, .18, 'leaf', x, .24, .58);
-      k.ball(.085, .105, .08, x < 0 ? 'gold' : 'red', x, .36, .58);
-    }
-    k.tree(-1.15, -.61, .75); k.tree(1.13, -.67, .64);
-    objects.push(k.finish());
-  }
-
-  for (const geometry of originals) geometry.dispose();
-  return { count: objects.length, objects };
+  return {count:objects.length,objects,ready:Promise.resolve(objects)};
 }

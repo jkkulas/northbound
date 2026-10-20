@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="450" viewBox="0 0 440 396">
+  <defs>
+    <linearGradient id="sail" x2=".7" y2="1"><stop stop-color="#e9dec0"/><stop offset="1" stop-color="#bdaf8b"/></linearGradient>
+    <linearGradient id="hull" x2="0" y2="1"><stop stop-color="#b67a54"/><stop offset="1" stop-color="#795442"/></linearGradient>
+    <pattern id="hatch" width="8" height="9" patternUnits="userSpaceOnUse"><path d="m-3 10 14-7M-3 2l14-7" stroke="#554532" stroke-width=".9" opacity=".25"/></pattern>
+    <filter id="edge" x="-.1" y="-.1" width="1.2" height="1.2"><feMorphology in="SourceAlpha" operator="dilate" radius="2" result="a"/><feFlood flood-color="#e9ddba"/><feComposite in2="a" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <g filter="url(#edge)" stroke="#4b4233" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="rotate(25 219 256)">
+      <path fill="none" stroke-width="1.4" d="M196 105 84 275m112-170 128 183M195 113l30 178m-30-178-11 166"/>
+      <path fill="#a87851" d="m193 98 7 2-1 188-7-2z"/>
+      <path fill="#a55f49" d="M199 99q27-13 50 2l-30 12-20-6z"/>
+      <path d="m136 143 116-2m-111 83 99-2" fill="none" stroke-width="6"/>
+      <path fill="url(#sail)" d="M140 144q51-7 107 0c-13 26-12 46-1 68l-18-10-4 17-15-13-9 14-11-18-11 17-12-11-13 12 3-17-13 9c13-29 11-48-3-68z"/>
+      <path fill="url(#hatch)" stroke="none" d="M140 144q51-7 107 0c-13 26-12 46-1 68l-18-10-4 17-15-13-9 14-11-18-11 17-12-11-13 12 3-17-13 9c13-29 11-48-3-68z"/>
+      <path fill="#ac6952" stroke="none" d="m171 142 25-1c10 22 8 40 1 64l-8-3-11 17-9-10c11-23 11-44 2-67z"/>
+      <path fill="none" stroke="#958263" stroke-width="1.3" d="M152 151q12 20-1 51m83-52q-8 20 2 42m-68-38 2 33m42-34-5 42"/>
+      <path fill="url(#sail)" d="m195 229 44-2q-14 25 7 56l-27-9-10 6 2-17-11-4 8-9z"/>
+      <path fill="url(#hull)" d="M66 265q122 38 264-3l22-16-6 29c-19 40-60 58-133 58-76 0-123-19-147-68z"/>
+      <path fill="#c9a573" d="M67 267q131 35 262-5l-2 13q-148 41-252 3z"/>
+      <path fill="url(#hatch)" stroke="none" d="M75 278q104 38 252-3l-3 14c-49 44-186 64-249-11z"/>
+      <path d="M87 292q102 33 230-2M104 308q111 26 191-4m-166-11 4 22m42-15 1 25m49-23-1 25m47-32-3 26" fill="none" stroke-width="1.4"/>
+      <path fill="#4d4231" stroke="none" d="m109 288 10 2v6l-10-2zm49 9 10 1v6l-10-1zm53 2 10-1v6l-10 1zm52-7 10-2v6l-10 2z"/>
+      <path fill="#a87851" d="m89 265 3-24-6-7 8-9 8 7-3 36z"/>
+      <path fill="none" stroke-width="1.6" d="m93 236-39-44 39 70m12 10 15-28 30 35m154-10-1-23m-18 29-1-25m39 14-1-23m-41 11 43-11"/>
+      <path fill="url(#sail)" d="m55 195 31 8-5 12 14 21-22-4 10 18z"/>
+    </g>
+    <g fill="#9aafa0" stroke="#657e70" stroke-width="2.2"><path d="M45 307q20-17 42 0t44 0q21-18 43-1t44-1q21-16 44 0t44 0q22-17 44-1t47 0q-10 21-38 26l-257 2z"/><path d="M60 335q22-14 45-1t47-2q23-15 46 0t47-1q25-14 49 0t47-1q21-13 44-2" fill="none"/></g>
+    <g fill="none" stroke="#e0d8b8" stroke-width="2"><path d="M49 308q19-15 39 1m44-1q20-16 42 1m45-1q20-16 43 1m45-1q22-15 43 0M102 340q26 8 48-4m98 3q24-13 45 1m50-6q20-10 38-3"/></g>
+  </g>
+  <g fill="none" stroke="#728c7b" stroke-width="2" opacity=".7" stroke-linecap="round"><path d="M53 354q29-5 61 0m54 1q40-6 80 0m40-2q30-4 59-1M92 370q40 6 78 0m62 1q38 7 80-1"/></g>
+  <g fill="none" stroke="#655d48" stroke-width="1.7" stroke-linecap="round"><path d="m284 85 8-6 8 4m16 24 7-6 8 3M84 137l7-6 8 3"/></g>
+</svg>

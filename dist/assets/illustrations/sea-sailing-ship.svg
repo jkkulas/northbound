@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="510" height="530" viewBox="0 0 408 424">
+  <defs>
+    <linearGradient id="sail" x2=".8" y2="1"><stop stop-color="#f1e5c6"/><stop offset=".55" stop-color="#ded1ad"/><stop offset="1" stop-color="#c4b58e"/></linearGradient>
+    <linearGradient id="hull" x2="0" y2="1"><stop stop-color="#b98255"/><stop offset="1" stop-color="#805842"/></linearGradient>
+    <pattern id="etch" width="9" height="10" patternUnits="userSpaceOnUse"><path d="m-3 11 15-7M-3 3l14-7" stroke="#514632" stroke-width=".8" opacity=".25"/></pattern>
+    <filter id="edge" x="-.1" y="-.1" width="1.2" height="1.2"><feMorphology in="SourceAlpha" operator="dilate" radius="2" result="a"/><feFlood flood-color="#eaddb9"/><feComposite in2="a" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <g fill="none" stroke="#758f80" stroke-width="2" opacity=".7" stroke-linecap="round"><path d="M33 362q37-8 68 0m-52 14q24-5 54 0m41 4q39-8 81-1m33-14q38-10 77-1m-39 20q26-6 55-1M90 395q38 7 80 0m68 2q38 5 70-2"/></g>
+  <g filter="url(#edge)" stroke="#4a4232" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">
+    <g fill="none" stroke-width="1.5"><path d="M204 72 83 307m121-235 143 233M125 136 58 309m67-173 109 175M204 78 182 314m22-236 59 241m-59-241 27 224"/></g>
+    <path fill="#a57851" d="m200 65 6-1 2 267h-10zM121 128h6l4 198h-7z"/>
+    <path fill="#a75d45" d="M205 64q31-15 59 0-23 1-37 12l-22-5zM126 126q21-12 40-2l-22 12-18-3z"/>
+    <path d="M144 110q72-13 128 0M155 212q53-5 105 1M78 169q47-12 85-1" fill="none" stroke-width="6"/>
+    <path fill="url(#sail)" d="M149 112q58-10 117-1c-15 41-16 70-4 100q-60-12-110-1c15-34 15-67-3-98z"/>
+    <path fill="#a96450" stroke="none" opacity=".85" d="M168 109q14-1 27-1c16 34 13 66 1 99l-25 1c15-34 14-66-3-99zM223 109q13 1 26 2c-11 32-13 65-4 97l-22-2q-13-51 0-97z"/>
+    <path fill="url(#sail)" d="M158 217q48-7 99 1c-10 31-8 50 3 73q-54-11-103 1c12-21 13-46 1-75zM84 171q39-10 76-1c-9 33-8 60 1 87q-39-9-78 0c13-28 11-57 1-86z"/>
+    <path fill="url(#etch)" stroke="none" d="M149 112q58-10 117-1c-15 41-16 70-4 100q-60-12-110-1c15-34 15-67-3-98zM158 217q48-7 99 1c-10 31-8 50 3 73q-54-11-103 1c12-21 13-46 1-75zM84 171q39-10 76-1c-9 33-8 60 1 87q-39-9-78 0c13-28 11-57 1-86z"/>
+    <path fill="none" stroke="#938568" stroke-width="1.2" d="M161 122q17 39 0 77m100-79q-16 42-7 78m-56-80q17 41 0 82m36-80q-14 37-4 79m-58 27q12 29-4 54m76-52q-6 28 5 51m-41-56 1 50M95 183q12 30-3 63m55-65q-8 31 4 65m-28-66 2 63"/>
+    <path fill="#78836a" d="m79 288 29-3 5 29-35-1zM282 281l41-2 2 36-43 4z"/>
+    <path fill="url(#hull)" d="M42 301q112 35 296-3l25-17-10 36c-20 34-40 46-86 50l-104 2c-49-4-90-19-121-68z"/>
+    <path fill="#c2a16b" d="M45 302q122 33 294-5l-3 13q-172 39-282 3z"/>
+    <path fill="url(#etch)" stroke="none" d="M54 313q108 39 282-3l-6 23c-33 29-70 35-113 36-84 3-135-13-163-56z"/>
+    <path d="M62 324q116 36 269-3M76 338q110 36 241-3M97 351q108 27 199-3" fill="none" stroke-width="1.5"/>
+    <path d="m88 327 10 22m40-11 4 23m47-20 1 25m51-26-2 23m49-34-3 23m37-32-3 17" fill="none" stroke-width="1.3"/>
+    <g fill="#493f31" stroke-width="1"><path d="m116 327 9 2v7l-9-2zm44 8 9 1v7l-9-1zm49 1 9-1v7l-9 1zm48-5 9-1v7l-9 1zm45-10 9-2v7l-9 2z"/></g>
+    <path fill="none" d="m81 302 1-24m20 29 1-29m182 25-1-34m19 29-1-32m20 28-1-26m-42 9 45-5M74 284l39-1" stroke-width="2"/>
+    <path fill="none" stroke-width="1.4" d="M47 301 31 285m17 17-6-27m311 15 17-17M204 83l-13 24m-66 29-9 28"/>
+  </g>
+</svg>

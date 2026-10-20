@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="462" viewBox="0 0 480 370">
+  <defs>
+    <linearGradient id="body" x2=".6" y2="1"><stop stop-color="#bf987a"/><stop offset=".45" stop-color="#a56b57"/><stop offset="1" stop-color="#704d43"/></linearGradient>
+    <linearGradient id="arm" x2="0" y2="1"><stop stop-color="#ae7b63"/><stop offset="1" stop-color="#865445"/></linearGradient>
+    <pattern id="hatch" width="9" height="11" patternUnits="userSpaceOnUse"><path d="m-2 12 12-7M-2 4 9-2" fill="none" stroke="#4d3c33" stroke-width=".85" opacity=".23"/></pattern>
+    <filter id="edge" x="-.08" y="-.08" width="1.16" height="1.16"><feMorphology in="SourceAlpha" operator="dilate" radius="2" result="a"/><feFlood flood-color="#eadcba"/><feComposite in2="a" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <g fill="none" stroke="#b7bea4" stroke-width="1.9" stroke-linecap="round" opacity=".7"><path d="M31 303q21-7 47 0m-39 12q29-4 50 1m45 9q27-9 58-1m82-9q33-7 65 0m30-10q29-11 66-3M205 343q32 5 64-2m89-11q28 7 50-1"/></g>
+  <g filter="url(#edge)" fill="url(#arm)" stroke="#483d32" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M212 220c-35-48-30-104-61-118-35-15-56 11-53 32 2 21 19 30 31 20 9-9 3-21-3-19 7 16-10 17-11 3-2-13 14-21 28-12 20 14 10 77 46 116z"/>
+    <path d="M274 225c36-43 28-98 59-111 25-11 46 4 44 25-2 17-18 25-30 13-6-6-3-15 3-17-4 12 9 16 13 7 6-14-12-22-24-8-17 21-8 78-41 107z"/>
+    <path d="M201 247c-45-3-96 3-117-35-15-27-15-62-40-57-22 5-22 32-7 38 11 4 17-7 11-12-1 9-9 3-8-4 3-13 14-5 17 7 7 40 23 72 55 82 31 10 65 7 90 8z"/>
+    <path d="M279 247c47-8 90 3 114-23 22-23 7-50 33-58 19-6 35 14 24 28-7 10-18 9-22 1-3-6 1-10 5-11-4 8 4 10 8 3 4-8-7-15-14-7-11 13-2 32-14 54-24 43-80 42-123 44z"/>
+    <path d="M204 263c-29 21-45 64-86 63-34-1-51-32-76-29-17 2-20 19-9 26 9 6 16-1 13-7-4 6-11 1-8-5 7-12 30 20 51 31 49 24 99-21 133-52z"/>
+    <path d="M276 268c36 16 45 55 78 59 36 4 47-25 75-24 15 1 21 12 14 20-6 8-16 4-15-3 5 5 9 1 7-3-5-11-20 12-35 20-42 23-75 3-99-23-15-16-27-25-43-25z"/>
+    <path d="M228 272c-15 20-9 55-32 64-23 9-50-4-54-18-4-16 10-27 19-19 6 6 2 14-4 13 7-7-2-12-6-5-7 13 16 20 25 8 9-13 1-37 21-57z"/>
+    <path d="M254 270c19 23 9 53 28 60 20 8 39-12 32-22-5-7-14-3-11 4-8-1-10-13-2-17 16-10 35 9 26 28-14 31-56 32-70 9-11-19-8-39-19-50z"/>
+    <path fill="url(#body)" d="M197 253c-23-23-24-55-16-79 7-23 16-44 29-64 8-13 9-32 29-36 20-4 30 10 36 27 8 20 20 34 29 57 12 34 8 67-14 94l-21 24-42 5z"/>
+    <path fill="url(#hatch)" stroke="none" d="M197 253c-23-23-24-55-16-79 7-23 16-44 29-64 8-13 9-32 29-36 20-4 30 10 36 27 8 20 20 34 29 57 12 34 8 67-14 94l-21 24-42 5z"/>
+    <path fill="none" stroke="#d2ab86" stroke-width="2" d="M209 162q14-43 32-65m-26 83q6-13 8-20m53 28q3-33-14-66m-62 116q-13-23-8-45" opacity=".8"/>
+    <path fill="#d8bd86" d="M187 218q19-21 37-1-12 24-31 16zM260 215q20-20 34 3-4 19-24 16z"/>
+    <path fill="#3d3d32" stroke="none" d="M205 207q-7 14-1 24 8-13 4-24zM278 207q-5 13 1 24 6-9 3-23z"/>
+    <path fill="none" d="m187 211 39 4m31-3 37-2m-62 47q7-11 15-2l-9 14z"/>
+    <path fill="#e4c69c" stroke-width="1.4" d="M180 255q-6-2-8 4t6 8q7-1 6-6t-4-6zm-22 5q-7-1-7 5t7 6q7-2 5-7t-5-4zm-23 0q-6-2-8 4t5 7q8-1 8-6t-5-5zm-23-4q-5-3-8 2t3 8q7 1 8-4t-3-6zm-20-10q-4-4-8 0t1 8q5 3 8-1t-1-7zm202 18q5-4 9 1t-2 9q-7 1-9-4t2-6zm22 0q5-4 9 1t-2 8q-6 1-8-4t1-5zm22-1q5-4 9 0t-1 8q-6 2-8-2t0-6zm22-4q4-5 8-2t0 8q-4 3-7 0t-1-6zm-164 34q-7-3-9 3t4 8q6 0 7-5t-2-6zm-13 15q-5-4-9 1t2 8q5 2 8-2t-1-7zm-15 12q-4-4-8-1t1 7q5 3 7-1t0-5zm112-24q4-5 8-1t1 8q-7 3-10-2t1-5zm13 16q4-5 8-1t0 8q-6 2-9-2t1-5z"/>
+    <g fill="none" stroke-width="1.2" opacity=".65"><path d="m187 238-6 7m15-4-6 9m96-11 7 6m-16-2 6 9m-89-76-8-3m10-4-8-3m12-4-8-3m111 10-8 5m10 2-9 5m11 3-9 5M147 121l-7 6m12-2-7 7m-42 95 1-9m5 14 2-8m227-102 6 6m-11-2 7 7m47 96 1-8m-8 13 1-8m-244 98 1-8m8 13 1-8m214 9-1-8m-7 11-1-8"/></g>
+    <g fill="#644b3b" stroke="none" opacity=".5"><circle cx="234" cy="124" r="2"/><circle cx="249" cy="138" r="2.2"/><circle cx="227" cy="146" r="1.8"/><circle cx="264" cy="162" r="2.1"/><circle cx="234" cy="171" r="1.7"/><circle cx="246" cy="187" r="2.4"/><circle cx="214" cy="193" r="1.7"/><circle cx="278" cy="192" r="2"/><circle cx="241" cy="224" r="2.3"/><circle cx="229" cy="237" r="1.7"/><circle cx="256" cy="242" r="2"/></g>
+  </g>
+</svg>

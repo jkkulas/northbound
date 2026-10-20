@@ -1,7 +1,9 @@
 import fs from 'node:fs';
 import {PNG} from 'pngjs';
 
-const bounds={west:-12,east:38,south:47,north:73},size=1536;
+// Keep the illustrated sheet beyond every viewport edge, including eastern Europe.
+// The elevation field retains its own original bounds; this is the coastline mask.
+const bounds={west:-64,east:70,south:30,north:89},size=2048;
 const mask=new Uint8Array(size*size);
 const countries=JSON.parse(fs.readFileSync('countries.geojson','utf8')).features;
 const inside=([lon,lat])=>lon>=bounds.west&&lon<=bounds.east&&lat>=bounds.south&&lat<=bounds.north;
@@ -36,10 +38,27 @@ fs.mkdirSync('dist/assets/vendor',{recursive:true});
 const png=new PNG({width:size,height:size});
 for(let i=0;i<mask.length;i++){png.data[i*4]=mask[i]*85;png.data[i*4+1]=0;png.data[i*4+2]=0;png.data[i*4+3]=255}
 fs.writeFileSync('dist/assets/regions.png',PNG.sync.write(png));
+// Signed distances make the hover light follow every coast and inland border.
+// World-space distances keep the halo equally soft on both map axes.
+const auraSize=1024,aura=new PNG({width:auraSize,height:auraSize});
+const cellX=(bounds.east-bounds.west)*2.2/auraSize,cellY=(bounds.north-bounds.south)*4.4/auraSize,diagonal=Math.hypot(cellX,cellY),haloRange=6;
+const regions=Uint8Array.from({length:auraSize*auraSize},(_,i)=>mask[(Math.floor(i/auraSize)*2)*size+(i%auraSize)*2]);
+for(let channel=0;channel<3;channel++){
+ const id=channel+1,distance=new Float32Array(regions.length);distance.fill(1000);
+ for(let y=1;y<auraSize-1;y++)for(let x=1;x<auraSize-1;x++){
+  const i=y*auraSize+x,inside=regions[i]===id;
+  if((regions[i-1]===id)!==inside||(regions[i+1]===id)!==inside||(regions[i-auraSize]===id)!==inside||(regions[i+auraSize]===id)!==inside)distance[i]=0;
+ }
+ for(let y=1;y<auraSize;y++)for(let x=1;x<auraSize-1;x++){const i=y*auraSize+x;distance[i]=Math.min(distance[i],distance[i-1]+cellX,distance[i-auraSize]+cellY,distance[i-auraSize-1]+diagonal,distance[i-auraSize+1]+diagonal)}
+ for(let y=auraSize-2;y>=0;y--)for(let x=auraSize-2;x>0;x--){const i=y*auraSize+x;distance[i]=Math.min(distance[i],distance[i+1]+cellX,distance[i+auraSize]+cellY,distance[i+auraSize-1]+diagonal,distance[i+auraSize+1]+diagonal)}
+ for(let i=0;i<regions.length;i++)aura.data[i*4+channel]=Math.round(127.5+Math.min(haloRange,distance[i])*(regions[i]===id?-1:1)/haloRange*127.5);
+}
+for(let i=0;i<regions.length;i++)aura.data[i*4+3]=255;
+fs.writeFileSync('dist/assets/aura.png',PNG.sync.write(aura));
 // Smooth the DEM before meshing: broad, rounded ranges instead of isolated spikes.
 const sourceHeights=fs.readFileSync('data/elevation/heightfield.i16'),kernel=[1,4,6,4,1];
 let smoothed=Float32Array.from({length:401*401},(_,i)=>Math.max(0,sourceHeights.readInt16LE(i*2)));
-for(let pass=0;pass<2;pass++){
+for(let pass=0;pass<1;pass++){
  const horizontal=new Float32Array(smoothed.length),vertical=new Float32Array(smoothed.length);
  for(let y=0;y<401;y++)for(let x=0;x<401;x++)for(let k=-2;k<=2;k++)horizontal[y*401+x]+=smoothed[y*401+Math.max(0,Math.min(400,x+k))]*kernel[k+2]/16;
  for(let y=0;y<401;y++)for(let x=0;x<401;x++)for(let k=-2;k<=2;k++)vertical[y*401+x]+=horizontal[Math.max(0,Math.min(400,y+k))*401+x]*kernel[k+2]/16;

@@ -4,9 +4,12 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright-core';
+import { PNG } from 'pngjs';
 
 const rootURL = process.env.NORTHBOUND_TEST_URL || 'http://127.0.0.1:4173/';
+const focus = process.env.NORTHBOUND_QA_FOCUS || 'all';
 const names = { en: 'English', pl: 'Polski', no: 'Norsk' };
+const outputDirectory = fileURLToPath(new URL('./outputs/', import.meta.url));
 const issues = [];
 const contexts = [];
 const browser = await chromium.launch({
@@ -18,7 +21,7 @@ const browser = await chromium.launch({
 // Reproduce Live Server opening dist/index.html inside the workspace directory.
 const dist = fileURLToPath(new URL('./dist/', import.meta.url));
 const prefix = '/northbound/dist/';
-const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.png': 'image/png', '.ttf': 'font/ttf' };
+const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.json': 'application/json', '.png': 'image/png', '.ttf': 'font/ttf' };
 const nestedServer = http.createServer(async (req, res) => {
   try {
     const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
@@ -33,13 +36,17 @@ const nestedServer = http.createServer(async (req, res) => {
 await new Promise(resolve => nestedServer.listen(0, '127.0.0.1', resolve));
 const nestedURL = `http://127.0.0.1:${nestedServer.address().port}${prefix}`;
 
-async function newPage(options = {}) {
+async function newPage(options = {}, expectedConsoleErrors = []) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, ...options });
   contexts.push(context);
   const page = await context.newPage();
   page.setDefaultTimeout(20000);
   page.on('pageerror', error => issues.push(`Runtime: ${error.message}`));
-  page.on('console', message => { if (message.type() === 'error') issues.push(`Console: ${message.text()} (${message.location().url || page.url()})`); });
+  page.on('console', message => {
+    if (message.type() === 'error' && !expectedConsoleErrors.some(pattern => pattern.test(message.text()))) {
+      issues.push(`Console: ${message.text()} (${message.location().url || page.url()})`);
+    }
+  });
   page.on('response', response => { if (response.status() >= 400) issues.push(`HTTP ${response.status()}: ${response.url()}`); });
   page.on('requestfailed', request => {
     if (request.failure()?.errorText !== 'net::ERR_ABORTED') issues.push(`Request: ${request.url()} (${request.failure()?.errorText})`);
@@ -50,12 +57,21 @@ async function newPage(options = {}) {
 async function openMap(page, url = rootURL, settle = true) {
   await page.goto(url, { waitUntil: 'load' });
   await page.waitForFunction(() => document.querySelector('#terrain-canvas')?.dataset.renderer === 'webgl', null, { timeout: 30000 });
+  await page.evaluate(async () => { window.__qaInspectScene = (await import(new URL('./assets/app.js', document.baseURI).href)).inspectScene; });
   assert.equal(await page.locator('#terrain-canvas').isVisible(), true, 'WebGL canvas is visible');
   assert.equal(await page.locator('#map-loading').isVisible(), false, 'Loading indicator clears');
   assert.equal(await page.locator('.map-label[data-lang]').count(), 3, 'All three geographic language labels exist');
-  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-landmarks'), '6', 'The city miniatures are constructed');
-  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-creatures'), '2', 'Both sea creatures are constructed');
-  assert.equal(await page.locator('.creature-label').count(), 2, 'Both folklore characters have names');
+  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-landmarks'), '8', 'All eight sculpted city landmarks are constructed');
+  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-creatures'), '7', 'All seven sculpted sea decorations are constructed');
+  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-artwork'), 'sculpted-paper', 'The map uses sculpted paper artwork');
+  assert.ok(await page.locator('.creature-label').count() >= 2, 'The folklore illustrations have names');
+  for (const name of ['J\u00f6rmungandr', 'Kraken']) {
+    assert.equal(await page.locator('.creature-label').filter({ hasText: name }).count(), 1, `${name} has a label`);
+  }
+  for (const name of ['London', 'Gda\u0144sk']) {
+    assert.equal(await page.locator('.city-label').filter({ hasText: name }).count(), 1, `${name} has a city label`);
+  }
+  assert.equal(await page.locator('#view-toggle').count(), 0, 'The perspective control is removed');
   await page.evaluate(() => document.fonts.ready);
   if (settle) await page.waitForTimeout(2300); // Finish the initial camera movement before geographic clicks.
 }
@@ -65,7 +81,13 @@ async function destination(page, lang, base = rootURL) {
   assert.equal(await page.locator('h1').textContent(), names[lang]);
 }
 
-async function clickLand(page, coordinates, lang) {
+async function inspect(page) {
+  return page.evaluate(() => window.__qaInspectScene());
+}
+
+const cameraDistance = state => Math.hypot(...state.camera.position.map((value, index) => value - state.camera.target[index]));
+
+async function hoverLand(page, coordinates, lang) {
   const point = await page.evaluate(async coordinates => {
     const appURL = new URL('./assets/app.js', document.baseURI).href;
     return (await import(appURL)).projectToScreen(...coordinates);
@@ -75,42 +97,148 @@ async function clickLand(page, coordinates, lang) {
   await page.mouse.move(point.x, point.y);
   await page.waitForFunction(lang => document.querySelector(`.language-option[data-lang="${lang}"]`)?.classList.contains('is-active'), lang);
   assert.match(await page.locator('#map-tooltip').textContent(), new RegExp(names[lang]));
+  return point;
+}
+
+async function clickLand(page, coordinates, lang) {
+  const point = await hoverLand(page, coordinates, lang);
   await page.evaluate(() => {
     const phases = [];
     sessionStorage.setItem('northbound-qa-phases', '[]');
+    sessionStorage.setItem('northbound-qa-motion', '[]');
+    sessionStorage.setItem('northbound-qa-vehicles', '{}');
     new MutationObserver(() => {
       const text = document.querySelector('#journey-text').textContent;
       if (phases.at(-1) !== text) phases.push(text);
       sessionStorage.setItem('northbound-qa-phases', JSON.stringify(phases));
     }).observe(document.querySelector('#journey-text'), { childList: true, characterData: true, subtree: true });
   });
+  await page.evaluate(async () => {
+    const { inspectScene } = await import(new URL('./assets/app.js', document.baseURI).href);
+    const samples = [];
+    const vehicles = {};
+    let started;
+    function capture(now) {
+      if (document.body.classList.contains('is-traveling')) {
+        started ??= now;
+        const state = inspectScene();
+        const vehicle = state.journey.vehicle;
+        if (vehicle.visible && !vehicles[vehicle.type]) {
+          vehicles[vehicle.type] = state;
+          sessionStorage.setItem('northbound-qa-vehicles', JSON.stringify(vehicles));
+        }
+        samples.push({ elapsed: now - started, phase: state.journey.phase, fade: state.fadeOpacity, distance: Math.hypot(...state.camera.position.map((value, index) => value - state.camera.target[index])) });
+        sessionStorage.setItem('northbound-qa-motion', JSON.stringify(samples));
+      }
+      if (!started || now - started < 15000) requestAnimationFrame(capture);
+    }
+    requestAnimationFrame(capture);
+  });
   await page.mouse.click(point.x, point.y);
-  await page.locator('#journey-status.is-visible').waitFor();
+}
+
+function assertGoldenHighlight(beforeBuffer, afterBuffer) {
+  const before = PNG.sync.read(beforeBuffer), after = PNG.sync.read(afterBuffer);
+  assert.equal(before.width, after.width);
+  assert.equal(before.height, after.height);
+  let warmed = 0;
+  for (let i = 0; i < after.data.length; i += 4) {
+    const [r, g, b] = after.data.subarray(i, i + 3);
+    const redIncrease = r - before.data[i], greenIncrease = g - before.data[i + 1];
+    if (r > b + 22 && g > b + 12 && redIncrease > 10 && greenIncrease > 5) warmed++;
+  }
+  assert.ok(warmed > 1000, `Hover produces a visible golden highlight (${warmed} warmed pixels)`);
+}
+
+function assertCarRoute(state) {
+  const journey = state.journey;
+  assert.ok(journey.routeSamples.length > 20, 'The road has enough samples to assess terrain clearance');
+  for (const sample of journey.routeSamples) {
+    assert.ok(sample.position.every(Number.isFinite) && Number.isFinite(sample.terrainHeight), 'Road samples contain finite coordinates and terrain heights');
+    assert.ok(sample.position[1] >= sample.terrainHeight, 'The road stays above the terrain');
+  }
+  assert.ok(journey.carClearance >= 0, `The whole car clears the terrain (${journey.carClearance})`);
+  assert.ok(journey.operaClearance > .15, `The road and parked car clear the opera (${journey.operaClearance})`);
+  const steepest = journey.routeSamples.slice(1).reduce((maximum, sample, index) => {
+    const previous = journey.routeSamples[index];
+    const distance = Math.hypot(sample.position[0] - previous.position[0], sample.position[2] - previous.position[2]);
+    return Math.max(maximum, distance > .001 ? Math.abs(sample.terrainHeight - previous.terrainHeight) / distance : 0);
+  }, 0);
+  const waterFraction = journey.routeSamples.filter(sample => sample.region === 0).length / journey.routeSamples.length;
+  console.log(`ROUTE clearance=${journey.carClearance.toFixed(3)}, opera=${journey.operaClearance.toFixed(3)}, steepest=${steepest.toFixed(2)}, water=${(waterFraction * 100).toFixed(1)}%`);
 }
 
 try {
-  const page = await newPage();
+  await fs.mkdir(outputDirectory, { recursive: true });
+  const page = await newPage({ viewport: { width: 1896, height: 942 } });
+  if (focus !== 'remaining') {
   await openMap(page);
   assert.equal(await page.locator('#terrain-canvas').getAttribute('data-quality'), 'desktop');
-  assert.equal(await page.locator('#view-toggle').getAttribute('aria-pressed'), 'false');
-  await page.locator('#view-toggle').click();
-  assert.equal(await page.locator('#view-toggle').getAttribute('aria-pressed'), 'true');
-  await page.waitForTimeout(1200);
-  await page.locator('#view-toggle').click();
-  assert.equal(await page.locator('#view-toggle').getAttribute('aria-pressed'), 'false');
-  await page.waitForTimeout(1200);
-  console.log('PASS WebGL scene, geographic labels, and perspective toggle');
+  const overview = await inspect(page);
+  const offset = overview.camera.position.map((value, index) => value - overview.camera.target[index]);
+  assert.ok(Math.hypot(offset[0], offset[2]) > Math.abs(offset[1]), 'The overview is an aerial oblique view, tilted beyond 45 degrees from vertical');
+  assert.ok(overview.terrainMaxHeight > 3, 'The landscape retains substantial three-dimensional mountain relief');
+  for (const [name, coordinates] of [['England', [-1, 53]], ['Ireland', [-8, 53.5]]]) {
+    const point = await page.evaluate(async coordinates => (await import(new URL('./assets/app.js', document.baseURI).href)).projectToScreen(...coordinates), coordinates);
+    assert.ok(point.x > 0 && point.x < 1896 && point.y > 0 && point.y < 942, `${name} remains inside the overview (${JSON.stringify(point)}, camera=${JSON.stringify(overview.camera)})`);
+  }
+  const desktopImage = await page.screenshot({ path: path.join(outputDirectory, 'sculpted-desktop.png') });
+  console.log('PASS sculpted WebGL scene, oblique view, mountain relief, UK/Ireland coverage, landmarks, and sea decorations');
+
+  await hoverLand(page, [7.5, 61.5], 'no');
+  await page.waitForFunction(() => {
+    const { hover } = window.__qaInspectScene();
+    return hover[2] > .85 && hover[0] < .15 && hover[1] < .15;
+  });
+  const hover = await inspect(page);
+  assert.ok(hover.hover[2] > .85 && hover.hover[0] < .15 && hover.hover[1] < .15, `Norway highlights independently from other regions (${JSON.stringify(hover.hover)})`);
+  const hoverImage = await page.screenshot({ path: path.join(outputDirectory, 'sculpted-hover-norway.png') });
+  assertGoldenHighlight(desktopImage, hoverImage);
+  console.log('PASS Norway hover with visible golden highlight');
+
+  const laptop = await newPage({ viewport: { width: 1366, height: 768 } });
+  await openMap(laptop);
+  assert.equal(await laptop.evaluate(() => document.documentElement.scrollWidth <= innerWidth && document.documentElement.scrollHeight <= innerHeight), true, 'Laptop viewport has no page overflow');
+  await laptop.screenshot({ path: path.join(outputDirectory, 'sculpted-laptop.png') });
+  console.log('PASS laptop layout and screenshot');
+
+  await page.setViewportSize({ width: 1280, height: 800 });
 
   // Complete journeys start on real terrain rather than UI language labels.
   for (const [lang, coordinates] of [['en', [9, 53]], ['pl', [20.8, 52]], ['no', [7.5, 61.5]]]) {
     await openMap(page);
+    const initialCameraDistance = cameraDistance(await inspect(page));
     await clickLand(page, coordinates, lang);
+    if (lang === 'no') {
+      await page.waitForTimeout(160);
+      await page.screenshot({ path: path.join(outputDirectory, 'sculpted-norway-zoom.png') });
+      await page.waitForTimeout(1000);
+      await page.screenshot({ path: path.join(outputDirectory, 'sculpted-norway-drive.png') });
+    } else if (lang === 'en') {
+      await page.screenshot({ path: path.join(outputDirectory, 'sculpted-flight.png') });
+    }
     await destination(page, lang);
+    const vehicles = await page.evaluate(() => JSON.parse(sessionStorage.getItem('northbound-qa-vehicles')));
+    const vehicleType = lang === 'no' ? 'car' : 'plane';
+    const traveling = vehicles[vehicleType];
+    assert.ok(traveling, `The ${vehicleType} was visible during the journey`);
+    const { width, height } = traveling.journey.vehicle.screenSize;
+    const legibilityScale = 800 / 942;
+    assert.ok(Math.max(width, height) >= (vehicleType === 'car' ? 32 : 65) * legibilityScale, `The ${vehicleType} is large enough to read during the journey (${width.toFixed(1)}×${height.toFixed(1)}px)`);
+    assert.ok(vehicles.car, 'The arrival includes a visible car');
+    assertCarRoute(vehicles.car);
     const phases = await page.evaluate(() => JSON.parse(sessionStorage.getItem('northbound-qa-phases')));
     assert.match(phases[0], lang === 'no' ? /Driving to H\u00f8vik/ : /Flying to Sandefjord/);
     if (lang !== 'no') assert.ok(phases.includes('Landed. Next stop, Oslo.'), 'Flight transitions to the Oslo drive');
+    if (lang === 'no') {
+      assert.ok(cameraDistance(traveling) < initialCameraDistance * .8, 'Norway zooms in before the drive');
+      const motion = await page.evaluate(() => JSON.parse(sessionStorage.getItem('northbound-qa-motion')));
+      assert.ok(motion.some(sample => sample.phase === 'zooming' && sample.elapsed < 1500 && sample.distance < initialCameraDistance * .98), 'Norway begins zooming immediately after the click');
+      assert.ok(motion.some(sample => sample.elapsed < 1500 && sample.fade > .05), 'Norway zoom includes a visible fade');
+    }
     assert.equal(phases.at(-1), `${names[lang]}. Welcome.`, 'The full journey reaches its arrival state');
     console.log(`PASS ${names[lang]} terrain selection, full journey, and destination`);
+  }
   }
 
   await openMap(page, rootURL, false);
@@ -126,6 +254,7 @@ try {
   await openMap(mobile);
   assert.equal(await mobile.locator('#terrain-canvas').getAttribute('data-quality'), 'mobile');
   assert.equal(await mobile.evaluate(() => document.documentElement.scrollWidth <= innerWidth && document.documentElement.scrollHeight <= innerHeight), true, 'Mobile viewport has no page overflow');
+  await mobile.screenshot({ path: path.join(outputDirectory, 'sculpted-mobile.png') });
   await mobile.locator('.language-option[data-lang="no"]').tap();
   await mobile.locator('#journey-status.is-visible').waitFor();
   await destination(mobile, 'no');
@@ -148,6 +277,31 @@ try {
   }
   console.log('PASS reduced-motion direct navigation for all languages');
 
+  // Only the intentionally unavailable renderer error is expected in this context.
+  const fallback = await newPage({ reducedMotion: 'reduce' }, [/^THREE\.WebGLRenderer: Error creating WebGL context\.$/]);
+  await fallback.addInitScript(() => {
+    const getContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      if (['webgl', 'webgl2', 'experimental-webgl'].includes(type)) return null;
+      return getContext.call(this, type, ...args);
+    };
+  });
+  async function openFallback() {
+    await fallback.goto(rootURL, { waitUntil: 'load' });
+    await fallback.waitForFunction(() => document.body.classList.contains('no-webgl'));
+    assert.equal(await fallback.locator('#terrain-fallback').isVisible(), true, 'The static map is visible without WebGL');
+    assert.equal(await fallback.locator('#map-loading').isVisible(), false, 'Fallback clears the loading indicator');
+    assert.equal(await fallback.locator('#view-toggle').count(), 0, 'Fallback has no perspective control');
+  }
+  await openFallback();
+  await fallback.locator('#land-no').focus();
+  await fallback.keyboard.press('Enter');
+  await destination(fallback, 'no');
+  await openFallback();
+  await fallback.locator('.language-option[data-lang="pl"]').click();
+  await destination(fallback, 'pl');
+  console.log('PASS WebGL-unavailable fallback map, geographic keyboard selection, and language buttons');
+
   const nested = await newPage({ reducedMotion: 'reduce' });
   await openMap(nested, `${nestedURL}index.html`, false);
   const home = await nested.locator('.wordmark').getAttribute('href');
@@ -159,8 +313,36 @@ try {
   }
   console.log('PASS Live Server nested index.html assets, directory URL, home link, and all destinations');
 
+  // A paused browser clock keeps the short travel phases available for visual review.
+  const clocked = await newPage({ viewport: { width: 1280, height: 800 } });
+  await clocked.clock.install();
+  await openMap(clocked, rootURL, false);
+  await clocked.clock.pauseAt(await clocked.evaluate(() => Date.now() + 100));
+  const beforeClick = await inspect(clocked);
+  await clocked.locator('.language-option[data-lang="no"]').click({ force: true });
+  await clocked.clock.runFor(180);
+  const zoom = await inspect(clocked);
+  assert.equal(zoom.journey.phase, 'zooming', 'An early Norway click starts its own zoom during the introductory camera movement');
+  assert.ok(cameraDistance(zoom) < cameraDistance(beforeClick), 'The early click zooms toward Norway');
+  await new Promise(resolve => setTimeout(resolve, 180)); // Allow the CSS veil to reach visible opacity while scene time stays paused.
+  assert.ok((await inspect(clocked)).fadeOpacity > .05, 'The early click has a visible parchment fade');
+  await clocked.screenshot({ path: path.join(outputDirectory, 'sculpted-norway-zoom.png') });
+  await clocked.clock.fastForward(1100);
+  await clocked.clock.runFor(120);
+  const drive = await inspect(clocked);
+  assert.equal(drive.journey.vehicle.type, 'car');
+  assert.equal(drive.journey.vehicle.visible, true);
+  assertCarRoute(drive);
+  assert.ok(cameraDistance(drive) < cameraDistance(beforeClick) * .8, 'The Norway journey keeps the close camera after overriding the introductory animation');
+  await clocked.screenshot({ path: path.join(outputDirectory, 'sculpted-norway-drive.png') });
+  await clocked.clock.resume();
+  console.log('PASS early Norway click, visible fade, close drive, physical clearance, and controlled travel screenshots');
+
   assert.deepEqual(issues, [], 'No browser runtime errors, console errors, or failed resources');
   console.log('PASS no browser errors or failed resource requests');
+} catch (error) {
+  console.error(error);
+  throw error;
 } finally {
   await Promise.all(contexts.map(context => context.close()));
   await browser.close();

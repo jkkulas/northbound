@@ -1,0 +1,17 @@
+﻿{
+    "min_height":  -4776,
+    "type":  "signed int16 little-endian",
+    "columns":  401,
+    "ordering":  "row-major north to south, west to east",
+    "max_height":  3024,
+    "rows":  401,
+    "unit":  "metres",
+    "sampling":  "Nearest Terrarium pixel at evenly spaced longitude/latitude grid points",
+    "bounds":  {
+                   "north":  73,
+                   "south":  47,
+                   "west":  -12,
+                   "east":  38
+               },
+    "file":  "heightfield.i16"
+}

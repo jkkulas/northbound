@@ -1,27 +1,74 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f4ed"><meta name="description" content="Three languages. A small journey north. Choose your language on an interactive map of Europe."><title>Northbound — Select your language</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%2327392f'/%3E%3Cpath d='M16 4l5 21-5-5-5 5z' fill='%23d5ec93'/%3E%3C/svg%3E"><link rel="stylesheet" href="/assets/fonts.css"><link rel="stylesheet" href="/assets/style.css"></head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#04080e">
+  <meta name="description" content="Three languages. One journey north. Explore an interactive aerial map and choose your language.">
+  <title>Northbound — Select your language</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%23070c14'/%3E%3Cpath d='M16 4l5 21-5-5-5 5z' fill='%2387d4ff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./assets/fonts.css">
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
 <body>
-<div class="site-shell">
-<header class="topbar"><a class="wordmark" href="/" aria-label="Northbound home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 1 23 29 16 22 9 29Z" fill="currentColor"/><path d="M16 1V22L9 29Z" fill="#a8bc9a"/></svg>NORTHBOUND<span class="brand-dot">®</span></a><span class="top-note">A SMALL JOURNEY NORTH</span><div class="location"><span class="live-dot"></span><span>OSLO, NO</span><time id="clock">--:--</time></div></header>
-<main class="experience" id="experience">
-<section class="intro" aria-labelledby="headline"><div class="eyebrow"><span class="tiny-cross">+</span> THREE LANGUAGES. ONE DESTINATION.</div><h1 id="headline">Select your<br><em>language.</em></h1><div class="translations"><p lang="pl">Wybierz język.</p><p lang="nb">Velg språk.</p></div><div class="intro-bottom"><span class="round-arrow">↗</span><p>A little journey starts<br>with a simple choice.</p></div></section>
-<section class="map-panel" aria-label="Interactive language map of Europe"><div class="map-corner top-left">EUROPE / 01</div><div class="map-corner top-right">59°54′ N &nbsp; 10°35′ E</div><div class="map-frame">
-<svg id="europe" viewBox="0 0 1000 800" role="group" aria-label="Select English from the rest of Europe, Polski from Poland, or Norsk from Norway">
-<defs><pattern id="grid" width="95" height="95" patternUnits="userSpaceOnUse"><path d="M95 0H0V95" fill="none" stroke="#87958c" stroke-width=".65" opacity=".13"/></pattern><pattern id="dots" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".65" fill="#87958c" opacity=".11"/></pattern><filter id="soft-shadow" x="-15%" y="-15%" width="130%" height="130%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#243b2c" flood-opacity=".07"/></filter></defs>
-<rect width="1000" height="800" fill="url(#grid)"/><rect width="1000" height="800" fill="url(#dots)"/>
-<g id="map-world"><g class="land-masses" filter="url(#soft-shadow)"><path id="land-en" class="land land-en" data-lang="en" d="{{en}}" role="button" tabindex="0" aria-label="English — fly to Norway"/><path id="land-no" class="land land-no" data-lang="no" d="{{no}}" role="button" tabindex="0" aria-label="Norsk — drive to Høvik"/><path id="land-pl" class="land land-pl" data-lang="pl" d="{{pl}}" role="button" tabindex="0" aria-label="Polski — fly to Norway"/></g>
-<text class="sea-label" x="145" y="320" transform="rotate(-17 145 320)">NORTH ATLANTIC OCEAN</text><text class="sea-label sea-small" x="390" y="400">NORTH SEA</text><text class="sea-label sea-small" x="650" y="655">MEDITERRANEAN SEA</text>
-<g class="map-label" data-lang="no" id="label-no"><text class="country-name" y="0">NORWAY</text><text class="country-native" y="20">Norsk ↗</text></g><g class="map-label" data-lang="pl" id="label-pl"><text class="country-name" y="0">POLAND</text><text class="country-native" y="20">Polski ↗</text></g>
-<g id="oslo-marker" class="destination-marker"><circle class="destination-halo" r="15"/><circle r="4.5"/><path d="M9 0h28"/><text x="43" y="4">OSLO</text></g>
-<path id="route-under" class="route-under"/><path id="route" class="route"/><g id="arrival" class="arrival"><circle r="9"/><circle r="3"/></g>
-<g id="plane" class="vehicle plane"><path d="m0-17 4 13 12 8v3L3 3l1 10 5 4v2l-9-3-9 3v-2l5-4 1-10-13 4V4l12-8Z" fill="currentColor" stroke="#f5f4ed" stroke-width="1.2"/></g>
-<g id="car" class="vehicle car"><rect x="-6" y="-11" width="12" height="22" rx="4" fill="currentColor" stroke="#f5f4ed" stroke-width="1.3"/><path d="M-4-5h8l-1-3h-6ZM-4 5h8l-1 3h-6Z" fill="#d5ec93"/></g>
-</g><g class="compass" transform="translate(917 695)"><text y="-37">N</text><path d="M0-27 6 14 0 7-6 14Z" fill="#304336"/><path d="M0-27V7L-6 14Z" fill="#a8b6aa"/><path d="M-22 0h10m24 0h10M0 20v10" stroke="#88958b"/></g>
-</svg></div><div class="map-hint" id="map-hint"><span class="hint-dot"></span><span>HOVER TO EXPLORE · CLICK TO BEGIN</span></div><div class="map-scale"><span></span>300 KM</div><div class="map-tooltip" id="map-tooltip" aria-hidden="true"><span></span><b>↗</b></div></section>
-<div class="journey-status" id="journey-status" role="status" aria-live="polite"><span class="status-icon">↗</span><div><span id="journey-step">YOUR JOURNEY NORTH</span><p id="journey-text">On our way to Norway.</p></div><button id="skip" type="button">Skip journey <span>↗</span></button></div>
-</main>
-<nav class="language-picker" aria-label="Choose your language"><button class="language-option" data-lang="en"><span class="option-number">01</span><span class="option-body"><span class="option-name">English<span class="language-code">EN</span></span><span class="option-description">FROM WHEREVER YOU ARE</span></span><span class="option-arrow">↗</span></button><button class="language-option" data-lang="pl"><span class="option-number">02</span><span class="option-body"><span class="option-name">Polski<span class="language-code">PL</span></span><span class="option-description">Z POLSKI DO NORWEGII</span></span><span class="option-arrow">↗</span></button><button class="language-option" data-lang="no"><span class="option-number">03</span><span class="option-body"><span class="option-name">Norsk<span class="language-code">NO</span></span><span class="option-description">LITT NÆRMERE HJEM</span></span><span class="option-arrow">↗</span></button></nav>
-<footer class="footer"><span>DIFFERENT WORDS. SAME DIRECTION.</span><span class="footer-middle">All roads lead a little north. <span>↗</span></span><span>DESIGNED TO BRING US CLOSER</span></footer></div>
-<script type="module" src="/assets/app.js"></script>
-</body></html>
+  <main class="experience" id="experience">
+    <section class="map-panel" id="map-panel" aria-label="Interactive aerial map of northern Europe">
+      <canvas id="terrain-canvas" aria-label="Choose a language by clicking Norway, Poland, or the rest of Europe"></canvas>
+      <svg id="terrain-fallback" viewBox="0 0 1000 800" role="group" aria-label="Language map of Europe">
+        <defs>
+          <linearGradient id="fallback-land" x2="1" y2="1"><stop stop-color="#526579"/><stop offset="1" stop-color="#1e3346"/></linearGradient>
+          <radialGradient id="fallback-sea"><stop stop-color="#0c263e"/><stop offset="1" stop-color="#03080e"/></radialGradient>
+          <filter id="fallback-glow"><feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#65bfff" flood-opacity=".13"/></filter>
+        </defs>
+        <rect width="1000" height="800" fill="url(#fallback-sea)"/>
+        <g class="fallback-land" filter="url(#fallback-glow)">
+          <path id="land-en" class="land land-en" data-lang="en" d="{{en}}" role="button" tabindex="0" aria-label="English — fly to Norway"/>
+          <path id="land-no" class="land land-no" data-lang="no" d="{{no}}" role="button" tabindex="0" aria-label="Norsk — drive to Høvik"/>
+          <path id="land-pl" class="land land-pl" data-lang="pl" d="{{pl}}" role="button" tabindex="0" aria-label="Polski — fly to Norway"/>
+        </g>
+      </svg>
+      <div id="map-labels" class="map-labels" aria-hidden="true"></div>
+      <div class="map-tooltip" id="map-tooltip" aria-hidden="true"><span></span><span class="tooltip-arrow">↗</span></div>
+      <div id="map-loading" class="map-loading"><span class="loading-orbit"></span><span>HEADING NORTH<span class="loading-dots">…</span></span></div>
+    </section>
+
+    <a class="wordmark" href="./" aria-label="Northbound home">
+      <svg viewBox="0 0 32 40" aria-hidden="true"><path d="M16 2 27 37 16 27 5 37Z" fill="currentColor"/><path d="M16 2V27L5 37Z" fill="#5b9cc7"/></svg>
+      <span>NORTHBOUND<span class="brand-dot">®</span></span>
+    </a>
+
+    <div class="map-tools">
+      <button type="button" id="view-toggle" class="view-toggle" aria-label="Toggle map view" title="Toggle aerial and overhead view" aria-pressed="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 8 9-5 9 5-9 5-9-5Z" stroke="currentColor" stroke-width="1.1"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5" stroke="currentColor" stroke-width="1.1"/></svg>
+        <span>Change perspective</span>
+      </button>
+    </div>
+
+    <section class="intro" aria-labelledby="headline">
+      <p class="eyebrow"><span></span> A LITTLE CLOSER TO THE NORTH</p>
+      <h1 id="headline">Select your<br><span>language.</span></h1>
+      <div class="translations"><p lang="pl">Wybierz język.</p><span class="translation-divider">/</span><p lang="nb">Velg språk.</p></div>
+    </section>
+
+    <nav class="language-picker" aria-label="Choose your language">
+      <p class="picker-caption">CHOOSE YOUR WAY NORTH <span>↗</span></p>
+      <div class="language-options">
+        <button class="language-option" type="button" data-lang="en" aria-label="English — fly to Norway"><span class="language-code">EN</span><span class="option-name">English</span><span class="option-arrow">↗</span></button>
+        <button class="language-option" type="button" data-lang="pl" aria-label="Polski — fly to Norway"><span class="language-code">PL</span><span class="option-name">Polski</span><span class="option-arrow">↗</span></button>
+        <button class="language-option" type="button" data-lang="no" aria-label="Norsk — drive to Høvik"><span class="language-code">NO</span><span class="option-name">Norsk</span><span class="option-arrow">↗</span></button>
+      </div>
+    </nav>
+
+    <div class="map-hint" id="map-hint"><span class="hint-cross">+</span><span>EXPLORE THE MAP. FIND YOUR WAY.</span></div>
+    <div class="map-coordinates" aria-hidden="true"><span class="coordinate-dot"></span>59°54′ N &nbsp; 10°35′ E</div>
+    <a class="map-credits" href="./assets/credits.html" target="_blank" rel="noopener">Map credits</a>
+
+    <div class="journey-status" id="journey-status" role="status" aria-live="polite">
+      <span class="status-icon" aria-hidden="true">↗</span>
+      <div class="status-copy"><span id="journey-step">YOUR JOURNEY NORTH</span><p id="journey-text">On our way to Norway.</p></div>
+      <button id="skip" type="button">Skip journey <span aria-hidden="true">↗</span></button>
+    </div>
+  </main>
+  <script type="module" src="./assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+﻿{
+    "source_url":  "https://registry.opendata.aws/terrain-tiles/",
+    "encoding":  "Terrarium PNG: elevation metres = R * 256 + G + B / 256 - 32768",
+    "tile_url_template":  "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png",
+    "tile_size":  256,
+    "projection":  "Web Mercator EPSG:3857, XYZ tiles",
+    "requested_bounds":  {
+                             "north":  73,
+                             "south":  47,
+                             "west":  -12,
+                             "east":  38
+                         },
+    "tiles":  [
+                  {
+                      "y":  3,
+                      "filename":  "4-7-3.png",
+                      "z":  4,
+                      "x":  7
+                  },
+                  {
+                      "y":  4,
+                      "filename":  "4-7-4.png",
+                      "z":  4,
+                      "x":  7
+                  },
+                  {
+                      "y":  5,
+                      "filename":  "4-7-5.png",
+                      "z":  4,
+                      "x":  7
+                  },
+                  {
+                      "y":  3,
+                      "filename":  "4-8-3.png",
+                      "z":  4,
+                      "x":  8
+                  },
+                  {
+                      "y":  4,
+                      "filename":  "4-8-4.png",
+                      "z":  4,
+                      "x":  8
+                  },
+                  {
+                      "y":  5,
+                      "filename":  "4-8-5.png",
+                      "z":  4,
+                      "x":  8
+                  },
+                  {
+                      "y":  3,
+                      "filename":  "4-9-3.png",
+                      "z":  4,
+                      "x":  9
+                  },
+                  {
+                      "y":  4,
+                      "filename":  "4-9-4.png",
+                      "z":  4,
+                      "x":  9
+                  },
+                  {
+                      "y":  5,
+                      "filename":  "4-9-5.png",
+                      "z":  4,
+                      "x":  9
+                  }
+              ],
+    "source":  "Mapzen Terrain Tiles / AWS Open Data"
+}

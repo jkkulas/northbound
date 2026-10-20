@@ -1,4 +1,6 @@
 node_modules/
 *.png
-fonts.css
+!data/elevation/*.png
+!dist/assets/*.png
+/fonts.css
 *.zip

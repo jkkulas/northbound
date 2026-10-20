@@ -36,7 +36,17 @@ fs.mkdirSync('dist/assets/vendor',{recursive:true});
 const png=new PNG({width:size,height:size});
 for(let i=0;i<mask.length;i++){png.data[i*4]=mask[i]*85;png.data[i*4+1]=0;png.data[i*4+2]=0;png.data[i*4+3]=255}
 fs.writeFileSync('dist/assets/regions.png',PNG.sync.write(png));
-fs.copyFileSync('data/elevation/heightfield.i16','dist/assets/terrain.i16');
+// Smooth the DEM before meshing: broad, rounded ranges instead of isolated spikes.
+const sourceHeights=fs.readFileSync('data/elevation/heightfield.i16'),kernel=[1,4,6,4,1];
+let smoothed=Float32Array.from({length:401*401},(_,i)=>Math.max(0,sourceHeights.readInt16LE(i*2)));
+for(let pass=0;pass<2;pass++){
+ const horizontal=new Float32Array(smoothed.length),vertical=new Float32Array(smoothed.length);
+ for(let y=0;y<401;y++)for(let x=0;x<401;x++)for(let k=-2;k<=2;k++)horizontal[y*401+x]+=smoothed[y*401+Math.max(0,Math.min(400,x+k))]*kernel[k+2]/16;
+ for(let y=0;y<401;y++)for(let x=0;x<401;x++)for(let k=-2;k<=2;k++)vertical[y*401+x]+=horizontal[Math.max(0,Math.min(400,y+k))*401+x]*kernel[k+2]/16;
+ smoothed=vertical;
+}
+const smoothBuffer=Buffer.alloc(smoothed.length*2);for(let i=0;i<smoothed.length;i++)smoothBuffer.writeInt16LE(Math.round(smoothed[i]),i*2);
+fs.writeFileSync('dist/assets/terrain.i16',smoothBuffer);
 fs.copyFileSync('node_modules/three/build/three.module.min.js','dist/assets/vendor/three.module.min.js');
 fs.copyFileSync('node_modules/three/build/three.core.min.js','dist/assets/vendor/three.core.min.js');
 fs.copyFileSync('node_modules/three/LICENSE','dist/assets/vendor/THREE-LICENSE.txt');
@@ -57,6 +67,6 @@ function ringPath(ring){return ring.map((p,i)=>{const[x,y]=project(p);return(i?'
 const areas={en:'',pl:'',no:''};
 for(const f of countries){if(f.properties.CONTINENT!=='Europe')continue;const polygons=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;areas[f.properties.ADM0_A3==='NOR'?'no':f.properties.ADM0_A3==='POL'?'pl':'en']+=polygons.map(p=>p.map(ringPath).join('')).join('')}
 let html=fs.readFileSync('index.template.html','utf8');for(const[k,v]of Object.entries(areas))html=html.replace('{{'+k+'}}',v);fs.writeFileSync('dist/index.html',html);
-for(const lang of ['en','pl','no']){fs.mkdirSync('dist/'+lang,{recursive:true});const name={en:'English',pl:'Polski',no:'Norsk'}[lang];fs.writeFileSync('dist/'+lang+'/index.html',`<!doctype html><html lang="${lang==='no'?'nb':lang}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${name}</title><link rel="icon" href="data:,"><style>body{margin:0;min-height:100svh;display:grid;place-items:center;background:#05080e;color:#f0f6ff;font:500 clamp(48px,10vw,120px) Arial,sans-serif}h1{font:inherit}</style><h1>${name}</h1></html>`)}
+for(const lang of ['en','pl','no']){fs.mkdirSync('dist/'+lang,{recursive:true});const name={en:'English',pl:'Polski',no:'Norsk'}[lang];fs.writeFileSync('dist/'+lang+'/index.html',`<!doctype html><html lang="${lang==='no'?'nb':lang}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${name}</title><link rel="icon" href="data:,"><style>body{margin:0;min-height:100svh;display:grid;place-items:center;background:#103b46;color:#fff4da;font:500 clamp(48px,10vw,120px) Arial,sans-serif}h1{font:inherit}</style><h1>${name}</h1></html>`)}
 fs.writeFileSync('dist/assets/credits.html',`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Map credits · Northbound</title><style>body{max-width:740px;margin:10vh auto;padding:24px;background:#05080e;color:#b8c7dc;font:15px/1.8 Arial,sans-serif}a{color:#65b7ff}h1{color:white}</style><a href="../">← Northbound</a><h1>Map credits</h1><p>Elevation: <a href="https://registry.opendata.aws/terrain-tiles/">Mapzen Terrain Tiles / AWS Open Data</a>. Norway data © Kartverket. Europe data includes Copernicus EU-DEM funded by the European Union, USGS GMTED2010 and SRTM, NOAA ETOPO1, and © Environment Agency 2015.</p><p>Coastlines, countries, rivers and lakes: <a href="https://www.naturalearthdata.com/">Natural Earth</a>, public domain. Elevation is exaggerated for the illustrative view.</p><p>3D rendering: Three.js, MIT license. DM Sans / Playfair Display fonts: SIL Open Font License.</p></html>`);
 console.log('Built 3D terrain, region mask, hydrography, fallback and three language destinations.');

@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#04080e">
+  <meta name="theme-color" content="#103b46">
   <meta name="description" content="Three languages. One journey north. Explore an interactive aerial map and choose your language.">
   <title>Northbound — Select your language</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%23070c14'/%3E%3Cpath d='M16 4l5 21-5-5-5 5z' fill='%2387d4ff'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='12' fill='%23103b46'/%3E%3Cpath d='M16 4l5 21-5-5-5 5z' fill='%23f2d786'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="./assets/fonts.css">
   <link rel="stylesheet" href="./assets/style.css">
 </head>
@@ -16,9 +16,9 @@
       <canvas id="terrain-canvas" aria-label="Choose a language by clicking Norway, Poland, or the rest of Europe"></canvas>
       <svg id="terrain-fallback" viewBox="0 0 1000 800" role="group" aria-label="Language map of Europe">
         <defs>
-          <linearGradient id="fallback-land" x2="1" y2="1"><stop stop-color="#526579"/><stop offset="1" stop-color="#1e3346"/></linearGradient>
-          <radialGradient id="fallback-sea"><stop stop-color="#0c263e"/><stop offset="1" stop-color="#03080e"/></radialGradient>
-          <filter id="fallback-glow"><feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#65bfff" flood-opacity=".13"/></filter>
+          <linearGradient id="fallback-land" x2="1" y2="1"><stop stop-color="#a7bd71"/><stop offset=".55" stop-color="#75a66d"/><stop offset="1" stop-color="#4f8d6a"/></linearGradient>
+          <radialGradient id="fallback-sea"><stop stop-color="#2d7284"/><stop offset="1" stop-color="#123d49"/></radialGradient>
+          <filter id="fallback-glow"><feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#072e35" flood-opacity=".4"/></filter>
         </defs>
         <rect width="1000" height="800" fill="url(#fallback-sea)"/>
         <g class="fallback-land" filter="url(#fallback-glow)">
@@ -29,12 +29,12 @@
       </svg>
       <div id="map-labels" class="map-labels" aria-hidden="true"></div>
       <div class="map-tooltip" id="map-tooltip" aria-hidden="true"><span></span><span class="tooltip-arrow">↗</span></div>
-      <div id="map-loading" class="map-loading"><span class="loading-orbit"></span><span>HEADING NORTH<span class="loading-dots">…</span></span></div>
+      <div id="map-loading" class="map-loading"><span class="loading-orbit"></span><span>Heading north<span class="loading-dots">…</span></span></div>
     </section>
 
     <a class="wordmark" href="./" aria-label="Northbound home">
-      <svg viewBox="0 0 32 40" aria-hidden="true"><path d="M16 2 27 37 16 27 5 37Z" fill="currentColor"/><path d="M16 2V27L5 37Z" fill="#5b9cc7"/></svg>
-      <span>NORTHBOUND<span class="brand-dot">®</span></span>
+      <svg viewBox="0 0 32 40" aria-hidden="true"><path d="M16 2 27 37 16 27 5 37Z" fill="currentColor"/><path d="M16 2V27L5 37Z" fill="#a3d5cd"/></svg>
+      <span>northbound</span>
     </a>
 
     <div class="map-tools">
@@ -45,13 +45,13 @@
     </div>
 
     <section class="intro" aria-labelledby="headline">
-      <p class="eyebrow"><span></span> A LITTLE CLOSER TO THE NORTH</p>
+      <p class="eyebrow"><span></span> A little closer to the north</p>
       <h1 id="headline">Select your<br><span>language.</span></h1>
       <div class="translations"><p lang="pl">Wybierz język.</p><span class="translation-divider">/</span><p lang="nb">Velg språk.</p></div>
     </section>
 
     <nav class="language-picker" aria-label="Choose your language">
-      <p class="picker-caption">CHOOSE YOUR WAY NORTH <span>↗</span></p>
+      <p class="picker-caption">Choose your way north <span>↗</span></p>
       <div class="language-options">
         <button class="language-option" type="button" data-lang="en" aria-label="English — fly to Norway"><span class="language-code">EN</span><span class="option-name">English</span><span class="option-arrow">↗</span></button>
         <button class="language-option" type="button" data-lang="pl" aria-label="Polski — fly to Norway"><span class="language-code">PL</span><span class="option-name">Polski</span><span class="option-arrow">↗</span></button>
@@ -59,13 +59,13 @@
       </div>
     </nav>
 
-    <div class="map-hint" id="map-hint"><span class="hint-cross">+</span><span>EXPLORE THE MAP. FIND YOUR WAY.</span></div>
+    <div class="map-hint" id="map-hint"><span class="hint-cross">↗</span><span>Explore the map. Find your way.</span></div>
     <div class="map-coordinates" aria-hidden="true"><span class="coordinate-dot"></span>59°54′ N &nbsp; 10°35′ E</div>
     <a class="map-credits" href="./assets/credits.html" target="_blank" rel="noopener">Map credits</a>
 
     <div class="journey-status" id="journey-status" role="status" aria-live="polite">
       <span class="status-icon" aria-hidden="true">↗</span>
-      <div class="status-copy"><span id="journey-step">YOUR JOURNEY NORTH</span><p id="journey-text">On our way to Norway.</p></div>
+      <div class="status-copy"><span id="journey-step">Your journey north</span><p id="journey-text">On our way to Norway.</p></div>
       <button id="skip" type="button">Skip journey <span aria-hidden="true">↗</span></button>
     </div>
   </main>

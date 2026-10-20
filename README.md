@@ -1,6 +1,6 @@
 # Northbound
 
-A responsive language gateway with a full-screen oblique 3D view of northern Europe. Real elevation data models the Scandinavian mountains; Natural Earth data supplies coastlines, lakes and rivers. Norway and Poland are separate interactive regions; all remaining land forms one English region without internal borders.
+A responsive language gateway with a full-screen oblique 3D storybook view of northern Europe. Green hills, golden fields and teal seas create a cheerful dark-mode atlas for a Norwegian school. Real elevation data models the Scandinavian mountains; Natural Earth data supplies coastlines, lakes and rivers. Norway and Poland are separate interactive regions; all remaining land forms one English region without internal borders.
 
 Run `npm run dev` and open http://127.0.0.1:4173. The deployable site is in `dist/`; all runtime assets are included locally.
 
@@ -9,6 +9,8 @@ For VS Code Live Server, right-click `dist/index.html` and choose **Open with Li
 Run `npm.cmd install` once on Windows (or `npm install` elsewhere) to install build and test tools. `npm run build` regenerates the terrain assets and the three deliberately minimal language pages from `index.template.html`, `countries.geojson` and `data/`. Edit presentation and behavior in `dist/assets/style.css` and `dist/assets/app.js`. `npm test` runs browser checks using the installed Chrome executable.
 
 The published site is static. Three.js is copied into `dist/assets/vendor/`; fonts, elevation and all geographic data are self-hosted. No API keys, map tile subscriptions or runtime external requests are required. The renderer uses a smaller terrain mesh on mobile, caps pixel density, pauses when the tab is hidden, and stops rendering when the scene settles. A static SVG fallback and the language buttons remain available without WebGL.
+
+`build.mjs` smooths elevation using two separable Gaussian passes; the renderer also uses lower height exaggeration to keep ranges rounded. `dist/assets/landmarks.js` creates six painted city miniatures (Bryggen, Oslo Opera House, Stockholm City Hall, Nyhavn, Warsaw Royal Castle, and a Dutch windmill). `dist/assets/sea-creatures.js` builds friendly Jörmungandr and Kraken models from curved geometry. These decorations are static and share or merge geometry to keep rendering inexpensive.
 
 Routes use real geographic coordinates: flights arrive at Sandefjord Airport Torp before the car continues to Oslo. Norway selections drive from the clicked point to Høvik. Travel paths are stylized approximations, rather than road navigation. Reduced-motion visitors go directly to their chosen page; every journey also has a skip control.
 

@@ -1,4 +1,6 @@
 import * as THREE from './vendor/three.module.min.js';
+import {addLandmarks} from './landmarks.js';
+import {addSeaCreatures} from './sea-creatures.js';
 
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),canvas=$('#terrain-canvas'),tooltip=$('#map-tooltip');
 const names={en:'English',pl:'Polski',no:'Norsk'},ids={en:1,pl:2,no:3},langs=['','en','pl','no'];
@@ -21,7 +23,7 @@ function heightAt(lon,lat){
  if(!elevations)return .25;
  const x=THREE.MathUtils.clamp((lon+12)/50*400,0,399.999),y=THREE.MathUtils.clamp((73-lat)/26*400,0,399.999),i=Math.floor(x),j=Math.floor(y),fx=x-i,fy=y-j;
  const a=elevations[j*401+i]*(1-fx)+elevations[j*401+i+1]*fx,b=elevations[(j+1)*401+i]*(1-fx)+elevations[(j+1)*401+i+1]*fx;
- return .22+Math.max(0,a*(1-fy)+b*fy)/1000*2.8;
+ return .22+Math.max(0,a*(1-fy)+b*fy)/1000*1.65;
 }
 function worldPoint([lon,lat],lift=0){return new THREE.Vector3((lon-13)*2.2,heightAt(lon,lat)+lift,(60-lat)*4.4)}
 function geographic(point){return[point.x/2.2+13,60-point.z/4.4]}
@@ -63,16 +65,18 @@ void main(){vUv=uv;vNormal=normal;vWorld=position;vec4 mv=modelViewMatrix*vec4(p
 const fragmentShader=`uniform sampler2D uMask;uniform vec3 uHover;varying vec2 vUv;varying vec3 vNormal;varying vec3 vWorld;varying float vDepth;
 void main(){float region=texture2D(uMask,vUv).r;if(region<.13)discard;
 float id=floor(region*3.+.5);float h=vWorld.y;vec3 n=normalize(vNormal);
-float light=.38+max(dot(n,normalize(vec3(-.65,.8,.32))),0.)*.88;
-vec3 low=vec3(.115,.18,.245),high=vec3(.49,.60,.72);
-vec3 color=mix(low,high,pow(clamp((h-.22)/7.,0.,1.),.6));
-color=mix(color,vec3(.73,.82,.91),smoothstep(5.2,7.6,h)*.7);
-float noise=sin(vWorld.x*3.7+sin(vWorld.z*4.1))*sin(vWorld.z*5.3+cos(vWorld.x*2.7));color+=noise*.009;
+float light=.67+max(dot(n,normalize(vec3(-.45,.9,.35))),0.)*.52;
+float fields=smoothstep(-.2,.75,sin(vWorld.x*.52+sin(vWorld.z*.21))*cos(vWorld.z*.64));
+float forest=smoothstep(.15,.8,sin(vWorld.x*.27-vWorld.z*.19)*cos(vWorld.z*.32));
+vec3 grass=mix(vec3(.27,.46,.255),vec3(.49,.53,.23),fields*.52);
+grass=mix(grass,vec3(.16,.35,.23),forest*.6);
+vec3 color=mix(grass,vec3(.49,.55,.34),smoothstep(.65,2.5,h));
+color=mix(color,vec3(.82,.84,.72),smoothstep(2.1,3.6,h)*.85);
+float noise=sin(vWorld.x*2.+sin(vWorld.z*2.3))*sin(vWorld.z*2.7+cos(vWorld.x*1.5));color+=noise*.005;
 color*=light;
 float selection=id<1.5?uHover.x:(id<2.5?uHover.y:uHover.z);
-color=mix(color,color*.82+vec3(.055,.29,.50),selection*.78);
-float contour=1.-smoothstep(.01,.05,abs(fract(h*2.3)-.5));color+=vec3(.03,.065,.095)*contour*smoothstep(.7,2.,h)*.35;
-float fog=smoothstep(150.,245.,vDepth);color=mix(color,vec3(.015,.03,.055),fog*.85);
+color=mix(color,color*1.12+vec3(.12,.13,.015),selection*.75);
+float fog=smoothstep(165.,260.,vDepth);color=mix(color,vec3(.055,.15,.16),fog*.62);
 float edge=smoothstep(0.,.028,vUv.x)*smoothstep(0.,.028,1.-vUv.x)*smoothstep(0.,.055,vUv.y)*smoothstep(0.,.055,1.-vUv.y);
 gl_FragColor=vec4(color,edge);}`;
 
@@ -85,12 +89,12 @@ function makeTerrain(texture){
 }
 function lineSegments(lines,color,opacity,lift=.08){const positions=[];for(const line of lines)for(let i=1;i<line.length;i++){const a=worldPoint(line[i-1],lift),b=worldPoint(line[i],lift);if(a.distanceTo(b)>8)continue;positions.push(...a,...b)}const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));const material=new THREE.LineBasicMaterial({color,transparent:true,opacity,depthWrite:false,blending:THREE.AdditiveBlending});const object=new THREE.LineSegments(geometry,material);scene.add(object);return object}
 function addGeography(){
- lineSegments(geography.coasts,0x5796b9,.3,.055);
- lineSegments(geography.rivers,0x4a9ad3,.33,.1);
- lineSegments(geography.outlines.no,0x8bc5e6,.33,.08);lineSegments(geography.outlines.pl,0x7aa5c9,.25,.07);
- const glowTexture=(()=>{const c=document.createElement('canvas');c.width=c.height=64;const ctx=c.getContext('2d'),g=ctx.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,'#b4e9ff');g.addColorStop(.12,'#52acff');g.addColorStop(.3,'#217add80');g.addColorStop(1,'#1266c800');ctx.fillStyle=g;ctx.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)})();
+ lineSegments(geography.coasts,0x9bcbb7,.24,.055);
+ lineSegments(geography.rivers,0x80c7d5,.48,.1);
+ lineSegments(geography.outlines.no,0xf1d98a,.3,.08);lineSegments(geography.outlines.pl,0xe9ca77,.25,.07);
+ const glowTexture=(()=>{const c=document.createElement('canvas');c.width=c.height=64;const ctx=c.getContext('2d'),g=ctx.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,'#fff1bd');g.addColorStop(.12,'#e9c76b');g.addColorStop(.3,'#c79e4f60');g.addColorStop(1,'#b1813800');ctx.fillStyle=g;ctx.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)})();
  const places=[cities.oslo,cities.pl,[12.57,55.68],[18.07,59.33],[24.94,60.17],[13.4,52.52],[-.13,51.5],[4.9,52.37],[5.32,60.39],[10.4,63.43],[21.01,52.23],[7.1,50.7],[11.97,57.71],[18.65,54.35]];
- for(const place of places){const material=new THREE.SpriteMaterial({map:glowTexture,color:0x9edcff,transparent:true,opacity:.75,depthWrite:false,blending:THREE.AdditiveBlending});const sprite=new THREE.Sprite(material);sprite.position.copy(worldPoint(place,.13));sprite.scale.set(1.25,1.25,1);scene.add(sprite)}
+ for(const place of places){const material=new THREE.SpriteMaterial({map:glowTexture,color:0xffe6a3,transparent:true,opacity:.65,depthWrite:false,blending:THREE.AdditiveBlending});const sprite=new THREE.Sprite(material);sprite.position.copy(worldPoint(place,.13));sprite.scale.set(1.1,1.1,1);scene.add(sprite)}
 }
 function label(name,geo,className,lang,native){
  const el=document.createElement(lang?'button':'span');el.className=className;el.innerHTML=native?`<span class="label-name">${name}</span><span class="label-native">${native}</span>`:name;
@@ -99,14 +103,16 @@ function label(name,geo,className,lang,native){
 }
 function addLabels(){
  $('#map-labels').removeAttribute('aria-hidden');
- label('NORGE',[9.4,64.0],'map-label country-label','no','Norsk ↗');
- label('POLSKA',[19,52.3],'map-label country-label','pl','Polski ↗');
- label('EUROPE',[2.9,53.7],'map-label country-label','en','English ↗');
+ label('Norge',[9.4,64.0],'map-label country-label','no','Norsk ↗');
+ label('Polska',[19,52.3],'map-label country-label','pl','Polski ↗');
+ label('Europe',[2.9,53.7],'map-label country-label','en','English ↗');
  label('Oslo',cities.oslo,'city-label is-destination');
  label('Stockholm',[18.07,59.33],'city-label secondary-label');
  label('København',[12.57,55.68],'city-label secondary-label');
- label('NORWEGIAN SEA',[-2.5,66.0],'map-label sea-label');
- label('BALTIC SEA',[20.5,57.0],'map-label sea-label');
+ label('Norwegian Sea',[-2.5,66.0],'map-label sea-label');
+ label('Baltic Sea',[20.5,57.0],'map-label sea-label');
+ label('Jörmungandr',[mobile?4.1:1.7,64.25],'map-label sea-label creature-label');
+ label('Kraken',[mobile?4.0:3.1,58.65],'map-label sea-label creature-label');
 }
 function updateLabels(){const hero=mobile&&!busy?$('.intro').getBoundingClientRect():null;for(const entry of labels){const p=entry.position.clone().project(camera),x=(p.x+1)*innerWidth/2,y=(1-p.y)*innerHeight/2,covered=hero&&x>hero.left-15&&x<hero.right+15&&y>hero.top-20&&y<hero.bottom+20;entry.el.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;entry.el.style.visibility=p.z<1&&p.z>0&&!covered&&(!mobile||x>24&&x<innerWidth-24)?'visible':'hidden';entry.el.style.opacity=busy&&!entry.el.classList.contains('is-destination')?'0':'1'}}
 
@@ -117,14 +123,14 @@ function makeVehicles(){
  arrival=new THREE.Mesh(new THREE.RingGeometry(.3,.36,48),new THREE.MeshBasicMaterial({color:0x98dcff,transparent:true,opacity:0,side:THREE.DoubleSide,depthTest:false}));arrival.rotation.x=-Math.PI/2;scene.add(arrival);
 }
 function overview(){
- if(mobile){cameraBase.set(-2,118,109);cameraTarget.set(5,0,-7);camera.fov=42}
+ if(mobile){cameraBase.set(-8,118,109);cameraTarget.set(-1,0,-7);camera.fov=42}
  else{cameraBase.set(-10,82,98);cameraTarget.set(-11,0,6);camera.fov=40}
  camera.updateProjectionMatrix();
 }
 async function cameraTo(position,target,duration=850){const from=cameraBase.clone(),fromTarget=cameraTarget.clone();await tween(duration,p=>{p=ease(p);cameraBase.lerpVectors(from,position,p);cameraTarget.lerpVectors(fromTarget,target,p)})}
 $('#view-toggle').addEventListener('click',async()=>{
- if(!ready||busy)return;overhead=!overhead;$('#view-toggle').setAttribute('aria-pressed',String(overhead));const target=mobile?new THREE.Vector3(5,0,-7):new THREE.Vector3(-11,0,6);
- const pos=overhead?target.clone().add(new THREE.Vector3(0,146,.05)):mobile?new THREE.Vector3(-2,118,109):new THREE.Vector3(-10,82,98);
+ if(!ready||busy)return;overhead=!overhead;$('#view-toggle').setAttribute('aria-pressed',String(overhead));const target=mobile?new THREE.Vector3(-1,0,-7):new THREE.Vector3(-11,0,6);
+ const pos=overhead?target.clone().add(new THREE.Vector3(0,146,.05)):mobile?new THREE.Vector3(-8,118,109):new THREE.Vector3(-10,82,98);
  if(reduced){cameraBase.copy(pos);cameraTarget.copy(target);camera.position.copy(pos);look.copy(target);wake()}else await cameraTo(pos,target);
 });
 function status(step,text){$('#journey-step').textContent=step;$('#journey-text').textContent=text}
@@ -145,33 +151,33 @@ async function journey(lang,start){
  highlight(lang);busy=true;document.body.classList.add('is-traveling');$$('.language-option').forEach(el=>el.disabled=true);$('#journey-status').classList.add('is-visible');tooltip.classList.remove('visible');
  try{
  if(lang==='no'){
-  status('01 / NORTHBOUND','Driving to Høvik.');
+  status('A little road trip','Driving to Høvik.');
   const middle=[(start[0]+cities.hovik[0])/2,(start[1]+cities.hovik[1])/2];
   await travel([start,middle,cities.hovik],'car',2100,false);
   const target=worldPoint(cities.hovik);await cameraTo(target.clone().add(new THREE.Vector3(3,12,14)),target,750);await arrive(cities.hovik);
  }else{
-  status('01 / NORTHBOUND','Flying to Sandefjord, Norway.');
+  status('Up, up and away','Flying to Sandefjord, Norway.');
   const mid=[(start[0]+cities.torp[0])/2-2,(start[1]+cities.torp[1])/2];
   await travel([start,mid,cities.torp],'plane',2400,true);
-  status('02 / THE LAST STRETCH','Landed. Next stop, Oslo.');
+  status('Nearly there','Landed. Next stop, Oslo.');
   const target=worldPoint([10.48,59.58]);await cameraTo(target.clone().add(new THREE.Vector3(3,12,15)),target,900);
   await travel([cities.torp,[10.4,59.3],[10.35,59.48],[10.22,59.69],[10.43,59.86],cities.oslo],'car',1500,false);await arrive(cities.oslo);
  }
- status('YOU HAVE ARRIVED',names[lang]+'. Welcome.');await tween(500,()=>{});go();
+ status('You made it!',names[lang]+'. Welcome.');await tween(500,()=>{});go();
  }catch(error){console.error('Journey failed',error);go()}
 }
 
 async function init(){
  try{
-  renderer=new THREE.WebGLRenderer({canvas,antialias:!mobile,alpha:false,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1.4:1.6));renderer.setSize(innerWidth,innerHeight);renderer.setClearColor(0x04080e);renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer=new THREE.WebGLRenderer({canvas,antialias:!mobile,alpha:false,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1.4:1.6));renderer.setSize(innerWidth,innerHeight);renderer.setClearColor(0x123740);renderer.outputColorSpace=THREE.SRGBColorSpace;
   scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(40,innerWidth/innerHeight,.1,600);
   const [geoResponse,heightResponse,texture]=await Promise.all([fetch(new URL('./geography.json',import.meta.url)),fetch(new URL('./terrain.i16',import.meta.url)),new THREE.TextureLoader().loadAsync(new URL('./regions.png',import.meta.url).href)]);
   if(!geoResponse.ok||!heightResponse.ok)throw new Error('Terrain data unavailable');
   geography=await geoResponse.json();elevations=new Int16Array(await heightResponse.arrayBuffer());texture.minFilter=THREE.LinearFilter;texture.magFilter=THREE.LinearFilter;texture.generateMipmaps=false;
   const bitmap=document.createElement('canvas');bitmap.width=bitmap.height=texture.image.width;const ctx=bitmap.getContext('2d',{willReadFrequently:true});ctx.drawImage(texture.image,0,0);maskWidth=bitmap.width;maskPixels=ctx.getImageData(0,0,maskWidth,maskWidth).data;
-  const water=new THREE.Mesh(new THREE.PlaneGeometry(1600,1600),new THREE.MeshBasicMaterial({color:0x050d17}));water.rotation.x=-Math.PI/2;water.position.y=-.05;scene.add(water);
-  const grid=new THREE.GridHelper(300,50,0x17334d,0x10263c);grid.position.y=-.035;grid.material.transparent=true;grid.material.opacity=.09;scene.add(grid);
-  makeTerrain(texture);addGeography();addLabels();makeVehicles();overview();camera.position.copy(cameraBase);look.copy(cameraTarget);camera.lookAt(look);
+  const water=new THREE.Mesh(new THREE.PlaneGeometry(1600,1600),new THREE.MeshBasicMaterial({color:0x174752}));water.rotation.x=-Math.PI/2;water.position.y=-.05;scene.add(water);
+  scene.add(new THREE.HemisphereLight(0xfff4d5,0x416f6a,2.2));const sun=new THREE.DirectionalLight(0xffe4ad,2.4);sun.position.set(-35,70,40);scene.add(sun);const sky=new THREE.DirectionalLight(0xc5e6f0,.7);sky.position.set(40,35,-30);scene.add(sky);
+  makeTerrain(texture);addGeography();const landmarks=addLandmarks({THREE,scene,worldPoint,mobile}),creatures=addSeaCreatures({THREE,scene,mobile});canvas.dataset.landmarks=String(landmarks.count);canvas.dataset.creatures=String(creatures.count);addLabels();makeVehicles();overview();camera.position.copy(cameraBase);look.copy(cameraTarget);camera.lookAt(look);
   ready=true;canvas.dataset.renderer='webgl';canvas.dataset.quality=mobile?'mobile':'desktop';document.body.classList.add('has-webgl','is-ready');$('#map-loading').hidden=true;
   $$('#terrain-fallback [tabindex]').forEach(el=>el.setAttribute('tabindex','-1'));
   if(!reduced){const final=cameraBase.clone();cameraBase.add(new THREE.Vector3(0,8,8));camera.position.copy(cameraBase);cameraTo(final,cameraTarget.clone(),1800)}wake();

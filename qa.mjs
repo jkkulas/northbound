@@ -53,6 +53,9 @@ async function openMap(page, url = rootURL, settle = true) {
   assert.equal(await page.locator('#terrain-canvas').isVisible(), true, 'WebGL canvas is visible');
   assert.equal(await page.locator('#map-loading').isVisible(), false, 'Loading indicator clears');
   assert.equal(await page.locator('.map-label[data-lang]').count(), 3, 'All three geographic language labels exist');
+  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-landmarks'), '6', 'The city miniatures are constructed');
+  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-creatures'), '2', 'Both sea creatures are constructed');
+  assert.equal(await page.locator('.creature-label').count(), 2, 'Both folklore characters have names');
   await page.evaluate(() => document.fonts.ready);
   if (settle) await page.waitForTimeout(2300); // Finish the initial camera movement before geographic clicks.
 }
@@ -132,10 +135,16 @@ try {
   await openMap(reduced, rootURL, false);
   for (const lang of ['en', 'pl', 'no']) {
     if (lang !== 'en') await openMap(reduced, rootURL, false);
-    const started = Date.now();
+    await reduced.evaluate(() => {
+      sessionStorage.setItem('northbound-qa-animated', 'false');
+      const status = document.querySelector('#journey-status');
+      new MutationObserver(() => {
+        if (status.classList.contains('is-visible')) sessionStorage.setItem('northbound-qa-animated', 'true');
+      }).observe(status, { attributes: true, attributeFilter: ['class'] });
+    });
     await reduced.locator(`.language-option[data-lang="${lang}"]`).click();
     await destination(reduced, lang);
-    assert.ok(Date.now() - started < 2500, 'Reduced motion bypasses the animated journey');
+    assert.equal(await reduced.evaluate(() => sessionStorage.getItem('northbound-qa-animated')), 'false', 'Reduced motion never starts an animated journey');
   }
   console.log('PASS reduced-motion direct navigation for all languages');
 

@@ -62,9 +62,9 @@ async function openMap(page, url = rootURL, settle = true) {
   assert.equal(await page.locator('#terrain-canvas').isVisible(), true, 'WebGL canvas is visible');
   assert.equal(await page.locator('#map-loading').isVisible(), false, 'Loading indicator clears');
   assert.equal(await page.locator('.map-label[data-lang]').count(), 3, 'All three geographic language labels exist');
-  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-landmarks'), '9', 'All nine dimensional landmarks, including Borgund, are ready');
-  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-creatures'), '17', 'All seventeen new maritime illustrations are ready');
-  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-artwork'), 'illuminated-atlas', 'The map uses ink-and-watercolor artwork');
+  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-landmarks'), '17', 'All seventeen solid landmarks are ready');
+  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-creatures'), '17', 'All seventeen solid maritime scenes are ready');
+  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-artwork'), 'solid-painted-diorama', 'The map uses ink-and-watercolor artwork');
   assert.ok(await page.locator('.creature-label').count() >= 2, 'The folklore illustrations have names');
   for (const name of ['J\u00f6rmungandr', 'Kraken']) {
     assert.equal(await page.locator('.creature-label').filter({ hasText: name }).count(), 1, `${name} has a label`);
@@ -162,14 +162,14 @@ function assertCarRoute(state) {
     assert.ok(sample.position[1] >= sample.terrainHeight, 'The road stays above the terrain');
   }
   assert.ok(journey.carClearance >= 0, `The whole car clears the terrain (${journey.carClearance})`);
-  assert.ok(journey.operaClearance > .15, `The road and parked car clear the opera (${journey.operaClearance})`);
+  assert.ok(journey.landmarkClearance > .15, `The road and parked car clear the landmark models (${journey.landmarkClearance})`);
   const steepest = journey.routeSamples.slice(1).reduce((maximum, sample, index) => {
     const previous = journey.routeSamples[index];
     const distance = Math.hypot(sample.position[0] - previous.position[0], sample.position[2] - previous.position[2]);
     return Math.max(maximum, distance > .001 ? Math.abs(sample.terrainHeight - previous.terrainHeight) / distance : 0);
   }, 0);
   const waterFraction = journey.routeSamples.filter(sample => sample.region === 0).length / journey.routeSamples.length;
-  console.log(`ROUTE clearance=${journey.carClearance.toFixed(3)}, opera=${journey.operaClearance.toFixed(3)}, steepest=${steepest.toFixed(2)}, water=${(waterFraction * 100).toFixed(1)}%`);
+  console.log(`ROUTE clearance=${journey.carClearance.toFixed(3)}, landmarks=${journey.landmarkClearance.toFixed(3)}, steepest=${steepest.toFixed(2)}, water=${(waterFraction * 100).toFixed(1)}%`);
 }
 
 try {
@@ -181,7 +181,7 @@ try {
   assert.equal(await page.locator('#terrain-canvas').getAttribute('data-quality'), 'desktop');
   const overview = await inspect(page);
   const architecture = await page.evaluate(() => window.__qaInspectScene({ artwork: true }).landmarkArtwork);
-  assert.equal(architecture.length, 9, 'The inspect contract reports nine dimensional landmark models');
+  assert.equal(architecture.length, 17, 'The inspect contract reports seventeen dimensional landmark models');
   assert.ok(architecture.some(model => model.name === 'landmark-borgund'), 'Borgund Stave Church is modeled');
   for (const model of architecture) {
     assert.equal(model.userData.dimensional, true, `${model.name} is a dimensional model`);

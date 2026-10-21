@@ -1,44 +1,31 @@
-# Northbound artwork, revision 4
+﻿# Northbound artwork — solid 3D diorama fork
 
-This revision replaces every landmark and maritime subject from the earlier flat atlas. The user's new pictorial-map reference guides the rich ochre, moss, umber, ivory and turquoise palette, engraved linework and dimensional silhouettes.
+The supplied reference guides this fork's carved and painted miniature world: warm stone, terracotta, dark timber, copper green, gold land and turquoise sea. Every decorative object is real geometry with depth; only geographic water, land pigment and interface lettering remain surface treatments.
 
-## Architecture and scenery
+## Architecture
 
-All nine landmarks are new solid 3D geometry, built for their researched locations. They contain modeled gables, stepped roofs, windows, dormers, masonry courses, piers, rails, timber framing, copper roofs and finials. Borgund Stave Church includes stacked timber roofs, a carved entrance and dragon finials. Tower Bridge has twin towers, upper walkways and suspension members. Nyhavn is a complete ensemble of colored gabled houses and a copper church spire extending over Sjælland.
+`dist/assets/landmarks.js` retains seven original solid landmark recipes and integrates ten new recipes from `landmark-models-3d.js`. Fine details are modeled: Brandenburg's quadriga and fluted columns; Eiffel's open lattice and galleries; Cologne's Gothic spires, tracery and flying buttresses; Trakai's brick towers; Helsinki's five copper domes, columns and roof figures; Toompea's courtyard and flag tower; Riga's scroll gables; Rosenholm's copper-topped turrets; Edinburgh's fortified courts; and Hekla's crater, lava channels, snow and sculpted ash plume.
 
-- Models: `dist/assets/landmarks.js`
-- Shared pigment and geometry batching: `dist/assets/atlas-models.js`
-- Verified anchors, official references and documented Gdańsk coastal adjustment: `data/landmark-locations.json`
-- Sculpted trees, cottages, lighthouses and offshore rocks: `dist/assets/map-scenery.js`
+The old Bryggen and Oslo Opera recipes remain historical source but are excluded from the active scene. The active list has 17 models. Most retained landmarks are taller and broader; footprint fitting can narrow coastal ensembles without reducing their vertical presence. Brandenburg and the windmill remain upright.
 
-Models use solid pigment with directional shading, fixed paper grain, fine quill hatching and restrained engraved edges. Foundations follow the shared terrain. Small repeated forms are merged or instanced. No landmark images, camera-facing cards or flat terrain decals are used.
+Primary location references are in `data/landmark-locations.json` and `data/landmark-locations-3d.json`. These are artistic building interpretations at exaggerated atlas scale. Real geographic anchors and the final drawing positions are stored separately; the actual positions and scales are recorded by `qa-landmark-support.mjs` in `outputs/landmark-support.json`.
 
-## Newly generated maritime subjects
+`ground-support.js` builds a spatial lookup from the exact rendered river triangles. The fitter tests a dense grid over the complete foundation against rivers, coasts and other landmarks. Finland and Estonia have separate geographic constraints, as do Sjælland and the Dutch windmill. Warsaw stays west/south of its real river-side anchor. If a requested size cannot fit, its horizontal footprint reduces before placement is accepted. Masonry skirts join the DEM; Hekla's continuous radial surface joins the terrain at its edge.
 
-The built-in `image_gen` tool generated each subject separately from a fresh prompt. These are new compositions, not edits of the retired atlases. The seven source drawings are retained under `outputs/maritime-v4/`:
+Tower Bridge has dry tower plinths, an open water span and two sloping approaches meeting the banks. `island-bridges.js` supplies three additional supported crossings with dry abutments, modeled deck, rails, piers and copper-capped watchtowers. Unsupported or landmark-obstructed alternatives are omitted.
 
-| Source PNG | Subject |
-| --- | --- |
-| `serpent_attack.png` | Green and gold horned serpent attacking a merchant ship |
-| `kraken_attack.png` | Russet kraken engulfing a sailing ship |
-| `merchant_ship.png` | Detailed cream-sailed merchant galleon |
-| `schooner_ship.png` | Two-masted northern schooner |
-| `offshore_rig.png` | Offshore platform and lattice decks |
-| `northern_whale.png` | Breaching leviathan beside a small Nordic boat |
-| `great_lobster.png` | Copper-vermilion armored sea beast |
+## Sea models
 
-Exact final generation prompts are in [outputs/maritime-v4-prompts.json](outputs/maritime-v4-prompts.json). The briefs request detailed copperplate ink, richly shaded watercolor, a 35-degree three-quarter view, believable volume, transparent backgrounds and opaque painted bodies. Faceted monsters, cartoon forms, shadow discs, text and rectangular ocean grounds are explicitly excluded.
+`sea-models.js` replaces the generated maritime images with seven original procedural model families, arranged as 17 scenes by `sea-creatures.js`. Ships have curved solid hulls, decks, cabin windows, thick bowed cloth sails, yards, rigging, railings and stern ornament. Serpents have smooth swept bodies, overlapping scales, crests, eyes and teeth. Kraken arms have modeled suckers. The whale, lobster and offshore platform are also dimensional geometry. Foam and wakes are slender modeled curves without a colored water rectangle.
 
-`tools/build-maritime-v4.mjs` only packs and resizes the original transparent drawings for delivery; it does not redraw their content. The desktop atlas is `dist/assets/maritime-illustrated-v4.webp` (3072 × 1152, 1,358,412 bytes). The mobile atlas is `dist/assets/maritime-illustrated-v4-mobile.webp` (1536 × 576, 349,810 bytes). Pixel bounds are recorded in `dist/assets/maritime-illustrated-v4.json`.
+The full X/Z bounding footprint of every maritime scene is sampled against the sea mask. Projection checks keep them separate from landmark silhouettes and one another. Desktop shows the complete compositions; mobile framing preserves the map's established POV and shows the central portion of the scene.
 
-`sea-creatures.js` arranges seventeen vignettes from these subjects, including twelve sailing passages, two monster attacks and a small boat in the whale composition. The platform is placed in open water west of Stavanger. The painted vignettes have fixed map orientation and dimensional perspective; they do not rotate to face the camera. Their footprints are fitted to the real sea mask using original alpha silhouettes and the overview camera. Fine tidal ink continues their generated waterlines into the chart. Painted bodies remain opaque; no sea or land shows through them.
+No `.webp` object atlases or compass SVG are requested by the 3D renderer. Historical generated drawings and their original prompts remain in the repository as production history, not active assets. No new image generation was used for this 3D conversion.
 
-`qa-composition.mjs` independently reconstructs texture UV triangles, including mirrored ships, projects original pigment through the live camera and tests the underlying water. It checks millions of original samples across desktop, laptop and phone views.
+## Scenery, materials and terrain
 
-## Landscape and vehicles
+`map-scenery.js` uses instanced sculpted fir/oak crowns, trunks and merged detailed settlements. Each house/lighthouse has a sampled dry foundation and terrain-fitted masonry. Trees avoid houses, landmarks, bridge approaches and the travel corridor. The desktop scene contains 760 trees, 144 houses and 3 lighthouses; mobile uses fewer repeated forms.
 
-The mountains remain part of the continuous DEM surface. `atlas-terrain.js` adds rough dark rock, broken ivory snow, slope hachures, umber coast banks, meadow pigment and exaggerated geographic rivers. There are no separate mountain sprites. `terrain-height.js` is shared by the map and journeys.
+`atlas-models.js` provides opaque colored geometry with directional light, paper grain, fine hatching and restrained edges. Geometry merging keeps one or two draw calls per landmark and one per maritime scene. `compass-model.js` is an embossed ivory/brass instrument with real raised facets and rings. Mountains remain continuous DEM relief with rough rock, broken snow and downhill hachures; elevation contour bands are removed.
 
-The Wizz-inspired Airbus jet and Volkswagen Passat estate in `journey.js` are new dimensional models with smooth body profiles, fitted glazing, modern details and engraved pigment. Their isolated rendered studies and geometry checks are generated by `tools/qa-vehicles-v4.mjs`.
-
-Earlier atlases remain in the working tree as historical production material but are not loaded by the current site.
+The existing smooth solid Wizz-inspired jet and Volkswagen Passat estate remain in `journey.js`. Their movement and complete terrain support are preserved. Browser overview captures, independent full-footprint checks, assembly checks and journey regressions document the current result in `outputs/`.

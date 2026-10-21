@@ -60,13 +60,13 @@ void main(){
  float hatch=engraved(p.x*4.8+p.y*3.4+noise(p*.76)*.63,.044);
  hatch*=smoothstep(.21,.66,noise(p*2.35+37.))*slope*(1.-snow*.73);
  float fissure=smoothstep(.65,.89,noise(p*5.2+noise(p*1.2)*2.))*slope*upland;
- color-=vec3(.232,.184,.100)*contour*.23;
+ // Continuous rock shading, without elevation contour bands.
  color-=vec3(.244,.205,.131)*hatch*.69;
  color-=vec3(.117,.104,.072)*fissure*(1.-snow*.78);
  // Pale summit pigment is printed after the umber wash: its shaded blue-grey
  // creases stay visible instead of disappearing into an olive mountain mass.
  vec3 snowPigment=mix(vec3(.665,.721,.695),vec3(.978,.953,.829),smoothstep(-.1,.88,light));
- snowPigment-=vec3(.09,.087,.065)*contour*.20;
+
  color=mix(color,snowPigment,snow*.94);
  // Fibres and granular pigment are fixed to the chart, so zooming and a
  // sleeping renderer never turn the sheet into changing screen-space noise.
@@ -177,7 +177,7 @@ export function addIllustratedMountains({THREE,scene,worldPoint,heightAt,regionA
   }
   count++;
  }
- lineBatch(THREE,group,contours,0x4d503a,.44,'dem-ridge-contours');
+ // Ridge contour strokes removed; retain the downhill rock hachures.
  lineBatch(THREE,group,hatches,0x50432e,.43,'dem-slope-hachures');
  scene.add(group);return{group,count,drawCalls:2,vertices:(contours.length+hatches.length)/3};
 }

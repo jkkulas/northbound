@@ -12,7 +12,7 @@ try{
   await page.evaluate(async()=>{window.__inspectAtlas=(await import('./assets/app.js')).inspectScene;});
   await page.waitForFunction(()=>{const p=window.__inspectAtlas().performance;return p.framesRendered>0&&!p.active;},null,{timeout:60000});
   const state=await page.evaluate(()=>window.__inspectAtlas({artwork:true}));
-  assert.equal(state.landmarkCount,9);assert.equal(state.creatureCount,17);
+  assert.equal(state.landmarkCount,17);assert.equal(state.creatureCount,17);
   assert.equal(await page.locator('.city-label,#map-tooltip').count(),0,'City pins and hover tooltip are removed');
   for(const m of state.landmarkArtwork){
    assert.equal(m.userData.dimensional,true,`${m.name} is dimensional architecture`);
@@ -20,16 +20,19 @@ try{
    assert.ok(m.meshes.reduce((s,m)=>s+m.triangles,0)>500,`${m.name} has substantial modeled detail`);
    assert.ok(m.meshes.every(m=>m.opaque&&m.depthWrite),`${m.name} has solid painted surfaces`);
   }
-  for(const m of state.seaArtwork)assert.equal(m.userData.fullWaterSupport,true,`${m.name} entire painted vignette stays over sea`);
+  for(const m of state.seaArtwork)assert.equal(m.userData.fullWaterSupport,true,`${m.name} entire solid vignette stays over sea`);
   assert.ok(state.scenery.houseCount>=25&&state.scenery.lighthouseCount>=2&&state.scenery.rockCount>=15,'Countryside and sea scenery is populated');
+  assert.equal(state.bridges.bridgeCount,3,'Three verified island crossings');
+  assert.ok(state.scenery.woodland.trees>=(viewport.width<760?440:760),'Rich modeled woodland');
+  for(const m of state.seaArtwork){assert.ok(m.meshes.every(mesh=>mesh.opaque&&mesh.depthWrite&&!mesh.textured),'Sea models are opaque volumes without image cards');}
   assert.ok(state.performance.calls<110,`Batched scene draw budget (${state.performance.calls})`);
-  await page.screenshot({path:`outputs/atlas-v4-${viewport.width}.png`});
+  await page.screenshot({path:`outputs/diorama-${viewport.width}.png`});
   const resources=await page.evaluate(()=>performance.getEntriesByType('resource').map(x=>new URL(x.name).pathname));
-  assert.ok(resources.some(x=>x.includes('maritime-illustrated-v4')),'New maritime artwork loads');
+  assert.ok(!resources.some(x=>x.endsWith('.webp')),'All object art is modeled and no raster atlases load');
   assert.ok(!resources.some(x=>/maritime-engraving|landmarks-ink/.test(x)),'Old illustration assets are replaced');
   assert.deepEqual(errors,[],'No shader, resource or runtime errors');
   reports.push({viewport,state,resources});await page.close();
  }
- await fs.writeFile('outputs/atlas-v4-review.json',JSON.stringify(reports,null,2));
+ await fs.writeFile('outputs/diorama-review.json',JSON.stringify(reports,null,2));
  console.log(JSON.stringify(reports.map(({viewport,state})=>({viewport,performance:state.performance,landmarks:state.landmarkCount,vignettes:state.creatureCount,houses:state.scenery.houseCount,lighthouses:state.scenery.lighthouseCount,rocks:state.scenery.rockCount})),null,2));
 }finally{await browser.close();}

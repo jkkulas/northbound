@@ -1,68 +1,5 @@
 {
-  "verified": "2026-10-21",
   "models": [
-    {
-      "name": "landmark-bryggen",
-      "coordinates": [
-        5.32309,
-        60.39721
-      ],
-      "drawingCoordinates": [
-        5.32309,
-        60.39721
-      ],
-      "meshes": 1,
-      "triangles": 6704,
-      "solidVolume": 7.153,
-      "groundContactVertices": 3555,
-      "buriedVertexPercent": 0.298,
-      "minGroundGap": -0.445,
-      "maxGroundGap": 2.745,
-      "bounds": {
-        "min": [
-          -18.189201952316285,
-          -0.07500001192092898,
-          -2.4877239499321036
-        ],
-        "max": [
-          -14.471701980926515,
-          2.7150000095367433,
-          -1.008723977588659
-        ]
-      },
-      "grounding": "waterfront"
-    },
-    {
-      "name": "landmark-oslo",
-      "coordinates": [
-        10.7526806,
-        59.9075238
-      ],
-      "drawingCoordinates": [
-        10.7526806,
-        59.9075238
-      ],
-      "meshes": 1,
-      "triangles": 1016,
-      "solidVolume": 11.145,
-      "groundContactVertices": 742,
-      "buriedVertexPercent": 0,
-      "minGroundGap": -0.025,
-      "maxGroundGap": 1.745,
-      "bounds": {
-        "min": [
-          -3.7441026323162854,
-          0.9049591932501396,
-          -1.0431047676837153
-        ],
-        "max": [
-          -0.9241026990734875,
-          2.674959230056008,
-          1.9668952227795415
-        ]
-      },
-      "grounding": "land"
-    },
     {
       "name": "landmark-stockholm",
       "coordinates": [
@@ -70,29 +7,30 @@
         59.3274942
       ],
       "drawingCoordinates": [
-        18.0542148,
-        59.3274942
+        18.39869075285566,
+        59.954258972044535
       ],
-      "meshes": 1,
+      "scale": [
+        0.9516,
+        1.28,
+        0.9516
+      ],
+      "supportSamples": 1665,
       "triangles": 9602,
-      "solidVolume": 11.135,
-      "groundContactVertices": 2057,
+      "contactVertices": 802,
       "buriedVertexPercent": 0,
-      "minGroundGap": -0.025,
-      "maxGroundGap": 5.0949,
       "bounds": {
         "min": [
-          8.119272560000002,
-          -0.07500000582774302,
-          1.6090254961581567
+          9.022319656282455,
+          0.3177924634799925,
+          -1.0833994996838654
         ],
         "max": [
-          11.419272542118609,
-          5.08694402588765,
-          4.326525467547928
+          12.16259963926652,
+          6.394755134759899,
+          1.50257347309064
         ]
-      },
-      "grounding": "waterfront"
+      }
     },
     {
       "name": "landmark-nyhavn",
@@ -101,29 +39,30 @@
         55.680452
       ],
       "drawingCoordinates": [
-        12.589145,
-        55.680452
+        12.1307424862383,
+        55.415939648976014
       ],
-      "meshes": 1,
+      "scale": [
+        0.63,
+        1.28,
+        0.63
+      ],
+      "supportSamples": 1763,
       "triangles": 10156,
-      "solidVolume": 7.706,
-      "groundContactVertices": 3314,
-      "buriedVertexPercent": 0.135,
-      "minGroundGap": -0.4091,
-      "maxGroundGap": 3.115,
+      "contactVertices": 3651,
+      "buriedVertexPercent": 0,
       "bounds": {
         "min": [
-          -3.7738808855590813,
-          -0.07499999754806363,
-          17.266011190463246
+          -3.7204664581779596,
+          0.3291499731249776,
+          19.073665538497394
         ],
         "max": [
-          -0.6888809964237208,
-          3.065000017949144,
-          20.301011157084645
+          -1.7769165280226826,
+          4.410187122554299,
+          20.985715517468876
         ]
-      },
-      "grounding": "waterfront"
+      }
     },
     {
       "name": "landmark-warsaw",
@@ -132,29 +71,30 @@
         52.247749
       ],
       "drawingCoordinates": [
-        21.014217,
-        52.247749
+        19.86161533371471,
+        51.767772594622514
       ],
-      "meshes": 1,
+      "scale": [
+        1.098,
+        1.28,
+        1.098
+      ],
+      "supportSamples": 2460,
       "triangles": 8356,
-      "solidVolume": 17.513,
-      "groundContactVertices": 3322,
+      "contactVertices": 976,
       "buriedVertexPercent": 0,
-      "minGroundGap": -0.2457,
-      "maxGroundGap": 4.4378,
       "bounds": {
         "min": [
-          15.396277504904173,
-          0.6103748478718735,
-          32.53490435231629
+          12.641523849357146,
+          0.5965255756558121,
+          34.49245053130422
         ],
         "max": [
-          19.866277295095824,
-          5.1894696601458525,
-          35.609904400000005
+          17.54958361898758,
+          6.818951608675832,
+          37.86880058366094
         ]
-      },
-      "grounding": "land"
+      }
     },
     {
       "name": "landmark-windmill",
@@ -163,60 +103,62 @@
         51.8833949
       ],
       "drawingCoordinates": [
-        4.6399791,
-        51.8833949
+        5.522847792807757,
+        51.47702595702455
       ],
-      "meshes": 1,
-      "triangles": 7020,
-      "solidVolume": 2.107,
-      "groundContactVertices": 594,
+      "scale": [
+        1.22,
+        1.28,
+        1.22
+      ],
+      "supportSamples": 806,
+      "triangles": 7116,
+      "contactVertices": 723,
       "buriedVertexPercent": 0,
-      "minGroundGap": 0.0373,
-      "maxGroundGap": 3.8469,
       "bounds": {
         "min": [
-          -19.746155505680544,
-          0.3836499970942736,
-          34.70075384243531
+          -18.101748477153198,
+          0.28591260993330747,
+          36.266069300063045
         ],
         "max": [
-          -17.03793645431946,
-          4.192759563827515,
-          36.57306245430512
+          -14.797721234492673,
+          5.3687650021299635,
+          38.55028580654422
         ]
-      },
-      "grounding": "land"
+      }
     },
     {
       "name": "landmark-gdansk",
       "coordinates": [
-        18.657464414732555,
-        54.350559296870685
+        18.6574644147,
+        54.3505592969
       ],
       "drawingCoordinates": [
-        18.657464414732555,
-        54.43
+        18.068586941718173,
+        54.161335010790545
       ],
-      "meshes": 1,
+      "scale": [
+        1.22,
+        1.28,
+        1.22
+      ],
+      "supportSamples": 1196,
       "triangles": 4600,
-      "solidVolume": 6.871,
-      "groundContactVertices": 1441,
-      "buriedVertexPercent": 0.029,
-      "minGroundGap": -0.3062,
-      "maxGroundGap": 3.6498,
+      "contactVertices": 1048,
+      "buriedVertexPercent": 0,
       "bounds": {
         "min": [
-          9.64642176002372,
-          -0.07500001415201663,
-          24.333000017881396
+          7.734891329954117,
+          0.4891728013505925,
+          25.476625974336905
         ],
         "max": [
-          13.496421664656289,
-          3.5997982956509924,
-          26.118000014305117
+          12.43189121360585,
+          4.734512614583014,
+          27.654325969973844
         ]
-      },
-      "grounding": "waterfront"
+      }
     },
     {
       "name": "landmark-london",
@@ -225,29 +167,30 @@
         51.5055158
       ],
       "drawingCoordinates": [
-        -0.0753665,
-        51.5055158
+        -0.09418970328018261,
+        51.47039122449858
       ],
-      "meshes": 1,
-      "triangles": 9400,
-      "solidVolume": 3.994,
-      "groundContactVertices": 109,
-      "buriedVertexPercent": 0.018,
-      "minGroundGap": -0.3126,
-      "maxGroundGap": 2.8741,
+      "scale": [
+        1.15,
+        1.28,
+        1.15
+      ],
+      "supportSamples": 198,
+      "triangles": 9768,
+      "contactVertices": 295,
+      "buriedVertexPercent": 0,
       "bounds": {
         "min": [
-          -30.29040223966638,
-          0.4823472224230192,
-          35.20199121712429
+          -30.567513400068513,
+          0.38528348672942186,
+          35.03335643423797
         ],
         "max": [
-          -27.24121036033362,
-          3.412347189528706,
-          39.54946974287574
+          -27.046921294364296,
+          4.450177352314749,
+          40.02720079017455
         ]
-      },
-      "grounding": "river-crossing"
+      }
     },
     {
       "name": "landmark-borgund",
@@ -256,81 +199,350 @@
         61.0472015
       ],
       "drawingCoordinates": [
-        7.8122905,
-        61.0472015
+        8.09603567251019,
+        61.0959064203807
       ],
-      "meshes": 1,
+      "scale": [
+        0.9,
+        1.05,
+        0.9
+      ],
+      "supportSamples": 1152,
       "triangles": 11532,
-      "solidVolume": 3.945,
-      "groundContactVertices": 4575,
+      "contactVertices": 180,
       "buriedVertexPercent": 0,
-      "minGroundGap": -0.0054,
-      "maxGroundGap": 5.4117,
       "bounds": {
         "min": [
-          -12.323760889700319,
-          -0.055400154042782646,
-          -5.681157717019653
+          -11.927221507602978,
+          4.493368879508433,
+          -6.163827145949648
         ],
         "max": [
-          -10.502160910299684,
-          7.802517479013858,
-          -3.5240866034332274
+          -9.650221533352186,
+          9.882809174608646,
+          -3.467488253966616
         ]
-      },
-      "grounding": "land"
-    }
-  ],
-  "gdanskCoastalShiftKm": 8.833403157056319,
-  "operaRouteClearance": 2.1880646875817273,
-  "thamesWaterHit": [
-    -28.7658063,
-    0.5812291971909929,
-    37.375730480000016
-  ],
-  "terraces": [
-    {
-      "id": "bryggen",
-      "coordinates": [
-        5.32309,
-        60.39721
-      ],
-      "box": [
-        -1.32,
-        2.48,
-        -0.78,
-        0.91
-      ],
-      "blend": 0.55,
-      "height": 0.44
+      }
     },
     {
-      "id": "oslo",
+      "name": "landmark-brandenburg",
       "coordinates": [
-        10.7526806,
-        59.9075238
+        13.3777034,
+        52.5162699
       ],
-      "box": [
-        1.15,
-        4.11,
-        -1.62,
-        1.64
+      "drawingCoordinates": [
+        13.254990076097052,
+        52.121003711167496
       ],
-      "blend": 0.45
+      "scale": [
+        1.098,
+        1.28,
+        1.098
+      ],
+      "supportSamples": 1386,
+      "triangles": 10216,
+      "contactVertices": 536,
+      "buriedVertexPercent": 0,
+      "bounds": {
+        "min": [
+          -2.1181418954145506,
+          0.4256953734550617,
+          33.83859367609869
+        ],
+        "max": [
+          3.240098230241578,
+          6.334360334316268,
+          35.496573665627345
+        ]
+      }
     },
     {
-      "id": "borgund",
+      "name": "landmark-eiffel",
       "coordinates": [
-        7.8122905,
-        61.0472015
+        2.2945,
+        48.8584
       ],
-      "box": [
-        -0.93,
-        0.93,
-        -1.03,
-        1.17
+      "drawingCoordinates": [
+        3.6779346324660747,
+        49.14827437696934
       ],
-      "blend": 0.5
+      "scale": [
+        1.22,
+        1.28,
+        1.22
+      ],
+      "supportSamples": 2704,
+      "triangles": 16088,
+      "contactVertices": 221,
+      "buriedVertexPercent": 0,
+      "bounds": {
+        "min": [
+          -22.814343791122397,
+          0.5511924689248255,
+          45.441792758787145
+        ],
+        "max": [
+          -18.202743826026875,
+          9.365108217521017,
+          50.053392723882666
+        ]
+      }
+    },
+    {
+      "name": "landmark-cologne",
+      "coordinates": [
+        6.95828,
+        50.94128
+      ],
+      "drawingCoordinates": [
+        8.326285612359625,
+        51.09007570268709
+      ],
+      "scale": [
+        1.22,
+        1.28,
+        1.22
+      ],
+      "supportSamples": 2806,
+      "triangles": 12076,
+      "contactVertices": 1587,
+      "buriedVertexPercent": 0,
+      "bounds": {
+        "min": [
+          -12.392771676078478,
+          0.5633812679106405,
+          35.90966685000268
+        ],
+        "max": [
+          -8.171571629539173,
+          9.918482281094235,
+          41.5302068418583
+        ]
+      }
+    },
+    {
+      "name": "landmark-trakai",
+      "coordinates": [
+        24.9333,
+        54.6522
+      ],
+      "drawingCoordinates": [
+        24.9333,
+        54.6522
+      ],
+      "scale": [
+        1.22,
+        1.28,
+        1.22
+      ],
+      "supportSamples": 2288,
+      "triangles": 4548,
+      "contactVertices": 1401,
+      "buriedVertexPercent": 0,
+      "bounds": {
+        "min": [
+          23.88645993019104,
+          0.4919807741396707,
+          21.56611998254776
+        ],
+        "max": [
+          28.62006006980896,
+          6.26352904531887,
+          25.579920081443788
+        ]
+      }
+    },
+    {
+      "name": "landmark-helsinki",
+      "coordinates": [
+        24.9524,
+        60.1704
+      ],
+      "drawingCoordinates": [
+        24.087476589784764,
+        60.655659594047776
+      ],
+      "scale": [
+        0.8174,
+        1.28,
+        0.8174
+      ],
+      "supportSamples": 3416,
+      "triangles": 27960,
+      "contactVertices": 1392,
+      "buriedVertexPercent": 0,
+      "bounds": {
+        "min": [
+          22.712691442959148,
+          0.36728075915621455,
+          -4.466571167038213
+        ],
+        "max": [
+          26.07220555209382,
+          6.676915540040004,
+          -0.8046191514475449
+        ]
+      }
+    },
+    {
+      "name": "landmark-tallinn",
+      "coordinates": [
+        24.7375,
+        59.4355
+      ],
+      "drawingCoordinates": [
+        25.1028410243664,
+        58.970063125677896
+      ],
+      "scale": [
+        1.22,
+        1.28,
+        1.22
+      ],
+      "supportSamples": 1936,
+      "triangles": 4288,
+      "contactVertices": 994,
+      "buriedVertexPercent": 0,
+      "bounds": {
+        "min": [
+          24.442450300145385,
+          0.33230797313341537,
+          2.933522316826217
+        ],
+        "max": [
+          28.514200271058318,
+          7.118841328846306,
+          6.913772229565017
+        ]
+      }
+    },
+    {
+      "name": "landmark-riga",
+      "coordinates": [
+        24.1067,
+        56.9473
+      ],
+      "drawingCoordinates": [
+        23.6067,
+        56.51428729810778
+      ],
+      "scale": [
+        1.22,
+        1.28,
+        1.22
+      ],
+      "supportSamples": 1376,
+      "triangles": 6064,
+      "contactVertices": 468,
+      "buriedVertexPercent": 0,
+      "bounds": {
+        "min": [
+          21.415680055847172,
+          0.3012499966416987,
+          14.23913591741283
+        ],
+        "max": [
+          25.394099955787663,
+          5.358301617125097,
+          17.13663591741283
+        ]
+      }
+    },
+    {
+      "name": "landmark-rosenholm",
+      "coordinates": [
+        10.3331,
+        56.3293
+      ],
+      "drawingCoordinates": [
+        9.127346813567277,
+        56.08631890330351
+      ],
+      "scale": [
+        0.9516,
+        1.28,
+        0.9516
+      ],
+      "supportSamples": 1862,
+      "triangles": 6948,
+      "contactVertices": 1143,
+      "buriedVertexPercent": 0,
+      "bounds": {
+        "min": [
+          -10.232717078215728,
+          0.3022443375719562,
+          15.935536802776657
+        ],
+        "max": [
+          -6.806956942088256,
+          5.262705496324397,
+          18.583839595516526
+        ]
+      }
+    },
+    {
+      "name": "landmark-edinburgh",
+      "coordinates": [
+        -3.2007,
+        55.9486
+      ],
+      "drawingCoordinates": [
+        -3.419630392057666,
+        55.56386974273087
+      ],
+      "scale": [
+        1.22,
+        1.28,
+        1.22
+      ],
+      "supportSamples": 1925,
+      "triangles": 3196,
+      "contactVertices": 1122,
+      "buriedVertexPercent": 0,
+      "bounds": {
+        "min": [
+          -38.532686891613935,
+          0.5501011085518104,
+          18.03667309126227
+        ],
+        "max": [
+          -33.66488673454378,
+          6.538682880402396,
+          21.14157303890555
+        ]
+      }
+    },
+    {
+      "name": "landmark-iceland_volcano",
+      "coordinates": [
+        -19.7067517,
+        63.9832686
+      ],
+      "drawingCoordinates": [
+        -19.224717190416435,
+        64.53273259599304
+      ],
+      "scale": [
+        1.22,
+        1.28,
+        1.22
+      ],
+      "supportSamples": 5670,
+      "triangles": 8360,
+      "contactVertices": 780,
+      "buriedVertexPercent": 0,
+      "bounds": {
+        "min": [
+          -74.96377624592576,
+          0.35799999952316286,
+          -22.832942446836842
+        ],
+        "max": [
+          -66.82497939190658,
+          6.508322143554688,
+          -17.17496260083617
+        ]
+      }
     }
   ]
 }

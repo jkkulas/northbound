@@ -1,0 +1,50 @@
+[
+  {
+    "mobile": false,
+    "landmarks": 17,
+    "trees": 760,
+    "houses": 144,
+    "lighthouses": 3,
+    "bridges": 3,
+    "triangles": 281892,
+    "landmarkSamples": 39513,
+    "scenerySamples": 26874,
+    "bridgeSamples": 294,
+    "treeClearances": 124640,
+    "bridgeNames": [
+      "Little Belt · Jutland to Funen",
+      "Øresund · Zealand to Scania",
+      "Storstrøm · Zealand to Falster"
+    ],
+    "rejectedBridges": [
+      {
+        "name": "Great Belt · Funen to Zealand",
+        "reason": "No fully dry abutment pair with an intervening wet channel clear of landmarks in the local search area."
+      }
+    ]
+  },
+  {
+    "mobile": true,
+    "landmarks": 17,
+    "trees": 440,
+    "houses": 110,
+    "lighthouses": 3,
+    "bridges": 3,
+    "triangles": 175000,
+    "landmarkSamples": 39513,
+    "scenerySamples": 18438,
+    "bridgeSamples": 294,
+    "treeClearances": 57200,
+    "bridgeNames": [
+      "Little Belt · Jutland to Funen",
+      "Øresund · Zealand to Scania",
+      "Storstrøm · Zealand to Falster"
+    ],
+    "rejectedBridges": [
+      {
+        "name": "Great Belt · Funen to Zealand",
+        "reason": "No fully dry abutment pair with an intervening wet channel clear of landmarks in the local search area."
+      }
+    ]
+  }
+]

@@ -4,312 +4,487 @@
       "width": 1440,
       "height": 1000
     },
+    "raster": [
+      960,
+      667
+    ],
+    "triangles": 247894,
     "models": [
       {
         "name": "Jörmungandr",
-        "mirror": false,
-        "sampled": 233952,
-        "unmapped": 0,
-        "visible": 233952,
+        "drawingCoordinates": [
+          -4.800000000000001,
+          69.3
+        ],
+        "waterSamples": 14058,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 9.54835,
-        "bounds": [
-          448.5,
-          190.1,
-          575.6,
-          276.3
-        ]
+        "vertices": 114774,
+        "triangles": 38258,
+        "drawCalls": 1,
+        "surfaceArea": 259.1885503457422,
+        "solidVolume": 7.585525300281671,
+        "visiblePixels": 1530,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -46.536357357140744,
+            -0.3090152904585766,
+            -43.51615205606335
+          ],
+          "max": [
+            -31.78404743405952,
+            8.328697313698639,
+            -38.32383761170134
+          ]
+        }
       },
       {
         "name": "Kraken",
-        "mirror": false,
-        "sampled": 248855,
-        "unmapped": 0,
-        "visible": 248855,
+        "drawingCoordinates": [
+          -1.0999999999999996,
+          62.8
+        ],
+        "waterSamples": 12616,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 8.0108,
-        "bounds": [
-          480.1,
-          318.7,
-          605.8,
-          401.2
-        ]
+        "vertices": 114372,
+        "triangles": 38124,
+        "drawCalls": 1,
+        "surfaceArea": 231.485798188134,
+        "solidVolume": 6.953922872665323,
+        "visiblePixels": 1651,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -37.170273712939306,
+            -0.7545337568855904,
+            -15.123063534751417
+          ],
+          "max": [
+            -24.8696053958513,
+            5.047652900215871,
+            -9.51693954582007
+          ]
+        }
       },
       {
         "name": "North Sea platform",
-        "mirror": false,
-        "sampled": 135409,
-        "unmapped": 0,
-        "visible": 135409,
+        "drawingCoordinates": [
+          2.6909090909090896,
+          57.70363636363637
+        ],
+        "waterSamples": 8541,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.50028,
-        "bounds": [
-          577.3,
-          450.5,
-          655,
-          500.3
-        ]
+        "vertices": 25032,
+        "triangles": 8344,
+        "drawCalls": 1,
+        "surfaceArea": 264.79648646919026,
+        "solidVolume": 22.02328974265895,
+        "visiblePixels": 1937,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -26.861828364130695,
+            -0.07734804506573659,
+            7.438464878104061
+          ],
+          "max": [
+            -18.174647056348807,
+            9.019583890251747,
+            12.769541232033943
+          ]
+        }
       },
       {
         "name": "A northern leviathan",
-        "mirror": false,
-        "sampled": 191135,
-        "unmapped": 0,
-        "visible": 191135,
+        "drawingCoordinates": [
+          -11.918181818181818,
+          66.2909090909091
+        ],
+        "waterSamples": 7308,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 6.38962,
-        "bounds": [
-          283.2,
-          271.7,
-          369.5,
-          332.2
-        ]
+        "vertices": 21444,
+        "triangles": 7148,
+        "drawCalls": 1,
+        "surfaceArea": 76.22365116319446,
+        "solidVolume": 13.623300363658293,
+        "visiblePixels": 520,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -59.51454345711927,
+            -0.7681998003336064,
+            -29.80164514499422
+          ],
+          "max": [
+            -50.19052902717936,
+            2.4577691490218747,
+            -25.558301202318116
+          ]
+        }
       },
       {
         "name": "The great lobster",
-        "mirror": false,
-        "sampled": 144436,
-        "unmapped": 0,
-        "visible": 144436,
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "waterSamples": 5640,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.88374,
-        "bounds": [
-          588.3,
-          551.6,
-          666.9,
-          597.9
-        ]
+        "vertices": 37572,
+        "triangles": 12524,
+        "drawCalls": 1,
+        "surfaceArea": 43.48182421199517,
+        "solidVolume": 2.136549216431974,
+        "visiblePixels": 528,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -24.57306763212927,
+            -0.22915788558855144,
+            16.73518370262305
+          ],
+          "max": [
+            -17.667252038812364,
+            2.3387684700902645,
+            21.10483027358125
+          ]
+        }
       },
       {
         "name": "Hanseatic trader",
-        "mirror": false,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
+        "drawingCoordinates": [
+          -5.300000000000001,
+          59.2
+        ],
+        "waterSamples": 3564,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 5.37878,
-        "bounds": [
-          382.2,
-          430.8,
-          451.7,
-          490.3
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 65.05524738247593,
+        "solidVolume": 3.152751622786434,
+        "visiblePixels": 726,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -43.22634905927052,
+            -0.22273584197069615,
+            1.9284660137179173
+          ],
+          "max": [
+            -37.2489953488153,
+            3.8826102916793723,
+            5.111588816243803
+          ]
+        }
       },
       {
         "name": "Northern schooner",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
+        "drawingCoordinates": [
+          -12.100000000000001,
+          61.1
+        ],
+        "waterSamples": 3600,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.98693,
-        "bounds": [
-          239.7,
-          399.4,
-          302.2,
-          441.1
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 58.624997409812586,
+        "solidVolume": 3.0095944014996463,
+        "visiblePixels": 522,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -58.14261825617711,
+            -0.2193843870220403,
+            -6.454025990763002
+          ],
+          "max": [
+            -52.2741804258594,
+            3.5920897806099905,
+            -3.226035708803738
+          ]
+        }
       },
       {
         "name": "Atlantic merchant",
-        "mirror": true,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
+        "drawingCoordinates": [
+          -12.3,
+          57.4
+        ],
+        "waterSamples": 2808,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.74834,
-        "bounds": [
-          178.7,
-          487.9,
-          241.4,
-          542.6
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 50.53415366912251,
+        "solidVolume": 2.1584587527291177,
+        "visiblePixels": 648,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -58.274409340374014,
+            -0.19927565733010508,
+            10.037292079886996
+          ],
+          "max": [
+            -53.00623318878637,
+            3.418995511310633,
+            12.842756244825065
+          ]
+        }
       },
       {
         "name": "Irish Sea passage",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
+        "drawingCoordinates": [
+          -12.2,
+          53.9
+        ],
+        "waterSamples": 2774,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.64884,
-        "bounds": [
-          112.7,
-          618.5,
-          184.9,
-          664
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 48.9529184673493,
+        "solidVolume": 2.2964214692692404,
+        "visiblePixels": 678,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -58.09371591403019,
+            -0.20262711227876096,
+            25.479064469335
+          ],
+          "max": [
+            -52.71871177307176,
+            3.2802716960746463,
+            28.200897002585588
+          ]
+        }
       },
       {
         "name": "Channel trader",
-        "mirror": false,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
+        "drawingCoordinates": [
+          -3.9818181818181806,
+          49.69090909090909
+        ],
+        "waterSamples": 1914,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.11789,
-        "bounds": [
-          296.5,
-          833.8,
-          374.1,
-          892.7
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 43.05868715002264,
+        "solidVolume": 1.6976862652325544,
+        "visiblePixels": 916,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -39.72062692384748,
+            -0.1858698375354816,
+            44.32080582720711
+          ],
+          "max": [
+            -34.86326052780521,
+            3.1540727796713535,
+            46.399199770624655
+          ]
+        }
       },
       {
         "name": "North Sea sail",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
+        "drawingCoordinates": [
+          -0.8090909090909051,
+          56.809090909090905
+        ],
+        "waterSamples": 2380,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.24312,
-        "bounds": [
-          512.7,
-          521,
-          570.5,
-          558.2
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 45.32806726008436,
+        "solidVolume": 2.046136101076953,
+        "visiblePixels": 536,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -32.915927497324596,
+            -0.1959242023814492,
+            12.820510936992058
+          ],
+          "max": [
+            -27.743464757992182,
+            3.1555444622605084,
+            15.259465800709783
+          ]
+        }
       },
       {
         "name": "Baltic merchant",
-        "mirror": false,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
+        "drawingCoordinates": [
+          19.81818181818182,
+          56.19090909090909
+        ],
+        "waterSamples": 1891,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.48744,
-        "bounds": [
-          1061.6,
-          543.2,
-          1109.1,
-          584.3
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 36.18125795244932,
+        "solidVolume": 1.3076507054540023,
+        "visiblePixels": 454,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            12.80039200007741,
+            -0.17246401774085815,
+            15.649462361602843
+          ],
+          "max": [
+            17.263518105374363,
+            2.889150048032074,
+            17.87056664899083
+          ]
+        }
       },
       {
         "name": "Baltic schooner",
-        "mirror": true,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
+        "drawingCoordinates": [
+          20.11818181818182,
+          59.61818181818181
+        ],
+        "waterSamples": 1952,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 2.76978,
-        "bounds": [
-          1028.2,
-          419.7,
-          1071.7,
-          448.5
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 33.73899969839425,
+        "solidVolume": 1.3139596206145534,
+        "visiblePixels": 357,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            13.453658487055863,
+            -0.17246401774085815,
+            0.531013089894872
+          ],
+          "max": [
+            17.914748069911017,
+            2.7189991439110273,
+            2.828951952746615
+          ]
+        }
       },
       {
         "name": "Barents trader",
-        "mirror": true,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "waterSamples": 2409,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.8384,
-        "bounds": [
-          1082.7,
-          192.4,
-          1127.5,
-          232.8
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 52.496463630386806,
+        "solidVolume": 2.285395309868914,
+        "visiblePixels": 290,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            30.38114820932793,
+            -0.20262711227876096,
+            -55.75574243986218
+          ],
+          "max": [
+            35.75088754283379,
+            3.485226194220453,
+            -53.36424417738172
+          ]
+        }
       },
       {
         "name": "Arctic schooner",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
+        "drawingCoordinates": [
+          18.11818181818182,
+          74.95454545454545
+        ],
+        "waterSamples": 3080,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.85169,
-        "bounds": [
-          899.2,
-          174.2,
-          942.8,
-          204.9
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 54.65160281723323,
+        "solidVolume": 2.708869420710992,
+        "visiblePixels": 275,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            8.451928983525642,
+            -0.21268147712472854,
+            -67.26234697649745
+          ],
+          "max": [
+            14.129679361704929,
+            3.4673625467958527,
+            -64.33769751468616
+          ]
+        }
       },
       {
         "name": "Greenland Sea passage",
-        "mirror": false,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
+        "drawingCoordinates": [
+          -13,
+          72.7
+        ],
+        "waterSamples": 2346,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.56821,
-        "bounds": [
-          347.5,
-          190.8,
-          389.3,
-          228.6
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 46.72166574438149,
+        "solidVolume": 1.9188619715175579,
+        "visiblePixels": 274,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -59.69090303753273,
+            -0.19257274743279337,
+            -57.09781718613563
+          ],
+          "max": [
+            -54.619121241505795,
+            3.2865341454909935,
+            -54.66215661815426
+          ]
+        }
       },
       {
         "name": "Norwegian Sea sail",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
+        "drawingCoordinates": [
+          7.1,
+          70.7
+        ],
+        "waterSamples": 2880,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.31074,
-        "bounds": [
-          708.4,
-          229.1,
-          749,
-          257.3
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 47.123065694450894,
+        "solidVolume": 2.168872491728149,
+        "visiblePixels": 275,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -15.600278436572577,
+            -0.19927565733010508,
+            -48.52705778482201
+          ],
+          "max": [
+            -10.338920381804975,
+            3.217908079167578,
+            -45.63299753203095
+          ]
+        }
       }
     ]
   },
@@ -318,312 +493,487 @@
       "width": 1366,
       "height": 768
     },
+    "raster": [
+      911,
+      512
+    ],
+    "triangles": 247894,
     "models": [
       {
         "name": "Jörmungandr",
-        "mirror": false,
-        "sampled": 233952,
-        "unmapped": 0,
-        "visible": 233952,
+        "drawingCoordinates": [
+          -4.800000000000001,
+          69.3
+        ],
+        "waterSamples": 14058,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 9.54835,
-        "bounds": [
-          474.5,
-          146,
-          572.1,
-          212.2
-        ]
+        "vertices": 114774,
+        "triangles": 38258,
+        "drawCalls": 1,
+        "surfaceArea": 259.1885503457422,
+        "solidVolume": 7.585525300281671,
+        "visiblePixels": 897,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -46.536357357140744,
+            -0.3090152904585766,
+            -43.51615205606335
+          ],
+          "max": [
+            -31.78404743405952,
+            8.328697313698639,
+            -38.32383761170134
+          ]
+        }
       },
       {
         "name": "Kraken",
-        "mirror": false,
-        "sampled": 248855,
-        "unmapped": 0,
-        "visible": 248855,
+        "drawingCoordinates": [
+          -1.0999999999999996,
+          62.8
+        ],
+        "waterSamples": 12616,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 8.0108,
-        "bounds": [
-          498.8,
-          244.7,
-          595.3,
-          308.1
-        ]
+        "vertices": 114372,
+        "triangles": 38124,
+        "drawCalls": 1,
+        "surfaceArea": 231.485798188134,
+        "solidVolume": 6.953922872665323,
+        "visiblePixels": 932,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -37.170273712939306,
+            -0.7545337568855904,
+            -15.123063534751417
+          ],
+          "max": [
+            -24.8696053958513,
+            5.047652900215871,
+            -9.51693954582007
+          ]
+        }
       },
       {
         "name": "North Sea platform",
-        "mirror": false,
-        "sampled": 135409,
-        "unmapped": 0,
-        "visible": 135409,
+        "drawingCoordinates": [
+          2.6909090909090896,
+          57.70363636363637
+        ],
+        "waterSamples": 8541,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.50028,
-        "bounds": [
-          573.4,
-          346,
-          633.1,
-          384.2
-        ]
+        "vertices": 25032,
+        "triangles": 8344,
+        "drawCalls": 1,
+        "surfaceArea": 264.79648646919026,
+        "solidVolume": 22.02328974265895,
+        "visiblePixels": 1175,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -26.861828364130695,
+            -0.07734804506573659,
+            7.438464878104061
+          ],
+          "max": [
+            -18.174647056348807,
+            9.019583890251747,
+            12.769541232033943
+          ]
+        }
       },
       {
         "name": "A northern leviathan",
-        "mirror": false,
-        "sampled": 191135,
-        "unmapped": 0,
-        "visible": 191135,
+        "drawingCoordinates": [
+          -11.918181818181818,
+          66.2909090909091
+        ],
+        "waterSamples": 7308,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 6.38962,
-        "bounds": [
-          347.6,
-          208.7,
-          413.8,
-          255.1
-        ]
+        "vertices": 21444,
+        "triangles": 7148,
+        "drawCalls": 1,
+        "surfaceArea": 76.22365116319446,
+        "solidVolume": 13.623300363658293,
+        "visiblePixels": 301,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -59.51454345711927,
+            -0.7681998003336064,
+            -29.80164514499422
+          ],
+          "max": [
+            -50.19052902717936,
+            2.4577691490218747,
+            -25.558301202318116
+          ]
+        }
       },
       {
         "name": "The great lobster",
-        "mirror": false,
-        "sampled": 144436,
-        "unmapped": 0,
-        "visible": 144436,
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "waterSamples": 5640,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.88374,
-        "bounds": [
-          581.9,
-          423.7,
-          642.3,
-          459.2
-        ]
+        "vertices": 37572,
+        "triangles": 12524,
+        "drawCalls": 1,
+        "surfaceArea": 43.48182421199517,
+        "solidVolume": 2.136549216431974,
+        "visiblePixels": 300,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -24.57306763212927,
+            -0.22915788558855144,
+            16.73518370262305
+          ],
+          "max": [
+            -17.667252038812364,
+            2.3387684700902645,
+            21.10483027358125
+          ]
+        }
       },
       {
         "name": "Hanseatic trader",
-        "mirror": false,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
+        "drawingCoordinates": [
+          -5.300000000000001,
+          59.2
+        ],
+        "waterSamples": 3564,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 5.37878,
-        "bounds": [
-          423.5,
-          330.8,
-          476.9,
-          376.5
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 65.05524738247593,
+        "solidVolume": 3.152751622786434,
+        "visiblePixels": 416,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -43.22634905927052,
+            -0.22273584197069615,
+            1.9284660137179173
+          ],
+          "max": [
+            -37.2489953488153,
+            3.8826102916793723,
+            5.111588816243803
+          ]
+        }
       },
       {
         "name": "Northern schooner",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
+        "drawingCoordinates": [
+          -12.100000000000001,
+          61.1
+        ],
+        "waterSamples": 3600,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.98693,
-        "bounds": [
-          314.1,
-          306.7,
-          362.1,
-          338.7
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 58.624997409812586,
+        "solidVolume": 3.0095944014996463,
+        "visiblePixels": 313,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -58.14261825617711,
+            -0.2193843870220403,
+            -6.454025990763002
+          ],
+          "max": [
+            -52.2741804258594,
+            3.5920897806099905,
+            -3.226035708803738
+          ]
+        }
       },
       {
         "name": "Atlantic merchant",
-        "mirror": true,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
+        "drawingCoordinates": [
+          -12.3,
+          57.4
+        ],
+        "waterSamples": 2808,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.74834,
-        "bounds": [
-          267.3,
-          374.7,
-          315.4,
-          416.7
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 50.53415366912251,
+        "solidVolume": 2.1584587527291177,
+        "visiblePixels": 384,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -58.274409340374014,
+            -0.19927565733010508,
+            10.037292079886996
+          ],
+          "max": [
+            -53.00623318878637,
+            3.418995511310633,
+            12.842756244825065
+          ]
+        }
       },
       {
         "name": "Irish Sea passage",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
+        "drawingCoordinates": [
+          -12.2,
+          53.9
+        ],
+        "waterSamples": 2774,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.64884,
-        "bounds": [
-          216.6,
-          475,
-          272,
-          509.9
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 48.9529184673493,
+        "solidVolume": 2.2964214692692404,
+        "visiblePixels": 404,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -58.09371591403019,
+            -0.20262711227876096,
+            25.479064469335
+          ],
+          "max": [
+            -52.71871177307176,
+            3.2802716960746463,
+            28.200897002585588
+          ]
+        }
       },
       {
         "name": "Channel trader",
-        "mirror": false,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
+        "drawingCoordinates": [
+          -3.9818181818181806,
+          49.69090909090909
+        ],
+        "waterSamples": 1914,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.11789,
-        "bounds": [
-          357.8,
-          640.4,
-          417.4,
-          685.6
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 43.05868715002264,
+        "solidVolume": 1.6976862652325544,
+        "visiblePixels": 548,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -39.72062692384748,
+            -0.1858698375354816,
+            44.32080582720711
+          ],
+          "max": [
+            -34.86326052780521,
+            3.1540727796713535,
+            46.399199770624655
+          ]
+        }
       },
       {
         "name": "North Sea sail",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
+        "drawingCoordinates": [
+          -0.8090909090909051,
+          56.809090909090905
+        ],
+        "waterSamples": 2380,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.24312,
-        "bounds": [
-          523.8,
-          400.1,
-          568.2,
-          428.7
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 45.32806726008436,
+        "solidVolume": 2.046136101076953,
+        "visiblePixels": 310,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -32.915927497324596,
+            -0.1959242023814492,
+            12.820510936992058
+          ],
+          "max": [
+            -27.743464757992182,
+            3.1555444622605084,
+            15.259465800709783
+          ]
+        }
       },
       {
         "name": "Baltic merchant",
-        "mirror": false,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
+        "drawingCoordinates": [
+          19.81818181818182,
+          56.19090909090909
+        ],
+        "waterSamples": 1891,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.48744,
-        "bounds": [
-          945.4,
-          417.2,
-          981.8,
-          448.8
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 36.18125795244932,
+        "solidVolume": 1.3076507054540023,
+        "visiblePixels": 272,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            12.80039200007741,
+            -0.17246401774085815,
+            15.649462361602843
+          ],
+          "max": [
+            17.263518105374363,
+            2.889150048032074,
+            17.87056664899083
+          ]
+        }
       },
       {
         "name": "Baltic schooner",
-        "mirror": true,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
+        "drawingCoordinates": [
+          20.11818181818182,
+          59.61818181818181
+        ],
+        "waterSamples": 1952,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 2.76978,
-        "bounds": [
-          919.7,
-          322.3,
-          953.1,
-          344.5
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 33.73899969839425,
+        "solidVolume": 1.3139596206145534,
+        "visiblePixels": 211,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            13.453658487055863,
+            -0.17246401774085815,
+            0.531013089894872
+          ],
+          "max": [
+            17.914748069911017,
+            2.7189991439110273,
+            2.828951952746615
+          ]
+        }
       },
       {
         "name": "Barents trader",
-        "mirror": true,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "waterSamples": 2409,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.8384,
-        "bounds": [
-          961.6,
-          147.7,
-          995.9,
-          178.8
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 52.496463630386806,
+        "solidVolume": 2.285395309868914,
+        "visiblePixels": 169,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            30.38114820932793,
+            -0.20262711227876096,
+            -55.75574243986218
+          ],
+          "max": [
+            35.75088754283379,
+            3.485226194220453,
+            -53.36424417738172
+          ]
+        }
       },
       {
         "name": "Arctic schooner",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
+        "drawingCoordinates": [
+          18.11818181818182,
+          74.95454545454545
+        ],
+        "waterSamples": 3080,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.85169,
-        "bounds": [
-          820.6,
-          133.8,
-          854.1,
-          157.4
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 54.65160281723323,
+        "solidVolume": 2.708869420710992,
+        "visiblePixels": 169,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            8.451928983525642,
+            -0.21268147712472854,
+            -67.26234697649745
+          ],
+          "max": [
+            14.129679361704929,
+            3.4673625467958527,
+            -64.33769751468616
+          ]
+        }
       },
       {
         "name": "Greenland Sea passage",
-        "mirror": false,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
+        "drawingCoordinates": [
+          -13,
+          72.7
+        ],
+        "waterSamples": 2346,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.56821,
-        "bounds": [
-          396.9,
-          146.5,
-          429,
-          175.6
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 46.72166574438149,
+        "solidVolume": 1.9188619715175579,
+        "visiblePixels": 166,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -59.69090303753273,
+            -0.19257274743279337,
+            -57.09781718613563
+          ],
+          "max": [
+            -54.619121241505795,
+            3.2865341454909935,
+            -54.66215661815426
+          ]
+        }
       },
       {
         "name": "Norwegian Sea sail",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
+        "drawingCoordinates": [
+          7.1,
+          70.7
+        ],
+        "waterSamples": 2880,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.31074,
-        "bounds": [
-          674.1,
-          176,
-          705.2,
-          197.6
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 47.123065694450894,
+        "solidVolume": 2.168872491728149,
+        "visiblePixels": 170,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -15.600278436572577,
+            -0.19927565733010508,
+            -48.52705778482201
+          ],
+          "max": [
+            -10.338920381804975,
+            3.217908079167578,
+            -45.63299753203095
+          ]
+        }
       }
     ]
   },
@@ -632,312 +982,487 @@
       "width": 390,
       "height": 844
     },
+    "raster": [
+      260,
+      563
+    ],
+    "triangles": 247894,
     "models": [
       {
         "name": "Jörmungandr",
-        "mirror": false,
-        "sampled": 58722,
-        "unmapped": 0,
-        "visible": 58722,
+        "drawingCoordinates": [
+          2,
+          69.4
+        ],
+        "waterSamples": 7592,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 7.01513,
-        "bounds": [
-          63.7,
-          216.5,
-          130.1,
-          260.6
-        ]
+        "vertices": 114774,
+        "triangles": 38258,
+        "drawCalls": 1,
+        "surfaceArea": 139.21231529876377,
+        "solidVolume": 2.98592178183498,
+        "visiblePixels": 399,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -29.60596052886342,
+            -0.23314819232238146,
+            -43.26265938355331
+          ],
+          "max": [
+            -18.794336133180607,
+            6.097230223053111,
+            -39.45733304419212
+          ]
+        }
       },
       {
         "name": "Kraken",
-        "mirror": false,
-        "sampled": 62478,
-        "unmapped": 0,
-        "visible": 62478,
+        "drawingCoordinates": [
+          1.1818181818181852,
+          62.29090909090909
+        ],
+        "waterSamples": 6490,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 5.73127,
-        "bounds": [
-          13.4,
-          326.6,
-          76.9,
-          367.2
-        ]
+        "vertices": 114372,
+        "triangles": 38124,
+        "drawCalls": 1,
+        "surfaceArea": 117.71808697164576,
+        "solidVolume": 2.5217854541893696,
+        "visiblePixels": 408,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -30.385850926440312,
+            -0.545241285647921,
+            -12.078905963306354
+          ],
+          "max": [
+            -21.614062864254606,
+            3.592383625563777,
+            -8.081096233494657
+          ]
+        }
       },
       {
         "name": "North Sea platform",
-        "mirror": false,
-        "sampled": 34216,
-        "unmapped": 0,
-        "visible": 34216,
+        "drawingCoordinates": [
+          2.5999999999999996,
+          58.84
+        ],
+        "waterSamples": 4698,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.24252,
-        "bounds": [
-          31.5,
-          407.6,
-          69.9,
-          431.6
-        ]
+        "vertices": 25032,
+        "triangles": 8344,
+        "drawCalls": 1,
+        "surfaceArea": 143.29586584460293,
+        "solidVolume": 8.76726949808839,
+        "visiblePixels": 481,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -25.95628753223407,
+            -0.06350890671502463,
+            3.1431465769960867
+          ],
+          "max": [
+            -19.56571737478533,
+            6.628486999725423,
+            7.064857917818069
+          ]
+        }
       },
       {
         "name": "A northern leviathan",
-        "mirror": false,
-        "sampled": 47902,
-        "unmapped": 0,
-        "visible": 0,
+        "drawingCoordinates": [
+          -12.100000000000001,
+          66.2
+        ],
+        "waterSamples": 3822,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.60223,
-        "bounds": [
-          -165,
-          273.6,
-          -121.4,
-          303.7
-        ]
+        "vertices": 21444,
+        "triangles": 7148,
+        "drawCalls": 1,
+        "surfaceArea": 39.228523684649616,
+        "solidVolume": 5.029799305177815,
+        "visiblePixels": 0,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -58.58782465402035,
+            -0.5581650741523698,
+            -28.802049777930648
+          ],
+          "max": [
+            -51.898857780367806,
+            1.756116998211345,
+            -25.75791173209779
+          ]
+        }
       },
       {
         "name": "The great lobster",
-        "mirror": false,
-        "sampled": 36332,
-        "unmapped": 0,
-        "visible": 36332,
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "waterSamples": 3195,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.00731,
-        "bounds": [
-          31.9,
-          479.7,
-          73.5,
-          503.4
-        ]
+        "vertices": 37572,
+        "triangles": 12524,
+        "drawCalls": 1,
+        "surfaceArea": 24.710026019645017,
+        "solidVolume": 0.9152949613618689,
+        "visiblePixels": 144,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -23.723081753451297,
+            -0.17890363682829263,
+            17.27298463736199
+          ],
+          "max": [
+            -18.517159229258553,
+            1.7569177697603533,
+            20.567025898545864
+          ]
+        }
       },
       {
         "name": "Hanseatic trader",
-        "mirror": false,
-        "sampled": 43334,
-        "unmapped": 0,
-        "visible": 0,
+        "drawingCoordinates": [
+          -0.7545454545454522,
+          59.29090909090909
+        ],
+        "waterSamples": 2412,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.4223,
-        "bounds": [
-          -106.4,
-          391.1,
-          -66.6,
-          424.1
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 43.743148339978696,
+        "solidVolume": 1.7383263567525018,
+        "visiblePixels": 64,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -32.69240622860182,
+            -0.18714339041597086,
+            1.814942131248697
+          ],
+          "max": [
+            -27.79097618602854,
+            3.1792404391770854,
+            4.425102829319924
+          ]
+        }
       },
       {
         "name": "Northern schooner",
-        "mirror": false,
-        "sampled": 41779,
-        "unmapped": 0,
-        "visible": 0,
+        "drawingCoordinates": [
+          -12.100000000000001,
+          61.1
+        ],
+        "waterSamples": 2442,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.28099,
-        "bounds": [
-          -203.8,
-          363.8,
-          -168.2,
-          387.2
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 39.419448258358514,
+        "solidVolume": 1.6593940459660492,
+        "visiblePixels": 0,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -57.61654697006523,
+            -0.18439519735807303,
+            -6.163501312425662
+          ],
+          "max": [
+            -52.80442794920471,
+            2.941013620100192,
+            -3.516549281219066
+          ]
+        }
       },
       {
         "name": "Atlantic merchant",
-        "mirror": true,
-        "sampled": 43334,
-        "unmapped": 0,
-        "visible": 0,
+        "drawingCoordinates": [
+          -12.3,
+          57.4
+        ],
+        "waterSamples": 1888,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.90534,
-        "bounds": [
-          -248.8,
-          432.8,
-          -213.3,
-          462.9
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 33.979164927118084,
+        "solidVolume": 1.1901050855747362,
+        "visiblePixels": 0,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -57.8038156591067,
+            -0.16790603901068618,
+            10.289779505507337
+          ],
+          "max": [
+            -53.48391121480482,
+            2.7990763192747194,
+            12.590260120756554
+          ]
+        }
       },
       {
         "name": "Irish Sea passage",
-        "mirror": false,
-        "sampled": 41779,
-        "unmapped": 0,
-        "visible": 0,
+        "drawingCoordinates": [
+          -12.2,
+          53.9
+        ],
+        "waterSamples": 1860,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.00375,
-        "bounds": [
-          -295.3,
-          526.6,
-          -255.4,
-          551.1
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 32.91594237744585,
+        "solidVolume": 1.2661733126680408,
+        "visiblePixels": 0,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -57.61604704950476,
+            -0.17065423206858396,
+            25.7240328648547
+          ],
+          "max": [
+            -53.208543653918845,
+            2.6853227907812096,
+            27.955935542120184
+          ]
+        }
       },
       {
         "name": "Channel trader",
-        "mirror": false,
-        "sampled": 43334,
-        "unmapped": 0,
-        "visible": 0,
+        "drawingCoordinates": [
+          -3.8000000000000007,
+          49.6
+        ],
+        "waterSamples": 1320,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.38837,
-        "bounds": [
-          -173.3,
-          666.2,
-          -131.5,
-          696.7
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 28.952661239674438,
+        "solidVolume": 0.9360498806887461,
+        "visiblePixels": 0,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -38.89571407755494,
+            -0.1569132667790949,
+            44.907860778309825
+          ],
+          "max": [
+            -34.91267363280028,
+            2.5818396793305096,
+            46.61214381191221
+          ]
+        }
       },
       {
         "name": "North Sea sail",
-        "mirror": false,
-        "sampled": 41779,
-        "unmapped": 0,
-        "visible": 41779,
+        "drawingCoordinates": [
+          2.0999999999999996,
+          65.7
+        ],
+        "waterSamples": 1624,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 2.67106,
-        "bounds": [
-          53.5,
-          293.7,
-          79.4,
-          311
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 30.478592425680322,
+        "solidVolume": 1.1281739697785946,
+        "visiblePixels": 110,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -26.059460547806175,
+            -0.16515784595278835,
+            -26.07998103166654
+          ],
+          "max": [
+            -21.818041101553597,
+            2.5830464590536173,
+            -24.080038043418007
+          ]
+        }
       },
       {
         "name": "Baltic merchant",
-        "mirror": false,
-        "sampled": 43334,
-        "unmapped": 0,
-        "visible": 43334,
+        "drawingCoordinates": [
+          19.81818181818182,
+          56.372727272727275
+        ],
+        "waterSamples": 1300,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 2.8714,
-        "bounds": [
-          359.5,
-          471.1,
-          386,
-          493.5
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 24.32827784722664,
+        "solidVolume": 0.7209967541647577,
+        "visiblePixels": 136,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            13.196321440063478,
+            -0.1459204945475037,
+            15.049359136514333
+          ],
+          "max": [
+            16.85608484640698,
+            2.3646030393863007,
+            16.870664652172483
+          ]
+        }
       },
       {
         "name": "Baltic schooner",
-        "mirror": true,
-        "sampled": 41779,
-        "unmapped": 0,
-        "visible": 41779,
+        "drawingCoordinates": [
+          20.11818181818182,
+          60.89090909090908
+        ],
+        "waterSamples": 1350,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 2.28292,
-        "bounds": [
-          343.4,
-          376.7,
-          368.2,
-          392.8
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 22.68610339720018,
+        "solidVolume": 0.7244752880989977,
+        "visiblePixels": 108,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            13.850799959385808,
+            -0.1459204945475037,
+            -4.862169266286202
+          ],
+          "max": [
+            17.508893417327037,
+            2.2250792980070426,
+            -2.977859398747772
+          ]
+        }
       },
       {
         "name": "Barents trader",
-        "mirror": true,
-        "sampled": 43334,
-        "unmapped": 0,
-        "visible": 0,
+        "drawingCoordinates": [
+          24.545454545454547,
+          72.85454545454546
+        ],
+        "waterSamples": 1680,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.97919,
-        "bounds": [
-          404.9,
-          201.7,
-          431,
-          225.1
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 35.29862214507197,
+        "solidVolume": 1.2600938412118132,
+        "visiblePixels": 100,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            23.25254153164891,
+            -0.17065423206858396,
+            -57.540508800686986
+          ],
+          "max": [
+            27.655727785123716,
+            2.853385479260771,
+            -55.57948022545301
+          ]
+        }
       },
       {
         "name": "Arctic schooner",
-        "mirror": false,
-        "sampled": 41779,
-        "unmapped": 0,
-        "visible": 41779,
+        "drawingCoordinates": [
+          18.11818181818182,
+          74.95454545454545
+        ],
+        "waterSamples": 2112,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.17009,
-        "bounds": [
-          276,
-          184.9,
-          301.6,
-          202.8
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 36.747737734308124,
+        "solidVolume": 1.4935839147585626,
+        "visiblePixels": 90,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            8.957381766491027,
+            -0.1788988112422774,
+            -66.99912452072792
+          ],
+          "max": [
+            13.613137076598044,
+            2.838737288372599,
+            -64.60091196204264
+          ]
+        }
       },
       {
         "name": "Greenland Sea passage",
-        "mirror": false,
-        "sampled": 43334,
-        "unmapped": 0,
-        "visible": 0,
+        "drawingCoordinates": [
+          -6.272727272727266,
+          73.33636363636364
+        ],
+        "waterSamples": 1596,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.75763,
-        "bounds": [
-          -121.7,
-          199.8,
-          -97,
-          221.8
-        ]
+        "vertices": 38580,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "surfaceArea": 31.415648046521834,
+        "solidVolume": 1.0579990875116918,
+        "visiblePixels": 0,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -44.44254049077682,
+            -0.16240965289489054,
+            -59.67861009263121
+          ],
+          "max": [
+            -40.283679418034744,
+            2.6904579993026143,
+            -57.681368426886486
+          ]
+        }
       },
       {
         "name": "Norwegian Sea sail",
-        "mirror": false,
-        "sampled": 41779,
-        "unmapped": 0,
-        "visible": 41779,
+        "drawingCoordinates": [
+          7.3,
+          72.8
+        ],
+        "waterSamples": 1947,
         "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 2.72651,
-        "bounds": [
-          139.8,
-          205,
-          162.5,
-          220.8
-        ]
+        "vertices": 33168,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "surfaceArea": 31.685549372948763,
+        "solidVolume": 1.195846888019175,
+        "visiblePixels": 87,
+        "hiddenByLandmark": 0,
+        "bounds": {
+          "min": [
+            -14.688628317989512,
+            -0.16790603901068618,
+            -57.50658738355403
+          ],
+          "max": [
+            -10.374314713080079,
+            2.634184624917414,
+            -55.133457976265355
+          ]
+        }
       }
     ]
   }

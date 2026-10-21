@@ -1,5 +1,7 @@
 ﻿import {createMapModelMaterial,createModelBuilder} from './atlas-models.js';
 
+import {EXTRA_LANDMARK_SITES} from './landmark-models-3d.js';
+import {fitDryFootprint,footprintSamples,toGeo} from './ground-support.js';
 // Real building anchors researched before modeling; data/landmark-locations.json.
 export const OPERA_FOOTPRINT=Object.freeze({coordinates:[10.7526806,59.9075238],minX:1.2,maxX:4.1,minZ:-1.55,maxZ:1.6});
 const C={stone:0xd4b47c,ivory:0xe8d4a4,light:0xf0dfb8,ochre:0xcaa060,umber:0x806241,ink:0x3f392b,brick:0x9d5039,red:0xb46645,roof:0x695448,copper:0x526d5b,teal:0x4f7770,window:0x344d49,wood:0x68482f,gold:0xd4aa54};
@@ -68,7 +70,7 @@ function nyhavn({b,g}){
  const x=-1.45,z=-1.45,y=g(x,z);b.box(x,y+.71,z,.42,1.42,.50,0xc3a979,true);b.roof(x,y+1.42,z,.49,.43,.58,C.copper);b.cylinder(x,y+1.98,z,.14,.23,.75,C.copper,8);b.cylinder(x,y+2.58,z,.018,.13,.54,C.copper,8);b.beam([x,y+2.85,z],[x,y+3.07,z],.012,C.gold);
 }
 function warsaw({b,g,THREE}){
- const y=g(0,0),wall=0xb97551,roof=0x765b49;
+ const y=g.support(0,0,4.5,2.95),wall=0xb97551,roof=0x765b49;
  for(const[x,z,w,d,h]of[[0,.95,4.34,.74,1.50],[-1.76,-.12,.82,2.17,1.43],[1.76,-.12,.82,2.17,1.43],[0,-1.15,4.1,.72,1.44]]){
   foundation(b,x,y,z,w,d);b.box(x,y+h/2,z,w,h,d,wall,true);b.hip(x,y+h,z,w+.13,d+.13,.53,roof);const count=Math.floor(w/.34);
   for(let r=0;r<3;r++)for(let j=0;j<count;j++)b.window(x+(j-(count-1)/2)*.34,y+.25+r*.43,z+d/2+.02,.14,.25);
@@ -81,7 +83,7 @@ function warsaw({b,g,THREE}){
  for(const xx of[-1.8,1.8]){b.cylinder(xx,y+1.82,-1.12,.20,.20,.39,wall,12);b.sphere(xx,y+2.06,-1.12,.25,.22,.25,C.copper);b.cylinder(xx,y+2.3,-1.12,.012,.13,.3,C.copper,12);}
 }
 function gdansk({b,g}){
- const y=g(-.35,.50),brick=0xa6623e;
+ const y=g.support(-.9,.65,3.55,1.9),brick=0xa6623e;
  for(const x of[-.61,.61]){foundation(b,x,y,.42,.77,.80);b.cylinder(x,y+.90,.42,.35,.40,1.80,brick,28,true);b.cylinder(x,y+1.91,.42,.02,.44,.67,0x68503d,28,true);for(let j=0;j<6;j++)b.box(x,y+.23+j*.27,.814,.52,.012,.014,0xc29159);for(let r=0;r<3;r++)b.window(x,y+.51+r*.43,.817,.12,.23);}
  b.box(0,y+1.20,.37,.66,2.26,.78,C.wood,true);b.roof(0,y+2.30,.35,.84,.55,1.05,0x5c4833);b.prism([[-.44,0],[.44,0],[.34,1.09],[-.34,1.09]],.68,0x604630,[0,y+1.05,.88],[0,0,0],true);b.roof(0,y+2.13,.92,.92,.32,.81,0x715039);
  for(let i=0;i<7;i++)b.box(-.31+i*.105,y+1.56,1.24,.018,1.0,.018,0xc3975c);for(let i=0;i<4;i++)b.box(0,y+1.16+i*.27,1.25,.7,.026,.022,0xbd9057);
@@ -90,7 +92,7 @@ function gdansk({b,g}){
  for(let i=0;i<12;i++)b.box(-2.67+i*.28,y+.03,1.40,.26,.10,.24,C.stone);for(const x of[-2.4,-1.5,-.6,.3,.9])b.cylinder(x,y+.16,1.56,.04,.05,.28,C.wood,8);
 }
 function windmill({b,g}){
- const y=g(0,0);b.cylinder(0,y+.07,0,.67,.75,.15,C.stone,32,true);b.cylinder(0,y+1.15,0,.34,.58,2.18,0xb18d5b,32,true);b.cylinder(0,y+2.28,0,.38,.38,.14,C.umber,32,true);b.sphere(0,y+2.50,0,.43,.35,.43,0x5c523a);b.box(0,y+.26,.55,.20,.46,.04,C.wood);
+ const y=g.support(0,0,1.55,1.55);b.skirt(0,y,0,1.48,1.48,g,C.umber);b.cylinder(0,y+.07,0,.67,.75,.15,C.stone,32,true);b.cylinder(0,y+1.15,0,.34,.58,2.18,0xb18d5b,32,true);b.cylinder(0,y+2.28,0,.38,.38,.14,C.umber,32,true);b.sphere(0,y+2.50,0,.43,.35,.43,0x5c523a);b.box(0,y+.26,.55,.20,.46,.04,C.wood);
  for(let j=0;j<9;j++){const yy=y+.18+j*.235,r=.58-(yy-y)/2.18*.24,points=[];for(let i=0;i<=40;i++)points.push([Math.cos(i/40*Math.PI*2)*r,yy,Math.sin(i/40*Math.PI*2)*r]);b.curve(points,.006,0x8e6a44,40);}
  for(let j=0;j<3;j++)b.window(0,y+.63+j*.53,.56-j*.058,.15,.22);b.sphere(0,y+2.45,.48,.11,.11,.13,C.wood);
  for(let i=0;i<4;i++){
@@ -101,17 +103,24 @@ function windmill({b,g}){
  b.beam([0,y+2.54,-.26],[.92,y+.10,-.98],.035,C.wood);b.beam([0,y+2.54,-.26],[-.92,y+.10,-.98],.035,C.wood);for(let i=0;i<4;i++){const x=-.94+i*.63;b.box(x,g(x,.8)+.08,.8,.31,.045,.12,0xb8a46c);}
 }
 function towerBridge({b,g}){
- const y=g(0,0),stone=0xcbb98a,blue=0x617e79;
- for(const z of[-.91,.91]){b.box(0,y+.11,z,.83,.27,.88,C.umber,true);b.box(0,y+1.23,z,.68,2.12,.66,stone,true);b.box(0,y+2.3,z,.79,.14,.78,C.ivory,true);b.roof(0,y+2.36,z,.70,.51,.72,0x5f6f63);
+ const y=Math.max(g.support(0,-1.24,.88,.9),g.support(0,1.24,.88,.9)),stone=0xcbb98a,blue=0x617e79;
+ for(const z of[-1.24,1.24]){b.skirt(0,y,z,.83,.88,g,C.umber);b.box(0,y+.11,z,.83,.27,.88,C.umber,true);b.box(0,y+1.23,z,.68,2.12,.66,stone,true);b.box(0,y+2.3,z,.79,.14,.78,C.ivory,true);b.roof(0,y+2.36,z,.70,.51,.72,0x5f6f63);
   for(const x of[-.33,.33])for(const zz of[-.29,.29]){b.cylinder(x,y+1.46,z+zz,.105,.13,1.89,stone,12,true);b.cylinder(x,y+2.57,z+zz,.008,.15,.52,0x5a6859,12,true);b.sphere(x,y+2.86,z+zz,.028,.045,.028,C.gold);}
   for(let r=0;r<4;r++)for(const dx of[-.13,.13])b.window(dx,y+.64+r*.38,z+.345,.105,.24);b.arch(0,y+.22,z+.36,.35,.77,.034,C.ink);b.box(0,y+1.7,z+.36,.54,.055,.05,C.ochre);courses(b,0,y+.22,z,.68,2.0,.68,0xa48c62);}
  b.box(0,y+.61,0,.54,.12,4.4,C.umber,true);b.box(0,y+.70,0,.48,.055,4.46,0xa8a98a);
- for(const x of[-.25,.25]){b.box(x,y+2.07,0,.075,.20,1.84,blue,true);for(let i=0;i<6;i++){const z=-.88+i*.30;b.beam([x,y+1.99,z],[x,y+2.17,z+.29],.012,C.ivory);b.beam([x,y+2.17,z],[x,y+1.99,z+.29],.012,C.ivory);}
-  for(const s of[-1,1]){const p=[];for(let j=0;j<=14;j++){const t=j/14;p.push([x,y+2.03-1.27*Math.sin(t*Math.PI/2),s*(.95+t*1.2)]);}b.curve(p,.032,blue,22);for(let j=1;j<8;j++){const t=j/8;b.beam([x,y+.79,s*(.95+t*1.2)],[x,y+2.03-1.27*Math.sin(t*Math.PI/2),s*(.95+t*1.2)],.011,blue);}}
+ for(const x of[-.25,.25]){b.box(x,y+2.07,0,.075,.20,2.48,blue,true);for(let i=0;i<8;i++){const z=-1.20+i*.30;b.beam([x,y+1.99,z],[x,y+2.17,z+.29],.012,C.ivory);b.beam([x,y+2.17,z],[x,y+1.99,z+.29],.012,C.ivory);}
+  for(const s of[-1,1]){const p=[];for(let j=0;j<=14;j++){const t=j/14;p.push([x,y+2.03-1.27*Math.sin(t*Math.PI/2),s*(1.24+t*.96)]);}b.curve(p,.032,blue,22);for(let j=1;j<8;j++){const t=j/8;b.beam([x,y+.79,s*(1.24+t*.96)],[x,y+2.03-1.27*Math.sin(t*Math.PI/2),s*(1.24+t*.96)],.011,blue);}}
   b.beam([x,y+.84,-2.2],[x,y+.84,2.2],.018,blue);for(let i=0;i<28;i++)b.beam([x,y+.73,-2.14+i*.16],[x,y+.85,-2.14+i*.16],.008,blue,5);}
+ // Each approach is a solid masonry wedge meeting the sampled bank. The deck
+ // ends at 2.23; the low end at 2.7 is the actual checked landing, not a marker.
+ for(const sign of[-1,1]){
+  const start=2.20*sign,end=2.7*sign,bank=g.support(0,end,.5,.08),deck=y+.7275;
+  b.prism([[start,deck],[end,bank+.02],[end,g(0,end)-.055],[start,g(0,start)-.055]],.5,C.stone,[0,0,0],[0,-Math.PI/2,0]);
+  for(const x of[-.25,.25]){b.beam([x,deck+.14,start],[x,bank+.16,end],.018,blue);b.beam([x,bank+.02,end],[x,bank+.16,end],.014,blue);}
+ }
 }
 function borgund({b,g}){
- const y=g(0,0),wood=0x69492f,tar=0x4a3b2a,roof=0x59442d;
+ const y=g.support(0,.08,2.4,2.7),wood=0x69492f,tar=0x4a3b2a,roof=0x59442d;
  foundation(b,0,y,0,1.66,2.14);b.box(0,y+.39,0,1.46,.72,1.92,wood,true);b.roof(0,y+.72,0,1.94,.75,2.28,roof);b.box(0,y+1.21,-.09,1.05,.98,1.50,wood,true);b.roof(0,y+1.61,-.09,1.48,.82,1.84,tar);b.box(0,y+2.09,-.12,.65,.71,1.10,wood,true);b.roof(0,y+2.39,-.12,.99,.73,1.41,roof);b.box(0,y+2.99,-.15,.41,.54,.58,wood,true);b.roof(0,y+3.25,-.15,.70,.75,.88,tar);b.beam([0,y+3.95,-.15],[0,y+4.21,-.15],.022,wood);b.beam([-.13,y+4.11,-.15],[.13,y+4.11,-.15],.018,wood);
  for(const x of[-.89,.89]){b.box(x,y+.49,.05,.53,.78,1.19,wood,true);b.roof(x,y+.82,.05,.75,.53,1.47,roof);}
  b.box(0,y+.44,1.15,.68,.83,.50,wood,true);b.roof(0,y+.81,1.15,.89,.60,.71,tar);b.arch(0,y+.06,1.424,.28,.57,.033,0x302b21);
@@ -120,14 +129,56 @@ function borgund({b,g}){
  for(const[yy,d]of[[1.47,1.14],[2.43,.92],[3.12,.70]])for(const s of[-1,1]){b.curve([[0,y+yy,s*d],[0,y+yy+.09,s*(d+.13)],[0,y+yy+.29,s*(d+.26)],[0,y+yy+.36,s*(d+.23)]],.037,wood,16);b.sphere(0,y+yy+.35,s*(d+.23),.057,.044,.073,0x9d7745);b.beam([0,y+yy+.36,s*(d+.26)],[0,y+yy+.46,s*(d+.34)],.014,wood);}
  for(const side of[-1,1])for(let j=0;j<9;j++){const z=-.85+j*.22;b.beam([side*.74,y+.1,z],[side*.74,y+.71,z],.019,C.wood);}
 }
-export function addLandmarks({THREE,scene,worldPoint,mobile=false,heightAt,regionAt}){
- const material=createMapModelMaterial(THREE),objects=sites.map(site=>{
-  const origin=worldPoint(site.coordinates,.035),draw=site.drawingCoordinates||site.coordinates,drawing=worldPoint(draw,.035),b=createModelBuilder(THREE),shapeScale=site.asset==='borgund'?.72:1;
-  const g=(x,z)=>{const lon=(drawing.x+x*shapeScale)/2.2+13,lat=60-(drawing.z+z*shapeScale)/4.4,h=regionAt&&!regionAt([lon,lat])?-.05:(heightAt?heightAt(lon,lat):worldPoint([lon,lat]).y);return (Math.max(-.05,h)-drawing.y+.045)/shapeScale;};
-  g.support=(x,z,w,d)=>{let highest=g(x,z);for(const dx of[-w/2,0,w/2])for(const dz of[-d/2,0,d/2])highest=Math.max(highest,g(x+dx,z+dz));return highest;};b.ground=g;
-  site.make({b,g,THREE});const model=b.finish('landmark-'+site.asset,material);model.position.copy(origin);model.scale.setScalar(shapeScale);const offset=drawing.clone().sub(origin);for(const child of model.children)child.position.addScaledVector(offset,1/shapeScale);
-  if(site.asset==='london')model.rotation.y=.52;
-  model.userData={...model.userData,title:site.title,kind:'landmark',style:'engraved-dimensional-atlas',coordinates:[...site.coordinates],drawingCoordinates:[...draw],drawingOffset:[offset.x,offset.z],grounding:site.grounding||'land',dimensional:true,geolocationVerified:true,...(site.footprint?{footprint:site.footprint}:{})};
-  model.updateMatrixWorld(true);const bounds=new THREE.Box3().setFromObject(model);model.userData.worldBounds={min:bounds.min.toArray(),max:bounds.max.toArray()};model.userData.surfaceFit={clear:true,support:site.grounding||'land',fullFootprint:false,solidGeometry:true};scene.add(model);return model;
- });return{count:objects.length,objects,ready:Promise.resolve(objects)};
+export const LANDMARK_SITES=[...sites.filter(s=>!['oslo','bryggen'].includes(s.asset)),...EXTRA_LANDMARK_SITES];
+
+function recipeFootprint(THREE,site,material){
+ const b=createModelBuilder(THREE),g=()=>0;g.support=()=>0;b.ground=g;site.make({b,g,THREE});
+ const model=b.finish('measure',material),bounds=new THREE.Box3().setFromObject(model),low=[];
+ model.traverse(o=>{if(!o.isMesh)return;const p=o.geometry.attributes.position;for(let i=0;i<p.count;i++)if(p.getY(i)<bounds.min.y+.24)low.push([p.getX(i),p.getZ(i)]);});
+ const box=low.length?[Math.min(...low.map(p=>p[0])),Math.max(...low.map(p=>p[0])),Math.min(...low.map(p=>p[1])),Math.max(...low.map(p=>p[1]))]:[bounds.min.x,bounds.max.x,bounds.min.z,bounds.max.z];
+ model.traverse(o=>o.geometry?.dispose());return box;
+}
+
+function fitThamesBridge({site,worldPoint,isDry}){
+ const anchor=worldPoint(site.coordinates),points=[];
+ // Both tower plinths and both approach ends are dry. Only the span crosses water.
+ for(const z of[-1.24,1.24])for(const [x,dz]of footprintSamples([-.46,.46,-.48,.48]))points.push([x,z+dz]);
+ for(const sign of[-1,1])for(const [x,z]of footprintSamples([-.28,.28,2.2,2.82]))points.push([x,sign*z]);
+ for(let ring=0;ring<24;ring++)for(let j=0;j<(ring?24:1);j++){
+  const a=j/24*Math.PI*2,x=anchor.x+Math.cos(a)*ring*.08,z=anchor.z+Math.sin(a)*ring*.08;
+  if(!isDry.riverAt(x,z))continue;
+  for(let k=0;k<36;k++){
+   const yaw=k*Math.PI/36,c=Math.cos(yaw),s=Math.sin(yaw),scale=1.15;
+   if(points.every(([px,pz])=>isDry(x+(px*c+pz*s)*scale,z+(-px*s+pz*c)*scale,.06)))return{x,z,yaw,scale,samples:points.length,coordinates:toGeo(x,z),supportPoints:points};
+  }
+ }
+ throw new Error('Tower Bridge has no dry banks at the Thames');
+}
+
+export function addLandmarks({THREE,scene,worldPoint,mobile=false,heightAt,regionAt,isDry}){
+ if(!isDry)throw new Error('Landmarks require the rendered river and coast support checker');
+ const material=createMapModelMaterial(THREE),objects=[],occupied=[];
+ for(const site of LANDMARK_SITES){
+  const origin=worldPoint(site.coordinates),localBox=recipeFootprint(THREE,site,material);
+  let xzScale=site.asset==='borgund'?.90:site.asset==='nyhavn'?1.05:1.22,yScale=site.asset==='borgund'?1.05:1.28,fit,yaw=0;
+  if(site.asset==='london'){fit=fitThamesBridge({site,worldPoint,isDry});xzScale=fit.scale;yaw=fit.yaw;}
+  else{
+   const filter=site.asset==='warsaw'?geo=>geo[0]<site.coordinates[0]-.08&&geo[1]<site.coordinates[1]+.05:site.asset==='windmill'?geo=>geo[0]>4.3&&geo[0]<6.5&&geo[1]>51.45&&geo[1]<53.1:site.asset==='nyhavn'?geo=>geo[0]>11.3&&geo[0]<12.5&&geo[1]>55.1&&geo[1]<56.1:site.asset==='helsinki'?geo=>geo[1]>60.22&&geo[1]<61.2:site.asset==='tallinn'?geo=>geo[1]>58.8&&geo[1]<59.52:()=>true;
+   for(const factor of[1,.9,.78,.67,.60]){
+    const scale=xzScale*factor,box=localBox.map(v=>v*scale),region=site.asset==='borgund'?3:['warsaw','gdansk'].includes(site.asset)?2:1;
+    fit=fitDryFootprint({anchor:origin,box,isDry,heightAt,regionAt,region,maxRadius:3.3,filter,occupied});
+    if(fit){xzScale=scale;break;}
+   }
+   if(!fit)throw new Error('No dry foundation for '+site.title);
+  }
+  const drawing=worldPoint(fit.coordinates),b=createModelBuilder(THREE),c=Math.cos(yaw),s=Math.sin(yaw);
+  const g=(x,z)=>(heightAt(...toGeo(drawing.x+(x*c+z*s)*xzScale,drawing.z+(-x*s+z*c)*xzScale))-drawing.y+.018)/yScale;
+  g.support=(x,z,w,d)=>{let highest=-Infinity;for(const [dx,dz]of footprintSamples([x-w/2,x+w/2,z-d/2,z+d/2],.18))highest=Math.max(highest,g(dx,dz));return highest;};b.ground=g;
+  site.make({b,g,THREE});
+  const model=b.finish('landmark-'+site.asset,material);model.position.copy(drawing);model.scale.set(xzScale,yScale,xzScale);model.rotation.y=yaw;
+  model.updateMatrixWorld(true);const bounds=new THREE.Box3().setFromObject(model),worldBounds={min:bounds.min.toArray(),max:bounds.max.toArray()};occupied.push(worldBounds);
+  model.userData={...model.userData,title:site.title,kind:'landmark',style:'painted-solid-diorama',coordinates:[...site.coordinates],drawingCoordinates:fit.coordinates,drawingOffset:[drawing.x-origin.x,drawing.z-origin.z],grounding:site.asset==='london'?'river-crossing':'land',dimensional:true,geolocationVerified:true,worldBounds,localFoundation:localBox,scale:[xzScale,yScale,xzScale],surfaceFit:{clear:true,fullFootprint:true,solidGeometry:true,samples:fit.samples,riverClear:true},...(fit.supportPoints?{bankSupportPoints:fit.supportPoints}:{})};
+  scene.add(model);objects.push(model);
+ }
+ return{count:objects.length,objects,ready:Promise.resolve(objects),reservedBounds:occupied};
 }

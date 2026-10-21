@@ -1,89 +1,86 @@
-import {preservePictureUv} from './atlas-pigment.js';
+import {createMapModelMaterial} from './atlas-models.js';
+import {createMaritimeModel} from './sea-models.js';
 
-// Newly engraved dimensional vignettes, rooted in the chart's tidal ink.
+// Every vignette is solid geometry. Geographic roots remain beside the nearby
+// drawing position: enlarged miniatures never require a false island or an
+// opaque patch of water, and their entire footprint must be clear of the coast.
 const ITEMS=[
- {name:'Jörmungandr',asset:'serpent_attack',geo:[-4.8,69.3],mobileGeo:[3.6,69.4],width:14.6,mobileWidth:10.7,label:true},
- {name:'Kraken',asset:'kraken_attack',geo:[-1.1,62.8],mobileGeo:[1.5,62.2],width:12.2,mobileWidth:8.7,label:true},
- {name:'North Sea platform',asset:'offshore_rig',geo:[2.6,58.84],width:6.7,mobileWidth:4.8,offshore:true},
- {name:'A northern leviathan',asset:'northern_whale',geo:[-12.1,66.2],width:9.2,mobileWidth:6.6},
- {name:'The great lobster',asset:'great_lobster',geo:[3.4,55.7],width:6.1,mobileWidth:4.7},
- {name:'Hanseatic trader',asset:'merchant_ship',geo:[-5.3,59.2],width:5.9},
- {name:'Northern schooner',asset:'schooner_ship',geo:[-12.1,61.1],width:5.8},
- {name:'Atlantic merchant',asset:'merchant_ship',geo:[-12.3,57.4],width:5.2,mirror:true},
- {name:'Irish Sea passage',asset:'schooner_ship',geo:[-12.2,53.9],width:5.3},
- {name:'Channel trader',asset:'merchant_ship',geo:[-3.8,49.6],width:4.5},
- {name:'North Sea sail',asset:'schooner_ship',geo:[.1,56.9],width:4.7,mobileGeo:[2.1,65.7]},
- {name:'Baltic merchant',asset:'merchant_ship',geo:[20.0,56.1],width:3.8},
- {name:'Baltic schooner',asset:'schooner_ship',geo:[20.3,60.8],width:4.0,mirror:true},
- {name:'Barents trader',asset:'merchant_ship',geo:[28.0,72.4],width:5.3,mirror:true},
- {name:'Arctic schooner',asset:'schooner_ship',geo:[18.3,74.5],width:5.6},
- {name:'Greenland Sea passage',asset:'merchant_ship',geo:[-13.0,72.7],width:5.0},
- {name:'Norwegian Sea sail',asset:'schooner_ship',geo:[7.1,70.7],width:4.8,mobileGeo:[7.3,72.8]},
+ {name:'Jörmungandr',asset:'serpent_attack',geo:[-4.8,69.3],mobileGeo:[2.0,69.4],width:14.6,mobileWidth:10.7,label:true,yaw:.08},
+ {name:'Kraken',asset:'kraken_attack',geo:[-1.1,62.8],mobileGeo:[1.0,62.2],width:12.2,mobileWidth:8.7,label:true,yaw:.02},
+ {name:'North Sea platform',asset:'offshore_rig',geo:[2.6,58.84],width:8.7,mobileWidth:6.4,offshore:true,yaw:.10},
+ {name:'A northern leviathan',asset:'northern_whale',geo:[-12.1,66.2],width:9.2,mobileWidth:6.6,yaw:.18},
+ {name:'The great lobster',asset:'great_lobster',geo:[3.4,55.7],width:6.5,mobileWidth:4.9,yaw:.13},
+ {name:'Hanseatic trader',asset:'merchant_ship',geo:[-5.3,59.2],width:5.9,yaw:.22},
+ {name:'Northern schooner',asset:'schooner_ship',geo:[-12.1,61.1],width:5.8,yaw:-.24},
+ {name:'Atlantic merchant',asset:'merchant_ship',geo:[-12.3,57.4],width:5.2,yaw:.22},
+ {name:'Irish Sea passage',asset:'schooner_ship',geo:[-12.2,53.9],width:5.3,yaw:-.19},
+ {name:'Channel trader',asset:'merchant_ship',geo:[-3.8,49.6],width:4.8,yaw:.10},
+ {name:'North Sea sail',asset:'schooner_ship',geo:[.1,56.9],width:5.1,mobileGeo:[2.1,65.7],yaw:-.15},
+ {name:'Baltic merchant',asset:'merchant_ship',geo:[20.0,56.1],width:4.4,yaw:.18},
+ {name:'Baltic schooner',asset:'schooner_ship',geo:[20.3,60.8],width:4.4,yaw:-.20},
+ {name:'Barents trader',asset:'merchant_ship',geo:[28.0,72.4],width:5.3,yaw:.12},
+ {name:'Arctic schooner',asset:'schooner_ship',geo:[18.3,74.5],width:5.6,yaw:-.20},
+ {name:'Greenland Sea passage',asset:'merchant_ship',geo:[-13.0,72.7],width:5.0,yaw:.16},
+ {name:'Norwegian Sea sail',asset:'schooner_ship',geo:[7.1,70.7],width:5.2,mobileGeo:[7.3,72.8],yaw:-.24},
 ];
-const SEA=-.05,LEAN=-.23;
-function maritimePigment(THREE,texture){
- return new THREE.ShaderMaterial({name:'New colored maritime copperplate',transparent:false,depthWrite:true,side:THREE.DoubleSide,
- uniforms:{uArtwork:{value:texture}},
- vertexShader:`attribute vec2 pictureUv;varying vec2 vUv;varying vec3 vWorld;
- void main(){vUv=uv;vec4 p=modelMatrix*vec4(position,1.);vWorld=p.xyz;gl_Position=projectionMatrix*viewMatrix*p;}`,
- fragmentShader:`uniform sampler2D uArtwork;varying vec2 vUv;varying vec3 vWorld;
- float hash(vec2 p){vec3 q=fract(vec3(p.xyx)*.1031);q+=dot(q,q.yzx+33.33);return fract((q.x+q.y)*q.z);}
- vec3 toPaper(vec3 c){return mix(c*12.92,1.055*pow(max(c,vec3(0.)),vec3(1./2.4))-.055,step(vec3(.0031308),c));}
- void main(){vec4 paint=texture2D(uArtwork,vUv);if(paint.a<.25)discard;
- vec3 color=toPaper(paint.rgb)*vec3(.985,.972,.932);color+=(hash(floor(vWorld.xz*65.))-.5)*.012;
- gl_FragColor=vec4(color,1.);}`});
+const SEA=-.025,SAMPLE_STEP=.16,MARGIN=.12;
+const toGeo=(x,z)=>[x/2.2+13,60-z/4.4];
+
+function projectionBox(THREE,bounds,camera,x=0,z=0){
+ const output=[Infinity,Infinity,-Infinity,-Infinity];
+ for(const xx of[bounds.min.x,bounds.max.x])for(const yy of[bounds.min.y,bounds.max.y])for(const zz of[bounds.min.z,bounds.max.z]){
+  const p=new THREE.Vector3(xx+x,yy,zz+z).project(camera);output[0]=Math.min(output[0],p.x);output[1]=Math.min(output[1],p.y);output[2]=Math.max(output[2],p.x);output[3]=Math.max(output[3],p.y);
+ }return output;
 }
-function paintedSamples(bitmap,rect,atlasWidth,atlasHeight){
- const [l,t,r,b]=rect,sx=bitmap.width/atlasWidth,sy=bitmap.height/atlasHeight,coarse=[],exact=[];
- for(let y=Math.floor(t*sy);y<Math.ceil(b*sy);y++)for(let x=Math.floor(l*sx);x<Math.ceil(r*sx);x++){
-  if(bitmap.data[(y*bitmap.width+x)*4+3]<64)continue;
-  const u=((x+.5)/sx-l)/(r-l),v=1-((y+.5)/sy-t)/(b-t);exact.push(u,v);
-  if(x%12===0&&y%12===0)coarse.push(u,v);
- }return {coarse,exact};
+function area(box){return Math.max(0,box[2]-box[0])*Math.max(0,box[3]-box[1]);}
+function overlap(a,b){return Math.max(0,Math.min(a[2],b[2])-Math.max(a[0],b[0]))*Math.max(0,Math.min(a[3],b[3])-Math.max(a[1],b[1]));}
+
+function supportSamples(bounds){
+ const samples=[],x0=bounds.min.x-MARGIN,x1=bounds.max.x+MARGIN,z0=bounds.min.z-MARGIN,z1=bounds.max.z+MARGIN,nx=Math.ceil((x1-x0)/SAMPLE_STEP),nz=Math.ceil((z1-z0)/SAMPLE_STEP);
+ for(let j=0;j<=nz;j++)for(let i=0;i<=nx;i++)samples.push([x0+(x1-x0)*i/nx,z0+(z1-z0)*j/nz]);
+ return {samples,footprint:[x0,z0,x1,z1],quick:[[x0,z0],[x1,z0],[x1,z1],[x0,z1],[(x0+x1)/2,(z0+z1)/2]]};
 }
-function projectedSeaPoint(x,z,u,v,width,height,camera,mirror=false){
- const y=.015+v*height*Math.cos(LEAN),px=x+(mirror ? .5-u : u-.5)*width,pz=z+v*height*Math.sin(LEAN);
- const t=(SEA-camera.position.y)/(y-camera.position.y);
- return [camera.position.x+(px-camera.position.x)*t,camera.position.z+(pz-camera.position.z)*t];
-}
-function placeAtSea({origin,width,height,samples,camera,regionAt,occupied,mirror,maxDistance=12}){
- const supports=(x,z,points)=>{for(let i=0;i<points.length;i+=2){const p=projectedSeaPoint(x,z,points[i],points[i+1],width,height,camera,mirror);if(regionAt([p[0]/2.2+13,60-p[1]/4.4]))return false;}return true;};
- const boxAt=(x,z)=>{const xs=[],zs=[];for(const u of[0,1])for(const v of[0,1]){const p=projectedSeaPoint(x,z,u,v,width,height,camera);xs.push(p[0]);zs.push(p[1]);}return [Math.min(...xs),Math.min(...zs),Math.max(...xs),Math.max(...zs)];};
- const overlaps=box=>occupied.some(b=>{const area=Math.max(0,Math.min(box[2],b[2])-Math.max(box[0],b[0]))*Math.max(0,Math.min(box[3],b[3])-Math.max(box[1],b[1]));return area>Math.min((box[2]-box[0])*(box[3]-box[1]),(b[2]-b[0])*(b[3]-b[1]))*.13;});
- const candidates=[{x:origin[0],z:origin[1],distance:0}];
- for(let z=-maxDistance;z<=maxDistance;z+=.75)for(let x=-maxDistance;x<=maxDistance;x+=.75){const d=Math.hypot(x,z);if(d&&d<=maxDistance)candidates.push({x:origin[0]+x,z:origin[1]+z,distance:d});}
+
+function placeAtSea({THREE,origin,bounds,regionAt,camera,occupied,landmarks,maxDistance=15}){
+ const support=supportSamples(bounds),candidates=[{x:origin[0],z:origin[1],distance:0}];
+ for(let dz=-maxDistance;dz<=maxDistance;dz+=.8)for(let dx=-maxDistance;dx<=maxDistance;dx+=.8){const distance=Math.hypot(dx,dz);if(distance<.1||distance>maxDistance)continue;candidates.push({x:origin[0]+dx,z:origin[1]+dz,distance});}
  candidates.sort((a,b)=>a.distance-b.distance);
- for(const allowOverlap of[false,true])for(const c of candidates){const box=boxAt(c.x,c.z);if(!allowOverlap&&overlaps(box))continue;if(!supports(c.x,c.z,samples.coarse)||!supports(c.x,c.z,samples.exact))continue;occupied.push(box);return {...c,clear:true,box};}
- return {x:origin[0],z:origin[1],clear:false,box:boxAt(...origin)};
+ const water=(c,list)=>list.every(([x,z])=>!regionAt(toGeo(c.x+x,c.z+z)));
+ // Check visual space first, then a dense grid over the complete XZ bounds.
+ // Tall sails and curled tentacles are covered as well as the waterline.
+ for(const visibility of[.99,1.18,Infinity])for(const c of candidates){
+  const box=projectionBox(THREE,bounds,camera,c.x,c.z);
+  if(box[0]<-visibility||box[1]<-visibility||box[2]>visibility||box[3]>visibility)continue;
+  if(occupied.some(b=>overlap(box,b)>Math.min(area(box),area(b))*.025))continue;
+  if(landmarks.some(b=>overlap(box,b)>Math.min(area(box),area(b))*.025))continue;
+  if(!water(c,support.quick)||!water(c,support.samples))continue;
+  occupied.push(box);return {...c,clear:true,visible:visibility===.99,box,support};
+ }
+ // The caller can reduce a scarce-water miniature; it must never silently
+ // accept a coastal collision or mark a failed placement as supported.
+ return null;
 }
-export function addSeaCreatures({THREE,scene,mobile=false,regionAt,camera}){
- const objects=[],decorations=[];
- const ready=Promise.all([
-  fetch(new URL('./maritime-illustrated-v4.json',import.meta.url)).then(r=>{if(!r.ok)throw new Error('Maritime artwork metadata unavailable');return r.json();}),
-  new THREE.TextureLoader().loadAsync(new URL(mobile?'./maritime-illustrated-v4-mobile.webp':'./maritime-illustrated-v4.webp',import.meta.url).href),
- ]).then(([atlas,texture])=>{
-  texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=4;texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;
-  const material=maritimePigment(THREE,texture),canvas=document.createElement('canvas');canvas.width=texture.image.width;canvas.height=texture.image.height;
-  const context=canvas.getContext('2d',{willReadFrequently:true});context.drawImage(texture.image,0,0);const bitmap=context.getImageData(0,0,canvas.width,canvas.height),sampleCache=new Map(),occupied=[],wakes=[];
+
+export function addSeaCreatures({THREE,scene,mobile=false,regionAt,camera,landmarks=[]}){
+ const objects=[],decorations=[],material=createMapModelMaterial(THREE),occupied=[];
+ const ready=Promise.resolve().then(()=>{
+  camera.updateMatrixWorld(true);
+  const landmarkBoxes=landmarks.map(model=>{model.updateMatrixWorld(true);return projectionBox(THREE,new THREE.Box3().setFromObject(model),camera);});
   for(const item of ITEMS){
-   const art=atlas.art[item.asset],[l,t,r,b]=art.rect,width=mobile?(item.mobileWidth||item.width*.82):item.width,height=width*(b-t)/(r-l);
-   if(!sampleCache.has(item.asset))sampleCache.set(item.asset,paintedSamples(bitmap,art.rect,atlas.width,atlas.height));
-   const samples=sampleCache.get(item.asset),geo=mobile&&item.mobileGeo?item.mobileGeo:item.geo;
-   const fit=placeAtSea({origin:[(geo[0]-13)*2.2,(60-geo[1])*4.4],width,height,samples,camera,regionAt,occupied,mirror:item.mirror,maxDistance:item.offshore?4:12});
-   const geometry=preservePictureUv(new THREE.PlaneGeometry(width,height));geometry.translate(0,height*.5,0);geometry.rotateX(LEAN);
-   const uv=geometry.attributes.uv;for(let i=0;i<uv.count;i++){const u=item.mirror?1-uv.getX(i):uv.getX(i);uv.setXY(i,(l+u*(r-l))/atlas.width,1-(b-uv.getY(i)*(b-t))/atlas.height);}
-   const model=new THREE.Mesh(geometry,material);model.name=item.name;model.position.set(fit.x,.015,fit.z);model.frustumCulled=false;
-   const drawn=[fit.x/2.2+13,60-fit.z/4.4];
-   model.userData={title:item.name,kind:'sea-model',style:'dimensional-copperplate',asset:item.asset,coordinates:[...item.geo],drawingCoordinates:drawn,mirror:!!item.mirror,width,height,footprint:fit.box,fullWaterSupport:fit.clear,sourceSamples:samples.exact.length/2,atlas:'maritime-illustrated-v4.webp'};
-   objects.push(model);scene.add(model);decorations.push({name:item.name,geo:drawn,label:item.label,model});
-   for(let band=0;band<3;band++)for(let half=0;half<2;half++)for(let s=1;s<=18;s++){
-    const a=half*Math.PI+.13+(s-1)/18*Math.PI*.68,b=half*Math.PI+.13+s/18*Math.PI*.68,rx=width*(.37+band*.075),rz=width*(.08+band*.035);
-    const p=[fit.x+Math.cos(a)*rx,SEA+.015,fit.z+Math.sin(a)*rz],q=[fit.x+Math.cos(b)*rx,SEA+.015,fit.z+Math.sin(b)*rz];
-    if([p,q].some(v=>regionAt([v[0]/2.2+13,60-v[2]/4.4])))continue;wakes.push(...p,...q);
+   const model=createMaritimeModel(THREE,item.asset,{material,name:item.name}),sourceBounds=new THREE.Box3().setFromObject(model),width=mobile?(item.mobileWidth||item.width*.82):item.width,baseScale=width/(sourceBounds.max.x-sourceBounds.min.x),geo=mobile&&item.mobileGeo?item.mobileGeo:item.geo,origin=[(geo[0]-13)*2.2,(60-geo[1])*4.4];
+   model.rotation.y=item.yaw||0;model.position.y=SEA;
+   let fit=null,bounds=null,scale=baseScale;
+   for(const factor of[1,.92,.84,.74]){
+    scale=baseScale*factor;model.scale.setScalar(scale);model.updateMatrixWorld(true);bounds=new THREE.Box3().setFromObject(model);
+    fit=placeAtSea({THREE,origin,bounds,regionAt,camera,occupied,landmarks:landmarkBoxes,maxDistance:item.offshore?7:18});if(fit)break;
    }
+   if(!fit)throw new Error(`No open-water support for the ${item.name} model`);
+   model.position.x=fit.x;model.position.z=fit.z;model.updateMatrixWorld(true);
+   const worldBounds=new THREE.Box3().setFromObject(model),drawn=toGeo(fit.x,fit.z),footprint=fit.support.footprint.map((n,i)=>n+(i%2?fit.z:fit.x));
+   model.userData={...model.userData,title:item.name,kind:'sea-model',asset:item.asset,coordinates:[...item.geo],drawingCoordinates:drawn,width:worldBounds.max.x-worldBounds.min.x,height:worldBounds.max.y-worldBounds.min.y,depth:worldBounds.max.z-worldBounds.min.z,footprint,worldBounds:{min:worldBounds.min.toArray(),max:worldBounds.max.toArray()},fullWaterSupport:true,fullViewportVisibility:fit.visible,landmarkOcclusionClear:true,sourceSamples:fit.support.samples.length,supportSamples:fit.support.samples.length,supportStep:SAMPLE_STEP,supportMargin:MARGIN,geometryOnly:true,dimensional:true,scale};
+   objects.push(model);scene.add(model);decorations.push({name:item.name,geo:drawn,label:item.label,model});
   }
-  const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(wakes,3));
-  const ink=new THREE.LineSegments(geometry,new THREE.LineBasicMaterial({color:0xc9d8b8,transparent:true,opacity:.58,depthWrite:false}));ink.name='integrated-maritime-tides';scene.add(ink);
   return objects;
- });return {count:ITEMS.length,objects,ready,decorations};
+ });
+ return {count:ITEMS.length,objects,ready,decorations};
 }

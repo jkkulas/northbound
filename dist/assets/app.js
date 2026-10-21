@@ -1,11 +1,13 @@
 import * as THREE from './vendor/three.module.min.js';
 import {addLandmarks} from './landmarks.js';
 import {addSeaCreatures} from './sea-creatures.js';
-import {createIllustration} from './illustrations.js';
+import {addCompassModel} from './compass-model.js';
+import {createDryGround} from './ground-support.js';
+import {addIslandBridges} from './island-bridges.js';
 import {vertexShader,fragmentShader,waterFragmentShader,addIllustratedVegetation,addIllustratedGeography} from './atlas-terrain.js';
 import {createLandMeshGeometry} from './terrain-mesh.js';
 import {sampleTerrainHeight} from './terrain-height.js';
-import {addMapScenery} from './map-scenery.js';
+import {addMapScenery,addSculptedWoodland} from './map-scenery.js';
 import {createVehicles,animateVehicle,routeNorway,routeTorpToOslo,OSLO_FORECOURT} from './journey.js';
 
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),canvas=$('#terrain-canvas');
@@ -21,7 +23,7 @@ let labelLayoutDirty=true,labelObstacles=[];
 const cameraBase=new THREE.Vector3(),cameraTarget=new THREE.Vector3(),look=new THREE.Vector3();
 const cities={oslo:[10.7522,59.9139],torp:[10.2586,59.1867],hovik:[10.5817,59.9],pl:[19.1,52.1],en:[-.2,53.6],no:[8.7,62.1]};
 let flightModel,carModel,routeLine,routeGlow,arrival;
-let terrainMaxHeight=0,landmarkObjects=[],creatureObjects=[],journeyPhase='',routeSamples=[],carClearance=null,operaClearance=null;
+let terrainMaxHeight=0,landmarkObjects=[],creatureObjects=[],journeyPhase='',routeSamples=[],carClearance=null,landmarkClearance=null;
 const carVertexProbes=[];
 function go(){location.assign(new URL('../'+selected+'/',import.meta.url))}
 $('#skip').addEventListener('click',go);
@@ -44,7 +46,7 @@ export function inspectScene({artwork=false}={}){
   object.traverse(part=>{if(part.isMesh)meshes.push({name:part.name,vertices:part.geometry.attributes.position.count,triangles:(part.geometry.index?.count||part.geometry.attributes.position.count)/3,opaque:part.material.transparent===false,depthWrite:part.material.depthWrite});});
   return {name:object.name,userData:object.userData,anchor:object.position.toArray(),bounds:{min:bounds.min.toArray(),max:bounds.max.toArray()},meshes};
  }):[];
- return{camera:{position:camera?.position.toArray(),target:look.toArray(),fov:camera?.fov,aspect:camera?.aspect},hover:[...hover],terrainMaxHeight,landmarkCount:landmarkObjects.length,creatureCount:Number(canvas.dataset.creatures),artwork:canvas.dataset.artwork,scenery:scene?.userData.mapScenery,landmarkArtwork:architecture,seaArtwork:!artwork?[]:creatureObjects.map(object=>({name:object.name,userData:object.userData,matrixWorld:object.matrixWorld.toArray(),geometryPosition:Array.from(object.geometry.attributes.position.array),geometryUv:Array.from(object.geometry.attributes.uv.array),geometryPictureUv:Array.from(object.geometry.attributes.pictureUv.array),geometryIndex:Array.from(object.geometry.index.array),atlas:object.material.uniforms.uArtwork.value?.image?.src})),performance:{readyAt,framesRendered,active:raf!==null,calls:renderer?.info.render.calls,triangles:renderer?.info.render.triangles,textures:renderer?.info.memory.textures,geometries:renderer?.info.memory.geometries,terrainTriangles:terrain?.geometry.index?.count/3},fadeOpacity:Number(getComputedStyle($('#journey-fade')).opacity),journey:{phase:journeyPhase,vehicle:{type:model===flightModel?'plane':model?'car':null,visible:!!model,screenSize:{width,height}},routeSamples,carClearance,operaClearance}};
+ return{camera:{position:camera?.position.toArray(),target:look.toArray(),fov:camera?.fov,aspect:camera?.aspect},hover:[...hover],terrainMaxHeight,landmarkCount:landmarkObjects.length,creatureCount:Number(canvas.dataset.creatures),artwork:canvas.dataset.artwork,scenery:scene?.userData.mapScenery,landmarkArtwork:architecture,bridges:scene?.userData.islandBridges,seaArtwork:!artwork?[]:creatureObjects.map(object=>{object.updateMatrixWorld(true);const box=new THREE.Box3().setFromObject(object),meshes=[];object.traverse(o=>{if(o.isMesh)meshes.push({name:o.name,triangles:(o.geometry.index?.count||o.geometry.attributes.position.count)/3,opaque:!o.material.transparent,depthWrite:o.material.depthWrite,textured:!!o.material.map||!!o.material.uniforms?.uArtwork});});return {name:object.name,userData:object.userData,bounds:{min:box.min.toArray(),max:box.max.toArray()},meshes};}),performance:{readyAt,framesRendered,active:raf!==null,calls:renderer?.info.render.calls,triangles:renderer?.info.render.triangles,textures:renderer?.info.memory.textures,geometries:renderer?.info.memory.geometries,terrainTriangles:terrain?.geometry.index?.count/3},fadeOpacity:Number(getComputedStyle($('#journey-fade')).opacity),journey:{phase:journeyPhase,vehicle:{type:model===flightModel?'plane':model?'car':null,visible:!!model,screenSize:{width,height}},routeSamples,carClearance,landmarkClearance}};
 }
 function pointerPosition(e){pointer.set(e.clientX/innerWidth*2-1,-e.clientY/innerHeight*2+1)}
 function hitMap(e){
@@ -159,22 +161,20 @@ function roadPose(point,heading){
  return{height:highest+.065,pitch,roll,rotation};
 }
 async function travel(coords,vehicle,duration,flight){
- clearRoute();journeyPhase=flight?'flying':'driving';carClearance=flight?null:Infinity;operaClearance=flight?null:Infinity;
+ clearRoute();journeyPhase=flight?'flying':'driving';carClearance=flight?null:Infinity;landmarkClearance=flight?null:Infinity;
  const points=coords.map(p=>worldPoint(p,flight?2.5:.15)),curve=new THREE.CatmullRomCurve3(points,false,'centripetal'),samples=[];
  for(let i=0;i<=320;i++){const t=i/320,p=curve.getPointAt(t);if(flight)p.y+=Math.sin(Math.PI*t)*18;else p.y=heightAt(...geographic(p))+.12;samples.push(p)}
  const path=new THREE.CatmullRomCurve3(samples,false,'centripetal'),geometry=new THREE.BufferGeometry().setFromPoints(samples);
  routeLine=new THREE.Line(geometry,new THREE.LineBasicMaterial({color:0xffdb75,transparent:true,opacity:.95,depthWrite:false}));geometry.setDrawRange(0,0);scene.add(routeLine);
  routeGlow=new THREE.Line(new THREE.BufferGeometry().setFromPoints(samples),new THREE.LineDashedMaterial({color:0x746646,dashSize:.17,gapSize:.17,transparent:true,opacity:.48,depthWrite:false}));routeGlow.computeLineDistances();scene.add(routeGlow);
- const opera=landmarkObjects.find(o=>o.name==='landmark-oslo'),footprint=opera?.userData.footprint;
- // The artwork's contact shadow is translucent scenery, not a solid obstacle.
- const operaBounds=footprint?new THREE.Box3(new THREE.Vector3(opera.position.x+footprint.minX,opera.position.y,opera.position.z+footprint.minZ),new THREE.Vector3(opera.position.x+footprint.maxX,opera.position.y+2.3,opera.position.z+footprint.maxZ)):null;
+ const landmarkBounds=landmarkObjects.map(model=>new THREE.Box3().setFromObject(model));
  routeSamples=samples.map((point,i)=>{
   const next=samples[Math.min(320,i+1)],prev=samples[Math.max(0,i-1)],heading=Math.atan2(-(next.x-prev.x),-(next.z-prev.z)),height=heightAt(...geographic(point)),pose=flight?null:roadPose(point,heading),supported=flight?point.y:pose.height;
   if(!flight){
    // Audit the actual solid vehicle vertices independently of its support grid.
    // Translucent contact shadows are excluded from physical ground clearance.
    for(const local of carVertexProbes){const vertex=local.clone().multiplyScalar(.65).applyQuaternion(pose.rotation);vertex.x+=point.x;vertex.y+=supported;vertex.z+=point.z;carClearance=Math.min(carClearance,vertex.y-heightAt(...geographic(vertex)))}
-   if(operaBounds)operaClearance=Math.min(operaClearance,operaBounds.distanceToPoint(new THREE.Vector3(point.x,supported,point.z))-.95);
+   for(const bounds of landmarkBounds)landmarkClearance=Math.min(landmarkClearance,bounds.distanceToPoint(new THREE.Vector3(point.x,supported,point.z))-.95);
   }
   return{position:[point.x,supported,point.z],terrainHeight:height,region:regionAt(geographic(point))};
  });
@@ -221,7 +221,7 @@ async function journey(lang,start){
 
 async function init(){
  try{
-  renderer=new THREE.WebGLRenderer({canvas,antialias:!mobile,alpha:false,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1.4:1.6));renderer.setSize(innerWidth,innerHeight);renderer.setClearColor(0x96bfb2);renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1.4:1.6));renderer.setSize(innerWidth,innerHeight);renderer.setClearColor(0x96bfb2);renderer.outputColorSpace=THREE.SRGBColorSpace;
   scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(40,innerWidth/innerHeight,.1,600);
   const [geoResponse,heightResponse,texture,aura]=await Promise.all([fetch(new URL('./geography.json',import.meta.url)),fetch(new URL('./terrain.i16',import.meta.url)),new THREE.TextureLoader().loadAsync(new URL('./regions.png',import.meta.url).href),new THREE.TextureLoader().loadAsync(new URL('./aura.png',import.meta.url).href)]);
   if(!geoResponse.ok||!heightResponse.ok)throw new Error('Terrain data unavailable');
@@ -231,14 +231,22 @@ async function init(){
   makeWater(aura);
   scene.add(new THREE.HemisphereLight(0xfff4d5,0x416f6a,2.2));const sun=new THREE.DirectionalLight(0xffe4ad,2.4);sun.position.set(-35,70,40);scene.add(sun);const sky=new THREE.DirectionalLight(0xc5e6f0,.7);sky.position.set(40,35,-30);scene.add(sky);
   overview();camera.position.copy(cameraBase);look.copy(cameraTarget);camera.lookAt(look);camera.updateMatrixWorld(true);
-  makeTerrain(texture,aura);addGeography();addForests();
-  const scenery=addMapScenery({THREE,scene,worldPoint,heightAt,regionAt,mobile});scene.userData.mapScenery=scenery.group?.userData||scenery;
-  const landmarks=addLandmarks({THREE,scene,worldPoint,mobile,heightAt,regionAt,camera}),creatures=addSeaCreatures({THREE,scene,mobile,regionAt,camera});
-  landmarkObjects=landmarks.objects;creatureObjects=creatures.objects;
-  const compass=createIllustration({THREE,scene,url:new URL('./illustrations/compass.svg',import.meta.url),position:worldPoint([-16,58.5],.1),width:7,height:7.9});
-  await Promise.all([landmarks.ready,creatures.ready,compass.ready,document.fonts.ready]);
+  makeTerrain(texture,aura);addGeography();
+  const isDry=createDryGround({scene,regionAt,heightAt});
+  const landmarks=addLandmarks({THREE,scene,worldPoint,mobile,heightAt,regionAt,isDry,camera});
+  landmarkObjects=landmarks.objects;
+  const reservedBounds=landmarks.reservedBounds;
+  const bridges=addIslandBridges({THREE,scene,worldPoint,heightAt,regionAt,isDry,reservedBounds});
+  scene.userData.islandBridges=bridges.group?.userData||bridges;
+  const scenery=addMapScenery({THREE,scene,worldPoint,heightAt,regionAt,mobile,isDry,reservedBounds});
+  const woodland=addSculptedWoodland({THREE,scene,worldPoint,heightAt,regionAt,mobile,isDry,reservedBounds});
+  scene.userData.mapScenery={...(scenery.group?.userData||scenery),woodland:woodland.group?.userData};
+  const creatures=addSeaCreatures({THREE,scene,mobile,regionAt,camera,landmarks:landmarkObjects});
+  creatureObjects=creatures.objects;
+  addCompassModel({THREE,scene,worldPoint});
+  await Promise.all([landmarks.ready,creatures.ready,document.fonts.ready]);
 
-  canvas.dataset.landmarks=String(landmarks.count);canvas.dataset.creatures=String(creatures.count);canvas.dataset.artwork='illuminated-atlas';addLabels(creatures.decorations);makeVehicles();overview();camera.position.copy(cameraBase);look.copy(cameraTarget);camera.lookAt(look);
+  canvas.dataset.landmarks=String(landmarks.count);canvas.dataset.creatures=String(creatures.count);canvas.dataset.artwork='solid-painted-diorama';addLabels(creatures.decorations);makeVehicles();overview();camera.position.copy(cameraBase);look.copy(cameraTarget);camera.lookAt(look);
   ready=true;readyAt=performance.now();canvas.dataset.renderer='webgl';canvas.dataset.quality=mobile?'mobile':'desktop';document.body.classList.add('has-webgl','is-ready');$('#map-loading').hidden=true;
   $$('#terrain-fallback [tabindex]').forEach(el=>el.setAttribute('tabindex','-1'));
   if(!reduced){const final=cameraBase.clone();cameraBase.add(new THREE.Vector3(0,8,8));camera.position.copy(cameraBase);cameraTo(final,cameraTarget.clone(),1800)}wake();

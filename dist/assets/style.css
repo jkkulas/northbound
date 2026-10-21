@@ -26,7 +26,7 @@ button:focus-visible, a:focus-visible, .land:focus-visible { outline: 2px solid 
 .map-panel { position: absolute; inset: 0; background: var(--black); overflow: hidden; }
 .map-panel:after {
   content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background: radial-gradient(ellipse at 12% 87%, #f1e6c6c4 0, #f1e6c657 17%, transparent 38%), radial-gradient(ellipse at 84% 86%, #eee1bc80 0, transparent 30%);
+  background: radial-gradient(ellipse at 12% 87%, #f1e6c690 0, #f1e6c635 17%, transparent 38%), radial-gradient(ellipse at 84% 86%, #eee1bc30 0, transparent 30%);
   box-shadow: inset 0 0 105px #65513428;
 }
 .journey-fade { position: absolute; inset: 0; z-index: 4; pointer-events: none; background: #f4e7c7; opacity: 0; transition: opacity .28s ease-out; }

@@ -1,0 +1,1724 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "waterChecks": 42196,
+    "triangles": 247894,
+    "models": [
+      {
+        "name": "Jörmungandr",
+        "dimensional": true,
+        "parts": 798,
+        "triangles": 38258,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "serpent_attack",
+        "geometryOnly": true,
+        "title": "Jörmungandr",
+        "kind": "sea-model",
+        "asset": "serpent_attack",
+        "coordinates": [
+          -4.8,
+          69.3
+        ],
+        "drawingCoordinates": [
+          -4.800000000000001,
+          69.3
+        ],
+        "width": 14.914016565115656,
+        "height": 8.637712604157215,
+        "depth": 5.666027111651502,
+        "footprint": [
+          -46.67494708437334,
+          -43.8779890706437,
+          -31.520930519257682,
+          -37.97196195899219
+        ],
+        "worldBounds": {
+          "min": [
+            -46.55494708437334,
+            -0.3090152904585766,
+            -43.757989070643696
+          ],
+          "max": [
+            -31.640930519257683,
+            8.328697313698639,
+            -38.091961958992194
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 3648,
+        "supportSamples": 3648,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 1.2921263243185075
+      },
+      {
+        "name": "Kraken",
+        "dimensional": true,
+        "parts": 663,
+        "triangles": 38124,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "kraken_attack",
+        "geometryOnly": true,
+        "title": "Kraken",
+        "kind": "sea-model",
+        "asset": "kraken_attack",
+        "coordinates": [
+          -1.1,
+          62.8
+        ],
+        "drawingCoordinates": [
+          -1.0999999999999996,
+          62.8
+        ],
+        "width": 12.309108269299351,
+        "height": 5.802186657101461,
+        "depth": 5.820649457595799,
+        "footprint": [
+          -37.29460983687167,
+          -15.350323614604884,
+          -24.745501567572322,
+          -9.289674157009086
+        ],
+        "worldBounds": {
+          "min": [
+            -37.174609836871674,
+            -0.7545337568855904,
+            -15.230323614604885
+          ],
+          "max": [
+            -24.865501567572323,
+            5.047652900215871,
+            -9.409674157009086
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 3120,
+        "supportSamples": 3120,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 1.1398965206124076
+      },
+      {
+        "name": "North Sea platform",
+        "dimensional": true,
+        "parts": 211,
+        "triangles": 8344,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "offshore_rig",
+        "geometryOnly": true,
+        "title": "North Sea platform",
+        "kind": "sea-model",
+        "asset": "offshore_rig",
+        "coordinates": [
+          2.6,
+          58.84
+        ],
+        "drawingCoordinates": [
+          2.6909090909090896,
+          57.70363636363637
+        ],
+        "width": 9.155133484266038,
+        "height": 9.096931935317484,
+        "depth": 5.837892189586288,
+        "footprint": [
+          -27.100474811942007,
+          7.037251977253601,
+          -17.70534132767597,
+          13.11514416683989
+        ],
+        "worldBounds": {
+          "min": [
+            -26.98047481194201,
+            -0.07734804506573659,
+            7.157251977253601
+          ],
+          "max": [
+            -17.82534132767597,
+            9.019583890251747,
+            12.99514416683989
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 2340,
+        "supportSamples": 2340,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 1.1632905182394493
+      },
+      {
+        "name": "A northern leviathan",
+        "dimensional": true,
+        "parts": 45,
+        "triangles": 7148,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "northern_whale",
+        "geometryOnly": true,
+        "title": "A northern leviathan",
+        "kind": "sea-model",
+        "asset": "northern_whale",
+        "coordinates": [
+          -12.1,
+          66.2
+        ],
+        "drawingCoordinates": [
+          -11.918181818181818,
+          66.2909090909091
+        ],
+        "width": 9.601304522725172,
+        "height": 3.2259689493554813,
+        "depth": 4.669240413124093,
+        "footprint": [
+          -59.87727158775269,
+          -30.10975965208106,
+          -50.03596706502751,
+          -25.200519238956964
+        ],
+        "worldBounds": {
+          "min": [
+            -59.75727158775268,
+            -0.7681998003336064,
+            -29.98975965208106
+          ],
+          "max": [
+            -50.15596706502751,
+            2.4577691490218747,
+            -25.320519238956965
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 2016,
+        "supportSamples": 2016,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 1.0617140185574625
+      },
+      {
+        "name": "The great lobster",
+        "dimensional": true,
+        "parts": 64,
+        "triangles": 12524,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "great_lobster",
+        "geometryOnly": true,
+        "title": "The great lobster",
+        "kind": "sea-model",
+        "asset": "great_lobster",
+        "coordinates": [
+          3.4,
+          55.7
+        ],
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "width": 6.949594763157485,
+        "height": 2.567926355678816,
+        "depth": 4.701064655630983,
+        "footprint": [
+          -24.714729921238938,
+          16.449458852600596,
+          -17.52513515808145,
+          21.39052350823158
+        ],
+        "worldBounds": {
+          "min": [
+            -24.594729921238937,
+            -0.22915788558855144,
+            16.569458852600597
+          ],
+          "max": [
+            -17.64513515808145,
+            2.3387684700902645,
+            21.27052350823158
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 1472,
+        "supportSamples": 1472,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.9279903940672827
+      },
+      {
+        "name": "Hanseatic trader",
+        "dimensional": true,
+        "parts": 309,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "merchant_ship",
+        "geometryOnly": true,
+        "title": "Hanseatic trader",
+        "kind": "sea-model",
+        "asset": "merchant_ship",
+        "coordinates": [
+          -5.3,
+          59.2
+        ],
+        "drawingCoordinates": [
+          -5.300000000000001,
+          59.2
+        ],
+        "width": 6.254580575856046,
+        "height": 4.105346133650069,
+        "depth": 3.509122211740703,
+        "footprint": [
+          -43.37623955171938,
+          1.6161334043090614,
+          -36.88165897586334,
+          5.3652556160497635
+        ],
+        "worldBounds": {
+          "min": [
+            -43.25623955171938,
+            -0.22273584197069615,
+            1.7361334043090615
+          ],
+          "max": [
+            -37.001658975863336,
+            3.8826102916793723,
+            5.245255616049764
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 1050,
+        "supportSamples": 1050,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.7605224970138611
+      },
+      {
+        "name": "Northern schooner",
+        "dimensional": true,
+        "parts": 265,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "schooner_ship",
+        "geometryOnly": true,
+        "title": "Northern schooner",
+        "kind": "sea-model",
+        "asset": "schooner_ship",
+        "coordinates": [
+          -12.1,
+          61.1
+        ],
+        "drawingCoordinates": [
+          -12.100000000000001,
+          61.1
+        ],
+        "width": 6.16570347693893,
+        "height": 3.811474167632031,
+        "depth": 3.5523855558532276,
+        "footprint": [
+          -58.29462410354934,
+          -6.704813333912092,
+          -51.888920626610414,
+          -2.912427778058865
+        ],
+        "worldBounds": {
+          "min": [
+            -58.17462410354934,
+            -0.2193843870220403,
+            -6.584813333912092
+          ],
+          "max": [
+            -52.00892062661041,
+            3.5920897806099905,
+            -3.0324277780588647
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 1050,
+        "supportSamples": 1050,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.7476322852000669
+      },
+      {
+        "name": "Atlantic merchant",
+        "dimensional": true,
+        "parts": 309,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "merchant_ship",
+        "geometryOnly": true,
+        "title": "Atlantic merchant",
+        "kind": "sea-model",
+        "asset": "merchant_ship",
+        "coordinates": [
+          -12.3,
+          57.4
+        ],
+        "drawingCoordinates": [
+          -12.3,
+          57.4
+        ],
+        "width": 5.512511693974822,
+        "height": 3.6182711686407383,
+        "depth": 3.092785678144349,
+        "footprint": [
+          -58.4207535032103,
+          9.747778593628343,
+          -52.66824180923548,
+          13.08056427177269
+        ],
+        "worldBounds": {
+          "min": [
+            -58.3007535032103,
+            -0.19927565733010508,
+            9.867778593628342
+          ],
+          "max": [
+            -52.78824180923548,
+            3.418995511310633,
+            12.960564271772691
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 814,
+        "supportSamples": 814,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.6702910143173013
+      },
+      {
+        "name": "Irish Sea passage",
+        "dimensional": true,
+        "parts": 265,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "schooner_ship",
+        "geometryOnly": true,
+        "title": "Irish Sea passage",
+        "kind": "sea-model",
+        "asset": "schooner_ship",
+        "coordinates": [
+          -12.2,
+          53.9
+        ],
+        "drawingCoordinates": [
+          -12.2,
+          53.9
+        ],
+        "width": 5.590826314995802,
+        "height": 3.4828988083534074,
+        "depth": 3.0090854372846323,
+        "footprint": [
+          -58.23695294676605,
+          25.238239529842424,
+          -52.40612663177025,
+          28.487324967127055
+        ],
+        "worldBounds": {
+          "min": [
+            -58.11695294676605,
+            -0.20262711227876096,
+            25.358239529842425
+          ],
+          "max": [
+            -52.526126631770246,
+            3.2802716960746463,
+            28.367324967127058
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 836,
+        "supportSamples": 836,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.6831812261310956
+      },
+      {
+        "name": "Channel trader",
+        "dimensional": true,
+        "parts": 309,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "merchant_ship",
+        "geometryOnly": true,
+        "title": "Channel trader",
+        "kind": "sea-model",
+        "asset": "merchant_ship",
+        "coordinates": [
+          -3.8,
+          49.6
+        ],
+        "drawingCoordinates": [
+          -3.9818181818181806,
+          49.69090909090909
+        ],
+        "width": 4.96091299709515,
+        "height": 3.339942617206835,
+        "depth": 2.321963224735235,
+        "footprint": [
+          -39.8517515270099,
+          44.068111509959095,
+          -34.65083852991476,
+          46.63007473469433
+        ],
+        "worldBounds": {
+          "min": [
+            -39.731751527009905,
+            -0.1858698375354816,
+            44.1881115099591
+          ],
+          "max": [
+            -34.770838529914755,
+            3.1540727796713535,
+            46.510074734694335
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 612,
+        "supportSamples": 612,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.6187301670621242
+      },
+      {
+        "name": "North Sea sail",
+        "dimensional": true,
+        "parts": 265,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "schooner_ship",
+        "geometryOnly": true,
+        "title": "North Sea sail",
+        "kind": "sea-model",
+        "asset": "schooner_ship",
+        "coordinates": [
+          0.1,
+          56.9
+        ],
+        "drawingCoordinates": [
+          -0.8090909090909051,
+          56.809090909090905
+        ],
+        "width": 5.3367917939478,
+        "height": 3.3514686646419576,
+        "depth": 2.7078047188048817,
+        "footprint": [
+          -33.053620394908364,
+          12.583444261129998,
+          -27.476828600960566,
+          15.531248979934881
+        ],
+        "worldBounds": {
+          "min": [
+            -32.93362039490837,
+            -0.1959242023814492,
+            12.703444261129999
+          ],
+          "max": [
+            -27.596828600960567,
+            3.1555444622605084,
+            15.41124897993488
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 720,
+        "supportSamples": 720,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.657400802503507
+      },
+      {
+        "name": "Baltic merchant",
+        "dimensional": true,
+        "parts": 309,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "merchant_ship",
+        "geometryOnly": true,
+        "title": "Baltic merchant",
+        "kind": "sea-model",
+        "asset": "merchant_ship",
+        "coordinates": [
+          20,
+          56.1
+        ],
+        "drawingCoordinates": [
+          19.81818181818182,
+          56.19090909090909
+        ],
+        "width": 4.632847279700824,
+        "height": 3.0616140657729325,
+        "depth": 2.457982461672305,
+        "footprint": [
+          12.662104901360427,
+          15.393079576922698,
+          17.534952181061254,
+          18.091062038595005
+        ],
+        "worldBounds": {
+          "min": [
+            12.782104901360428,
+            -0.17246401774085815,
+            15.5130795769227
+          ],
+          "max": [
+            17.414952181061253,
+            2.889150048032074,
+            17.971062038595004
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 576,
+        "supportSamples": 576,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.5671693198069473
+      },
+      {
+        "name": "Baltic schooner",
+        "dimensional": true,
+        "parts": 265,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "schooner_ship",
+        "geometryOnly": true,
+        "title": "Baltic schooner",
+        "kind": "sea-model",
+        "asset": "schooner_ship",
+        "coordinates": [
+          20.3,
+          60.8
+        ],
+        "drawingCoordinates": [
+          20.11818181818182,
+          59.61818181818181
+        ],
+        "width": 4.649570008767871,
+        "height": 2.8914631616518855,
+        "depth": 2.5379850593740394,
+        "footprint": [
+          13.313365271835801,
+          0.3109035162906868,
+          18.202935280603672,
+          3.0888885756647264
+        ],
+        "worldBounds": {
+          "min": [
+            13.4333652718358,
+            -0.17246401774085815,
+            0.4309035162906869
+          ],
+          "max": [
+            18.08293528060367,
+            2.7189991439110273,
+            2.9688885756647263
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 608,
+        "supportSamples": 608,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.5671693198069473
+      },
+      {
+        "name": "Barents trader",
+        "dimensional": true,
+        "parts": 309,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "merchant_ship",
+        "geometryOnly": true,
+        "title": "Barents trader",
+        "kind": "sea-model",
+        "asset": "merchant_ship",
+        "coordinates": [
+          28,
+          72.4
+        ],
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 5.506689265313398,
+        "height": 3.687853306499214,
+        "depth": 2.6647022728541216,
+        "footprint": [
+          30.24641892437685,
+          -56.026792146756264,
+          35.99310818969025,
+          -53.12208987390214
+        ],
+        "worldBounds": {
+          "min": [
+            30.366418924376852,
+            -0.20262711227876096,
+            -55.90679214675627
+          ],
+          "max": [
+            35.87310818969025,
+            3.485226194220453,
+            -53.242089873902145
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 740,
+        "supportSamples": 740,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.6831812261310956
+      },
+      {
+        "name": "Arctic schooner",
+        "dimensional": true,
+        "parts": 265,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "schooner_ship",
+        "geometryOnly": true,
+        "title": "Arctic schooner",
+        "kind": "sea-model",
+        "asset": "schooner_ship",
+        "coordinates": [
+          18.3,
+          74.5
+        ],
+        "drawingCoordinates": [
+          18.11818181818182,
+          74.95454545454545
+        ],
+        "width": 5.917634556613653,
+        "height": 3.680044023920581,
+        "depth": 3.2301628028396863,
+        "footprint": [
+          8.306101255063744,
+          -67.5097591610846,
+          14.463735811677395,
+          -64.03959635824492
+        ],
+        "worldBounds": {
+          "min": [
+            8.426101255063744,
+            -0.21268147712472854,
+            -67.3897591610846
+          ],
+          "max": [
+            14.343735811677396,
+            3.4673625467958527,
+            -64.15959635824491
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 920,
+        "supportSamples": 920,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.7218518615724783
+      },
+      {
+        "name": "Greenland Sea passage",
+        "dimensional": true,
+        "parts": 309,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "merchant_ship",
+        "geometryOnly": true,
+        "title": "Greenland Sea passage",
+        "kind": "sea-model",
+        "asset": "merchant_ship",
+        "coordinates": [
+          -13,
+          72.7
+        ],
+        "drawingCoordinates": [
+          -13,
+          72.7
+        ],
+        "width": 5.24349031078679,
+        "height": 3.4791068929237867,
+        "depth": 2.7011326179074615,
+        "footprint": [
+          -59.82939584164436,
+          -57.368697180620536,
+          -54.34590553085757,
+          -54.42756456271307
+        ],
+        "worldBounds": {
+          "min": [
+            -59.709395841644366,
+            -0.19257274743279337,
+            -57.24869718062054
+          ],
+          "max": [
+            -54.465905530857576,
+            3.2865341454909935,
+            -54.54756456271308
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 720,
+        "supportSamples": 720,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.6445105906897128
+      },
+      {
+        "name": "Norwegian Sea sail",
+        "dimensional": true,
+        "parts": 265,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "schooner_ship",
+        "geometryOnly": true,
+        "title": "Norwegian Sea sail",
+        "kind": "sea-model",
+        "asset": "schooner_ship",
+        "coordinates": [
+          7.1,
+          70.7
+        ],
+        "drawingCoordinates": [
+          7.1,
+          70.7
+        ],
+        "width": 5.527872082772831,
+        "height": 3.417183736497683,
+        "depth": 3.1848973949028974,
+        "footprint": [
+          -15.748973334216647,
+          -48.76431540281775,
+          -9.981101251443814,
+          -45.33941800791486
+        ],
+        "worldBounds": {
+          "min": [
+            -15.628973334216646,
+            -0.19927565733010508,
+            -48.64431540281775
+          ],
+          "max": [
+            -10.101101251443815,
+            3.217908079167578,
+            -45.459418007914856
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 874,
+        "supportSamples": 874,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.6702910143173013
+      }
+    ],
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "waterChecks": 25302,
+    "triangles": 247894,
+    "models": [
+      {
+        "name": "Jörmungandr",
+        "dimensional": true,
+        "parts": 798,
+        "triangles": 38258,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "serpent_attack",
+        "geometryOnly": true,
+        "title": "Jörmungandr",
+        "kind": "sea-model",
+        "asset": "serpent_attack",
+        "coordinates": [
+          -4.8,
+          69.3
+        ],
+        "drawingCoordinates": [
+          2,
+          69.4
+        ],
+        "width": 10.930135427858737,
+        "height": 6.330378415375492,
+        "depth": 4.15249932155281,
+        "footprint": [
+          -29.73958450704074,
+          -43.559896099718365,
+          -18.569449079182,
+          -39.167396778165546
+        ],
+        "worldBounds": {
+          "min": [
+            -29.619584507040738,
+            -0.23314819232238146,
+            -43.43989609971836
+          ],
+          "max": [
+            -18.689449079182,
+            6.097230223053111,
+            -39.28739677816555
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 2059,
+        "supportSamples": 2059,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.946969292480002
+      },
+      {
+        "name": "Kraken",
+        "dimensional": true,
+        "parts": 663,
+        "triangles": 38124,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "kraken_attack",
+        "geometryOnly": true,
+        "title": "Kraken",
+        "kind": "sea-model",
+        "asset": "kraken_attack",
+        "coordinates": [
+          -1.1,
+          62.8
+        ],
+        "drawingCoordinates": [
+          1.1818181818181852,
+          62.29090909090909
+        ],
+        "width": 8.777806716631503,
+        "height": 4.137624911211698,
+        "depth": 4.150791006646184,
+        "footprint": [
+          -30.508943080392086,
+          -12.275394708775629,
+          -21.49113636376058,
+          -7.884603702129446
+        ],
+        "worldBounds": {
+          "min": [
+            -30.388943080392085,
+            -0.545241285647921,
+            -12.15539470877563
+          ],
+          "max": [
+            -21.611136363760583,
+            3.592383625563777,
+            -8.004603702129446
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 1682,
+        "supportSamples": 1682,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.8128770269940939
+      },
+      {
+        "name": "North Sea platform",
+        "dimensional": true,
+        "parts": 211,
+        "triangles": 8344,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "offshore_rig",
+        "geometryOnly": true,
+        "title": "North Sea platform",
+        "kind": "sea-model",
+        "asset": "offshore_rig",
+        "coordinates": [
+          2.6,
+          58.84
+        ],
+        "drawingCoordinates": [
+          2.5999999999999996,
+          58.84
+        ],
+        "width": 6.734810839000307,
+        "height": 6.6919959064404475,
+        "depth": 4.294541380845086,
+        "footprint": [
+          -26.163567677750443,
+          2.816277316600346,
+          -19.188756838750137,
+          7.3508186974454315
+        ],
+        "worldBounds": {
+          "min": [
+            -26.043567677750445,
+            -0.06350890671502463,
+            2.936277316600346
+          ],
+          "max": [
+            -19.30875683875014,
+            6.628486999725423,
+            7.230818697445432
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 1350,
+        "supportSamples": 1350,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.8557539444520087
+      },
+      {
+        "name": "A northern leviathan",
+        "dimensional": true,
+        "parts": 45,
+        "triangles": 7148,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "northern_whale",
+        "geometryOnly": true,
+        "title": "A northern leviathan",
+        "kind": "sea-model",
+        "asset": "northern_whale",
+        "coordinates": [
+          -12.1,
+          66.2
+        ],
+        "drawingCoordinates": [
+          -12.100000000000001,
+          66.2
+        ],
+        "width": 6.8878923749984935,
+        "height": 2.3142820723637145,
+        "depth": 3.3496724702846734,
+        "footprint": [
+          -58.881955704257365,
+          -29.05700148953642,
+          -51.75406332925887,
+          -25.467329019251746
+        ],
+        "worldBounds": {
+          "min": [
+            -58.76195570425737,
+            -0.5581650741523698,
+            -28.93700148953642
+          ],
+          "max": [
+            -51.874063329258874,
+            1.756116998211345,
+            -25.587329019251747
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": false,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 1104,
+        "supportSamples": 1104,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.7616644046173101
+      },
+      {
+        "name": "The great lobster",
+        "dimensional": true,
+        "parts": 64,
+        "triangles": 12524,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "great_lobster",
+        "geometryOnly": true,
+        "title": "The great lobster",
+        "kind": "sea-model",
+        "asset": "great_lobster",
+        "coordinates": [
+          3.4,
+          55.7
+        ],
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "width": 5.238925282995645,
+        "height": 1.9358214065886459,
+        "depth": 3.5438795096295124,
+        "footprint": [
+          -23.85941178678012,
+          17.02805359657583,
+          -18.38048650378448,
+          20.811933106205345
+        ],
+        "worldBounds": {
+          "min": [
+            -23.739411786780124,
+            -0.17890363682829263,
+            17.14805359657583
+          ],
+          "max": [
+            -18.50048650378448,
+            1.7569177697603533,
+            20.691933106205344
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 900,
+        "supportSamples": 900,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.6995619893737978
+      },
+      {
+        "name": "Hanseatic trader",
+        "dimensional": true,
+        "parts": 309,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "merchant_ship",
+        "geometryOnly": true,
+        "title": "Hanseatic trader",
+        "kind": "sea-model",
+        "asset": "merchant_ship",
+        "coordinates": [
+          -5.3,
+          59.2
+        ],
+        "drawingCoordinates": [
+          -0.7545454545454522,
+          59.29090909090909
+        ],
+        "width": 5.128756072201959,
+        "height": 3.3663838295930564,
+        "depth": 2.8774802136273765,
+        "footprint": [
+          -32.836916432409886,
+          1.5372293915334354,
+          -27.468160360207932,
+          4.654709605160812
+        ],
+        "worldBounds": {
+          "min": [
+            -32.71691643240989,
+            -0.18714339041597086,
+            1.6572293915334353
+          ],
+          "max": [
+            -27.58816036020793,
+            3.1792404391770854,
+            4.534709605160812
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": false,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 735,
+        "supportSamples": 735,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.6236284475513661
+      },
+      {
+        "name": "Northern schooner",
+        "dimensional": true,
+        "parts": 265,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "schooner_ship",
+        "geometryOnly": true,
+        "title": "Northern schooner",
+        "kind": "sea-model",
+        "asset": "schooner_ship",
+        "coordinates": [
+          -12.1,
+          61.1
+        ],
+        "drawingCoordinates": [
+          -12.100000000000001,
+          61.1
+        ],
+        "width": 5.05587685108992,
+        "height": 3.125408817458265,
+        "depth": 2.9129561557996464,
+        "footprint": [
+          -57.76279176491046,
+          -6.390746933807916,
+          -52.46691491382054,
+          -3.2377907780082706
+        ],
+        "worldBounds": {
+          "min": [
+            -57.642791764910456,
+            -0.18439519735807303,
+            -6.270746933807917
+          ],
+          "max": [
+            -52.586914913820536,
+            2.941013620100192,
+            -3.3577907780082707
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": false,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 735,
+        "supportSamples": 735,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.6130584738640548
+      },
+      {
+        "name": "Atlantic merchant",
+        "dimensional": true,
+        "parts": 309,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "merchant_ship",
+        "geometryOnly": true,
+        "title": "Atlantic merchant",
+        "kind": "sea-model",
+        "asset": "merchant_ship",
+        "coordinates": [
+          -12.3,
+          57.4
+        ],
+        "drawingCoordinates": [
+          -12.3,
+          57.4
+        ],
+        "width": 4.52025958905935,
+        "height": 2.9669823582854056,
+        "depth": 2.5360842560783663,
+        "footprint": [
+          -57.94541787263245,
+          10.030778446775242,
+          -53.185158283573095,
+          12.806862702853607
+        ],
+        "worldBounds": {
+          "min": [
+            -57.82541787263245,
+            -0.16790603901068618,
+            10.150778446775242
+          ],
+          "max": [
+            -53.3051582835731,
+            2.7990763192747194,
+            12.686862702853608
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": false,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 589,
+        "supportSamples": 589,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.5496386317401871
+      },
+      {
+        "name": "Irish Sea passage",
+        "dimensional": true,
+        "parts": 265,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "schooner_ship",
+        "geometryOnly": true,
+        "title": "Irish Sea passage",
+        "kind": "sea-model",
+        "asset": "schooner_ship",
+        "coordinates": [
+          -12.2,
+          53.9
+        ],
+        "drawingCoordinates": [
+          -12.2,
+          53.9
+        ],
+        "width": 4.584477578296557,
+        "height": 2.8559770228497934,
+        "depth": 2.467450058573398,
+        "footprint": [
+          -57.75510141634816,
+          25.50495641447079,
+          -52.9306238380516,
+          28.212406473044187
+        ],
+        "worldBounds": {
+          "min": [
+            -57.635101416348164,
+            -0.17065423206858396,
+            25.624956414470788
+          ],
+          "max": [
+            -53.05062383805161,
+            2.6853227907812096,
+            28.092406473044186
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": false,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 576,
+        "supportSamples": 576,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.5602086054274983
+      },
+      {
+        "name": "Channel trader",
+        "dimensional": true,
+        "parts": 309,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "merchant_ship",
+        "geometryOnly": true,
+        "title": "Channel trader",
+        "kind": "sea-model",
+        "asset": "merchant_ship",
+        "coordinates": [
+          -3.8,
+          49.6
+        ],
+        "drawingCoordinates": [
+          -3.8000000000000007,
+          49.6
+        ],
+        "width": 4.067948657618018,
+        "height": 2.7387529461096047,
+        "depth": 1.9040098442828963,
+        "footprint": [
+          -39.02483625214813,
+          44.679051438166454,
+          -34.71688759453011,
+          46.823061282449345
+        ],
+        "worldBounds": {
+          "min": [
+            -38.90483625214813,
+            -0.1569132667790949,
+            44.79905143816645
+          ],
+          "max": [
+            -34.83688759453011,
+            2.5818396793305096,
+            46.70306128244935
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": false,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 420,
+        "supportSamples": 420,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.5073587369909418
+      },
+      {
+        "name": "North Sea sail",
+        "dimensional": true,
+        "parts": 265,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "schooner_ship",
+        "geometryOnly": true,
+        "title": "North Sea sail",
+        "kind": "sea-model",
+        "asset": "schooner_ship",
+        "coordinates": [
+          0.1,
+          56.9
+        ],
+        "drawingCoordinates": [
+          2.0999999999999996,
+          65.7
+        ],
+        "width": 4.376169271037199,
+        "height": 2.748204305006406,
+        "depth": 2.220399869420003,
+        "footprint": [
+          -26.193968723824867,
+          -26.29597570587343,
+          -21.577799452787673,
+          -23.835575836453426
+        ],
+        "worldBounds": {
+          "min": [
+            -26.07396872382487,
+            -0.16515784595278835,
+            -26.17597570587343
+          ],
+          "max": [
+            -21.69779945278767,
+            2.5830464590536173,
+            -23.955575836453427
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 510,
+        "supportSamples": 510,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.5390686580528757
+      },
+      {
+        "name": "Baltic merchant",
+        "dimensional": true,
+        "parts": 309,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "merchant_ship",
+        "geometryOnly": true,
+        "title": "Baltic merchant",
+        "kind": "sea-model",
+        "asset": "merchant_ship",
+        "coordinates": [
+          20,
+          56.1
+        ],
+        "drawingCoordinates": [
+          19.81818181818182,
+          56.372727272727275
+        ],
+        "width": 3.798934769354677,
+        "height": 2.5105235339338043,
+        "depth": 2.015545618571293,
+        "footprint": [
+          13.061326019115553,
+          14.817525253076614,
+          17.10026078847023,
+          17.073070871647904
+        ],
+        "worldBounds": {
+          "min": [
+            13.181326019115552,
+            -0.1459204945475037,
+            14.937525253076613
+          ],
+          "max": [
+            16.98026078847023,
+            2.3646030393863007,
+            16.953070871647906
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 432,
+        "supportSamples": 432,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.46507884224169677
+      },
+      {
+        "name": "Baltic schooner",
+        "dimensional": true,
+        "parts": 265,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "schooner_ship",
+        "geometryOnly": true,
+        "title": "Baltic schooner",
+        "kind": "sea-model",
+        "asset": "schooner_ship",
+        "coordinates": [
+          20.3,
+          60.8
+        ],
+        "drawingCoordinates": [
+          20.11818181818182,
+          60.89090909090908
+        ],
+        "width": 3.812647407189653,
+        "height": 2.3709997925545463,
+        "depth": 2.0811477486867127,
+        "footprint": [
+          13.714159522905359,
+          -5.064259116641633,
+          17.76680693009501,
+          -2.743111367954921
+        ],
+        "worldBounds": {
+          "min": [
+            13.834159522905358,
+            -0.1459204945475037,
+            -4.944259116641634
+          ],
+          "max": [
+            17.64680693009501,
+            2.2250792980070426,
+            -2.863111367954921
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 432,
+        "supportSamples": 432,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.46507884224169677
+      },
+      {
+        "name": "Barents trader",
+        "dimensional": true,
+        "parts": 309,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "merchant_ship",
+        "geometryOnly": true,
+        "title": "Barents trader",
+        "kind": "sea-model",
+        "asset": "merchant_ship",
+        "coordinates": [
+          28,
+          72.4
+        ],
+        "drawingCoordinates": [
+          24.545454545454547,
+          72.85454545454546
+        ],
+        "width": 4.515485197556984,
+        "height": 3.0240397113293547,
+        "depth": 2.1850558637403807,
+        "footprint": [
+          23.120463517989027,
+          -57.78436956034014,
+          27.875948715546013,
+          -55.359313696599756
+        ],
+        "worldBounds": {
+          "min": [
+            23.240463517989028,
+            -0.17065423206858396,
+            -57.664369560340134
+          ],
+          "max": [
+            27.755948715546012,
+            2.853385479260771,
+            -55.47931369659975
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 527,
+        "supportSamples": 527,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.5602086054274983
+      },
+      {
+        "name": "Arctic schooner",
+        "dimensional": true,
+        "parts": 265,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "schooner_ship",
+        "geometryOnly": true,
+        "title": "Arctic schooner",
+        "kind": "sea-model",
+        "asset": "schooner_ship",
+        "coordinates": [
+          18.3,
+          74.5
+        ],
+        "drawingCoordinates": [
+          18.11818181818182,
+          74.95454545454545
+        ],
+        "width": 4.852460336423196,
+        "height": 3.0176360996148768,
+        "depth": 2.6487334983285393,
+        "footprint": [
+          8.816203029152271,
+          -67.22360251208937,
+          13.908663365575467,
+          -64.33486901376084
+        ],
+        "worldBounds": {
+          "min": [
+            8.93620302915227,
+            -0.1788988112422774,
+            -67.10360251208937
+          ],
+          "max": [
+            13.788663365575466,
+            2.838737288372599,
+            -64.45486901376083
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 660,
+        "supportSamples": 660,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.5919185264894322
+      },
+      {
+        "name": "Greenland Sea passage",
+        "dimensional": true,
+        "parts": 309,
+        "triangles": 12860,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "merchant_ship",
+        "geometryOnly": true,
+        "title": "Greenland Sea passage",
+        "kind": "sea-model",
+        "asset": "merchant_ship",
+        "coordinates": [
+          -13,
+          72.7
+        ],
+        "drawingCoordinates": [
+          -6.272727272727266,
+          73.33636363636364
+        ],
+        "width": 4.2996620548451645,
+        "height": 2.8528676521975047,
+        "depth": 2.214928746684123,
+        "footprint": [
+          -44.577704590148365,
+          -59.922331688108834,
+          -40.0380425353032,
+          -57.467402941424716
+        ],
+        "worldBounds": {
+          "min": [
+            -44.45770459014837,
+            -0.16240965289489054,
+            -59.802331688108836
+          ],
+          "max": [
+            -40.1580425353032,
+            2.6904579993026143,
+            -57.58740294142471
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": false,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 510,
+        "supportSamples": 510,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.5284986843655645
+      },
+      {
+        "name": "Norwegian Sea sail",
+        "dimensional": true,
+        "parts": 265,
+        "triangles": 11056,
+        "drawCalls": 1,
+        "style": "hand-painted-solid-diorama",
+        "maritimeModel": "schooner_ship",
+        "geometryOnly": true,
+        "title": "Norwegian Sea sail",
+        "kind": "sea-model",
+        "asset": "schooner_ship",
+        "coordinates": [
+          7.1,
+          70.7
+        ],
+        "drawingCoordinates": [
+          7.3,
+          72.8
+        ],
+        "width": 4.532855107873722,
+        "height": 2.8020906639281002,
+        "depth": 2.6116158638203757,
+        "footprint": [
+          -14.83215813405765,
+          -57.72273863031053,
+          -10.059303026183926,
+          -54.87112276649016
+        ],
+        "worldBounds": {
+          "min": [
+            -14.712158134057649,
+            -0.16790603901068618,
+            -57.60273863031053
+          ],
+          "max": [
+            -10.179303026183927,
+            2.634184624917414,
+            -54.99112276649016
+          ]
+        },
+        "fullWaterSupport": true,
+        "fullViewportVisibility": true,
+        "landmarkOcclusionClear": true,
+        "sourceSamples": 589,
+        "supportSamples": 589,
+        "supportStep": 0.16,
+        "supportMargin": 0.12,
+        "scale": 0.5496386317401871
+      }
+    ],
+    "errors": []
+  }
+]

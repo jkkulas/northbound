@@ -1,0 +1,22 @@
+[
+  {
+    "mobile": false,
+    "trees": 760,
+    "houses": 162,
+    "lighthouses": 3,
+    "bridges": 4,
+    "triangles": 290448,
+    "supportSamples": 18432,
+    "rejectedBridges": []
+  },
+  {
+    "mobile": true,
+    "trees": 440,
+    "houses": 123,
+    "lighthouses": 3,
+    "bridges": 4,
+    "triangles": 181276,
+    "supportSamples": 11941,
+    "rejectedBridges": []
+  }
+]

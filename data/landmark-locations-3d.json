@@ -1,0 +1,87 @@
+{
+  "verified": "2026-10-21",
+  "coordinateOrder": "longitude, latitude",
+  "method": "The landmark operator or official destination source was consulted before modeling. Exact published GPS is used for Hekla; other coordinates are approximate geographic building anchors checked against the official address. Model drawing positions are fitted independently against the actual rendered coastline and river geometry because architecture is deliberately exaggerated at atlas scale. These are artistic interpretations, not architectural surveys.",
+  "landmarks": [
+    {
+      "id": "brandenburg",
+      "name": "Brandenburg Gate",
+      "coordinates": [13.3777034, 52.5162699],
+      "address": "Pariser Platz, 10117 Berlin",
+      "sources": ["https://www.visitberlin.de/en/berlin-tourist-info-centre-brandenburg-gate", "https://www.visitberlin.de/en/berlins-top-10-attractions"],
+      "model": "Paired six-column porticos, fluted shafts, layered entablature and frieze, side gatehouses, sculpted four-horse quadriga, chariot and winged Victoria. All solid geometry."
+    },
+    {
+      "id": "eiffel",
+      "name": "Eiffel Tower",
+      "coordinates": [2.2945, 48.8584],
+      "address": "Champ de Mars, 5 Avenue Anatole France, 75007 Paris",
+      "sources": ["https://www.toureiffel.paris/de/die-besichtigung-gut-vorbereiten"],
+      "model": "Four splayed lattice legs, open curved arch ribs, three observation galleries with railings, tapered upper lattice and antenna. Separate terrain-supported stone feet."
+    },
+    {
+      "id": "cologne",
+      "name": "Cologne Cathedral",
+      "coordinates": [6.95828, 50.94128],
+      "address": "Domkloster 4, 50667 Köln",
+      "sources": ["https://www.koelner-dom.de/besuchen/anfahrt"],
+      "model": "Twin Gothic spires, nave, aisles, transept, radial choir chapels, twelve flying buttresses, lancet windows, rose window tracery and crossing fleche. The footprint fitter keeps its foundation clear of the Rhine."
+    },
+    {
+      "id": "trakai",
+      "name": "Trakai Island Castle",
+      "coordinates": [24.9333, 54.6522],
+      "address": "Karaimų g. 43C, Trakai, Lithuania",
+      "sources": ["https://trakaimuziejus.lt/en/lankytojams/struktura-kontaktai/", "https://www.trakai-visit.lt/en/trakai-island-castle-3/"],
+      "model": "Red-brick fortified court, four round corner towers with conical terracotta roofs, twin palace ranges and tall gate keep. Actual island is on Lake Galvė. The small island is generalized at this map scale, so use the nearest supported dry location; no invented water-colored model pedestal."
+    },
+    {
+      "id": "helsinki",
+      "name": "Helsinki Cathedral",
+      "coordinates": [24.9524, 60.1704],
+      "address": "Unioninkatu 29, 00170 Helsinki",
+      "sources": ["https://helsingintuomiokirkko.fi/en/index.html", "https://palvelukartta.hel.fi/en/unit/43181"],
+      "model": "Ivory Greek-cross body, four colonnaded porticos, broad terrain-supported stair, ribbed copper central dome, four smaller domes and twelve roofline sculptures."
+    },
+    {
+      "id": "tallinn",
+      "name": "Toompea Castle",
+      "coordinates": [24.7375, 59.4355],
+      "address": "Lossi plats 1a, Tallinn",
+      "sources": ["https://www.visittallinn.ee/eng/visitor/see-do/things-to-do/attractions-museums/108738/toompea-castle", "https://www.riigikogu.ee/en/visit-us/toompea-castle/toompea-castle-riigikogu-building/"],
+      "model": "Pale limestone courtyard walls, blush palace wing, crenellated Tall Hermann tower with Estonian flag and neighboring old-town roofs."
+    },
+    {
+      "id": "riga",
+      "name": "House of the Blackheads",
+      "coordinates": [24.1067, 56.9473],
+      "address": "Rātslaukums 7, Riga",
+      "sources": ["https://www.liveriga.com/en/visit/what-to-see/top-sights/house-of-the-blackheads"],
+      "model": "Twin stepped Renaissance gables, terracotta walls, pale stone moldings and scrolls, dimensional clock, facade statues and a grounded Roland column."
+    },
+    {
+      "id": "rosenholm",
+      "name": "Rosenholm Castle",
+      "coordinates": [10.3331, 56.3293],
+      "address": "Rosenholmvej 119, 8543 Hornslet, Jutland",
+      "sources": ["https://www.rosenholm.dk/events/kom-til-rosenholm-slot-i-den-efteraarsferie/", "https://www.visitaarhus.com/aarhus-region/plan-your-trip/rosenholm-castle-park-gdk634132"],
+      "model": "Four-wing Renaissance courtyard, red-brick elevations, dormers, pale gabled portal and four copper-capped corner towers. Selected for Jylland rather than Egeskov, which is on Funen."
+    },
+    {
+      "id": "edinburgh",
+      "name": "Edinburgh Castle",
+      "coordinates": [-3.2007, 55.9486],
+      "address": "The Esplanade, Edinburgh EH1 2NG; operator grid reference NT 252 734",
+      "sources": ["https://www.edinburghcastle.scot/plan-your-visit/getting-here/", "https://www.edinburghcastle.scot/media/fpanlfr2/orientation-map.pdf"],
+      "model": "Terrain-following curtain walls, clustered Great Hall and palace roofs, chimney stacks, rounded battery and portcullis entrance."
+    },
+    {
+      "id": "iceland_volcano",
+      "name": "Hekla",
+      "coordinates": [-19.7067517, 63.9832686],
+      "publishedGPS": "N63° 58′ 59.767″ W19° 42′ 24.306″",
+      "sources": ["https://www.south.is/is/stadur/hekla"],
+      "model": "Elongated rugged continuous volcanic slopes, recessed crater, snow streaks, ochre-red lava veins and small sculpted ash plume. Outer vertices follow the actual terrain elevation. The plume is an artistic atlas convention, not a claim of current eruptive activity."
+    }
+  ]
+}

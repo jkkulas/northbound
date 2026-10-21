@@ -102,29 +102,29 @@
         51.8833949
       ],
       "drawingCoordinates": [
-        6.1863636363636365,
-        52.51818181818182
+        5.550000000000001,
+        52.10454545454545
       ],
       "physicalGroundCoordinates": [
         4.721797281818182,
         52.260667627272724
       ],
       "width": 4.8,
-      "yaw": -1,
-      "screenWidth": 60.54,
-      "screenHeight": 106.15,
+      "yaw": 0,
+      "screenWidth": 73.71,
+      "screenHeight": 80.25,
       "physicalSamples": 291,
-      "paintedPixels": 19568,
-      "projectedSamples": 156544,
+      "paintedPixels": 1339,
+      "projectedSamples": 10712,
       "poseCounts": {
-        "desktop-low": 19568,
-        "desktop-overview": 19568,
-        "desktop-mid-scroll": 19568,
-        "desktop-high": 19568,
-        "mobile-low": 19568,
-        "mobile-overview": 19568,
-        "mobile-mid-scroll": 19568,
-        "mobile-high": 19568
+        "desktop-low": 1339,
+        "desktop-overview": 1339,
+        "desktop-mid-scroll": 1339,
+        "desktop-high": 1339,
+        "mobile-low": 1339,
+        "mobile-overview": 1339,
+        "mobile-mid-scroll": 1339,
+        "mobile-high": 1339
       },
       "bankMargin": null
     },
@@ -207,7 +207,7 @@
         52.5162699
       ],
       "drawingCoordinates": [
-        13.286794309090908,
+        13.104976127272726,
         52.175360809090904
       ],
       "physicalGroundCoordinates": [
@@ -215,21 +215,21 @@
         52.425360809090904
       ],
       "width": 6.375,
-      "yaw": -0.75,
-      "screenWidth": 94.61,
-      "screenHeight": 104.97,
+      "yaw": 0,
+      "screenWidth": 101.45,
+      "screenHeight": 56.83,
       "physicalSamples": 291,
-      "paintedPixels": 22064,
-      "projectedSamples": 176512,
+      "paintedPixels": 943,
+      "projectedSamples": 7544,
       "poseCounts": {
-        "desktop-low": 22064,
-        "desktop-overview": 22064,
-        "desktop-mid-scroll": 22064,
-        "desktop-high": 22064,
-        "mobile-low": 22064,
-        "mobile-overview": 22064,
-        "mobile-mid-scroll": 22064,
-        "mobile-high": 22064
+        "desktop-low": 943,
+        "desktop-overview": 943,
+        "desktop-mid-scroll": 943,
+        "desktop-high": 943,
+        "mobile-low": 943,
+        "mobile-overview": 943,
+        "mobile-mid-scroll": 943,
+        "mobile-high": 943
       },
       "bankMargin": null
     },

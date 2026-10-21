@@ -1,7 +1,7 @@
 {
   "verified": "2026-10-21",
   "coordinateOrder": "longitude, latitude",
-  "method": "Surveyed roots retain official provenance. Active paper illustrations use separately documented cartographic drawing positions. Requested painted lower 20% alpha pixels are projected through desktop/mobile overview and vertical-scroll camera rays onto actual DEM land and exact river-bank triangles; the full visible band, not only its y=0 line, must remain clear. Cologne is intentionally drawn east of Rhine at user request; Hekla is unrotated and unwarped over central Iceland.",
+  "method": "Surveyed roots retain official provenance. Active paper illustrations use separately documented cartographic drawing positions. Painted base alpha pixels (the ground-contact edge for the front-facing windmill and Gate, lower 20% for other fitted landmarks) are projected through desktop/mobile overview and vertical-scroll camera rays onto actual DEM land and exact river-bank triangles; the full visible band, not only its y=0 line, must remain clear. Cologne is intentionally drawn east of Rhine at user request; Hekla is unrotated and unwarped over central Iceland.",
   "landmarks": [
     {
       "id": "stockholm",
@@ -285,10 +285,10 @@
         "https://kinderdijk.nl/en/windmills-pumping-stations/",
         "https://www.openstreetmap.org/way/267410273"
       ],
-      "placement": "The real Kinderdijk mill root is retained. The paper emblem is fitted over the eastern Dutch lowland, reduced from width6.2 to4.8 and angled along the land. Every visible lower-band source-alpha pixel projects inside the actual Natural Earth Netherlands country polygon, on land and clear of all actual river banks at desktop/mobile overview and vertical-scroll viewpoints.",
+      "placement": "The real Kinderdijk root is retained. The painted windmill stands upright and faces the overview, with zero yaw, zero lean and no terrain warping. Its painted ground-contact edge is fitted on Dutch land clear of rivers at all checked camera heights. The sails and upper illustration may overhang land as requested.",
       "drawingCoordinates": [
-        6.1863636363636365,
-        52.51818181818182
+        5.550000000000001,
+        52.10454545454545
       ],
       "paperFootprint": {
         "center": [
@@ -308,12 +308,12 @@
       "paintedBottom": {
         "band": [
           0,
-          0.2
+          0.025
         ],
         "sourceAlphaCutoff": 0.023529411764705882,
-        "cardYaw": -1,
-        "lean": 0.25,
-        "projectedSourceSamples": 156544,
+        "cardYaw": 0,
+        "lean": 0,
+        "projectedSourceSamples": 10712,
         "cameraPoses": [
           "desktop-low",
           "desktop-overview",
@@ -395,9 +395,9 @@
         "https://www.visitberlin.de/en/brandenburg-gate",
         "https://www.openstreetmap.org/way/518071791"
       ],
-      "placement": "The surveyed Pariser Platz root is retained. The card is exactly15 percent smaller in model width (7.5 to6.375) and fitted just south of Berlin at an island-like alignment between waterways. Every painted lower-band source-alpha pixel projects onto land clear of all actual river banks.",
+      "placement": "The surveyed Pariser Platz root and 6.375 illustration width are retained. The Gate now stands upright with zero yaw, zero lean and no terrain warping. The painted ground-contact edge stays on land clear of rivers near its previous drawing position.",
       "drawingCoordinates": [
-        13.286794309090908,
+        13.104976127272726,
         52.175360809090904
       ],
       "paperFootprint": {
@@ -418,12 +418,12 @@
       "paintedBottom": {
         "band": [
           0,
-          0.2
+          0.025
         ],
         "sourceAlphaCutoff": 0.023529411764705882,
-        "cardYaw": -0.75,
-        "lean": -0.23,
-        "projectedSourceSamples": 176512,
+        "cardYaw": 0,
+        "lean": 0,
+        "projectedSourceSamples": 7544,
         "cameraPoses": [
           "desktop-low",
           "desktop-overview",

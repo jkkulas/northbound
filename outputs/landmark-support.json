@@ -1,0 +1,336 @@
+{
+  "verified": "2026-10-21",
+  "models": [
+    {
+      "name": "landmark-bryggen",
+      "coordinates": [
+        5.32309,
+        60.39721
+      ],
+      "drawingCoordinates": [
+        5.32309,
+        60.39721
+      ],
+      "meshes": 1,
+      "triangles": 6704,
+      "solidVolume": 7.153,
+      "groundContactVertices": 3555,
+      "buriedVertexPercent": 0.298,
+      "minGroundGap": -0.445,
+      "maxGroundGap": 2.745,
+      "bounds": {
+        "min": [
+          -18.189201952316285,
+          -0.07500001192092898,
+          -2.4877239499321036
+        ],
+        "max": [
+          -14.471701980926515,
+          2.7150000095367433,
+          -1.008723977588659
+        ]
+      },
+      "grounding": "waterfront"
+    },
+    {
+      "name": "landmark-oslo",
+      "coordinates": [
+        10.7526806,
+        59.9075238
+      ],
+      "drawingCoordinates": [
+        10.7526806,
+        59.9075238
+      ],
+      "meshes": 1,
+      "triangles": 1016,
+      "solidVolume": 11.145,
+      "groundContactVertices": 742,
+      "buriedVertexPercent": 0,
+      "minGroundGap": -0.025,
+      "maxGroundGap": 1.745,
+      "bounds": {
+        "min": [
+          -3.7441026323162854,
+          0.9049591932501396,
+          -1.0431047676837153
+        ],
+        "max": [
+          -0.9241026990734875,
+          2.674959230056008,
+          1.9668952227795415
+        ]
+      },
+      "grounding": "land"
+    },
+    {
+      "name": "landmark-stockholm",
+      "coordinates": [
+        18.0542148,
+        59.3274942
+      ],
+      "drawingCoordinates": [
+        18.0542148,
+        59.3274942
+      ],
+      "meshes": 1,
+      "triangles": 9602,
+      "solidVolume": 11.135,
+      "groundContactVertices": 2057,
+      "buriedVertexPercent": 0,
+      "minGroundGap": -0.025,
+      "maxGroundGap": 5.0949,
+      "bounds": {
+        "min": [
+          8.119272560000002,
+          -0.07500000582774302,
+          1.6090254961581567
+        ],
+        "max": [
+          11.419272542118609,
+          5.08694402588765,
+          4.326525467547928
+        ]
+      },
+      "grounding": "waterfront"
+    },
+    {
+      "name": "landmark-nyhavn",
+      "coordinates": [
+        12.589145,
+        55.680452
+      ],
+      "drawingCoordinates": [
+        12.589145,
+        55.680452
+      ],
+      "meshes": 1,
+      "triangles": 10156,
+      "solidVolume": 7.706,
+      "groundContactVertices": 3314,
+      "buriedVertexPercent": 0.135,
+      "minGroundGap": -0.4091,
+      "maxGroundGap": 3.115,
+      "bounds": {
+        "min": [
+          -3.7738808855590813,
+          -0.07499999754806363,
+          17.266011190463246
+        ],
+        "max": [
+          -0.6888809964237208,
+          3.065000017949144,
+          20.301011157084645
+        ]
+      },
+      "grounding": "waterfront"
+    },
+    {
+      "name": "landmark-warsaw",
+      "coordinates": [
+        21.014217,
+        52.247749
+      ],
+      "drawingCoordinates": [
+        21.014217,
+        52.247749
+      ],
+      "meshes": 1,
+      "triangles": 8356,
+      "solidVolume": 17.513,
+      "groundContactVertices": 3322,
+      "buriedVertexPercent": 0,
+      "minGroundGap": -0.2457,
+      "maxGroundGap": 4.4378,
+      "bounds": {
+        "min": [
+          15.396277504904173,
+          0.6103748478718735,
+          32.53490435231629
+        ],
+        "max": [
+          19.866277295095824,
+          5.1894696601458525,
+          35.609904400000005
+        ]
+      },
+      "grounding": "land"
+    },
+    {
+      "name": "landmark-windmill",
+      "coordinates": [
+        4.6399791,
+        51.8833949
+      ],
+      "drawingCoordinates": [
+        4.6399791,
+        51.8833949
+      ],
+      "meshes": 1,
+      "triangles": 7020,
+      "solidVolume": 2.107,
+      "groundContactVertices": 594,
+      "buriedVertexPercent": 0,
+      "minGroundGap": 0.0373,
+      "maxGroundGap": 3.8469,
+      "bounds": {
+        "min": [
+          -19.746155505680544,
+          0.3836499970942736,
+          34.70075384243531
+        ],
+        "max": [
+          -17.03793645431946,
+          4.192759563827515,
+          36.57306245430512
+        ]
+      },
+      "grounding": "land"
+    },
+    {
+      "name": "landmark-gdansk",
+      "coordinates": [
+        18.657464414732555,
+        54.350559296870685
+      ],
+      "drawingCoordinates": [
+        18.657464414732555,
+        54.43
+      ],
+      "meshes": 1,
+      "triangles": 4600,
+      "solidVolume": 6.871,
+      "groundContactVertices": 1441,
+      "buriedVertexPercent": 0.029,
+      "minGroundGap": -0.3062,
+      "maxGroundGap": 3.6498,
+      "bounds": {
+        "min": [
+          9.64642176002372,
+          -0.07500001415201663,
+          24.333000017881396
+        ],
+        "max": [
+          13.496421664656289,
+          3.5997982956509924,
+          26.118000014305117
+        ]
+      },
+      "grounding": "waterfront"
+    },
+    {
+      "name": "landmark-london",
+      "coordinates": [
+        -0.0753665,
+        51.5055158
+      ],
+      "drawingCoordinates": [
+        -0.0753665,
+        51.5055158
+      ],
+      "meshes": 1,
+      "triangles": 9400,
+      "solidVolume": 3.994,
+      "groundContactVertices": 109,
+      "buriedVertexPercent": 0.018,
+      "minGroundGap": -0.3126,
+      "maxGroundGap": 2.8741,
+      "bounds": {
+        "min": [
+          -30.29040223966638,
+          0.4823472224230192,
+          35.20199121712429
+        ],
+        "max": [
+          -27.24121036033362,
+          3.412347189528706,
+          39.54946974287574
+        ]
+      },
+      "grounding": "river-crossing"
+    },
+    {
+      "name": "landmark-borgund",
+      "coordinates": [
+        7.8122905,
+        61.0472015
+      ],
+      "drawingCoordinates": [
+        7.8122905,
+        61.0472015
+      ],
+      "meshes": 1,
+      "triangles": 11532,
+      "solidVolume": 3.945,
+      "groundContactVertices": 4575,
+      "buriedVertexPercent": 0,
+      "minGroundGap": -0.0054,
+      "maxGroundGap": 5.4117,
+      "bounds": {
+        "min": [
+          -12.323760889700319,
+          -0.055400154042782646,
+          -5.681157717019653
+        ],
+        "max": [
+          -10.502160910299684,
+          7.802517479013858,
+          -3.5240866034332274
+        ]
+      },
+      "grounding": "land"
+    }
+  ],
+  "gdanskCoastalShiftKm": 8.833403157056319,
+  "operaRouteClearance": 2.1880646875817273,
+  "thamesWaterHit": [
+    -28.7658063,
+    0.5812291971909929,
+    37.375730480000016
+  ],
+  "terraces": [
+    {
+      "id": "bryggen",
+      "coordinates": [
+        5.32309,
+        60.39721
+      ],
+      "box": [
+        -1.32,
+        2.48,
+        -0.78,
+        0.91
+      ],
+      "blend": 0.55,
+      "height": 0.44
+    },
+    {
+      "id": "oslo",
+      "coordinates": [
+        10.7526806,
+        59.9075238
+      ],
+      "box": [
+        1.15,
+        4.11,
+        -1.62,
+        1.64
+      ],
+      "blend": 0.45
+    },
+    {
+      "id": "borgund",
+      "coordinates": [
+        7.8122905,
+        61.0472015
+      ],
+      "box": [
+        -0.93,
+        0.93,
+        -1.03,
+        1.17
+      ],
+      "blend": 0.5
+    }
+  ]
+}

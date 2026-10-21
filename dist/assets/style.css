@@ -1,10 +1,10 @@
 ﻿:root {
   color-scheme: light;
-  --black: #a9b5a6;
-  --white: #263c35;
-  --blue: #5e7a72;
+  --black: #96bfb2;
+  --white: #343d2d;
+  --blue: #4e8178;
   --gold: #ad6d36;
-  --muted: #637368;
+  --muted: #65684c;
   --line: rgba(58, 72, 55, .23);
   --paper: #f1e9d4;
   --sans: 'DM Sans', Arial, sans-serif;
@@ -20,14 +20,14 @@ button:focus-visible, a:focus-visible, .land:focus-visible { outline: 2px solid 
 .experience { position: relative; width: 100%; height: 100svh; min-height: 380px; overflow: hidden; isolation: isolate; }
 .experience:before { content: ''; position: absolute; inset: 15px; z-index: 4; border: 1px solid #334b3b20; pointer-events: none; }
 .experience:after {
-  content: ''; position: absolute; inset: 0; z-index: 20; pointer-events: none; opacity: .16; mix-blend-mode: multiply;
+  content: ''; position: absolute; inset: 0; z-index: 20; pointer-events: none; opacity: .13; mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.7' filter='url(%23paper)'/%3E%3C/svg%3E");
 }
 .map-panel { position: absolute; inset: 0; background: var(--black); overflow: hidden; }
 .map-panel:after {
   content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background: radial-gradient(ellipse at 13% 84%, #eee5cb99 0, #eee5cb4d 17%, transparent 42%), linear-gradient(0deg, #ece4cc80, #ece4cc18 24%, transparent 48%);
-  box-shadow: inset 0 0 95px #655f3f19;
+  background: radial-gradient(ellipse at 12% 87%, #f1e6c6c4 0, #f1e6c657 17%, transparent 38%), radial-gradient(ellipse at 84% 86%, #eee1bc80 0, transparent 30%);
+  box-shadow: inset 0 0 105px #65513428;
 }
 .journey-fade { position: absolute; inset: 0; z-index: 4; pointer-events: none; background: #f4e7c7; opacity: 0; transition: opacity .28s ease-out; }
 .is-zooming .journey-fade { opacity: .48; }
@@ -36,8 +36,8 @@ button:focus-visible, a:focus-visible, .land:focus-visible { outline: 2px solid 
 .has-webgl #terrain-fallback { display: none; }
 .fallback-land { transform-origin: 500px 350px; }
 .land { fill: url(#fallback-land); stroke: #627855; stroke-width: .5; stroke-opacity: .5; fill-rule: evenodd; cursor: pointer; transition: fill .3s; }
-.land-no { fill: #b5bb83; stroke-width: 1; stroke-opacity: .65; }
-.land-pl { fill: #c5bd8e; stroke-width: 1; stroke-opacity: .65; }
+.land-no { fill: #cabc76; stroke-width: 1; stroke-opacity: .65; }
+.land-pl { fill: #debc7b; stroke-width: 1; stroke-opacity: .65; }
 .land:hover, .land.is-active, .land:focus-visible { fill: #e8d475; stroke: #ffeb75; stroke-width: 2; filter: drop-shadow(0 0 5px #fff08c) drop-shadow(0 0 12px #f4dc58); }
 .wordmark { position: absolute; left: 3.6vw; top: 33px; z-index: 12; display: flex; gap: 9px; align-items: center; color: var(--white); text-decoration: none; font-size: 25px; font-weight: 650; letter-spacing: -.055em; line-height: 1; }
 .wordmark svg { height: 32px; width: 26px; color: var(--gold); }
@@ -45,7 +45,7 @@ button:focus-visible, a:focus-visible, .land:focus-visible { outline: 2px solid 
 .brand-dot { display: none; }
 .intro { position: absolute; z-index: 5; left: 5.1vw; bottom: 11.6vh; pointer-events: none; transition: opacity .6s, transform .7s; }
 .eyebrow { display: none; }
-h1 { font-size: clamp(64px, 6.5vw, 104px); line-height: 1; font-weight: 500; letter-spacing: -.065em; margin: 0 0 23px; }
+h1 { font-size: clamp(64px, 5.2vw, 90px); line-height: 1; font-weight: 500; letter-spacing: -.065em; margin: 0 0 23px; }
 h1 > span { color: var(--gold); font-family: var(--serif); font-weight: 500; font-style: italic; letter-spacing: -.065em; }
 .translations { display: flex; align-items: center; gap: 15px; color: #455c4c; }
 .translations p { margin: 0; font-size: 15px; letter-spacing: -.015em; }
@@ -112,6 +112,14 @@ button.map-label:hover .label-name, button.map-label.is-active .label-name { col
 button.map-label:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
 .map-label.sea-label { font-family: var(--serif); font-size: 11px; letter-spacing: .03em; font-weight: 500; font-style: italic; color: #506e65; opacity: .9; text-shadow: 0 1px 3px #d5d9c780; }
 .secondary-label { opacity: .9; }
+.atlas-caption { position: absolute; top: 36px; right: 3.6vw; z-index: 5; text-align: right; color: #42564a; pointer-events: none; }
+.atlas-caption > span { display: block; font: italic 21px var(--serif); letter-spacing: -.025em; }
+.atlas-caption > small { display: block; margin-top: 6px; font-size: 8px; text-transform: uppercase; letter-spacing: .19em; color: #586c5a; }
+.country-label .label-name { font: italic 27px var(--serif); letter-spacing: .015em; color: #443f28; }
+.country-label .label-native { font-size: 13px; margin-top: 5px; color: #464f33; }
+.creature-label { color: #5b513e !important; }
+.map-label.sea-label { color: #756951; text-shadow: 0 1px 3px #e5dfcc; }
+.city-label { font-family: var(--serif); font-style: italic; color: #5b503c; }
 .is-traveling button.map-label { pointer-events: none; }
 @media (min-width: 1800px) {
   .wordmark { left: 4vw; top: 45px; }
@@ -143,7 +151,7 @@ button.map-label:focus-visible { outline: 2px solid var(--gold); outline-offset:
   .experience:before { inset: 9px; }
   .wordmark { left: 23px; top: 25px; font-size: 22px; gap: 7px; }
   .wordmark svg { height: 28px; width: 23px; }
-  .map-panel:after { background: linear-gradient(0deg, #eae1c9d9, #eae1c99c 22%, #eae1c929 46%, transparent 70%); }
+  .map-panel:after { background: linear-gradient(0deg, #efe2c2eb, #efe2c2b8 22%, #efe2c224 46%, transparent 62%); }
   .intro { left: 26px; bottom: 181px; }
   h1 { font-size: clamp(60px, 12vw, 84px); line-height: .99; margin-bottom: 19px; }
   .translations { gap: 12px; }
@@ -170,6 +178,11 @@ button.map-label:focus-visible { outline: 2px solid var(--gold); outline-offset:
   .map-credits { bottom: 23px; right: 23px; font-size: 8px; }
   .map-label.sea-label { font-size: 9px; }
   .secondary-label { display: none; }
+  .atlas-caption { top: 30px; right: 23px; }
+  .atlas-caption > span { font-size: 14px; }
+  .atlas-caption > small { max-width: 120px; font-size: 6px; letter-spacing: .1em; }
+  .country-label .label-name { font-size: 22px; }
+  .country-label .label-native { font-size: 12px; }
 }
 @media (max-width: 380px) {
   .intro { left: 23px; bottom: 169px; }

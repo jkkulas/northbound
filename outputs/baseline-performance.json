@@ -1,0 +1,282 @@
+{
+  "source": "Pristine tracked dist files from git HEAD; only a test-only metrics export appended to temporary app.js.",
+  "capturedAt": "2026-10-21T07:35:43.047Z",
+  "environment": {
+    "browser": "Chrome headless",
+    "renderer": "SwiftShader software WebGL",
+    "deviceScaleFactor": 1,
+    "reducedMotion": "reduce",
+    "settledCondition": "ready, renderer.info.render.frame >= 1, no scheduled animation frame"
+  },
+  "note": "Draw calls, triangle counts and allocated resource counts describe a settled frame. They do not establish hardware GPU timing, frame rate or a device-independent startup benchmark. Resource body total includes 422 bytes of test instrumentation.",
+  "results": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "performance": {
+        "ready": true,
+        "framesRendered": 4,
+        "active": false,
+        "calls": 148,
+        "triangles": 560242,
+        "lines": 21898,
+        "points": 0,
+        "textures": 19,
+        "geometries": 133,
+        "terrainTriangles": 540800
+      },
+      "resourceBytes": 2198348,
+      "resources": [
+        {
+          "name": "/assets/fonts.css",
+          "transferSize": 1218,
+          "decodedBodySize": 918
+        },
+        {
+          "name": "/assets/style.css",
+          "transferSize": 15455,
+          "decodedBodySize": 15155
+        },
+        {
+          "name": "/assets/app.js",
+          "transferSize": 28522,
+          "decodedBodySize": 28222
+        },
+        {
+          "name": "/assets/font-0.ttf",
+          "transferSize": 48580,
+          "decodedBodySize": 48280
+        },
+        {
+          "name": "/assets/font-3.ttf",
+          "transferSize": 48500,
+          "decodedBodySize": 48200
+        },
+        {
+          "name": "/assets/font-1.ttf",
+          "transferSize": 48608,
+          "decodedBodySize": 48308
+        },
+        {
+          "name": "/assets/font-4.ttf",
+          "transferSize": 111468,
+          "decodedBodySize": 111168
+        },
+        {
+          "name": "/assets/font-2.ttf",
+          "transferSize": 48580,
+          "decodedBodySize": 48280
+        },
+        {
+          "name": "/assets/vendor/three.module.min.js",
+          "transferSize": 339208,
+          "decodedBodySize": 338908
+        },
+        {
+          "name": "/assets/sea-creatures.js",
+          "transferSize": 7460,
+          "decodedBodySize": 7160
+        },
+        {
+          "name": "/assets/landmarks.js",
+          "transferSize": 7214,
+          "decodedBodySize": 6914
+        },
+        {
+          "name": "/assets/illustrations.js",
+          "transferSize": 1172,
+          "decodedBodySize": 872
+        },
+        {
+          "name": "/assets/journey.js",
+          "transferSize": 11796,
+          "decodedBodySize": 11496
+        },
+        {
+          "name": "/assets/cartographic-models.js",
+          "transferSize": 8986,
+          "decodedBodySize": 8686
+        },
+        {
+          "name": "/assets/vendor/three.core.min.js",
+          "transferSize": 381424,
+          "decodedBodySize": 381124
+        },
+        {
+          "name": "/assets/geography.json",
+          "transferSize": 368611,
+          "decodedBodySize": 368311
+        },
+        {
+          "name": "/assets/terrain.i16",
+          "transferSize": 321902,
+          "decodedBodySize": 321602
+        },
+        {
+          "name": "/assets/regions.png",
+          "transferSize": 63761,
+          "decodedBodySize": 63461
+        },
+        {
+          "name": "/assets/aura.png",
+          "transferSize": 340023,
+          "decodedBodySize": 339723
+        },
+        {
+          "name": "/assets/illustrations/compass.svg",
+          "transferSize": 1860,
+          "decodedBodySize": 1560
+        }
+      ],
+      "errors": [],
+      "camera": {
+        "position": [
+          -14,
+          65,
+          104
+        ],
+        "target": [
+          -14,
+          0,
+          5
+        ]
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "performance": {
+        "ready": true,
+        "framesRendered": 4,
+        "active": false,
+        "calls": 110,
+        "triangles": 139164,
+        "lines": 21160,
+        "points": 0,
+        "textures": 15,
+        "geometries": 99,
+        "terrainTriangles": 124800
+      },
+      "resourceBytes": 2198348,
+      "resources": [
+        {
+          "name": "/assets/fonts.css",
+          "transferSize": 1218,
+          "decodedBodySize": 918
+        },
+        {
+          "name": "/assets/style.css",
+          "transferSize": 15455,
+          "decodedBodySize": 15155
+        },
+        {
+          "name": "/assets/app.js",
+          "transferSize": 28522,
+          "decodedBodySize": 28222
+        },
+        {
+          "name": "/assets/font-0.ttf",
+          "transferSize": 48580,
+          "decodedBodySize": 48280
+        },
+        {
+          "name": "/assets/font-3.ttf",
+          "transferSize": 48500,
+          "decodedBodySize": 48200
+        },
+        {
+          "name": "/assets/font-1.ttf",
+          "transferSize": 48608,
+          "decodedBodySize": 48308
+        },
+        {
+          "name": "/assets/font-4.ttf",
+          "transferSize": 111468,
+          "decodedBodySize": 111168
+        },
+        {
+          "name": "/assets/font-2.ttf",
+          "transferSize": 48580,
+          "decodedBodySize": 48280
+        },
+        {
+          "name": "/assets/landmarks.js",
+          "transferSize": 7214,
+          "decodedBodySize": 6914
+        },
+        {
+          "name": "/assets/vendor/three.module.min.js",
+          "transferSize": 339208,
+          "decodedBodySize": 338908
+        },
+        {
+          "name": "/assets/sea-creatures.js",
+          "transferSize": 7460,
+          "decodedBodySize": 7160
+        },
+        {
+          "name": "/assets/illustrations.js",
+          "transferSize": 1172,
+          "decodedBodySize": 872
+        },
+        {
+          "name": "/assets/journey.js",
+          "transferSize": 11796,
+          "decodedBodySize": 11496
+        },
+        {
+          "name": "/assets/cartographic-models.js",
+          "transferSize": 8986,
+          "decodedBodySize": 8686
+        },
+        {
+          "name": "/assets/vendor/three.core.min.js",
+          "transferSize": 381424,
+          "decodedBodySize": 381124
+        },
+        {
+          "name": "/assets/geography.json",
+          "transferSize": 368611,
+          "decodedBodySize": 368311
+        },
+        {
+          "name": "/assets/terrain.i16",
+          "transferSize": 321902,
+          "decodedBodySize": 321602
+        },
+        {
+          "name": "/assets/regions.png",
+          "transferSize": 63761,
+          "decodedBodySize": 63461
+        },
+        {
+          "name": "/assets/aura.png",
+          "transferSize": 340023,
+          "decodedBodySize": 339723
+        },
+        {
+          "name": "/assets/illustrations/compass.svg",
+          "transferSize": 1860,
+          "decodedBodySize": 1560
+        }
+      ],
+      "errors": [],
+      "camera": {
+        "position": [
+          -5,
+          77,
+          110
+        ],
+        "target": [
+          -5,
+          0,
+          3
+        ]
+      }
+    }
+  ]
+}

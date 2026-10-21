@@ -1,0 +1,62 @@
+[
+  {
+    "asset": "oslo",
+    "dx": 2.5,
+    "dz": 0,
+    "scale": 1,
+    "distance": 0,
+    "score": 0,
+    "samples": 13896,
+    "bad": 0
+  },
+  {
+    "asset": "stockholm",
+    "dx": -5.5,
+    "dz": -0.75,
+    "scale": 1,
+    "distance": 5.55090082779363,
+    "score": 5.55090082779363,
+    "samples": 14750,
+    "bad": 0
+  },
+  {
+    "asset": "warsaw",
+    "dx": 0,
+    "dz": 0,
+    "scale": 1,
+    "distance": 0,
+    "score": 0,
+    "samples": 18198,
+    "bad": 0
+  },
+  {
+    "asset": "windmill",
+    "dx": 4.5,
+    "dz": 3,
+    "scale": 1,
+    "distance": 5.408326913195984,
+    "score": 5.408326913195984,
+    "samples": 15206,
+    "bad": 0
+  },
+  {
+    "asset": "gdansk",
+    "dx": -3.25,
+    "dz": 6.5,
+    "scale": 1,
+    "distance": 7.267220926874317,
+    "score": 7.267220926874317,
+    "samples": 21114,
+    "bad": 0
+  },
+  {
+    "asset": "london",
+    "dx": -1,
+    "dz": 0,
+    "scale": 1,
+    "distance": 1,
+    "score": 1,
+    "samples": 21030,
+    "bad": 0
+  }
+]

@@ -2,19 +2,26 @@ import * as THREE from './vendor/three.module.min.js';
 import {addLandmarks} from './landmarks.js';
 import {addSeaCreatures} from './sea-creatures.js';
 import {createIllustration} from './illustrations.js';
+import {vertexShader,fragmentShader,waterFragmentShader,addIllustratedVegetation,addIllustratedGeography} from './atlas-terrain.js';
+import {createLandMeshGeometry} from './terrain-mesh.js';
+import {sampleTerrainHeight} from './terrain-height.js';
+import {addMapScenery} from './map-scenery.js';
 import {createVehicles,animateVehicle,routeNorway,routeTorpToOslo,OSLO_FORECOURT} from './journey.js';
 
-const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),canvas=$('#terrain-canvas'),tooltip=$('#map-tooltip');
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),canvas=$('#terrain-canvas');
 const names={en:'English',pl:'Polski',no:'Norsk'},ids={en:1,pl:2,no:3},langs=['','en','pl','no'];
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile=matchMedia('(max-width:760px)').matches;
 let busy=false,selected=null,ready=false,renderer,scene,camera,terrain,maskPixels,maskWidth,elevations,geography;
 let raf=null,lastActivity=0,lastPointer=0,lastFrame=0,cameraMotion=0;
+let framesRendered=0,readyAt=0;
 const tweens=[],labels=[],hover=[0,0,0],hoverTarget=[0,0,0],pointer=new THREE.Vector2(),raycaster=new THREE.Raycaster();
+const projectedLabel=new THREE.Vector3();
+let labelLayoutDirty=true,labelObstacles=[];
 const cameraBase=new THREE.Vector3(),cameraTarget=new THREE.Vector3(),look=new THREE.Vector3();
 const cities={oslo:[10.7522,59.9139],torp:[10.2586,59.1867],hovik:[10.5817,59.9],pl:[19.1,52.1],en:[-.2,53.6],no:[8.7,62.1]};
 let flightModel,carModel,routeLine,routeGlow,arrival;
-let terrainMaxHeight=0,landmarkObjects=[],journeyPhase='',routeSamples=[],carClearance=null,operaClearance=null;
+let terrainMaxHeight=0,landmarkObjects=[],creatureObjects=[],journeyPhase='',routeSamples=[],carClearance=null,operaClearance=null;
 const carVertexProbes=[];
 function go(){location.assign(new URL('../'+selected+'/',import.meta.url))}
 $('#skip').addEventListener('click',go);
@@ -23,22 +30,21 @@ function highlight(lang){if(busy)return;$$('[data-lang]').forEach(el=>el.classLi
 function bindLanguage(el){el.addEventListener('pointerenter',()=>highlight(el.dataset.lang));el.addEventListener('pointerleave',()=>highlight(null));el.addEventListener('focus',()=>highlight(el.dataset.lang));el.addEventListener('blur',()=>highlight(null));el.addEventListener('click',e=>{e.stopPropagation();journey(el.dataset.lang,cities[el.dataset.lang])});if(el.tagName.toLowerCase()==='path')el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();journey(el.dataset.lang,cities[el.dataset.lang])}})}
 $$('[data-lang]').forEach(bindLanguage);
 
-function heightAt(lon,lat){
- if(!elevations)return .25;
- const x=THREE.MathUtils.clamp((lon+12)/50*400,0,399.999),y=THREE.MathUtils.clamp((73-lat)/26*400,0,399.999),i=Math.floor(x),j=Math.floor(y),fx=x-i,fy=y-j;
- const a=elevations[j*401+i]*(1-fx)+elevations[j*401+i+1]*fx,b=elevations[(j+1)*401+i]*(1-fx)+elevations[(j+1)*401+i+1]*fx;
- const feather=THREE.MathUtils.smoothstep(lon,-12,-9)*(1-THREE.MathUtils.smoothstep(lon,35,38))*THREE.MathUtils.smoothstep(lat,47,49)*(1-THREE.MathUtils.smoothstep(lat,71,73));
- return .22+Math.max(0,a*(1-fy)+b*fy)/1000*3.2*feather;
-}
+function heightAt(lon,lat){return sampleTerrainHeight(elevations,lon,lat)}
 function worldPoint([lon,lat],lift=0){return new THREE.Vector3((lon-13)*2.2,heightAt(lon,lat)+lift,(60-lat)*4.4)}
 function geographic(point){return[point.x/2.2+13,60-point.z/4.4]}
 function regionAt([lon,lat]){const b=geography.bounds,x=Math.floor((lon-b.west)/(b.east-b.west)*maskWidth),y=Math.floor((b.north-lat)/(b.north-b.south)*maskWidth);return x>=0&&x<maskWidth&&y>=0&&y<maskWidth?Math.round(maskPixels[(y*maskWidth+x)*4]/85):0}
 export function projectToScreen(lon,lat){if(!camera)return null;const p=worldPoint([lon,lat],.3).project(camera);return{x:(p.x+1)*innerWidth/2,y:(1-p.y)*innerHeight/2}}
-export function inspectScene(){
+export function inspectScene({artwork=false}={}){
  const model=flightModel?.visible?flightModel:carModel?.visible?carModel:null;
  let width=0,height=0;
  if(model){model.updateMatrixWorld(true);const box=new THREE.Box3().setFromObject(model),points=[];for(const x of[box.min.x,box.max.x])for(const y of[box.min.y,box.max.y])for(const z of[box.min.z,box.max.z])points.push(new THREE.Vector3(x,y,z).project(camera));width=(Math.max(...points.map(p=>p.x))-Math.min(...points.map(p=>p.x)))*innerWidth/2;height=(Math.max(...points.map(p=>p.y))-Math.min(...points.map(p=>p.y)))*innerHeight/2}
- return{camera:{position:camera?.position.toArray(),target:look.toArray()},hover:[...hover],terrainMaxHeight,landmarkCount:landmarkObjects.length,creatureCount:Number(canvas.dataset.creatures),artwork:canvas.dataset.artwork,fadeOpacity:Number(getComputedStyle($('#journey-fade')).opacity),journey:{phase:journeyPhase,vehicle:{type:model===flightModel?'plane':model?'car':null,visible:!!model,screenSize:{width,height}},routeSamples,carClearance,operaClearance}};
+ const architecture=artwork?landmarkObjects.map(object=>{
+  object.updateMatrixWorld(true);const bounds=new THREE.Box3().setFromObject(object),meshes=[];
+  object.traverse(part=>{if(part.isMesh)meshes.push({name:part.name,vertices:part.geometry.attributes.position.count,triangles:(part.geometry.index?.count||part.geometry.attributes.position.count)/3,opaque:part.material.transparent===false,depthWrite:part.material.depthWrite});});
+  return {name:object.name,userData:object.userData,anchor:object.position.toArray(),bounds:{min:bounds.min.toArray(),max:bounds.max.toArray()},meshes};
+ }):[];
+ return{camera:{position:camera?.position.toArray(),target:look.toArray(),fov:camera?.fov,aspect:camera?.aspect},hover:[...hover],terrainMaxHeight,landmarkCount:landmarkObjects.length,creatureCount:Number(canvas.dataset.creatures),artwork:canvas.dataset.artwork,scenery:scene?.userData.mapScenery,landmarkArtwork:architecture,seaArtwork:!artwork?[]:creatureObjects.map(object=>({name:object.name,userData:object.userData,matrixWorld:object.matrixWorld.toArray(),geometryPosition:Array.from(object.geometry.attributes.position.array),geometryUv:Array.from(object.geometry.attributes.uv.array),geometryPictureUv:Array.from(object.geometry.attributes.pictureUv.array),geometryIndex:Array.from(object.geometry.index.array),atlas:object.material.uniforms.uArtwork.value?.image?.src})),performance:{readyAt,framesRendered,active:raf!==null,calls:renderer?.info.render.calls,triangles:renderer?.info.render.triangles,textures:renderer?.info.memory.textures,geometries:renderer?.info.memory.geometries,terrainTriangles:terrain?.geometry.index?.count/3},fadeOpacity:Number(getComputedStyle($('#journey-fade')).opacity),journey:{phase:journeyPhase,vehicle:{type:model===flightModel?'plane':model?'car':null,visible:!!model,screenSize:{width,height}},routeSamples,carClearance,operaClearance}};
 }
 function pointerPosition(e){pointer.set(e.clientX/innerWidth*2-1,-e.clientY/innerHeight*2+1)}
 function hitMap(e){
@@ -53,9 +59,9 @@ function hitMap(e){
 }
 canvas.addEventListener('pointermove',e=>{
  if(!ready||busy)return;if(performance.now()-lastPointer<35)return;lastPointer=performance.now();const hit=hitMap(e);highlight(hit?.lang);canvas.style.cursor=hit?'pointer':'default';
- if(hit&&e.pointerType==='mouse'){tooltip.firstElementChild.textContent=names[hit.lang]+' · Begin your journey';tooltip.style.transform=`translate(${Math.max(8,Math.min(e.clientX+18,innerWidth-250))}px,${Math.max(8,e.clientY-48)}px)`;tooltip.classList.add('visible')}else tooltip.classList.remove('visible');wake();
+ wake();
 });
-canvas.addEventListener('pointerleave',()=>{if(busy)return;pointer.set(0,0);highlight(null);tooltip.classList.remove('visible');wake()});
+canvas.addEventListener('pointerleave',()=>{if(busy)return;pointer.set(0,0);highlight(null);wake()});
 canvas.addEventListener('click',e=>{if(!ready||busy)return;const hit=hitMap(e);if(hit)journey(hit.lang,hit.geo)});
 
 function wake(){lastActivity=performance.now();if(renderer&&raf===null&&!document.hidden)raf=requestAnimationFrame(frame)}
@@ -71,94 +77,27 @@ function frame(now){
  const desired=cameraBase;
  if(camera.position.distanceTo(desired)>.005||look.distanceTo(cameraTarget)>.005)changing=true;
  camera.position.lerp(desired,damping);look.lerp(cameraTarget,damping);camera.lookAt(look);
- updateLabels();renderer.render(scene,camera);
+ updateLabels();renderer.render(scene,camera);framesRendered++;
  if(tweens.length||changing||busy||now-lastActivity<400)raf=requestAnimationFrame(frame);
 }
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)wake()});
 
-const vertexShader=`varying vec2 vUv;varying vec3 vNormal;varying vec3 vWorld;varying float vDepth;
-void main(){vUv=uv;vNormal=normal;vWorld=position;vec4 mv=modelViewMatrix*vec4(position,1.);vDepth=-mv.z;gl_Position=projectionMatrix*mv;}`;
-const paperNoise=`
-float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
-float wash(vec2 p){return noise(p)*.58+noise(p*2.03)*.28+noise(p*4.13)*.14;}`;
-const auraShader=`
-uniform sampler2D uAura;uniform vec3 uHover;
-uniform vec4 uAtlasBounds;
-vec2 atlasUv(vec3 world){return vec2((world.x-uAtlasBounds.x)/uAtlasBounds.z,1.-(world.z-uAtlasBounds.y)/uAtlasBounds.w);}
-vec3 countryLight(vec3 color,vec2 uv){
-if(dot(uHover,vec3(1.))<.001)return color;
-vec3 distances=(texture2D(uAura,uv).rgb*2.-1.)*6.;
-vec3 edge=exp(-abs(distances)*1.6),outer=exp(-abs(distances)*.7);
-float rim=dot(edge,uHover),halo=dot(outer,uHover);
-color=mix(color,vec3(1.,.92,.39),clamp(rim*.72,0.,.8));
-color+=vec3(.15,.12,.015)*halo;
-return color;
-}`;
-const fragmentShader=`uniform sampler2D uMask;varying vec2 vUv;varying vec3 vNormal;varying vec3 vWorld;varying float vDepth;
-${auraShader}
-${paperNoise}
-void main(){float region=texture2D(uMask,vUv).r;if(region<.13)discard;
-float id=floor(region*3.+.5),h=vWorld.y;vec3 n=normalize(vNormal);
-vec2 p=vWorld.xz;
-float pigment=wash(p*.19),flecks=noise(p*7.);
-vec3 color=mix(vec3(.63,.67,.46),vec3(.77,.75,.52),pigment);
-color=mix(color,vec3(.49,.59,.43),smoothstep(.5,.79,wash(p*.37+35.))*.45);
-color=mix(color,vec3(.57,.62,.43),smoothstep(.6,2.5,h)*.42);
-color=mix(color,vec3(.83,.81,.65),smoothstep(2.,5.,h)*.8);
-color=mix(color,vec3(.94,.91,.78),smoothstep(4.8,6.1,h)*.82);
-float light=.64+max(dot(n,normalize(vec3(-.65,.7,.34))),0.)*.48;color*=light;
-float contours=1.-smoothstep(.025,.08,abs(fract(h*2.8)-.5));
-color-=vec3(.14,.15,.09)*contours*smoothstep(.7,2.,h)*.2;
-float grain=hash(gl_FragCoord.xy)-.5;color+=(grain*.034+(flecks-.5)*.024);
-float selection=id<1.5?uHover.x:(id<2.5?uHover.y:uHover.z);
-color=mix(color,vec3(.91,.81,.46),selection*.24);
-color=countryLight(color,vUv);
-gl_FragColor=vec4(color,1.);}`;
-
 function makeWater(aura){
  const geometry=new THREE.PlaneGeometry(1800,1800);geometry.rotateX(-Math.PI/2);
  const b=geography.bounds,atlasBounds=new THREE.Vector4((b.west-13)*2.2,(60-b.north)*4.4,(b.east-b.west)*2.2,(b.north-b.south)*4.4);
- const material=new THREE.ShaderMaterial({uniforms:{uAura:{value:aura},uHover:{value:new THREE.Vector3()},uAtlasBounds:{value:atlasBounds}},vertexShader,fragmentShader:`varying vec2 vUv;varying vec3 vWorld;${paperNoise}${auraShader}
- void main(){vec2 p=vWorld.xz;float pigment=wash(p*.055);vec3 color=mix(vec3(.61,.69,.65),vec3(.69,.76,.70),pigment);
- float grain=hash(gl_FragCoord.xy)-.5;color+=grain*.027+(noise(p*6.)-.5)*.014;
- // Very fine engraved currents, broken into short, softly bowed strokes.
- vec2 cell=floor(p/vec2(5.8,3.2)),q=fract(p/vec2(5.8,3.2));float curve=.48+.04*sin(q.x*6.28);
- float ink=(1.-smoothstep(.005,.018,abs(q.y-curve)))*smoothstep(.15,.22,q.x)*(1.-smoothstep(.55,.72,q.x))*step(.3,hash(cell));
- color-=ink*vec3(.08,.09,.07)*.38;color=countryLight(color,atlasUv(vWorld));gl_FragColor=vec4(color,1.);}`});
+ const material=new THREE.ShaderMaterial({uniforms:{uAura:{value:aura},uHover:{value:new THREE.Vector3()},uAtlasBounds:{value:atlasBounds}},vertexShader,fragmentShader:waterFragmentShader});
  const water=new THREE.Mesh(geometry,material);water.position.y=-.05;scene.add(water);
  scene.userData.water=water;
 }
 
 function makeTerrain(texture,aura){
- const b=geography.bounds,nx=mobile?240:520,nz=mobile?260:520,geometry=new THREE.PlaneGeometry((b.east-b.west)*2.2,(b.north-b.south)*4.4,nx,nz);geometry.rotateX(-Math.PI/2);geometry.translate(((b.east+b.west)/2-13)*2.2,0,(60-(b.north+b.south)/2)*4.4);
- const pos=geometry.attributes.position;
- for(let i=0;i<pos.count;i++){const lon=pos.getX(i)/2.2+13,lat=60-pos.getZ(i)/4.4,h=heightAt(lon,lat);pos.setY(i,h);terrainMaxHeight=Math.max(terrainMaxHeight,h)}geometry.computeVertexNormals();
- const material=new THREE.ShaderMaterial({uniforms:{uMask:{value:texture},uAura:{value:aura},uHover:{value:new THREE.Vector3()},uAtlasBounds:{value:scene.userData.water.material.uniforms.uAtlasBounds.value}},vertexShader,fragmentShader,transparent:true,side:THREE.DoubleSide});
+ const {geometry,maxHeight}=createLandMeshGeometry({THREE,bounds:geography.bounds,mobile,heightAt,regionAt});
+ terrainMaxHeight=maxHeight;
+ const material=new THREE.ShaderMaterial({uniforms:{uMask:{value:texture},uAura:{value:aura},uHover:{value:new THREE.Vector3()},uAtlasBounds:{value:scene.userData.water.material.uniforms.uAtlasBounds.value}},vertexShader,fragmentShader,side:THREE.FrontSide});
  terrain=new THREE.Mesh(geometry,material);scene.add(terrain);
 }
-function lineSegments(lines,color,opacity,lift=.08){const positions=[];for(const line of lines)for(let i=1;i<line.length;i++){const a=worldPoint(line[i-1],lift),b=worldPoint(line[i],lift);if(a.distanceTo(b)>8)continue;positions.push(...a,...b)}const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));const material=new THREE.LineBasicMaterial({color,transparent:true,opacity,depthWrite:false});const object=new THREE.LineSegments(geometry,material);scene.add(object);return object}
-function addGeography(){
- lineSegments(geography.coasts,0x4c6150,.46,.055);
- lineSegments(geography.rivers,0x4a7e77,.64,.11);
- lineSegments(geography.outlines.no,0x59654b,.48,.08);lineSegments(geography.outlines.pl,0x806c45,.46,.07);
- const glowTexture=(()=>{const c=document.createElement('canvas');c.width=c.height=64;const ctx=c.getContext('2d'),g=ctx.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,'#fff1bd');g.addColorStop(.12,'#e9c76b');g.addColorStop(.3,'#c79e4f60');g.addColorStop(1,'#b1813800');ctx.fillStyle=g;ctx.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)})();
- const places=[cities.oslo,cities.pl,[12.57,55.68],[18.07,59.33],[24.94,60.17],[13.4,52.52],[-.13,51.5],[4.9,52.37],[5.32,60.39],[10.4,63.43],[21.01,52.23],[7.1,50.7],[11.97,57.71],[18.65,54.35]];
- for(const place of places){const material=new THREE.SpriteMaterial({map:glowTexture,color:0xffe6a3,transparent:true,opacity:.65,depthWrite:false,blending:THREE.AdditiveBlending});const sprite=new THREE.Sprite(material);sprite.position.copy(worldPoint(place,.13));sprite.scale.set(1.1,1.1,1);scene.add(sprite)}
-}
-function addForests(){
- const groves=[[6.2,61.6],[7.8,60.4],[12.8,62.5],[14.1,60.8],[16.2,63.5],[19.2,65.4],[24.3,64.2],[26,61.2],[22.5,53.2],[15.4,54],[-4.4,56.7],[-7.4,53.7]];
- const trunks=[],crowns=[],geometry=new THREE.ConeGeometry(.25,.8,5),trunkGeometry=new THREE.CylinderGeometry(.045,.06,.24,5);
- const matrix=new THREE.Matrix4(),rotation=new THREE.Quaternion(),scale=new THREE.Vector3();let seed=218;
- const random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
- for(const center of groves)for(let i=0;i<(mobile?5:10);i++){
-  const geo=[center[0]+(random()-.5)*1.5,center[1]+(random()-.5)*.6];if(!regionAt(geo)||heightAt(...geo)>4.2)continue;
-  if(geo[0]>9&&geo[0]<12&&geo[1]<64)continue;
-  const p=worldPoint(geo,.04),size=.65+random()*.65;scale.setScalar(size);matrix.compose(p.clone().add(new THREE.Vector3(0,.12*size,0)),rotation,scale);trunks.push(matrix.clone());matrix.compose(p.clone().add(new THREE.Vector3(0,.55*size,0)),rotation,scale);crowns.push(matrix.clone());
- }
- const trunk=new THREE.InstancedMesh(trunkGeometry,new THREE.MeshStandardMaterial({color:0x766b4e,roughness:1}),trunks.length),crown=new THREE.InstancedMesh(geometry,new THREE.MeshStandardMaterial({color:0x57725b,roughness:1,flatShading:true}),crowns.length);
- trunks.forEach((m,i)=>trunk.setMatrixAt(i,m));crowns.forEach((m,i)=>crown.setMatrixAt(i,m));scene.add(trunk,crown);
-}
+function addGeography(){addIllustratedGeography({THREE,scene,geography,worldPoint,heightAt,regionAt,mobile})}
+function addForests(){addIllustratedVegetation({THREE,scene,worldPoint,heightAt,regionAt,mobile})}
 function label(name,geo,className,lang,native){
  const el=document.createElement(lang?'button':'span');el.className=className;el.innerHTML=native?`<span class="label-name">${name}</span><span class="label-native">${native}</span>`:name;
  if(lang){el.type='button';el.dataset.lang=lang;el.setAttribute('aria-label',names[lang]+' — begin your journey');bindLanguage(el)}
@@ -166,23 +105,23 @@ function label(name,geo,className,lang,native){
 }
 function addLabels(decorations=[]){
  $('#map-labels').removeAttribute('aria-hidden');
- label('Norge',[9.4,64.0],'map-label country-label','no','Norsk ↗');
+ label('Norge',[9.5,64.8],'map-label country-label','no','Norsk ↗');
  label('Polska',[23.2,53.5],'map-label country-label','pl','Polski ↗');
  label('Europe',[6.1,54.1],'map-label country-label','en','English ↗');
- label('Oslo',cities.oslo,'city-label is-destination');
- label('Stockholm',[18.07,59.33],'city-label secondary-label');
- label('København',[12.57,55.68],'city-label secondary-label');
- label('Gdańsk',[18.65,54.35],'city-label secondary-label');
- label('London',[-.13,51.5],'city-label secondary-label');
- label('Norwegian Sea',[-3.8,67.8],'map-label sea-label');
+ label('Norwegian Sea',[-13,72],'map-label sea-label');
  label('Baltic Sea',[20.5,57.2],'map-label sea-label');
  for(const decoration of decorations)if(decoration.label)label(decoration.name,[decoration.geo[0],decoration.geo[1]-.35],'map-label sea-label creature-label');
 }
 function updateLabels(){
- const obstacles=busy?[]:[$('.intro'),$('.language-picker'),$('.wordmark')].map(el=>el.getBoundingClientRect());
+ if(labelLayoutDirty){
+  labelObstacles=[$('.intro'),$('.language-picker'),$('.wordmark'),$('.atlas-caption')].filter(Boolean).map(el=>el.getBoundingClientRect());
+  for(const entry of labels){entry.halfWidth=entry.el.offsetWidth/2;entry.halfHeight=entry.el.offsetHeight/2}
+  labelLayoutDirty=false;
+ }
+ const obstacles=busy?[]:labelObstacles;
  for(const entry of labels){
-  const p=entry.position.clone().project(camera),x=(p.x+1)*innerWidth/2,y=(1-p.y)*innerHeight/2;
-  const halfWidth=entry.el.offsetWidth/2,halfHeight=entry.el.offsetHeight/2;
+  const p=projectedLabel.copy(entry.position).project(camera),x=(p.x+1)*innerWidth/2,y=(1-p.y)*innerHeight/2;
+  const {halfWidth,halfHeight}=entry;
   const covered=obstacles.some(rect=>x+halfWidth>rect.left-8&&x-halfWidth<rect.right+8&&y+halfHeight>rect.top-8&&y-halfHeight<rect.bottom+8);
   entry.el.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;
   entry.el.style.visibility=p.z<1&&p.z>0&&!covered&&y>20&&y<innerHeight-20&&(!mobile||x>24&&x<innerWidth-24)?'visible':'hidden';
@@ -194,7 +133,7 @@ function makeVehicles(){
  ({flightModel,carModel,arrival}=createVehicles({THREE,scene}));
  carModel.updateMatrixWorld(true);
  carModel.traverse(object=>{
-  if(!object.isMesh||object.material.map)return;
+  if(!object.isMesh||object.material.map||object.userData.vehicleInkContour)return;
   const vertices=object.geometry.attributes.position;
   for(let i=0;i<vertices.count;i++)carVertexProbes.push(new THREE.Vector3().fromBufferAttribute(vertices,i).applyMatrix4(object.matrixWorld));
  });
@@ -262,7 +201,7 @@ async function zoomToRoad(geo){
 }
 async function journey(lang,start){
  if(busy)return;selected=lang;if(reduced||!ready){go();return}
- highlight(lang);busy=true;document.body.classList.add('is-traveling');$$('.language-option').forEach(el=>el.disabled=true);$('#journey-status').classList.add('is-visible');tooltip.classList.remove('visible');
+ highlight(lang);busy=true;document.body.classList.add('is-traveling');$$('.language-option').forEach(el=>el.disabled=true);$('#journey-status').classList.add('is-visible');
  try{
  if(lang==='no'){
   status('A little road trip','Driving to Høvik.');
@@ -282,7 +221,7 @@ async function journey(lang,start){
 
 async function init(){
  try{
-  renderer=new THREE.WebGLRenderer({canvas,antialias:!mobile,alpha:false,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1.4:1.6));renderer.setSize(innerWidth,innerHeight);renderer.setClearColor(0xa7b7a9);renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer=new THREE.WebGLRenderer({canvas,antialias:!mobile,alpha:false,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1.4:1.6));renderer.setSize(innerWidth,innerHeight);renderer.setClearColor(0x96bfb2);renderer.outputColorSpace=THREE.SRGBColorSpace;
   scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(40,innerWidth/innerHeight,.1,600);
   const [geoResponse,heightResponse,texture,aura]=await Promise.all([fetch(new URL('./geography.json',import.meta.url)),fetch(new URL('./terrain.i16',import.meta.url)),new THREE.TextureLoader().loadAsync(new URL('./regions.png',import.meta.url).href),new THREE.TextureLoader().loadAsync(new URL('./aura.png',import.meta.url).href)]);
   if(!geoResponse.ok||!heightResponse.ok)throw new Error('Terrain data unavailable');
@@ -291,17 +230,20 @@ async function init(){
   const bitmap=document.createElement('canvas');bitmap.width=bitmap.height=texture.image.width;const ctx=bitmap.getContext('2d',{willReadFrequently:true});ctx.drawImage(texture.image,0,0);maskWidth=bitmap.width;maskPixels=ctx.getImageData(0,0,maskWidth,maskWidth).data;
   makeWater(aura);
   scene.add(new THREE.HemisphereLight(0xfff4d5,0x416f6a,2.2));const sun=new THREE.DirectionalLight(0xffe4ad,2.4);sun.position.set(-35,70,40);scene.add(sun);const sky=new THREE.DirectionalLight(0xc5e6f0,.7);sky.position.set(40,35,-30);scene.add(sky);
+  overview();camera.position.copy(cameraBase);look.copy(cameraTarget);camera.lookAt(look);camera.updateMatrixWorld(true);
   makeTerrain(texture,aura);addGeography();addForests();
-  const landmarks=addLandmarks({THREE,scene,worldPoint,mobile}),creatures=addSeaCreatures({THREE,scene,mobile});
-  landmarkObjects=landmarks.objects;
+  const scenery=addMapScenery({THREE,scene,worldPoint,heightAt,regionAt,mobile});scene.userData.mapScenery=scenery.group?.userData||scenery;
+  const landmarks=addLandmarks({THREE,scene,worldPoint,mobile,heightAt,regionAt,camera}),creatures=addSeaCreatures({THREE,scene,mobile,regionAt,camera});
+  landmarkObjects=landmarks.objects;creatureObjects=creatures.objects;
   const compass=createIllustration({THREE,scene,url:new URL('./illustrations/compass.svg',import.meta.url),position:worldPoint([-16,58.5],.1),width:7,height:7.9});
-  await Promise.all([landmarks.ready,creatures.ready,compass.ready]);
-  canvas.dataset.landmarks=String(landmarks.count);canvas.dataset.creatures=String(creatures.count);canvas.dataset.artwork='sculpted-paper';addLabels(creatures.decorations);makeVehicles();overview();camera.position.copy(cameraBase);look.copy(cameraTarget);camera.lookAt(look);
-  ready=true;canvas.dataset.renderer='webgl';canvas.dataset.quality=mobile?'mobile':'desktop';document.body.classList.add('has-webgl','is-ready');$('#map-loading').hidden=true;
+  await Promise.all([landmarks.ready,creatures.ready,compass.ready,document.fonts.ready]);
+
+  canvas.dataset.landmarks=String(landmarks.count);canvas.dataset.creatures=String(creatures.count);canvas.dataset.artwork='illuminated-atlas';addLabels(creatures.decorations);makeVehicles();overview();camera.position.copy(cameraBase);look.copy(cameraTarget);camera.lookAt(look);
+  ready=true;readyAt=performance.now();canvas.dataset.renderer='webgl';canvas.dataset.quality=mobile?'mobile':'desktop';document.body.classList.add('has-webgl','is-ready');$('#map-loading').hidden=true;
   $$('#terrain-fallback [tabindex]').forEach(el=>el.setAttribute('tabindex','-1'));
   if(!reduced){const final=cameraBase.clone();cameraBase.add(new THREE.Vector3(0,8,8));camera.position.copy(cameraBase);cameraTo(final,cameraTarget.clone(),1800)}wake();
  }catch(error){console.warn('Using static map fallback:',error.message);renderer?.dispose();renderer=null;canvas.hidden=true;$('#map-loading').hidden=true;document.body.classList.add('is-ready','no-webgl');$('#map-labels').hidden=true}
 }
-addEventListener('resize',()=>{if(!renderer)return;camera.aspect=innerWidth/innerHeight;if(!busy)overview();else camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);wake()});
+addEventListener('resize',()=>{labelLayoutDirty=true;if(!renderer)return;camera.aspect=innerWidth/innerHeight;if(!busy)overview();else camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);wake()});
 canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();ready=false;document.body.classList.remove('has-webgl');canvas.hidden=true;$('#map-labels').hidden=true});
 init();

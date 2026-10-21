@@ -1,0 +1,90 @@
+{
+  "width": 3072,
+  "height": 1152,
+  "art": {
+    "serpent_attack": {
+      "rect": [
+        10,
+        39,
+        758,
+        538
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ]
+    },
+    "kraken_attack": {
+      "rect": [
+        781,
+        39,
+        1524,
+        536
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ]
+    },
+    "merchant_ship": {
+      "rect": [
+        1622,
+        10,
+        2222,
+        565
+      ],
+      "sourceSize": [
+        1312,
+        1199
+      ]
+    },
+    "schooner_ship": {
+      "rect": [
+        2335,
+        40,
+        3042,
+        531
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ]
+    },
+    "offshore_rig": {
+      "rect": [
+        41,
+        621,
+        747,
+        1101
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ]
+    },
+    "northern_whale": {
+      "rect": [
+        832,
+        619,
+        1526,
+        1109
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ]
+    },
+    "great_lobster": {
+      "rect": [
+        1553,
+        619,
+        2284,
+        1089
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ]
+    }
+  }
+}

@@ -1,0 +1,944 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "models": [
+      {
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 233952,
+        "unmapped": 0,
+        "visible": 233952,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 9.54835,
+        "bounds": [
+          448.5,
+          190.1,
+          575.6,
+          276.3
+        ]
+      },
+      {
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 248855,
+        "unmapped": 0,
+        "visible": 248855,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 8.0108,
+        "bounds": [
+          480.1,
+          318.7,
+          605.8,
+          401.2
+        ]
+      },
+      {
+        "name": "North Sea platform",
+        "mirror": false,
+        "sampled": 135409,
+        "unmapped": 0,
+        "visible": 135409,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.50028,
+        "bounds": [
+          577.3,
+          450.5,
+          655,
+          500.3
+        ]
+      },
+      {
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 191135,
+        "unmapped": 0,
+        "visible": 191135,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.38962,
+        "bounds": [
+          283.2,
+          271.7,
+          369.5,
+          332.2
+        ]
+      },
+      {
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 144436,
+        "unmapped": 0,
+        "visible": 144436,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.88374,
+        "bounds": [
+          588.3,
+          551.6,
+          666.9,
+          597.9
+        ]
+      },
+      {
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 172929,
+        "unmapped": 0,
+        "visible": 172929,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.37878,
+        "bounds": [
+          382.2,
+          430.8,
+          451.7,
+          490.3
+        ]
+      },
+      {
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 165879,
+        "unmapped": 0,
+        "visible": 165879,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.98693,
+        "bounds": [
+          239.7,
+          399.4,
+          302.2,
+          441.1
+        ]
+      },
+      {
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 172929,
+        "unmapped": 0,
+        "visible": 172929,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.74834,
+        "bounds": [
+          178.7,
+          487.9,
+          241.4,
+          542.6
+        ]
+      },
+      {
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 165879,
+        "unmapped": 0,
+        "visible": 165879,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.64884,
+        "bounds": [
+          112.7,
+          618.5,
+          184.9,
+          664
+        ]
+      },
+      {
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 172929,
+        "unmapped": 0,
+        "visible": 172929,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.11789,
+        "bounds": [
+          296.5,
+          833.8,
+          374.1,
+          892.7
+        ]
+      },
+      {
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 165879,
+        "unmapped": 0,
+        "visible": 165879,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.24312,
+        "bounds": [
+          512.7,
+          521,
+          570.5,
+          558.2
+        ]
+      },
+      {
+        "name": "Baltic merchant",
+        "mirror": false,
+        "sampled": 172929,
+        "unmapped": 0,
+        "visible": 172929,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.48744,
+        "bounds": [
+          1061.6,
+          543.2,
+          1109.1,
+          584.3
+        ]
+      },
+      {
+        "name": "Baltic schooner",
+        "mirror": true,
+        "sampled": 165879,
+        "unmapped": 0,
+        "visible": 165879,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 2.76978,
+        "bounds": [
+          1028.2,
+          419.7,
+          1071.7,
+          448.5
+        ]
+      },
+      {
+        "name": "Barents trader",
+        "mirror": true,
+        "sampled": 172929,
+        "unmapped": 0,
+        "visible": 172929,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.8384,
+        "bounds": [
+          1082.7,
+          192.4,
+          1127.5,
+          232.8
+        ]
+      },
+      {
+        "name": "Arctic schooner",
+        "mirror": false,
+        "sampled": 165879,
+        "unmapped": 0,
+        "visible": 165879,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.85169,
+        "bounds": [
+          899.2,
+          174.2,
+          942.8,
+          204.9
+        ]
+      },
+      {
+        "name": "Greenland Sea passage",
+        "mirror": false,
+        "sampled": 172929,
+        "unmapped": 0,
+        "visible": 172929,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.56821,
+        "bounds": [
+          347.5,
+          190.8,
+          389.3,
+          228.6
+        ]
+      },
+      {
+        "name": "Norwegian Sea sail",
+        "mirror": false,
+        "sampled": 165879,
+        "unmapped": 0,
+        "visible": 165879,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.31074,
+        "bounds": [
+          708.4,
+          229.1,
+          749,
+          257.3
+        ]
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "models": [
+      {
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 233952,
+        "unmapped": 0,
+        "visible": 233952,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 9.54835,
+        "bounds": [
+          474.5,
+          146,
+          572.1,
+          212.2
+        ]
+      },
+      {
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 248855,
+        "unmapped": 0,
+        "visible": 248855,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 8.0108,
+        "bounds": [
+          498.8,
+          244.7,
+          595.3,
+          308.1
+        ]
+      },
+      {
+        "name": "North Sea platform",
+        "mirror": false,
+        "sampled": 135409,
+        "unmapped": 0,
+        "visible": 135409,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.50028,
+        "bounds": [
+          573.4,
+          346,
+          633.1,
+          384.2
+        ]
+      },
+      {
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 191135,
+        "unmapped": 0,
+        "visible": 191135,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.38962,
+        "bounds": [
+          347.6,
+          208.7,
+          413.8,
+          255.1
+        ]
+      },
+      {
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 144436,
+        "unmapped": 0,
+        "visible": 144436,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.88374,
+        "bounds": [
+          581.9,
+          423.7,
+          642.3,
+          459.2
+        ]
+      },
+      {
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 172929,
+        "unmapped": 0,
+        "visible": 172929,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.37878,
+        "bounds": [
+          423.5,
+          330.8,
+          476.9,
+          376.5
+        ]
+      },
+      {
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 165879,
+        "unmapped": 0,
+        "visible": 165879,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.98693,
+        "bounds": [
+          314.1,
+          306.7,
+          362.1,
+          338.7
+        ]
+      },
+      {
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 172929,
+        "unmapped": 0,
+        "visible": 172929,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.74834,
+        "bounds": [
+          267.3,
+          374.7,
+          315.4,
+          416.7
+        ]
+      },
+      {
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 165879,
+        "unmapped": 0,
+        "visible": 165879,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.64884,
+        "bounds": [
+          216.6,
+          475,
+          272,
+          509.9
+        ]
+      },
+      {
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 172929,
+        "unmapped": 0,
+        "visible": 172929,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.11789,
+        "bounds": [
+          357.8,
+          640.4,
+          417.4,
+          685.6
+        ]
+      },
+      {
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 165879,
+        "unmapped": 0,
+        "visible": 165879,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.24312,
+        "bounds": [
+          523.8,
+          400.1,
+          568.2,
+          428.7
+        ]
+      },
+      {
+        "name": "Baltic merchant",
+        "mirror": false,
+        "sampled": 172929,
+        "unmapped": 0,
+        "visible": 172929,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.48744,
+        "bounds": [
+          945.4,
+          417.2,
+          981.8,
+          448.8
+        ]
+      },
+      {
+        "name": "Baltic schooner",
+        "mirror": true,
+        "sampled": 165879,
+        "unmapped": 0,
+        "visible": 165879,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 2.76978,
+        "bounds": [
+          919.7,
+          322.3,
+          953.1,
+          344.5
+        ]
+      },
+      {
+        "name": "Barents trader",
+        "mirror": true,
+        "sampled": 172929,
+        "unmapped": 0,
+        "visible": 172929,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.8384,
+        "bounds": [
+          961.6,
+          147.7,
+          995.9,
+          178.8
+        ]
+      },
+      {
+        "name": "Arctic schooner",
+        "mirror": false,
+        "sampled": 165879,
+        "unmapped": 0,
+        "visible": 165879,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.85169,
+        "bounds": [
+          820.6,
+          133.8,
+          854.1,
+          157.4
+        ]
+      },
+      {
+        "name": "Greenland Sea passage",
+        "mirror": false,
+        "sampled": 172929,
+        "unmapped": 0,
+        "visible": 172929,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.56821,
+        "bounds": [
+          396.9,
+          146.5,
+          429,
+          175.6
+        ]
+      },
+      {
+        "name": "Norwegian Sea sail",
+        "mirror": false,
+        "sampled": 165879,
+        "unmapped": 0,
+        "visible": 165879,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.31074,
+        "bounds": [
+          674.1,
+          176,
+          705.2,
+          197.6
+        ]
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "models": [
+      {
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 58722,
+        "unmapped": 0,
+        "visible": 58722,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.01513,
+        "bounds": [
+          63.7,
+          216.5,
+          130.1,
+          260.6
+        ]
+      },
+      {
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 62478,
+        "unmapped": 0,
+        "visible": 62478,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.73127,
+        "bounds": [
+          13.4,
+          326.6,
+          76.9,
+          367.2
+        ]
+      },
+      {
+        "name": "North Sea platform",
+        "mirror": false,
+        "sampled": 34216,
+        "unmapped": 0,
+        "visible": 34216,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.24252,
+        "bounds": [
+          31.5,
+          407.6,
+          69.9,
+          431.6
+        ]
+      },
+      {
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 47902,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.60223,
+        "bounds": [
+          -165,
+          273.6,
+          -121.4,
+          303.7
+        ]
+      },
+      {
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 36332,
+        "unmapped": 0,
+        "visible": 36332,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.00731,
+        "bounds": [
+          31.9,
+          479.7,
+          73.5,
+          503.4
+        ]
+      },
+      {
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 43334,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.4223,
+        "bounds": [
+          -106.4,
+          391.1,
+          -66.6,
+          424.1
+        ]
+      },
+      {
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 41779,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.28099,
+        "bounds": [
+          -203.8,
+          363.8,
+          -168.2,
+          387.2
+        ]
+      },
+      {
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 43334,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.90534,
+        "bounds": [
+          -248.8,
+          432.8,
+          -213.3,
+          462.9
+        ]
+      },
+      {
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 41779,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.00375,
+        "bounds": [
+          -295.3,
+          526.6,
+          -255.4,
+          551.1
+        ]
+      },
+      {
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 43334,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.38837,
+        "bounds": [
+          -173.3,
+          666.2,
+          -131.5,
+          696.7
+        ]
+      },
+      {
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 41779,
+        "unmapped": 0,
+        "visible": 41779,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 2.67106,
+        "bounds": [
+          53.5,
+          293.7,
+          79.4,
+          311
+        ]
+      },
+      {
+        "name": "Baltic merchant",
+        "mirror": false,
+        "sampled": 43334,
+        "unmapped": 0,
+        "visible": 43334,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 2.8714,
+        "bounds": [
+          359.5,
+          471.1,
+          386,
+          493.5
+        ]
+      },
+      {
+        "name": "Baltic schooner",
+        "mirror": true,
+        "sampled": 41779,
+        "unmapped": 0,
+        "visible": 41779,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 2.28292,
+        "bounds": [
+          343.4,
+          376.7,
+          368.2,
+          392.8
+        ]
+      },
+      {
+        "name": "Barents trader",
+        "mirror": true,
+        "sampled": 43334,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.97919,
+        "bounds": [
+          404.9,
+          201.7,
+          431,
+          225.1
+        ]
+      },
+      {
+        "name": "Arctic schooner",
+        "mirror": false,
+        "sampled": 41779,
+        "unmapped": 0,
+        "visible": 41779,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.17009,
+        "bounds": [
+          276,
+          184.9,
+          301.6,
+          202.8
+        ]
+      },
+      {
+        "name": "Greenland Sea passage",
+        "mirror": false,
+        "sampled": 43334,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.75763,
+        "bounds": [
+          -121.7,
+          199.8,
+          -97,
+          221.8
+        ]
+      },
+      {
+        "name": "Norwegian Sea sail",
+        "mirror": false,
+        "sampled": 41779,
+        "unmapped": 0,
+        "visible": 41779,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 2.72651,
+        "bounds": [
+          139.8,
+          205,
+          162.5,
+          220.8
+        ]
+      }
+    ]
+  }
+]

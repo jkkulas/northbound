@@ -4,311 +4,2481 @@
       "width": 1440,
       "height": 1000
     },
+    "cameraHeight": 65,
     "models": [
       {
-        "name": "Jörmungandr",
-        "mirror": false,
-        "sampled": 233952,
-        "unmapped": 0,
-        "visible": 233952,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 9.54835,
-        "bounds": [
-          448.5,
-          190.1,
-          575.6,
-          276.3
-        ]
-      },
-      {
-        "name": "Kraken",
-        "mirror": false,
-        "sampled": 248855,
-        "unmapped": 0,
-        "visible": 248855,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 8.0108,
-        "bounds": [
-          480.1,
-          318.7,
-          605.8,
-          401.2
-        ]
-      },
-      {
+        "key": "North Sea platform",
+        "asset": "offshore_rig",
+        "drawingCoordinates": [
+          2.4863636363636363,
+          58.72636363636364
+        ],
+        "width": 11.323,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -30.7367828500559,
+          -9.322274252718017,
+          -17.471969319233864,
+          5.505581428347654
+        ],
+        "scale": 1.69,
         "name": "North Sea platform",
         "mirror": false,
-        "sampled": 135409,
+        "sampled": 146300,
         "unmapped": 0,
-        "visible": 135409,
+        "visible": 146300,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.50028,
+        "maxSurfaceGap": 7.56063,
         "bounds": [
-          577.3,
-          450.5,
-          655,
-          500.3
+          545.9,
+          417.9,
+          678.8,
+          503.5
         ]
       },
       {
-        "name": "A northern leviathan",
+        "key": "Jörmungandr",
+        "asset": "serpent_attack",
+        "drawingCoordinates": [
+          -3.0954545454545475,
+          69.98181818181818
+        ],
+        "width": 21.169999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -54.62281354089208,
+          -87.89619544703103,
+          -24.83582745488786,
+          -44.06795405916327
+        ],
+        "scale": 1.45,
+        "name": "Jörmungandr",
         "mirror": false,
-        "sampled": 191135,
+        "sampled": 243572,
         "unmapped": 0,
-        "visible": 191135,
+        "visible": 243572,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 6.38962,
+        "maxSurfaceGap": 13.81586,
         "bounds": [
-          283.2,
-          271.7,
-          369.5,
+          441.6,
+          143.3,
+          625.1,
+          268.3
+        ]
+      },
+      {
+        "key": "Kraken",
+        "asset": "kraken_attack",
+        "drawingCoordinates": [
+          -11.327272727272728,
+          56.152272727272724
+        ],
+        "width": 17.689999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -72.84646374415634,
+          -5.221738918600465,
+          -44.705681886017686,
+          16.842909659421906
+        ],
+        "scale": 1.45,
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 259563,
+        "unmapped": 0,
+        "visible": 259563,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 11.58641,
+        "bounds": [
+          99.2,
+          439.9,
+          325.6,
+          582.4
+        ]
+      },
+      {
+        "key": "A northern leviathan",
+        "asset": "northern_whale",
+        "drawingCoordinates": [
+          -9.031818181818181,
+          63.13181818181818
+        ],
+        "width": 13.339999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -61.94751785212126,
+          -35.77186175208334,
+          -41.827806402832124,
+          -13.897807484495075
+        ],
+        "scale": 1.45,
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 202527,
+        "unmapped": 0,
+        "visible": 202527,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 9.2357,
+        "bounds": [
+          292.5,
+          299,
+          429.5,
+          394
+        ]
+      },
+      {
+        "key": "The great lobster",
+        "asset": "great_lobster",
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "width": 8.844999999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -26.630229585319547,
+          9.483653329614185,
+          -16.700197985008153,
+          18.83490050988435
+        ],
+        "scale": 1.45,
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 154785,
+        "unmapped": 0,
+        "visible": 154785,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.60218,
+        "bounds": [
+          569.9,
+          530.2,
+          684.6,
+          597.8
+        ]
+      },
+      {
+        "key": "Hanseatic trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -2.572727272727274,
+          60.904545454545456
+        ],
+        "width": 8.555,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -41.8659920397389,
+          -20.676191465212312,
+          -29.998486048267253,
+          -4.088005015841787
+        ],
+        "scale": 1.45,
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.76999,
+        "bounds": [
+          449.5,
+          362.1,
+          545.4,
+          446
+        ]
+      },
+      {
+        "key": "Northern schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -23.009090909090908,
+          62.29318181818182
+        ],
+        "width": 8.41,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 0.9806138933764136,
+        "heroOcclusions": [],
+        "footprint": [
+          -90.1590830040936,
+          -22.61717957141836,
+          -75.07602919830771,
+          -10.204116415711752
+        ],
+        "scale": 1.45,
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 173166,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.7518,
+        "bounds": [
+          -11.8,
+          353.5,
+          75.9,
+          413
+        ]
+      },
+      {
+        "key": "Atlantic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -12.3,
+          52.96818181818182
+        ],
+        "width": 7.54,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -64.782094158653,
+          20.55547401747934,
+          -51.927898714014084,
+          30.866923254794713
+        ],
+        "scale": 1.45,
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.85584,
+        "bounds": [
+          66.9,
+          611.8,
+          174.7,
+          701.9
+        ]
+      },
+      {
+        "key": "Irish Sea passage",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -12.2,
+          50.83181818181818
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -63.267496124182415,
+          33.4139111470365,
+          -51.63510616133495,
+          40.27632540161474
+        ],
+        "scale": 1.45,
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.26156,
+        "bounds": [
+          15,
+          727,
+          133.4,
+          799.5
+        ]
+      },
+      {
+        "key": "Channel trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -5.8454545454545475,
+          48.747727272727275
+        ],
+        "width": 6.5249999999999995,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -47.81078673821849,
+          42.51825329405257,
+          -38.22170304105698,
+          49.455497412511995
+        ],
+        "scale": 1.45,
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.94169,
+        "bounds": [
+          193.5,
+          825.5,
+          310,
+          912.9
+        ]
+      },
+      {
+        "key": "North Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          1.8045454545454547,
+          53.66136363636363
+        ],
+        "width": 6.815,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -29.124029000328967,
+          20.836429707453092,
+          -21.229724129237695,
+          27.813872548922816
+        ],
+        "scale": 1.45,
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.67327,
+        "bounds": [
+          524.9,
+          614.2,
+          619,
+          673.6
+        ]
+      },
+      {
+        "key": "Baltic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          7.5,
+          75.4
+        ],
+        "width": 5.51,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -14.926791246261468,
+          -80.97638457896716,
+          -8.954137099465754,
+          -67.93179990302912
+        ],
+        "scale": 1.45,
+        "name": "Open-sea merchant",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.03891,
+        "bounds": [
+          713.5,
+          159.7,
+          755.8,
+          193.8
+        ]
+      },
+      {
+        "key": "Baltic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          4,
+          76.7
+        ],
+        "width": 5.8,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -23.269405247995813,
+          -84.15930328932163,
+          -16.90290057518082,
+          -73.65752103708493
+        ],
+        "scale": 1.45,
+        "name": "Open-sea schooner",
+        "mirror": true,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.99592,
+        "bounds": [
+          654.8,
+          152.1,
+          698.1,
+          178.3
+        ]
+      },
+      {
+        "key": "Barents trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          29.200667511348563,
+          -75.45414503541758,
+          42.960062482141815,
+          -54.718596683723575
+        ],
+        "scale": 1.45,
+        "name": "Barents trader",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.98643,
+        "bounds": [
+          1072.8,
+          173.7,
+          1138.3,
+          232.9
+        ]
+      },
+      {
+        "key": "Arctic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          20.004545454545454,
+          72.11363636363636
+        ],
+        "width": 8.12,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          11.37535592399297,
+          -69.39468455322589,
+          22.59550187146675,
+          -53.45733641294294
+        ],
+        "scale": 1.45,
+        "name": "Arctic schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.55571,
+        "bounds": [
+          929.5,
+          190,
+          996.2,
+          236.9
+        ]
+      },
+      {
+        "key": "Greenland Sea passage",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -17.43181818181818,
+          67.58636363636364
+        ],
+        "width": 7.25,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -76.957518230668,
+          -50.579902514592504,
+          -63.37433631476946,
+          -33.51741149213484
+        ],
+        "scale": 1.45,
+        "name": "Greenland Sea passage",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.59465,
+        "bounds": [
+          199.6,
+          246.3,
+          269.4,
+          307.6
+        ]
+      },
+      {
+        "key": "Norwegian Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          7.1,
+          70.7
+        ],
+        "width": 6.96,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -16.654719745015015,
+          -60.22781882484526,
+          -9.14380536155376,
+          -47.23111495905786
+        ],
+        "scale": 1.45,
+        "name": "Norwegian Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.77132,
+        "bounds": [
+          699.3,
+          216.2,
+          758.1,
+          257.4
+        ]
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "cameraHeight": 45,
+    "models": [
+      {
+        "key": "North Sea platform",
+        "asset": "offshore_rig",
+        "drawingCoordinates": [
+          2.4863636363636363,
+          58.72636363636364
+        ],
+        "width": 11.323,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -31.774561271451134,
+          -16.3489180191161,
+          -17.47351174285929,
+          5.461825247284651
+        ],
+        "scale": 1.69,
+        "name": "North Sea platform",
+        "mirror": false,
+        "sampled": 146300,
+        "unmapped": 0,
+        "visible": 146300,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.56063,
+        "bounds": [
+          527.8,
+          189.1,
+          674.5,
+          289
+        ]
+      },
+      {
+        "key": "Jörmungandr",
+        "asset": "serpent_attack",
+        "drawingCoordinates": [
+          -3.0954545454545475,
+          69.98181818181818
+        ],
+        "width": 21.169999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -60.147418742544914,
+          -113.99361773603323,
+          -24.84064127861878,
+          -44.13373334865511
+        ],
+        "scale": 1.45,
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 243572,
+        "unmapped": 0,
+        "visible": 201229,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 13.81586,
+        "bounds": [
+          420.8,
+          -44.1,
+          618,
+          96.3
+        ]
+      },
+      {
+        "key": "Kraken",
+        "asset": "kraken_attack",
+        "drawingCoordinates": [
+          -11.327272727272728,
+          56.152272727272724
+        ],
+        "width": 17.689999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -79.11086225895133,
+          -16.84875022109273,
+          -44.719322945549365,
+          16.804189950725743
+        ],
+        "scale": 1.45,
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 259563,
+        "unmapped": 0,
+        "visible": 259563,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 11.58641,
+        "bounds": [
+          27.4,
+          187,
+          280.5,
+          356
+        ]
+      },
+      {
+        "key": "A northern leviathan",
+        "asset": "northern_whale",
+        "drawingCoordinates": [
+          -9.031818181818181,
+          63.13181818181818
+        ],
+        "width": 13.339999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -65.74908221806848,
+          -46.8538061947051,
+          -41.84016895889128,
+          -13.950183810288763
+        ],
+        "scale": 1.45,
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 202527,
+        "unmapped": 0,
+        "visible": 202527,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 9.2357,
+        "bounds": [
+          253.5,
+          89,
+          403.1,
+          198
+        ]
+      },
+      {
+        "key": "The great lobster",
+        "asset": "great_lobster",
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "width": 8.844999999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -27.18170716298858,
+          5.356757174654675,
+          -16.701397548647947,
+          18.797065892832265
+        ],
+        "scale": 1.45,
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 154785,
+        "unmapped": 0,
+        "visible": 154785,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.60218,
+        "bounds": [
+          552.5,
+          289,
+          680.4,
+          369.2
+        ]
+      },
+      {
+        "key": "Hanseatic trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -2.572727272727274,
+          60.904545454545456
+        ],
+        "width": 8.555,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -43.651663032683594,
+          -28.665523346623957,
+          -30.005593395548477,
+          -4.136023246208367
+        ],
+        "scale": 1.45,
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.76999,
+        "bounds": [
+          423.3,
+          144,
+          528.7,
+          241.1
+        ]
+      },
+      {
+        "key": "Northern schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -23.009090909090908,
+          62.29318181818182
+        ],
+        "width": 8.41,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 0.9806138933764136,
+        "heroOcclusions": [],
+        "footprint": [
+          -93.58625459698672,
+          -28.314974028529775,
+          -75.10316229692683,
+          -10.254851730271199
+        ],
+        "scale": 1.45,
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 18902,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.7518,
+        "bounds": [
+          -79.2,
+          145.3,
+          16.6,
+          213.7
+        ]
+      },
+      {
+        "key": "Atlantic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -12.3,
+          52.96818181818182
+        ],
+        "width": 7.54,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -67.58466589425188,
+          15.950321869195761,
+          -51.94474819489307,
+          30.834433862552572
+        ],
+        "scale": 1.45,
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 173059,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.85584,
+        "bounds": [
+          -18.4,
+          351.1,
+          104,
+          460
+        ]
+      },
+      {
+        "key": "Irish Sea passage",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -12.2,
+          50.83181818181818
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -65.27058867174946,
+          30.544058208155832,
+          -51.65182557120884,
+          40.24801613553447
+        ],
+        "scale": 1.45,
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 67662,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.26156,
+        "bounds": [
+          -85.3,
+          457.9,
+          49.9,
+          546.9
+        ]
+      },
+      {
+        "key": "Channel trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -5.8454545454545475,
+          48.747727272727275
+        ],
+        "width": 6.5249999999999995,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -49.390137166274,
+          39.64635256812599,
+          -38.23246355622679,
+          49.431265964106935
+        ],
+        "scale": 1.45,
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.94169,
+        "bounds": [
+          109.9,
+          541,
+          245.9,
+          650.5
+        ]
+      },
+      {
+        "key": "North Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          1.8045454545454547,
+          53.66136363636363
+        ],
+        "width": 6.815,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -29.662224659267018,
+          17.877015089016126,
+          -21.232935936655537,
+          27.780026835737914
+        ],
+        "scale": 1.45,
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.67327,
+        "bounds": [
+          500.5,
+          363.7,
+          606.4,
+          435.1
+        ]
+      },
+      {
+        "key": "Baltic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          7.5,
+          75.4
+        ],
+        "width": 5.51,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -14.962676858477671,
+          -88.13872111692305,
+          -8.758759898747549,
+          -68.00818088653915
+        ],
+        "scale": 1.45,
+        "name": "Open-sea merchant",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 187335,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.03891,
+        "bounds": [
+          713.1,
+          -2.5,
+          758.1,
+          37.4
+        ]
+      },
+      {
+        "key": "Baltic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          4,
+          76.7
+        ],
+        "width": 5.8,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -23.54679797371552,
+          -89.79008763983114,
+          -16.904190191964222,
+          -73.73644558682176
+        ],
+        "scale": 1.45,
+        "name": "Open-sea schooner",
+        "mirror": true,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 167785,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.99592,
+        "bounds": [
+          650.6,
+          -5.4,
+          696.7,
+          25.2
+        ]
+      },
+      {
+        "key": "Barents trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          29.219859456560805,
+          -85.58117092807598,
+          46.17445481334288,
+          -54.789107599114345
+        ],
+        "scale": 1.45,
+        "name": "Barents trader",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.98643,
+        "bounds": [
+          1097.4,
+          2.2,
+          1167.7,
+          68.2
+        ]
+      },
+      {
+        "key": "Arctic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          20.004545454545454,
+          72.11363636363636
+        ],
+        "width": 8.12,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          11.386628955801214,
+          -76.89403243070302,
+          24.178263188470964,
+          -53.52728702041978
+        ],
+        "scale": 1.45,
+        "name": "Arctic schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.55571,
+        "bounds": [
+          944.3,
+          19,
+          1015.7,
+          71.3
+        ]
+      },
+      {
+        "key": "Greenland Sea passage",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -17.43181818181818,
+          67.58636363636364
+        ],
+        "width": 7.25,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -80.27696182732937,
+          -58.73014861696589,
+          -63.396270877253684,
+          -33.57850364000319
+        ],
+        "scale": 1.45,
+        "name": "Greenland Sea passage",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.59465,
+        "bounds": [
+          158.3,
+          58.7,
+          233.9,
+          127.8
+        ]
+      },
+      {
+        "key": "Norwegian Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          7.1,
+          70.7
+        ],
+        "width": 6.96,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -16.751405995568987,
+          -66.20907996122222,
+          -8.96694026969865,
+          -47.29829955448923
+        ],
+        "scale": 1.45,
+        "name": "Norwegian Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.77132,
+        "bounds": [
+          697.7,
+          41.5,
+          760.9,
+          87.6
+        ]
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "cameraHeight": 85,
+    "models": [
+      {
+        "key": "North Sea platform",
+        "asset": "offshore_rig",
+        "drawingCoordinates": [
+          2.4863636363636363,
+          58.72636363636364
+        ],
+        "width": 11.323,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -30.23470549015738,
+          -5.922782917720497,
+          -17.47115287013287,
+          5.528742831027785
+        ],
+        "scale": 1.69,
+        "name": "North Sea platform",
+        "mirror": false,
+        "sampled": 146300,
+        "unmapped": 0,
+        "visible": 146300,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.56063,
+        "bounds": [
+          560.9,
+          607,
+          682.3,
+          681.4
+        ]
+      },
+      {
+        "key": "Jörmungandr",
+        "asset": "serpent_attack",
+        "drawingCoordinates": [
+          -3.0954545454545475,
+          69.98181818181818
+        ],
+        "width": 21.169999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -52.2004318035045,
+          -76.45322045818347,
+          -24.83327935980507,
+          -44.03313519302421
+        ],
+        "scale": 1.45,
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 243572,
+        "unmapped": 0,
+        "visible": 243572,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 13.81586,
+        "bounds": [
+          459.7,
+          305.8,
+          631.3,
+          418.1
+        ]
+      },
+      {
+        "key": "Kraken",
+        "asset": "kraken_attack",
+        "drawingCoordinates": [
+          -11.327272727272728,
+          56.152272727272724
+        ],
+        "width": 17.689999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -69.99295131999986,
+          0.07451117294647247,
+          -44.6984612816517,
+          16.86340511265351
+        ],
+        "scale": 1.45,
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 259563,
+        "unmapped": 0,
+        "visible": 259563,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 11.58641,
+        "bounds": [
+          157.6,
+          644.7,
+          362.3,
+          767.1
+        ]
+      },
+      {
+        "key": "A northern leviathan",
+        "asset": "northern_whale",
+        "drawingCoordinates": [
+          -9.031818181818181,
+          63.13181818181818
+        ],
+        "width": 13.339999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -60.15167774298595,
+          -30.536806285039972,
+          -41.821262547052,
+          -13.87008319182884
+        ],
+        "scale": 1.45,
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 202527,
+        "unmapped": 0,
+        "visible": 202527,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 9.2357,
+        "bounds": [
+          325.6,
+          476.4,
+          451.9,
+          560.3
+        ]
+      },
+      {
+        "key": "The great lobster",
+        "asset": "great_lobster",
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "width": 8.844999999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -26.356407237143642,
+          11.532760023317891,
+          -16.699563021539422,
+          18.8549274587553
+        ],
+        "scale": 1.45,
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 154785,
+        "unmapped": 0,
+        "visible": 154785,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.60218,
+        "bounds": [
+          584.1,
+          725.6,
+          687.9,
+          783.7
+        ]
+      },
+      {
+        "key": "Hanseatic trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -2.572727272727274,
+          60.904545454545456
+        ],
+        "width": 8.555,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -41.00458124021796,
+          -16.822123839767045,
+          -29.99472392533633,
+          -4.062587588155125
+        ],
+        "scale": 1.45,
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.76999,
+        "bounds": [
+          471.4,
+          544.6,
+          559.4,
+          618.1
+        ]
+      },
+      {
+        "key": "Northern schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -23.009090909090908,
+          62.29318181818182
+        ],
+        "width": 8.41,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 0.9806138933764136,
+        "heroOcclusions": [],
+        "footprint": [
+          -88.4606627613656,
+          -19.79349561438248,
+          -75.06166687035736,
+          -10.177260757366383
+        ],
+        "scale": 1.45,
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.7518,
+        "bounds": [
+          45.1,
+          529,
+          125.9,
+          581.4
+        ]
+      },
+      {
+        "key": "Atlantic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -12.3,
+          52.96818181818182
+        ],
+        "width": 7.54,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -63.41316995080465,
+          22.80487380144706,
+          -51.91897980011123,
+          30.88412082273433
+        ],
+        "scale": 1.45,
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.85584,
+        "bounds": [
+          134.5,
+          818.3,
+          230.8,
+          894.6
+        ]
+      },
+      {
+        "key": "Irish Sea passage",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -12.2,
+          50.83181818181818
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -62.268605491109454,
+          34.845032850537734,
+          -51.62625609774965,
+          40.29131030878271
+        ],
+        "scale": 1.45,
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.26156,
+        "bounds": [
+          93,
+          935.9,
+          198.4,
+          996.6
+        ]
+      },
+      {
+        "key": "Channel trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -5.8454545454545475,
+          48.747727272727275
+        ],
+        "width": 6.5249999999999995,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -47.03001250580096,
+          43.938018056218354,
+          -38.216007191496864,
+          49.468323813716864
+        ],
+        "scale": 1.45,
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.94169,
+        "bounds": [
+          257,
+          1040.7,
+          358.9,
+          1112.9
+        ]
+      },
+      {
+        "key": "North Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          1.8045454545454547,
+          53.66136363636363
+        ],
+        "width": 6.815,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -28.853669903554767,
+          22.323072436604278,
+          -21.228024027374808,
+          27.831788056470558
+        ],
+        "scale": 1.45,
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.67327,
+        "bounds": [
+          544.4,
+          814.1,
+          629.2,
+          864.6
+        ]
+      },
+      {
+        "key": "Baltic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          7.5,
+          75.4
+        ],
+        "width": 5.51,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -14.90884595207491,
+          -77.39471971945821,
+          -9.051839246028297,
+          -67.89136925598098
+        ],
+        "scale": 1.45,
+        "name": "Open-sea merchant",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.03891,
+        "bounds": [
+          713.9,
+          302.9,
+          753.7,
           332.2
         ]
       },
       {
-        "name": "The great lobster",
-        "mirror": false,
-        "sampled": 144436,
-        "unmapped": 0,
-        "visible": 144436,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.88374,
-        "bounds": [
-          588.3,
-          551.6,
-          666.9,
-          597.9
-        ]
-      },
-      {
-        "name": "Hanseatic trader",
-        "mirror": false,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 5.37878,
-        "bounds": [
-          382.2,
-          430.8,
-          451.7,
-          490.3
-        ]
-      },
-      {
-        "name": "Northern schooner",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.98693,
-        "bounds": [
-          239.7,
-          399.4,
-          302.2,
-          441.1
-        ]
-      },
-      {
-        "name": "Atlantic merchant",
+        "key": "Baltic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          4,
+          76.7
+        ],
+        "width": 5.8,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -23.12890518799273,
+          -81.30729793460861,
+          -16.90221794399903,
+          -73.61574400738715
+        ],
+        "scale": 1.45,
+        "name": "Open-sea schooner",
         "mirror": true,
-        "sampled": 172929,
+        "sampled": 176374,
         "unmapped": 0,
-        "visible": 172929,
+        "visible": 176374,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.74834,
+        "maxSurfaceGap": 3.99592,
         "bounds": [
-          178.7,
-          487.9,
-          241.4,
-          542.6
+          658.5,
+          291.5,
+          699.3,
+          314.2
         ]
       },
       {
-        "name": "Irish Sea passage",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.64884,
-        "bounds": [
-          112.7,
-          618.5,
-          184.9,
-          664
-        ]
-      },
-      {
-        "name": "Channel trader",
-        "mirror": false,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.11789,
-        "bounds": [
-          296.5,
-          833.8,
-          374.1,
-          892.7
-        ]
-      },
-      {
-        "name": "North Sea sail",
-        "mirror": false,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.24312,
-        "bounds": [
-          512.7,
-          521,
-          570.5,
-          558.2
-        ]
-      },
-      {
-        "name": "Baltic merchant",
-        "mirror": false,
-        "sampled": 172929,
-        "unmapped": 0,
-        "visible": 172929,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.48744,
-        "bounds": [
-          1061.6,
-          543.2,
-          1109.1,
-          584.3
-        ]
-      },
-      {
-        "name": "Baltic schooner",
-        "mirror": true,
-        "sampled": 165879,
-        "unmapped": 0,
-        "visible": 165879,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 2.76978,
-        "bounds": [
-          1028.2,
-          419.7,
-          1071.7,
-          448.5
-        ]
-      },
-      {
+        "key": "Barents trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          29.190508663845037,
+          -70.51623656761237,
+          41.392734099719824,
+          -54.68127323219912
+        ],
+        "scale": 1.45,
         "name": "Barents trader",
         "mirror": true,
-        "sampled": 172929,
+        "sampled": 188506,
         "unmapped": 0,
-        "visible": 172929,
+        "visible": 188506,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.8384,
+        "maxSurfaceGap": 6.98643,
         "bounds": [
-          1082.7,
-          192.4,
-          1127.5,
-          232.8
+          1051.2,
+          323.9,
+          1112.5,
+          377.4
         ]
       },
       {
+        "key": "Arctic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          20.004545454545454,
+          72.11363636363636
+        ],
+        "width": 8.12,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          11.369388784666207,
+          -65.66886437539026,
+          21.809155625374764,
+          -53.420309548483914
+        ],
+        "scale": 1.45,
         "name": "Arctic schooner",
         "mirror": false,
-        "sampled": 165879,
+        "sampled": 176374,
         "unmapped": 0,
-        "visible": 165879,
+        "visible": 176374,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.85169,
+        "maxSurfaceGap": 5.55571,
         "bounds": [
-          899.2,
-          174.2,
-          942.8,
-          204.9
+          916.5,
+          339.6,
+          979.1,
+          382
         ]
       },
       {
+        "key": "Greenland Sea passage",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -17.43181818181818,
+          67.58636363636364
+        ],
+        "width": 7.25,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -75.33047348538025,
+          -46.585011591605905,
+          -63.36272572120223,
+          -33.485073664582615
+        ],
+        "scale": 1.45,
         "name": "Greenland Sea passage",
         "mirror": false,
-        "sampled": 172929,
+        "sampled": 188506,
         "unmapped": 0,
-        "visible": 172929,
+        "visible": 188506,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.56821,
+        "maxSurfaceGap": 6.59465,
         "bounds": [
-          347.5,
-          190.8,
-          389.3,
-          228.6
+          235.2,
+          408.1,
+          300,
+          462.9
         ]
       },
       {
+        "key": "Norwegian Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          7.1,
+          70.7
+        ],
+        "width": 6.96,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -16.60620880122901,
+          -57.22680657032362,
+          -9.232544892557716,
+          -47.19555222417037
+        ],
+        "scale": 1.45,
         "name": "Norwegian Sea sail",
         "mirror": false,
-        "sampled": 165879,
+        "sampled": 176374,
         "unmapped": 0,
-        "visible": 165879,
+        "visible": 176374,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.31074,
+        "maxSurfaceGap": 4.77132,
         "bounds": [
-          708.4,
-          229.1,
-          749,
-          257.3
+          700.6,
+          368.4,
+          755.7,
+          405.6
+        ]
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "cameraHeight": 115,
+    "models": [
+      {
+        "key": "North Sea platform",
+        "asset": "offshore_rig",
+        "drawingCoordinates": [
+          2.4863636363636363,
+          58.72636363636364
+        ],
+        "width": 11.323,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -29.83191062705584,
+          -3.1955186428047995,
+          -17.470460732747252,
+          5.548377701932381
+        ],
+        "scale": 1.69,
+        "name": "North Sea platform",
+        "mirror": false,
+        "sampled": 146300,
+        "unmapped": 0,
+        "visible": 146300,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.56063,
+        "bounds": [
+          579.1,
+          836,
+          686.6,
+          897.8
+        ]
+      },
+      {
+        "key": "Jörmungandr",
+        "asset": "serpent_attack",
+        "drawingCoordinates": [
+          -3.0954545454545475,
+          69.98181818181818
+        ],
+        "width": 21.169999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -50.36149722699043,
+          -67.76636403072743,
+          -24.831119235106293,
+          -44.003617812280424
+        ],
+        "scale": 1.45,
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 243572,
+        "unmapped": 0,
+        "visible": 243572,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 13.81586,
+        "bounds": [
+          482.9,
+          512.7,
+          639.2,
+          609.8
+        ]
+      },
+      {
+        "key": "Kraken",
+        "asset": "kraken_attack",
+        "drawingCoordinates": [
+          -11.327272727272728,
+          56.152272727272724
+        ],
+        "width": 17.689999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -67.78117295957213,
+          4.1796733740045795,
+          -44.69234007922218,
+          16.88077994885235
+        ],
+        "scale": 1.45,
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 259563,
+        "unmapped": 0,
+        "visible": 259563,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 11.58641,
+        "bounds": [
+          227.1,
+          888,
+          406.1,
+          988.3
+        ]
+      },
+      {
+        "key": "A northern leviathan",
+        "asset": "northern_whale",
+        "drawingCoordinates": [
+          -9.031818181818181,
+          63.13181818181818
+        ],
+        "width": 13.339999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -58.730789128025364,
+          -26.39477232891531,
+          -41.81571505215105,
+          -13.846580171993736
+        ],
+        "scale": 1.45,
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 202527,
+        "unmapped": 0,
+        "visible": 202527,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 9.2357,
+        "bounds": [
+          366.5,
+          696.4,
+          479.7,
+          767.4
+        ]
+      },
+      {
+        "key": "The great lobster",
+        "asset": "great_lobster",
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "width": 8.844999999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -26.13331268141936,
+          13.202253220307824,
+          -16.699024736966972,
+          18.871905124623197
+        ],
+        "scale": 1.45,
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 154785,
+        "unmapped": 0,
+        "visible": 145399,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.60218,
+        "bounds": [
+          600.9,
+          958,
+          691.9,
+          1005.6
+        ]
+      },
+      {
+        "key": "Hanseatic trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -2.572727272727274,
+          60.904545454545456
+        ],
+        "width": 8.555,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -40.314681690496826,
+          -13.735420584051823,
+          -29.991534619445297,
+          -4.041040192351119
+        ],
+        "scale": 1.45,
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.76999,
+        "bounds": [
+          498.3,
+          768.4,
+          576.6,
+          830.1
+        ]
+      },
+      {
+        "key": "Northern schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -23.009090909090908,
+          62.29318181818182
+        ],
+        "width": 8.41,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 0.9806138933764136,
+        "heroOcclusions": [],
+        "footprint": [
+          -87.07848180681552,
+          -17.495570702221244,
+          -75.04949133596244,
+          -10.154494114450799
+        ],
+        "scale": 1.45,
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.7518,
+        "bounds": [
+          115.5,
+          746.1,
+          188,
+          790.4
+        ]
+      },
+      {
+        "key": "Atlantic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -12.3,
+          52.96818181818182
+        ],
+        "width": 7.54,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -62.308719442129494,
+          24.619693585751847,
+          -51.911418871029426,
+          30.89869990635229
+        ],
+        "scale": 1.45,
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.85584,
+        "bounds": [
+          213.3,
+          1058.1,
+          296.3,
+          1119.7
+        ]
+      },
+      {
+        "key": "Irish Sea passage",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -12.2,
+          50.83181818181818
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -61.45264374267493,
+          36.0140703094426,
+          -51.618753535906016,
+          40.30401362912221
+        ],
+        "scale": 1.45,
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.26156,
+        "bounds": [
+          182.3,
+          1174.1,
+          272.7,
+          1222.5
+        ]
+      },
+      {
+        "key": "Channel trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -5.8454545454545475,
+          48.747727272727275
+        ],
+        "width": 6.5249999999999995,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -46.39554781047559,
+          45.091732638309615,
+          -38.21117858623998,
+          49.47919728002439
+        ],
+        "scale": 1.45,
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.94169,
+        "bounds": [
+          327.8,
+          1280.4,
+          413.7,
+          1337.1
+        ]
+      },
+      {
+        "key": "North Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          1.8045454545454547,
+          53.66136363636363
+        ],
+        "width": 6.815,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -28.631837848785977,
+          23.54287608016402,
+          -21.22658278130418,
+          27.846975766936765
+        ],
+        "scale": 1.45,
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.67327,
+        "bounds": [
+          567.3,
+          1048.1,
+          641,
+          1089.1
+        ]
+      },
+      {
+        "key": "Baltic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          7.5,
+          75.4
+        ],
+        "width": 5.51,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -14.894162204673886,
+          -74.4640203658887,
+          -9.131784084254297,
+          -67.85709453845405
+        ],
+        "scale": 1.45,
+        "name": "Open-sea merchant",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.03891,
+        "bounds": [
+          714.4,
+          488.5,
+          751,
+          512.3
+        ]
+      },
+      {
+        "key": "Baltic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          4,
+          76.7
+        ],
+        "width": 5.8,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -23.013041342011054,
+          -78.9553821478815,
+          -16.90163924955184,
+          -73.58032790605569
+        ],
+        "scale": 1.45,
+        "name": "Open-sea schooner",
+        "mirror": true,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.99592,
+        "bounds": [
+          663.3,
+          473.1,
+          700.9,
+          491.6
+        ]
+      },
+      {
+        "key": "Barents trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          29.181896592206847,
+          -66.53645972099187,
+          40.129523724703155,
+          -54.64963261172505
+        ],
+        "scale": 1.45,
+        "name": "Barents trader",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.98643,
+        "bounds": [
+          1023.3,
+          517.2,
+          1079.2,
+          563.8
+        ]
+      },
+      {
+        "key": "Arctic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          20.004545454545454,
+          72.11363636363636
+        ],
+        "width": 8.12,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          11.364330195949666,
+          -62.63219875690132,
+          21.168257649691334,
+          -53.388920357029775
+        ],
+        "scale": 1.45,
+        "name": "Arctic schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.55571,
+        "bounds": [
+          899.8,
+          532.1,
+          957.1,
+          569
+        ]
+      },
+      {
+        "key": "Greenland Sea passage",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -17.43181818181818,
+          67.58636363636364
+        ],
+        "width": 7.25,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -74.01505469931391,
+          -43.35525741084231,
+          -63.352882944882246,
+          -33.457659561985054
+        ],
+        "scale": 1.45,
+        "name": "Greenland Sea passage",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.59465,
+        "bounds": [
+          280.4,
+          612.8,
+          338.9,
+          659.9
+        ]
+      },
+      {
+        "key": "Norwegian Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          7.1,
+          70.7
+        ],
+        "width": 6.96,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -16.566434445242585,
+          -54.76626219795469,
+          -9.305302860569828,
+          -47.16540423539604
+        ],
+        "scale": 1.45,
+        "name": "Norwegian Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.77132,
+        "bounds": [
+          702.3,
+          563.5,
+          752.6,
+          595.7
         ]
       }
     ]
@@ -318,311 +2488,2481 @@
       "width": 1366,
       "height": 768
     },
+    "cameraHeight": 65,
     "models": [
       {
-        "name": "Jörmungandr",
-        "mirror": false,
-        "sampled": 233952,
-        "unmapped": 0,
-        "visible": 233952,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 9.54835,
-        "bounds": [
-          474.5,
-          146,
-          572.1,
-          212.2
-        ]
-      },
-      {
-        "name": "Kraken",
-        "mirror": false,
-        "sampled": 248855,
-        "unmapped": 0,
-        "visible": 248855,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 8.0108,
-        "bounds": [
-          498.8,
-          244.7,
-          595.3,
-          308.1
-        ]
-      },
-      {
+        "key": "North Sea platform",
+        "asset": "offshore_rig",
+        "drawingCoordinates": [
+          2.4863636363636363,
+          58.72636363636364
+        ],
+        "width": 11.323,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -30.7367828500559,
+          -9.322274252718017,
+          -17.471969319233864,
+          5.505581428347654
+        ],
+        "scale": 1.69,
         "name": "North Sea platform",
         "mirror": false,
-        "sampled": 135409,
+        "sampled": 146300,
         "unmapped": 0,
-        "visible": 135409,
+        "visible": 146300,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.50028,
+        "maxSurfaceGap": 7.56063,
         "bounds": [
-          573.4,
-          346,
-          633.1,
-          384.2
+          549.3,
+          321,
+          651.3,
+          386.7
         ]
       },
       {
+        "key": "Jörmungandr",
+        "asset": "serpent_attack",
+        "drawingCoordinates": [
+          -3.0954545454545475,
+          69.98181818181818
+        ],
+        "width": 21.169999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -54.62281354089208,
+          -87.89619544703103,
+          -24.83582745488786,
+          -44.06795405916327
+        ],
+        "scale": 1.45,
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 243572,
+        "unmapped": 0,
+        "visible": 243572,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 13.81586,
+        "bounds": [
+          469.2,
+          110,
+          610.1,
+          206
+        ]
+      },
+      {
+        "key": "Kraken",
+        "asset": "kraken_attack",
+        "drawingCoordinates": [
+          -11.327272727272728,
+          56.152272727272724
+        ],
+        "width": 17.689999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -72.84646374415634,
+          -5.221738918600465,
+          -44.705681886017686,
+          16.842909659421906
+        ],
+        "scale": 1.45,
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 259563,
+        "unmapped": 0,
+        "visible": 259563,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 11.58641,
+        "bounds": [
+          206.3,
+          337.9,
+          380.1,
+          447.3
+        ]
+      },
+      {
+        "key": "A northern leviathan",
+        "asset": "northern_whale",
+        "drawingCoordinates": [
+          -9.031818181818181,
+          63.13181818181818
+        ],
+        "width": 13.339999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -61.94751785212126,
+          -35.77186175208334,
+          -41.827806402832124,
+          -13.897807484495075
+        ],
+        "scale": 1.45,
         "name": "A northern leviathan",
         "mirror": false,
-        "sampled": 191135,
+        "sampled": 202527,
         "unmapped": 0,
-        "visible": 191135,
+        "visible": 202527,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 6.38962,
+        "maxSurfaceGap": 9.2357,
         "bounds": [
-          347.6,
-          208.7,
-          413.8,
-          255.1
+          354.7,
+          229.6,
+          459.9,
+          302.6
         ]
       },
       {
+        "key": "The great lobster",
+        "asset": "great_lobster",
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "width": 8.844999999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -26.630229585319547,
+          9.483653329614185,
+          -16.700197985008153,
+          18.83490050988435
+        ],
+        "scale": 1.45,
         "name": "The great lobster",
         "mirror": false,
-        "sampled": 144436,
+        "sampled": 154785,
         "unmapped": 0,
-        "visible": 144436,
+        "visible": 154785,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.88374,
+        "maxSurfaceGap": 5.60218,
         "bounds": [
-          581.9,
-          423.7,
-          642.3,
-          459.2
+          567.7,
+          407.2,
+          655.8,
+          459.1
         ]
       },
       {
+        "key": "Hanseatic trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -2.572727272727274,
+          60.904545454545456
+        ],
+        "width": 8.555,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -41.8659920397389,
+          -20.676191465212312,
+          -29.998486048267253,
+          -4.088005015841787
+        ],
+        "scale": 1.45,
         "name": "Hanseatic trader",
         "mirror": false,
-        "sampled": 172929,
+        "sampled": 188506,
         "unmapped": 0,
-        "visible": 172929,
+        "visible": 188506,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 5.37878,
+        "maxSurfaceGap": 7.76999,
         "bounds": [
-          423.5,
-          330.8,
-          476.9,
-          376.5
+          475.2,
+          278.1,
+          548.9,
+          342.5
         ]
       },
       {
+        "key": "Northern schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -23.009090909090908,
+          62.29318181818182
+        ],
+        "width": 8.41,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -90.1590830040936,
+          -22.61717957141836,
+          -75.07602919830771,
+          -10.204116415711752
+        ],
+        "scale": 1.45,
         "name": "Northern schooner",
         "mirror": false,
-        "sampled": 165879,
+        "sampled": 176374,
         "unmapped": 0,
-        "visible": 165879,
+        "visible": 176374,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.98693,
+        "maxSurfaceGap": 5.7518,
         "bounds": [
-          314.1,
-          306.7,
-          362.1,
-          338.7
+          121,
+          271.5,
+          188.3,
+          317.2
         ]
       },
       {
+        "key": "Atlantic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -12.3,
+          52.96818181818182
+        ],
+        "width": 7.54,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -64.782094158653,
+          20.55547401747934,
+          -51.927898714014084,
+          30.866923254794713
+        ],
+        "scale": 1.45,
         "name": "Atlantic merchant",
         "mirror": true,
-        "sampled": 172929,
+        "sampled": 188506,
         "unmapped": 0,
-        "visible": 172929,
+        "visible": 188506,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.74834,
+        "maxSurfaceGap": 6.85584,
         "bounds": [
-          267.3,
-          374.7,
-          315.4,
-          416.7
+          181.4,
+          469.9,
+          264.2,
+          539.1
         ]
       },
       {
+        "key": "Irish Sea passage",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -12.2,
+          50.83181818181818
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -63.267496124182415,
+          33.4139111470365,
+          -51.63510616133495,
+          40.27632540161474
+        ],
+        "scale": 1.45,
         "name": "Irish Sea passage",
         "mirror": false,
-        "sampled": 165879,
+        "sampled": 176374,
         "unmapped": 0,
-        "visible": 165879,
+        "visible": 176374,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.64884,
+        "maxSurfaceGap": 5.26156,
         "bounds": [
-          216.6,
-          475,
-          272,
-          509.9
+          141.5,
+          558.4,
+          232.5,
+          614
         ]
       },
       {
+        "key": "Channel trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -5.8454545454545475,
+          48.747727272727275
+        ],
+        "width": 6.5249999999999995,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -47.81078673821849,
+          42.51825329405257,
+          -38.22170304105698,
+          49.455497412511995
+        ],
+        "scale": 1.45,
         "name": "Channel trader",
         "mirror": false,
-        "sampled": 172929,
+        "sampled": 188506,
         "unmapped": 0,
-        "visible": 172929,
+        "visible": 188506,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.11789,
+        "maxSurfaceGap": 5.94169,
         "bounds": [
-          357.8,
-          640.4,
-          417.4,
-          685.6
+          278.7,
+          634,
+          368.2,
+          701.1
         ]
       },
       {
+        "key": "North Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          1.8045454545454547,
+          53.66136363636363
+        ],
+        "width": 6.815,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -29.124029000328967,
+          20.836429707453092,
+          -21.229724129237695,
+          27.813872548922816
+        ],
+        "scale": 1.45,
         "name": "North Sea sail",
         "mirror": false,
-        "sampled": 165879,
+        "sampled": 176374,
         "unmapped": 0,
-        "visible": 165879,
+        "visible": 176374,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.24312,
+        "maxSurfaceGap": 4.67327,
         "bounds": [
-          523.8,
-          400.1,
-          568.2,
-          428.7
+          533.2,
+          471.7,
+          605.5,
+          517.3
         ]
       },
       {
-        "name": "Baltic merchant",
+        "key": "Baltic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          7.5,
+          75.4
+        ],
+        "width": 5.51,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -14.926791246261468,
+          -80.97638457896716,
+          -8.954137099465754,
+          -67.93179990302912
+        ],
+        "scale": 1.45,
+        "name": "Open-sea merchant",
         "mirror": false,
-        "sampled": 172929,
+        "sampled": 188506,
         "unmapped": 0,
-        "visible": 172929,
+        "visible": 188506,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.48744,
+        "maxSurfaceGap": 5.03891,
         "bounds": [
-          945.4,
-          417.2,
-          981.8,
-          448.8
+          678,
+          122.7,
+          710.5,
+          148.9
         ]
       },
       {
-        "name": "Baltic schooner",
+        "key": "Baltic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          4,
+          76.7
+        ],
+        "width": 5.8,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -23.269405247995813,
+          -84.15930328932163,
+          -16.90290057518082,
+          -73.65752103708493
+        ],
+        "scale": 1.45,
+        "name": "Open-sea schooner",
         "mirror": true,
-        "sampled": 165879,
+        "sampled": 176374,
         "unmapped": 0,
-        "visible": 165879,
+        "visible": 176374,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 2.76978,
+        "maxSurfaceGap": 3.99592,
         "bounds": [
-          919.7,
-          322.3,
-          953.1,
-          344.5
+          632.9,
+          116.8,
+          666.2,
+          137
         ]
       },
       {
+        "key": "Barents trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          29.200667511348563,
+          -75.45414503541758,
+          42.960062482141815,
+          -54.718596683723575
+        ],
+        "scale": 1.45,
         "name": "Barents trader",
         "mirror": true,
-        "sampled": 172929,
+        "sampled": 188506,
         "unmapped": 0,
-        "visible": 172929,
+        "visible": 188506,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.8384,
+        "maxSurfaceGap": 6.98643,
         "bounds": [
-          961.6,
-          147.7,
-          995.9,
-          178.8
+          953.9,
+          133.4,
+          1004.2,
+          178.9
         ]
       },
       {
+        "key": "Arctic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          20.004545454545454,
+          72.11363636363636
+        ],
+        "width": 8.12,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          11.37535592399297,
+          -69.39468455322589,
+          22.59550187146675,
+          -53.45733641294294
+        ],
+        "scale": 1.45,
         "name": "Arctic schooner",
         "mirror": false,
-        "sampled": 165879,
+        "sampled": 176374,
         "unmapped": 0,
-        "visible": 165879,
+        "visible": 176374,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.85169,
+        "maxSurfaceGap": 5.55571,
         "bounds": [
-          820.6,
-          133.8,
-          854.1,
-          157.4
+          843.9,
+          145.9,
+          895.1,
+          181.9
         ]
       },
       {
+        "key": "Greenland Sea passage",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -17.43181818181818,
+          67.58636363636364
+        ],
+        "width": 7.25,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -76.957518230668,
+          -50.579902514592504,
+          -63.37433631476946,
+          -33.51741149213484
+        ],
+        "scale": 1.45,
         "name": "Greenland Sea passage",
         "mirror": false,
-        "sampled": 172929,
+        "sampled": 188506,
         "unmapped": 0,
-        "visible": 172929,
+        "visible": 188506,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.56821,
+        "maxSurfaceGap": 6.59465,
         "bounds": [
-          396.9,
-          146.5,
-          429,
-          175.6
+          283.3,
+          189.2,
+          336.9,
+          236.2
         ]
       },
       {
+        "key": "Norwegian Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          7.1,
+          70.7
+        ],
+        "width": 6.96,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -16.654719745015015,
+          -60.22781882484526,
+          -9.14380536155376,
+          -47.23111495905786
+        ],
+        "scale": 1.45,
         "name": "Norwegian Sea sail",
         "mirror": false,
-        "sampled": 165879,
+        "sampled": 176374,
         "unmapped": 0,
-        "visible": 165879,
+        "visible": 176374,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.31074,
+        "maxSurfaceGap": 4.77132,
         "bounds": [
-          674.1,
-          176,
-          705.2,
-          197.6
+          667.1,
+          166,
+          712.3,
+          197.7
+        ]
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "cameraHeight": 45,
+    "models": [
+      {
+        "key": "North Sea platform",
+        "asset": "offshore_rig",
+        "drawingCoordinates": [
+          2.4863636363636363,
+          58.72636363636364
+        ],
+        "width": 11.323,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -31.774561271451134,
+          -16.3489180191161,
+          -17.47351174285929,
+          5.461825247284651
+        ],
+        "scale": 1.69,
+        "name": "North Sea platform",
+        "mirror": false,
+        "sampled": 146300,
+        "unmapped": 0,
+        "visible": 146300,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.56063,
+        "bounds": [
+          535.4,
+          145.2,
+          648.1,
+          222
+        ]
+      },
+      {
+        "key": "Jörmungandr",
+        "asset": "serpent_attack",
+        "drawingCoordinates": [
+          -3.0954545454545475,
+          69.98181818181818
+        ],
+        "width": 21.169999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -60.147418742544914,
+          -113.99361773603323,
+          -24.84064127861878,
+          -44.13373334865511
+        ],
+        "scale": 1.45,
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 243572,
+        "unmapped": 0,
+        "visible": 201229,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 13.81586,
+        "bounds": [
+          453.2,
+          -33.8,
+          604.6,
+          73.9
+        ]
+      },
+      {
+        "key": "Kraken",
+        "asset": "kraken_attack",
+        "drawingCoordinates": [
+          -11.327272727272728,
+          56.152272727272724
+        ],
+        "width": 17.689999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -79.11086225895133,
+          -16.84875022109273,
+          -44.719322945549365,
+          16.804189950725743
+        ],
+        "scale": 1.45,
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 259563,
+        "unmapped": 0,
+        "visible": 259563,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 11.58641,
+        "bounds": [
+          151.1,
+          143.6,
+          345.5,
+          273.4
+        ]
+      },
+      {
+        "key": "A northern leviathan",
+        "asset": "northern_whale",
+        "drawingCoordinates": [
+          -9.031818181818181,
+          63.13181818181818
+        ],
+        "width": 13.339999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -65.74908221806848,
+          -46.8538061947051,
+          -41.84016895889128,
+          -13.950183810288763
+        ],
+        "scale": 1.45,
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 202527,
+        "unmapped": 0,
+        "visible": 202527,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 9.2357,
+        "bounds": [
+          324.7,
+          68.4,
+          439.6,
+          152.1
+        ]
+      },
+      {
+        "key": "The great lobster",
+        "asset": "great_lobster",
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "width": 8.844999999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -27.18170716298858,
+          5.356757174654675,
+          -16.701397548647947,
+          18.797065892832265
+        ],
+        "scale": 1.45,
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 154785,
+        "unmapped": 0,
+        "visible": 154785,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.60218,
+        "bounds": [
+          554.3,
+          222,
+          652.6,
+          283.6
+        ]
+      },
+      {
+        "key": "Hanseatic trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -2.572727272727274,
+          60.904545454545456
+        ],
+        "width": 8.555,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -43.651663032683594,
+          -28.665523346623957,
+          -30.005593395548477,
+          -4.136023246208367
+        ],
+        "scale": 1.45,
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.76999,
+        "bounds": [
+          455.2,
+          110.6,
+          536.1,
+          185.1
+        ]
+      },
+      {
+        "key": "Northern schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -23.009090909090908,
+          62.29318181818182
+        ],
+        "width": 8.41,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -93.58625459698672,
+          -28.314974028529775,
+          -75.10316229692683,
+          -10.254851730271199
+        ],
+        "scale": 1.45,
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.7518,
+        "bounds": [
+          69.2,
+          111.6,
+          142.8,
+          164.1
+        ]
+      },
+      {
+        "key": "Atlantic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -12.3,
+          52.96818181818182
+        ],
+        "width": 7.54,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -67.58466589425188,
+          15.950321869195761,
+          -51.94474819489307,
+          30.834433862552572
+        ],
+        "scale": 1.45,
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.85584,
+        "bounds": [
+          115.9,
+          269.6,
+          209.9,
+          353.2
+        ]
+      },
+      {
+        "key": "Irish Sea passage",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -12.2,
+          50.83181818181818
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -65.27058867174946,
+          30.544058208155832,
+          -51.65182557120884,
+          40.24801613553447
+        ],
+        "scale": 1.45,
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.26156,
+        "bounds": [
+          64.5,
+          351.7,
+          168.3,
+          420
+        ]
+      },
+      {
+        "key": "Channel trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -5.8454545454545475,
+          48.747727272727275
+        ],
+        "width": 6.5249999999999995,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -49.390137166274,
+          39.64635256812599,
+          -38.23246355622679,
+          49.431265964106935
+        ],
+        "scale": 1.45,
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.94169,
+        "bounds": [
+          214.5,
+          415.5,
+          318.9,
+          499.6
+        ]
+      },
+      {
+        "key": "North Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          1.8045454545454547,
+          53.66136363636363
+        ],
+        "width": 6.815,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -29.662224659267018,
+          17.877015089016126,
+          -21.232935936655537,
+          27.780026835737914
+        ],
+        "scale": 1.45,
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.67327,
+        "bounds": [
+          514.4,
+          279.3,
+          595.7,
+          334.2
+        ]
+      },
+      {
+        "key": "Baltic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          7.5,
+          75.4
+        ],
+        "width": 5.51,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -14.962676858477671,
+          -88.13872111692305,
+          -8.758759898747549,
+          -68.00818088653915
+        ],
+        "scale": 1.45,
+        "name": "Open-sea merchant",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 187335,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.03891,
+        "bounds": [
+          677.7,
+          -1.9,
+          712.3,
+          28.7
+        ]
+      },
+      {
+        "key": "Baltic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          4,
+          76.7
+        ],
+        "width": 5.8,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -23.54679797371552,
+          -89.79008763983114,
+          -16.904190191964222,
+          -73.73644558682176
+        ],
+        "scale": 1.45,
+        "name": "Open-sea schooner",
+        "mirror": true,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 167785,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.99592,
+        "bounds": [
+          629.7,
+          -4.1,
+          665.1,
+          19.4
+        ]
+      },
+      {
+        "key": "Barents trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          29.219859456560805,
+          -85.58117092807598,
+          46.17445481334288,
+          -54.789107599114345
+        ],
+        "scale": 1.45,
+        "name": "Barents trader",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.98643,
+        "bounds": [
+          972.9,
+          1.7,
+          1026.8,
+          52.3
+        ]
+      },
+      {
+        "key": "Arctic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          20.004545454545454,
+          72.11363636363636
+        ],
+        "width": 8.12,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          11.386628955801214,
+          -76.89403243070302,
+          24.178263188470964,
+          -53.52728702041978
+        ],
+        "scale": 1.45,
+        "name": "Arctic schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.55571,
+        "bounds": [
+          855.2,
+          14.6,
+          910.1,
+          54.8
+        ]
+      },
+      {
+        "key": "Greenland Sea passage",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -17.43181818181818,
+          67.58636363636364
+        ],
+        "width": 7.25,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -80.27696182732937,
+          -58.73014861696589,
+          -63.396270877253684,
+          -33.57850364000319
+        ],
+        "scale": 1.45,
+        "name": "Greenland Sea passage",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.59465,
+        "bounds": [
+          251.6,
+          45,
+          309.7,
+          98.2
+        ]
+      },
+      {
+        "key": "Norwegian Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          7.1,
+          70.7
+        ],
+        "width": 6.96,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -16.751405995568987,
+          -66.20907996122222,
+          -8.96694026969865,
+          -47.29829955448923
+        ],
+        "scale": 1.45,
+        "name": "Norwegian Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.77132,
+        "bounds": [
+          665.9,
+          31.9,
+          714.4,
+          67.3
+        ]
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "cameraHeight": 85,
+    "models": [
+      {
+        "key": "North Sea platform",
+        "asset": "offshore_rig",
+        "drawingCoordinates": [
+          2.4863636363636363,
+          58.72636363636364
+        ],
+        "width": 11.323,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -30.23470549015738,
+          -5.922782917720497,
+          -17.47115287013287,
+          5.528742831027785
+        ],
+        "scale": 1.69,
+        "name": "North Sea platform",
+        "mirror": false,
+        "sampled": 146300,
+        "unmapped": 0,
+        "visible": 146300,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.56063,
+        "bounds": [
+          560.8,
+          466.2,
+          654.1,
+          523.3
+        ]
+      },
+      {
+        "key": "Jörmungandr",
+        "asset": "serpent_attack",
+        "drawingCoordinates": [
+          -3.0954545454545475,
+          69.98181818181818
+        ],
+        "width": 21.169999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -52.2004318035045,
+          -76.45322045818347,
+          -24.83327935980507,
+          -44.03313519302421
+        ],
+        "scale": 1.45,
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 243572,
+        "unmapped": 0,
+        "visible": 243572,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 13.81586,
+        "bounds": [
+          483.1,
+          234.8,
+          614.9,
+          321.1
+        ]
+      },
+      {
+        "key": "Kraken",
+        "asset": "kraken_attack",
+        "drawingCoordinates": [
+          -11.327272727272728,
+          56.152272727272724
+        ],
+        "width": 17.689999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -69.99295131999986,
+          0.07451117294647247,
+          -44.6984612816517,
+          16.86340511265351
+        ],
+        "scale": 1.45,
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 259563,
+        "unmapped": 0,
+        "visible": 259563,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 11.58641,
+        "bounds": [
+          251.1,
+          495.1,
+          408.3,
+          589.1
+        ]
+      },
+      {
+        "key": "A northern leviathan",
+        "asset": "northern_whale",
+        "drawingCoordinates": [
+          -9.031818181818181,
+          63.13181818181818
+        ],
+        "width": 13.339999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -60.15167774298595,
+          -30.536806285039972,
+          -41.821262547052,
+          -13.87008319182884
+        ],
+        "scale": 1.45,
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 202527,
+        "unmapped": 0,
+        "visible": 202527,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 9.2357,
+        "bounds": [
+          380.1,
+          365.9,
+          477.1,
+          430.3
+        ]
+      },
+      {
+        "key": "The great lobster",
+        "asset": "great_lobster",
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "width": 8.844999999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -26.356407237143642,
+          11.532760023317891,
+          -16.699563021539422,
+          18.8549274587553
+        ],
+        "scale": 1.45,
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 154785,
+        "unmapped": 0,
+        "visible": 154785,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.60218,
+        "bounds": [
+          578.6,
+          557.3,
+          658.4,
+          601.9
+        ]
+      },
+      {
+        "key": "Hanseatic trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -2.572727272727274,
+          60.904545454545456
+        ],
+        "width": 8.555,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -41.00458124021796,
+          -16.822123839767045,
+          -29.99472392533633,
+          -4.062587588155125
+        ],
+        "scale": 1.45,
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.76999,
+        "bounds": [
+          492.1,
+          418.2,
+          559.6,
+          474.7
+        ]
+      },
+      {
+        "key": "Northern schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -23.009090909090908,
+          62.29318181818182
+        ],
+        "width": 8.41,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -88.4606627613656,
+          -19.79349561438248,
+          -75.06166687035736,
+          -10.177260757366383
+        ],
+        "scale": 1.45,
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.7518,
+        "bounds": [
+          164.6,
+          406.3,
+          226.8,
+          446.5
+        ]
+      },
+      {
+        "key": "Atlantic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -12.3,
+          52.96818181818182
+        ],
+        "width": 7.54,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -63.41316995080465,
+          22.80487380144706,
+          -51.91897980011123,
+          30.88412082273433
+        ],
+        "scale": 1.45,
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.85584,
+        "bounds": [
+          233.4,
+          628.4,
+          307.3,
+          687
+        ]
+      },
+      {
+        "key": "Irish Sea passage",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -12.2,
+          50.83181818181818
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -62.268605491109454,
+          34.845032850537734,
+          -51.62625609774965,
+          40.29131030878271
+        ],
+        "scale": 1.45,
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.26156,
+        "bounds": [
+          201.5,
+          718.8,
+          282.4,
+          765.4
+        ]
+      },
+      {
+        "key": "Channel trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -5.8454545454545475,
+          48.747727272727275
+        ],
+        "width": 6.5249999999999995,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -47.03001250580096,
+          43.938018056218354,
+          -38.216007191496864,
+          49.468323813716864
+        ],
+        "scale": 1.45,
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.94169,
+        "bounds": [
+          327.4,
+          799.3,
+          405.7,
+          854.7
+        ]
+      },
+      {
+        "key": "North Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          1.8045454545454547,
+          53.66136363636363
+        ],
+        "width": 6.815,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -28.853669903554767,
+          22.323072436604278,
+          -21.228024027374808,
+          27.831788056470558
+        ],
+        "scale": 1.45,
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.67327,
+        "bounds": [
+          548.2,
+          625.2,
+          613.2,
+          664
+        ]
+      },
+      {
+        "key": "Baltic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          7.5,
+          75.4
+        ],
+        "width": 5.51,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -14.90884595207491,
+          -77.39471971945821,
+          -9.051839246028297,
+          -67.89136925598098
+        ],
+        "scale": 1.45,
+        "name": "Open-sea merchant",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.03891,
+        "bounds": [
+          678.3,
+          232.6,
+          708.9,
+          255.2
+        ]
+      },
+      {
+        "key": "Baltic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          4,
+          76.7
+        ],
+        "width": 5.8,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -23.12890518799273,
+          -81.30729793460861,
+          -16.90221794399903,
+          -73.61574400738715
+        ],
+        "scale": 1.45,
+        "name": "Open-sea schooner",
+        "mirror": true,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.99592,
+        "bounds": [
+          635.7,
+          223.9,
+          667.1,
+          241.3
+        ]
+      },
+      {
+        "key": "Barents trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          29.190508663845037,
+          -70.51623656761237,
+          41.392734099719824,
+          -54.68127323219912
+        ],
+        "scale": 1.45,
+        "name": "Barents trader",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.98643,
+        "bounds": [
+          937.3,
+          248.8,
+          984.4,
+          289.9
+        ]
+      },
+      {
+        "key": "Arctic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          20.004545454545454,
+          72.11363636363636
+        ],
+        "width": 8.12,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          11.369388784666207,
+          -65.66886437539026,
+          21.809155625374764,
+          -53.420309548483914
+        ],
+        "scale": 1.45,
+        "name": "Arctic schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.55571,
+        "bounds": [
+          833.9,
+          260.8,
+          882,
+          293.4
+        ]
+      },
+      {
+        "key": "Greenland Sea passage",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -17.43181818181818,
+          67.58636363636364
+        ],
+        "width": 7.25,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -75.33047348538025,
+          -46.585011591605905,
+          -63.36272572120223,
+          -33.485073664582615
+        ],
+        "scale": 1.45,
+        "name": "Greenland Sea passage",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.59465,
+        "bounds": [
+          310.7,
+          313.4,
+          360.4,
+          355.5
+        ]
+      },
+      {
+        "key": "Norwegian Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          7.1,
+          70.7
+        ],
+        "width": 6.96,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -16.60620880122901,
+          -57.22680657032362,
+          -9.232544892557716,
+          -47.19555222417037
+        ],
+        "scale": 1.45,
+        "name": "Norwegian Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.77132,
+        "bounds": [
+          668.1,
+          283,
+          710.4,
+          311.5
+        ]
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "cameraHeight": 115,
+    "models": [
+      {
+        "key": "North Sea platform",
+        "asset": "offshore_rig",
+        "drawingCoordinates": [
+          2.4863636363636363,
+          58.72636363636364
+        ],
+        "width": 11.323,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -29.83191062705584,
+          -3.1955186428047995,
+          -17.470460732747252,
+          5.548377701932381
+        ],
+        "scale": 1.69,
+        "name": "North Sea platform",
+        "mirror": false,
+        "sampled": 146300,
+        "unmapped": 0,
+        "visible": 146300,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.56063,
+        "bounds": [
+          574.8,
+          642.1,
+          657.4,
+          689.5
+        ]
+      },
+      {
+        "key": "Jörmungandr",
+        "asset": "serpent_attack",
+        "drawingCoordinates": [
+          -3.0954545454545475,
+          69.98181818181818
+        ],
+        "width": 21.169999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -50.36149722699043,
+          -67.76636403072743,
+          -24.831119235106293,
+          -44.003617812280424
+        ],
+        "scale": 1.45,
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 243572,
+        "unmapped": 0,
+        "visible": 243572,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 13.81586,
+        "bounds": [
+          500.9,
+          393.8,
+          621,
+          468.3
+        ]
+      },
+      {
+        "key": "Kraken",
+        "asset": "kraken_attack",
+        "drawingCoordinates": [
+          -11.327272727272728,
+          56.152272727272724
+        ],
+        "width": 17.689999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -67.78117295957213,
+          4.1796733740045795,
+          -44.69234007922218,
+          16.88077994885235
+        ],
+        "scale": 1.45,
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 259563,
+        "unmapped": 0,
+        "visible": 259563,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 11.58641,
+        "bounds": [
+          304.5,
+          682,
+          441.9,
+          759
+        ]
+      },
+      {
+        "key": "A northern leviathan",
+        "asset": "northern_whale",
+        "drawingCoordinates": [
+          -9.031818181818181,
+          63.13181818181818
+        ],
+        "width": 13.339999999999998,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -58.730789128025364,
+          -26.39477232891531,
+          -41.81571505215105,
+          -13.846580171993736
+        ],
+        "scale": 1.45,
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 202527,
+        "unmapped": 0,
+        "visible": 202527,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 9.2357,
+        "bounds": [
+          411.5,
+          534.9,
+          498.4,
+          589.4
+        ]
+      },
+      {
+        "key": "The great lobster",
+        "asset": "great_lobster",
+        "drawingCoordinates": [
+          3.4000000000000004,
+          55.7
+        ],
+        "width": 8.844999999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -26.13331268141936,
+          13.202253220307824,
+          -16.699024736966972,
+          18.871905124623197
+        ],
+        "scale": 1.45,
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 154785,
+        "unmapped": 0,
+        "visible": 145399,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.60218,
+        "bounds": [
+          591.5,
+          735.7,
+          661.4,
+          772.3
+        ]
+      },
+      {
+        "key": "Hanseatic trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -2.572727272727274,
+          60.904545454545456
+        ],
+        "width": 8.555,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -40.314681690496826,
+          -13.735420584051823,
+          -29.991534619445297,
+          -4.041040192351119
+        ],
+        "scale": 1.45,
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 7.76999,
+        "bounds": [
+          512.8,
+          590.1,
+          572.9,
+          637.5
+        ]
+      },
+      {
+        "key": "Northern schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -23.009090909090908,
+          62.29318181818182
+        ],
+        "width": 8.41,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -87.07848180681552,
+          -17.495570702221244,
+          -75.04949133596244,
+          -10.154494114450799
+        ],
+        "scale": 1.45,
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.7518,
+        "bounds": [
+          218.8,
+          573,
+          274.4,
+          607
+        ]
+      },
+      {
+        "key": "Atlantic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -12.3,
+          52.96818181818182
+        ],
+        "width": 7.54,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -62.308719442129494,
+          24.619693585751847,
+          -51.911418871029426,
+          30.89869990635229
+        ],
+        "scale": 1.45,
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.85584,
+        "bounds": [
+          293.8,
+          812.6,
+          357.6,
+          859.9
+        ]
+      },
+      {
+        "key": "Irish Sea passage",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -12.2,
+          50.83181818181818
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -61.45264374267493,
+          36.0140703094426,
+          -51.618753535906016,
+          40.30401362912221
+        ],
+        "scale": 1.45,
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.26156,
+        "bounds": [
+          270,
+          901.7,
+          339.5,
+          938.9
+        ]
+      },
+      {
+        "key": "Channel trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -5.8454545454545475,
+          48.747727272727275
+        ],
+        "width": 6.5249999999999995,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -46.39554781047559,
+          45.091732638309615,
+          -38.21117858623998,
+          49.47919728002439
+        ],
+        "scale": 1.45,
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.94169,
+        "bounds": [
+          381.8,
+          983.4,
+          447.8,
+          1026.9
+        ]
+      },
+      {
+        "key": "North Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          1.8045454545454547,
+          53.66136363636363
+        ],
+        "width": 6.815,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -28.631837848785977,
+          23.54287608016402,
+          -21.22658278130418,
+          27.846975766936765
+        ],
+        "scale": 1.45,
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.67327,
+        "bounds": [
+          565.8,
+          804.9,
+          622.3,
+          836.4
+        ]
+      },
+      {
+        "key": "Baltic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          7.5,
+          75.4
+        ],
+        "width": 5.51,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -14.894162204673886,
+          -74.4640203658887,
+          -9.131784084254297,
+          -67.85709453845405
+        ],
+        "scale": 1.45,
+        "name": "Open-sea merchant",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.03891,
+        "bounds": [
+          678.7,
+          375.2,
+          706.8,
+          393.4
+        ]
+      },
+      {
+        "key": "Baltic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          4,
+          76.7
+        ],
+        "width": 5.8,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -23.013041342011054,
+          -78.9553821478815,
+          -16.90163924955184,
+          -73.58032790605569
+        ],
+        "scale": 1.45,
+        "name": "Open-sea schooner",
+        "mirror": true,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.99592,
+        "bounds": [
+          639.4,
+          363.3,
+          668.4,
+          377.6
+        ]
+      },
+      {
+        "key": "Barents trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 7.685,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          29.181896592206847,
+          -66.53645972099187,
+          40.129523724703155,
+          -54.64963261172505
+        ],
+        "scale": 1.45,
+        "name": "Barents trader",
+        "mirror": true,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.98643,
+        "bounds": [
+          915.9,
+          397.2,
+          958.9,
+          433
+        ]
+      },
+      {
+        "key": "Arctic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          20.004545454545454,
+          72.11363636363636
+        ],
+        "width": 8.12,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          11.364330195949666,
+          -62.63219875690132,
+          21.168257649691334,
+          -53.388920357029775
+        ],
+        "scale": 1.45,
+        "name": "Arctic schooner",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.55571,
+        "bounds": [
+          821.1,
+          408.7,
+          865.1,
+          437
+        ]
+      },
+      {
+        "key": "Greenland Sea passage",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -17.43181818181818,
+          67.58636363636364
+        ],
+        "width": 7.25,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -74.01505469931391,
+          -43.35525741084231,
+          -63.352882944882246,
+          -33.457659561985054
+        ],
+        "scale": 1.45,
+        "name": "Greenland Sea passage",
+        "mirror": false,
+        "sampled": 188506,
+        "unmapped": 0,
+        "visible": 188506,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.59465,
+        "bounds": [
+          345.4,
+          470.7,
+          390.3,
+          506.8
+        ]
+      },
+      {
+        "key": "Norwegian Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          7.1,
+          70.7
+        ],
+        "width": 6.96,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -16.566434445242585,
+          -54.76626219795469,
+          -9.305302860569828,
+          -47.16540423539604
+        ],
+        "scale": 1.45,
+        "name": "Norwegian Sea sail",
+        "mirror": false,
+        "sampled": 176374,
+        "unmapped": 0,
+        "visible": 176374,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.77132,
+        "bounds": [
+          669.4,
+          432.8,
+          708,
+          457.5
         ]
       }
     ]
@@ -632,311 +4972,2481 @@
       "width": 390,
       "height": 844
     },
+    "cameraHeight": 77,
     "models": [
       {
-        "name": "Jörmungandr",
-        "mirror": false,
-        "sampled": 58722,
-        "unmapped": 0,
-        "visible": 58722,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 7.01513,
-        "bounds": [
-          63.7,
-          216.5,
-          130.1,
-          260.6
-        ]
-      },
-      {
-        "name": "Kraken",
-        "mirror": false,
-        "sampled": 62478,
-        "unmapped": 0,
-        "visible": 62478,
-        "overLand": 0,
-        "landPercent": 0,
-        "encroachments": [],
-        "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 5.73127,
-        "bounds": [
-          13.4,
-          326.6,
-          76.9,
-          367.2
-        ]
-      },
-      {
+        "key": "North Sea platform",
+        "asset": "offshore_rig",
+        "drawingCoordinates": [
+          2.5999999999999996,
+          58.84
+        ],
+        "width": 8.112,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -28.60076698688265,
+          -4.209540180617736,
+          -18.83567166208511,
+          5.01543407905757
+        ],
+        "scale": 1.69,
         "name": "North Sea platform",
         "mirror": false,
-        "sampled": 34216,
+        "sampled": 37174,
         "unmapped": 0,
-        "visible": 34216,
+        "visible": 37174,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.24252,
+        "maxSurfaceGap": 5.435,
         "bounds": [
-          31.5,
-          407.6,
-          69.9,
+          17.6,
+          390.5,
+          82.8,
           431.6
         ]
       },
       {
+        "key": "Jörmungandr",
+        "asset": "serpent_attack",
+        "drawingCoordinates": [
+          2.918181818181818,
+          69.4
+        ],
+        "width": 15.514999999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -33.717853654963264,
+          -67.02246119618107,
+          -14.430455433034922,
+          -41.48779626294382
+        ],
+        "scale": 1.45,
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 61594,
+        "unmapped": 0,
+        "visible": 61594,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 10.14269,
+        "bounds": [
+          38.8,
+          196.1,
+          135.5,
+          260.5
+        ]
+      },
+      {
+        "key": "Kraken",
+        "asset": "kraken_attack",
+        "drawingCoordinates": [
+          1.5,
+          62.2
+        ],
+        "width": 12.614999999999998,
+        "lean": -0.23,
+        "initialVisibility": 0.9955947136563876,
+        "paintVisibility": 0.9955947136563876,
+        "heroOcclusions": [],
+        "footprint": [
+          -34.811549412257776,
+          -26.247147631568197,
+          -19.004314281795082,
+          -9.781048405250573
+        ],
+        "scale": 1.45,
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 65619,
+        "unmapped": 0,
+        "visible": 65449,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 8.28109,
+        "bounds": [
+          -1.5,
+          307.8,
+          91,
+          367.4
+        ]
+      },
+      {
+        "key": "A northern leviathan",
+        "asset": "northern_whale",
+        "drawingCoordinates": [
+          -12.100000000000001,
+          66.2
+        ],
+        "width": 9.569999999999999,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -65.19563923505561,
+          -41.92044811710309,
+          -50.47336181881304,
+          -27.39590819900235
+        ],
+        "scale": 1.45,
         "name": "A northern leviathan",
         "mirror": false,
-        "sampled": 47902,
+        "sampled": 50937,
         "unmapped": 0,
         "visible": 0,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.60223,
+        "maxSurfaceGap": 6.64398,
         "bounds": [
-          -165,
-          273.6,
-          -121.4,
-          303.7
+          -176.5,
+          259.6,
+          -112.6,
+          303.6
         ]
       },
       {
+        "key": "The great lobster",
+        "asset": "great_lobster",
+        "drawingCoordinates": [
+          3.0590909090909086,
+          55.7
+        ],
+        "width": 6.815,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -26.485291365980885,
+          12.436552811687449,
+          -18.47386664340671,
+          18.843099226412036
+        ],
+        "scale": 1.45,
         "name": "The great lobster",
         "mirror": false,
-        "sampled": 36332,
+        "sampled": 39230,
         "unmapped": 0,
-        "visible": 36332,
+        "visible": 39230,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.00731,
+        "maxSurfaceGap": 4.33135,
         "bounds": [
-          31.9,
-          479.7,
-          73.5,
+          15.3,
+          468.8,
+          76.1,
           503.4
         ]
       },
       {
+        "key": "Hanseatic trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -7.686363636363637,
+          59.711363636363636
+        ],
+        "width": 7.0151,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -52.99349798766651,
+          -10.164154481780443,
+          -42.03369193840526,
+          1.178196986127503
+        ],
+        "scale": 1.45,
         "name": "Hanseatic trader",
         "mirror": false,
-        "sampled": 43334,
+        "sampled": 47678,
         "unmapped": 0,
         "visible": 0,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 4.4223,
+        "maxSurfaceGap": 6.38309,
         "bounds": [
-          -106.4,
-          391.1,
-          -66.6,
-          424.1
+          -153.3,
+          366,
+          -95.5,
+          414
         ]
       },
       {
+        "key": "Northern schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -13.804545454545455,
+          60.58863636363637
+        ],
+        "width": 6.8961999999999986,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -66.17191942786452,
+          -11.11402338535234,
+          -55.56455663837264,
+          -2.6850621843060622
+        ],
+        "scale": 1.45,
         "name": "Northern schooner",
         "mirror": false,
-        "sampled": 41779,
+        "sampled": 44739,
         "unmapped": 0,
         "visible": 0,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.28099,
+        "maxSurfaceGap": 4.72818,
         "bounds": [
-          -203.8,
-          363.8,
-          -168.2,
-          387.2
+          -247,
+          362.4,
+          -194.4,
+          396.8
         ]
       },
       {
+        "key": "Atlantic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -12.3,
+          57.22954545454545
+        ],
+        "width": 6.1828,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -62.99142405152746,
+          3.067867929724571,
+          -52.60876323223557,
+          12.10741701821658
+        ],
+        "scale": 1.45,
         "name": "Atlantic merchant",
         "mirror": true,
-        "sampled": 43334,
+        "sampled": 47678,
         "unmapped": 0,
         "visible": 0,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.90534,
+        "maxSurfaceGap": 5.63349,
         "bounds": [
-          -248.8,
-          432.8,
-          -213.3,
-          462.9
+          -260.4,
+          422.7,
+          -208.3,
+          467
         ]
       },
       {
+        "key": "Irish Sea passage",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -12.2,
+          53.9
+        ],
+        "width": 6.3016999999999985,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -61.77885246913882,
+          20.83591366915728,
+          -52.32907713864075,
+          26.76978630932321
+        ],
+        "scale": 1.45,
         "name": "Irish Sea passage",
         "mirror": false,
-        "sampled": 41779,
+        "sampled": 44739,
         "unmapped": 0,
         "visible": 0,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.00375,
+        "maxSurfaceGap": 4.32618,
         "bounds": [
-          -295.3,
-          526.6,
-          -255.4,
+          -305.4,
+          515.3,
+          -247.2,
           551.1
         ]
       },
       {
+        "key": "Channel trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -5.5045454545454575,
+          48.91818181818182
+        ],
+        "width": 5.350499999999999,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -45.98299310134225,
+          43.410880893731715,
+          -38.062641846623485,
+          48.70829384911633
+        ],
+        "scale": 1.45,
         "name": "Channel trader",
         "mirror": false,
-        "sampled": 43334,
+        "sampled": 47678,
         "unmapped": 0,
         "visible": 0,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.38837,
+        "maxSurfaceGap": 4.88388,
         "bounds": [
-          -173.3,
-          666.2,
-          -131.5,
-          696.7
+          -232.7,
+          671.4,
+          -169.9,
+          716.7
         ]
       },
       {
+        "key": "North Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          9.94090909090909,
+          66.38181818181819
+        ],
+        "width": 5.5883,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -9.76169621882416,
+          -36.261294667399426,
+          -3.879975366283443,
+          -28.19658384744028
+        ],
+        "scale": 1.45,
         "name": "North Sea sail",
         "mirror": false,
-        "sampled": 41779,
+        "sampled": 44739,
         "unmapped": 0,
-        "visible": 41779,
+        "visible": 44739,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 2.67106,
+        "maxSurfaceGap": 3.84378,
         "bounds": [
-          53.5,
-          293.7,
-          79.4,
-          311
+          164.9,
+          276.1,
+          201.9,
+          301.1
         ]
       },
       {
-        "name": "Baltic merchant",
+        "key": "Baltic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          11,
+          74.6
+        ],
+        "width": 4.518199999999999,
+        "lean": 0.22,
+        "initialVisibility": 0.9507692307692308,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -6.75339416019105,
+          -73.17896107733682,
+          -1.9784043796543926,
+          -64.38711425604745
+        ],
+        "scale": 1.45,
+        "name": "Open-sea merchant",
         "mirror": false,
-        "sampled": 43334,
+        "sampled": 47678,
         "unmapped": 0,
-        "visible": 43334,
+        "visible": 47678,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 2.8714,
+        "maxSurfaceGap": 4.1436,
         "bounds": [
-          359.5,
-          471.1,
-          386,
-          493.5
+          185.7,
+          182.3,
+          211.1,
+          201.8
         ]
       },
       {
-        "name": "Baltic schooner",
+        "key": "Baltic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          12.45909090909091,
+          67.9590909090909
+        ],
+        "width": 4.755999999999999,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -3.5667909547335124,
+          -40.73217206954615,
+          1.46386615198245,
+          -35.14244329417997
+        ],
+        "scale": 1.45,
+        "name": "Open-sea schooner",
         "mirror": true,
-        "sampled": 41779,
+        "sampled": 44739,
         "unmapped": 0,
-        "visible": 41779,
+        "visible": 44739,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 2.28292,
+        "maxSurfaceGap": 3.28835,
         "bounds": [
-          343.4,
-          376.7,
-          368.2,
-          392.8
+          204.4,
+          262.9,
+          234.9,
+          279.3
         ]
       },
       {
+        "key": "Barents trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 6.3016999999999985,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          29.87857379332226,
+          -69.24333281610902,
+          39.46358752609673,
+          -54.69894138060067
+        ],
+        "scale": 1.45,
         "name": "Barents trader",
         "mirror": true,
-        "sampled": 43334,
+        "sampled": 47678,
         "unmapped": 0,
         "visible": 0,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.97919,
+        "maxSurfaceGap": 5.74057,
         "bounds": [
-          404.9,
-          201.7,
-          431,
-          225.1
+          399.1,
+          190.9,
+          437.2,
+          225.2
         ]
       },
       {
+        "key": "Arctic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          16.936363636363637,
+          72.79545454545455
+        ],
+        "width": 6.658399999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          5.339522489296403,
+          -67.89976783130814,
+          13.059748121046173,
+          -56.44041072490285
+        ],
+        "scale": 1.45,
         "name": "Arctic schooner",
         "mirror": false,
-        "sampled": 41779,
+        "sampled": 44739,
         "unmapped": 0,
-        "visible": 41779,
+        "visible": 44739,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.17009,
+        "maxSurfaceGap": 4.56738,
         "bounds": [
-          276,
-          184.9,
-          301.6,
-          202.8
+          255.3,
+          194,
+          293.9,
+          220.8
         ]
       },
       {
+        "key": "Greenland Sea passage",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -13,
+          72.7
+        ],
+        "width": 5.944999999999999,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -64.34664781008068,
+          -69.77839402316184,
+          -54.269063691566494,
+          -56.02005585059658
+        ],
+        "scale": 1.45,
         "name": "Greenland Sea passage",
         "mirror": false,
-        "sampled": 43334,
+        "sampled": 47678,
         "unmapped": 0,
         "visible": 0,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 3.75763,
+        "maxSurfaceGap": 5.41931,
         "bounds": [
-          -121.7,
-          199.8,
-          -97,
-          221.8
+          -127.7,
+          189.7,
+          -91.5,
+          221.9
         ]
       },
       {
+        "key": "Norwegian Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          7.9818181818181815,
+          72.8
+        ],
+        "width": 5.707199999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -14.370861188329481,
+          -66.19739558292449,
+          -8.189090318798865,
+          -56.46042745564063
+        ],
+        "scale": 1.45,
         "name": "Norwegian Sea sail",
         "mirror": false,
-        "sampled": 41779,
+        "sampled": 44739,
         "unmapped": 0,
-        "visible": 41779,
+        "visible": 44739,
         "overLand": 0,
         "landPercent": 0,
         "encroachments": [],
         "minSurfaceGap": 0.065,
-        "maxSurfaceGap": 2.72651,
+        "maxSurfaceGap": 3.92418,
         "bounds": [
-          139.8,
-          205,
-          162.5,
-          220.8
+          143.3,
+          197.8,
+          176.3,
+          220.7
+        ]
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "cameraHeight": 45,
+    "models": [
+      {
+        "key": "North Sea platform",
+        "asset": "offshore_rig",
+        "drawingCoordinates": [
+          2.5999999999999996,
+          58.84
+        ],
+        "width": 8.112,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -29.94552383131938,
+          -10.71712787652693,
+          -18.843974443757077,
+          4.952432878172132
+        ],
+        "scale": 1.69,
+        "name": "North Sea platform",
+        "mirror": false,
+        "sampled": 37174,
+        "unmapped": 0,
+        "visible": 32546,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.435,
+        "bounds": [
+          -12.5,
+          137,
+          63.8,
+          189.7
+        ]
+      },
+      {
+        "key": "Jörmungandr",
+        "asset": "serpent_attack",
+        "drawingCoordinates": [
+          2.918181818181818,
+          69.4
+        ],
+        "width": 15.514999999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -37.183354299018546,
+          -88.3844843006338,
+          -14.436114638328345,
+          -41.578703912588935
+        ],
+        "scale": 1.45,
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 61594,
+        "unmapped": 0,
+        "visible": 54197,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 10.14269,
+        "bounds": [
+          19.1,
+          -19.9,
+          128,
+          58.4
+        ]
+      },
+      {
+        "key": "Kraken",
+        "asset": "kraken_attack",
+        "drawingCoordinates": [
+          1.5,
+          62.2
+        ],
+        "width": 12.614999999999998,
+        "lean": -0.23,
+        "initialVisibility": 0.9955947136563876,
+        "paintVisibility": 0.9955947136563876,
+        "heroOcclusions": [],
+        "footprint": [
+          -37.60003497740857,
+          -38.99130927206923,
+          -19.012718268813714,
+          -9.8529289954473
+        ],
+        "scale": 1.45,
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 65619,
+        "unmapped": 0,
+        "visible": 50208,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 8.28109,
+        "bounds": [
+          -31.5,
+          64.4,
+          75.1,
+          139.3
+        ]
+      },
+      {
+        "key": "A northern leviathan",
+        "asset": "northern_whale",
+        "drawingCoordinates": [
+          -12.100000000000001,
+          66.2
+        ],
+        "width": 9.569999999999999,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -69.52049431199111,
+          -52.83542351530335,
+          -50.50065032204573,
+          -27.478359298615032
+        ],
+        "scale": 1.45,
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 50937,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.64398,
+        "bounds": [
+          -227.8,
+          36.4,
+          -155,
+          90.5
+        ]
+      },
+      {
+        "key": "The great lobster",
+        "asset": "great_lobster",
+        "drawingCoordinates": [
+          3.0590909090909086,
+          55.7
+        ],
+        "width": 6.815,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -27.43447123936794,
+          8.126382711037323,
+          -18.481952305404945,
+          18.788396006618612
+        ],
+        "scale": 1.45,
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 39230,
+        "unmapped": 0,
+        "visible": 30578,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.33135,
+        "bounds": [
+          -18.6,
+          202.4,
+          53.8,
+          247.9
+        ]
+      },
+      {
+        "key": "Hanseatic trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -7.686363636363637,
+          59.711363636363636
+        ],
+        "width": 7.0151,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -56.283916949892756,
+          -18.402570706168632,
+          -42.055915836737356,
+          1.1128930814960967
+        ],
+        "scale": 1.45,
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.38309,
+        "bounds": [
+          -210.8,
+          114.6,
+          -143,
+          175.8
+        ]
+      },
+      {
+        "key": "Northern schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -13.804545454545455,
+          60.58863636363637
+        ],
+        "width": 6.8961999999999986,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -69.15100657213563,
+          -17.01230536559538,
+          -55.59490042656046,
+          -2.7526844851067267
+        ],
+        "scale": 1.45,
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.72818,
+        "bounds": [
+          -317.6,
+          118.6,
+          -256.7,
+          162.2
+        ]
+      },
+      {
+        "key": "Atlantic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -12.3,
+          57.22954545454545
+        ],
+        "width": 6.1828,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -66.43365569293897,
+          -3.2793665884145184,
+          -52.63733321089186,
+          12.048671761744444
+        ],
+        "scale": 1.45,
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.63349,
+        "bounds": [
+          -342.2,
+          160.7,
+          -280.3,
+          218.2
+        ]
+      },
+      {
+        "key": "Irish Sea passage",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -12.2,
+          53.9
+        ],
+        "width": 6.3016999999999985,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -64.28392393266668,
+          16.90201225118949,
+          -52.3574792789106,
+          26.719839926531762
+        ],
+        "scale": 1.45,
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.32618,
+        "bounds": [
+          -405.8,
+          239.7,
+          -336,
+          287.5
+        ]
+      },
+      {
+        "key": "Channel trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -5.5045454545454575,
+          48.91818181818182
+        ],
+        "width": 5.350499999999999,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -48.05259259587691,
+          40.04819806324497,
+          -38.08248270025117,
+          48.671512766226094
+        ],
+        "scale": 1.45,
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.88388,
+        "bounds": [
+          -339.4,
+          368.2,
+          -259.8,
+          432.2
+        ]
+      },
+      {
+        "key": "North Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          9.94090909090909,
+          66.38181818181819
+        ],
+        "width": 5.5883,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -9.94617021137181,
+          -41.92763786582094,
+          -3.8365842286639094,
+          -28.2795155527337
+        ],
+        "scale": 1.45,
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 44739,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.84378,
+        "bounds": [
+          160.8,
+          58,
+          202.9,
+          88.6
+        ]
+      },
+      {
+        "key": "Baltic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          11,
+          74.6
+        ],
+        "width": 4.518199999999999,
+        "lean": 0.22,
+        "initialVisibility": 0.9507692307692308,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -6.8271580349474235,
+          -80.88515187555356,
+          -1.8512882947694664,
+          -64.49176371203976
+        ],
+        "scale": 1.45,
+        "name": "Open-sea merchant",
+        "mirror": false,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 37273,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.1436,
+        "bounds": [
+          184.7,
+          -9.8,
+          212.8,
+          15.5
+        ]
+      },
+      {
+        "key": "Baltic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          12.45909090909091,
+          67.9590909090909
+        ],
+        "width": 4.755999999999999,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -3.565930887602378,
+          -45.66146202807295,
+          1.6752494955564234,
+          -35.22954311065271
+        ],
+        "scale": 1.45,
+        "name": "Open-sea schooner",
+        "mirror": true,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 44739,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.28835,
+        "bounds": [
+          205.6,
+          50.2,
+          240.1,
+          72.3
+        ]
+      },
+      {
+        "key": "Barents trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 6.3016999999999985,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          29.899504397519756,
+          -80.11456528459127,
+          42.16033495198181,
+          -54.79777708340811
+        ],
+        "scale": 1.45,
+        "name": "Barents trader",
+        "mirror": true,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.74057,
+        "bounds": [
+          423,
+          -8.6,
+          465.7,
+          32.5
+        ]
+      },
+      {
+        "key": "Arctic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          16.936363636363637,
+          72.79545454545455
+        ],
+        "width": 6.658399999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          5.3457272375033025,
+          -76.23564370935816,
+          13.905976424551547,
+          -56.54029162763021
+        ],
+        "scale": 1.45,
+        "name": "Arctic schooner",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 44387,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.56738,
+        "bounds": [
+          262.3,
+          -2.8,
+          305.4,
+          29.2
+        ]
+      },
+      {
+        "key": "Greenland Sea passage",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -13,
+          72.7
+        ],
+        "width": 5.944999999999999,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -67.71708467470228,
+          -79.98843534878503,
+          -54.29863001093195,
+          -56.119684331930785
+        ],
+        "scale": 1.45,
+        "name": "Greenland Sea passage",
+        "mirror": false,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.41931,
+        "bounds": [
+          -165.4,
+          -8.4,
+          -124.8,
+          30.1
+        ]
+      },
+      {
+        "key": "Norwegian Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          7.9818181818181815,
+          72.8
+        ],
+        "width": 5.707199999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -14.742218118684598,
+          -73.17990472965374,
+          -8.191004090218389,
+          -56.56032027042497
+        ],
+        "scale": 1.45,
+        "name": "Norwegian Sea sail",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 44739,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.92418,
+        "bounds": [
+          137.3,
+          1.8,
+          174.1,
+          29.2
+        ]
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "cameraHeight": 85,
+    "models": [
+      {
+        "key": "North Sea platform",
+        "asset": "offshore_rig",
+        "drawingCoordinates": [
+          2.5999999999999996,
+          58.84
+        ],
+        "width": 8.112,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -28.43348525841432,
+          -3.400025417830321,
+          -18.834572936918086,
+          5.023771165072873
+        ],
+        "scale": 1.69,
+        "name": "North Sea platform",
+        "mirror": false,
+        "sampled": 37174,
+        "unmapped": 0,
+        "visible": 37174,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.435,
+        "bounds": [
+          23.8,
+          442.8,
+          86.7,
+          481.6
+        ]
+      },
+      {
+        "key": "Jörmungandr",
+        "asset": "serpent_attack",
+        "drawingCoordinates": [
+          2.918181818181818,
+          69.4
+        ],
+        "width": 15.514999999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -33.31411699499485,
+          -64.53374953682689,
+          -14.429706538082288,
+          -41.475766255823544
+        ],
+        "scale": 1.45,
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 61594,
+        "unmapped": 0,
+        "visible": 61594,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 10.14269,
+        "bounds": [
+          43.1,
+          242.6,
+          137.2,
+          304.2
+        ]
+      },
+      {
+        "key": "Kraken",
+        "asset": "kraken_attack",
+        "drawingCoordinates": [
+          1.5,
+          62.2
+        ],
+        "width": 12.614999999999998,
+        "lean": -0.23,
+        "initialVisibility": 0.9955947136563876,
+        "paintVisibility": 0.9955947136563876,
+        "heroOcclusions": [],
+        "footprint": [
+          -34.4776591042222,
+          -24.72117521522111,
+          -19.00320216390456,
+          -9.771536290326821
+        ],
+        "scale": 1.45,
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 65619,
+        "unmapped": 0,
+        "visible": 65619,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 8.28109,
+        "bounds": [
+          4.7,
+          358.8,
+          94.3,
+          415.3
+        ]
+      },
+      {
+        "key": "A northern leviathan",
+        "asset": "northern_whale",
+        "drawingCoordinates": [
+          -12.100000000000001,
+          66.2
+        ],
+        "width": 9.569999999999999,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -64.66602280576299,
+          -40.58381366499381,
+          -50.469750671791424,
+          -27.384997265549686
+        ],
+        "scale": 1.45,
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 50937,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.64398,
+        "bounds": [
+          -165.5,
+          307.2,
+          -103.6,
+          349.2
+        ]
+      },
+      {
+        "key": "The great lobster",
+        "asset": "great_lobster",
+        "drawingCoordinates": [
+          3.0590909090909086,
+          55.7
+        ],
+        "width": 6.815,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -26.365587546216755,
+          12.98012083219325,
+          -18.472796650158553,
+          18.85033822253186
+        ],
+        "scale": 1.45,
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 39230,
+        "unmapped": 0,
+        "visible": 39230,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.33135,
+        "bounds": [
+          22.2,
+          522.7,
+          80.6,
+          555.2
+        ]
+      },
+      {
+        "key": "Hanseatic trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -7.686363636363637,
+          59.711363636363636
+        ],
+        "width": 7.0151,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -52.58916554745736,
+          -9.151803479155603,
+          -42.03075100157507,
+          1.1868387939425133
+        ],
+        "scale": 1.45,
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.38309,
+        "bounds": [
+          -141.4,
+          418.1,
+          -85.6,
+          463.4
+        ]
+      },
+      {
+        "key": "Northern schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -13.804545454545455,
+          60.58863636363637
+        ],
+        "width": 6.8961999999999986,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -65.7980415164926,
+          -10.373784097053345,
+          -55.56054117884951,
+          -2.676113578085733
+        ],
+        "scale": 1.45,
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.72818,
+        "bounds": [
+          -232.2,
+          413.1,
+          -181.5,
+          445.7
+        ]
+      },
+      {
+        "key": "Atlantic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -12.3,
+          57.22954545454545
+        ],
+        "width": 6.1828,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -62.56430642413707,
+          3.855442977046579,
+          -52.60498250478438,
+          12.11519090585027
+        ],
+        "scale": 1.45,
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.63349,
+        "bounds": [
+          -243.7,
+          476.2,
+          -193.6,
+          517.9
+        ]
+      },
+      {
+        "key": "Irish Sea passage",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -12.2,
+          53.9
+        ],
+        "width": 6.3016999999999985,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -61.46291078588358,
+          21.332060567099475,
+          -52.325318621608595,
+          26.77639582285397
+        ],
+        "scale": 1.45,
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.32618,
+        "bounds": [
+          -285.3,
+          570.3,
+          -229.5,
+          603.8
+        ]
+      },
+      {
+        "key": "Channel trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -5.5045454545454575,
+          48.91818181818182
+        ],
+        "width": 5.350499999999999,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -45.723757093674806,
+          43.83208725483168,
+          -38.06001626328326,
+          48.713161169861905
+        ],
+        "scale": 1.45,
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.88388,
+        "bounds": [
+          -212.4,
+          729,
+          -152.8,
+          771.2
+        ]
+      },
+      {
+        "key": "North Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          9.94090909090909,
+          66.38181818181819
+        ],
+        "width": 5.5883,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -9.738294453414262,
+          -35.54248096130388,
+          -3.88547982362953,
+          -28.185609314402825
+        ],
+        "scale": 1.45,
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 44739,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.84378,
+        "bounds": [
+          165.8,
+          322.7,
+          201.7,
+          346.5
+        ]
+      },
+      {
+        "key": "Baltic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          11,
+          74.6
+        ],
+        "width": 4.518199999999999,
+        "lean": 0.22,
+        "initialVisibility": 0.9507692307692308,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -6.744070378382856,
+          -72.20489563117926,
+          -1.9944719011029783,
+          -64.3732657657826
+        ],
+        "scale": 1.45,
+        "name": "Open-sea merchant",
+        "mirror": false,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 47678,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.1436,
+        "bounds": [
+          186,
+          224.3,
+          210.7,
+          242.7
+        ]
+      },
+      {
+        "key": "Baltic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          12.45909090909091,
+          67.9590909090909
+        ],
+        "width": 4.755999999999999,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -3.5669047692887386,
+          -40.102734948409676,
+          1.4368739230093395,
+          -35.1309171859109
+        ],
+        "scale": 1.45,
+        "name": "Open-sea schooner",
+        "mirror": true,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 44739,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.28835,
+        "bounds": [
+          204.1,
+          308.6,
+          233.8,
+          323.8
+        ]
+      },
+      {
+        "key": "Barents trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 6.3016999999999985,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          29.875804000918585,
+          -67.89626115888436,
+          39.12942927544435,
+          -54.68586223695698
+        ],
+        "scale": 1.45,
+        "name": "Barents trader",
+        "mirror": true,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.74057,
+        "bounds": [
+          393.9,
+          234.4,
+          430.9,
+          267.3
+        ]
+      },
+      {
+        "key": "Arctic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          16.936363636363637,
+          72.79545454545455
+        ],
+        "width": 6.658399999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          5.338701401463915,
+          -66.85153500794715,
+          12.953335274121809,
+          -56.42719326769219
+        ],
+        "scale": 1.45,
+        "name": "Arctic schooner",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 44739,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.56738,
+        "bounds": [
+          253.8,
+          236.9,
+          291.4,
+          262.6
+        ]
+      },
+      {
+        "key": "Greenland Sea passage",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -13,
+          72.7
+        ],
+        "width": 5.944999999999999,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -63.927297140022354,
+          -68.5080579085276,
+          -54.26515111618061,
+          -56.006871796843285
+        ],
+        "scale": 1.45,
+        "name": "Greenland Sea passage",
+        "mirror": false,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.41931,
+        "bounds": [
+          -119.5,
+          232.9,
+          -84.2,
+          263.8
+        ]
+      },
+      {
+        "key": "Norwegian Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          7.9818181818181815,
+          72.8
+        ],
+        "width": 5.707199999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -14.32379738745045,
+          -65.31246953669873,
+          -8.188837065262152,
+          -56.447208422072606
+        ],
+        "scale": 1.45,
+        "name": "Norwegian Sea sail",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 44739,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.92418,
+        "bounds": [
+          144.6,
+          240.6,
+          176.8,
+          262.6
+        ]
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "cameraHeight": 115,
+    "models": [
+      {
+        "key": "North Sea platform",
+        "asset": "offshore_rig",
+        "drawingCoordinates": [
+          2.5999999999999996,
+          58.84
+        ],
+        "width": 8.112,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -28.02364579594205,
+          -1.416717986218245,
+          -18.831814358941784,
+          5.044703152942645
+        ],
+        "scale": 1.69,
+        "name": "North Sea platform",
+        "mirror": false,
+        "sampled": 37174,
+        "unmapped": 0,
+        "visible": 37174,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.435,
+        "bounds": [
+          43.6,
+          609.7,
+          99.3,
+          641.7
+        ]
+      },
+      {
+        "key": "Jörmungandr",
+        "asset": "serpent_attack",
+        "drawingCoordinates": [
+          2.918181818181818,
+          69.4
+        ],
+        "width": 15.514999999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -32.34851695264797,
+          -58.581602204331574,
+          -14.427826281594418,
+          -41.445562421684315
+        ],
+        "scale": 1.45,
+        "name": "Jörmungandr",
+        "mirror": false,
+        "sampled": 61594,
+        "unmapped": 0,
+        "visible": 61594,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 10.14269,
+        "bounds": [
+          57.2,
+          396.2,
+          142.5,
+          448.9
+        ]
+      },
+      {
+        "key": "Kraken",
+        "asset": "kraken_attack",
+        "drawingCoordinates": [
+          1.5,
+          62.2
+        ],
+        "width": 12.614999999999998,
+        "lean": -0.23,
+        "initialVisibility": 0.9955947136563876,
+        "paintVisibility": 0.9955947136563876,
+        "heroOcclusions": [],
+        "footprint": [
+          -33.67119986766478,
+          -21.03543016579067,
+          -19.000409960711604,
+          -9.747654148075313
+        ],
+        "scale": 1.45,
+        "name": "Kraken",
+        "mirror": false,
+        "sampled": 65619,
+        "unmapped": 0,
+        "visible": 65619,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 8.28109,
+        "bounds": [
+          25.1,
+          523.6,
+          105.1,
+          570.8
+        ]
+      },
+      {
+        "key": "A northern leviathan",
+        "asset": "northern_whale",
+        "drawingCoordinates": [
+          -12.100000000000001,
+          66.2
+        ],
+        "width": 9.569999999999999,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -63.37614340805164,
+          -37.32844403012487,
+          -50.460684136367846,
+          -27.357603098527107
+        ],
+        "scale": 1.45,
+        "name": "A northern leviathan",
+        "mirror": false,
+        "sampled": 50937,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.64398,
+        "bounds": [
+          -129.7,
+          463.1,
+          -73.9,
+          498.7
+        ]
+      },
+      {
+        "key": "The great lobster",
+        "asset": "great_lobster",
+        "drawingCoordinates": [
+          3.0590909090909086,
+          55.7
+        ],
+        "width": 6.815,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -26.07076254963671,
+          14.318903839305548,
+          -18.470110209638378,
+          18.868513227407092
+        ],
+        "scale": 1.45,
+        "name": "The great lobster",
+        "mirror": false,
+        "sampled": 39230,
+        "unmapped": 0,
+        "visible": 39230,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.33135,
+        "bounds": [
+          43.8,
+          692.5,
+          94.8,
+          719
+        ]
+      },
+      {
+        "key": "Hanseatic trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -7.686363636363637,
+          59.711363636363636
+        ],
+        "width": 7.0151,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -51.60313892829841,
+          -6.683030417058461,
+          -42.023367168189175,
+          1.2085358492494294
+        ],
+        "scale": 1.45,
+        "name": "Hanseatic trader",
+        "mirror": false,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 6.38309,
+        "bounds": [
+          -103.1,
+          584.8,
+          -54,
+          622.4
+        ]
+      },
+      {
+        "key": "Northern schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -13.804545454545455,
+          60.58863636363637
+        ],
+        "width": 6.8961999999999986,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -64.8789283093137,
+          -8.554035763026945,
+          -55.55045953283277,
+          -2.6536462415985937
+        ],
+        "scale": 1.45,
+        "name": "Northern schooner",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.72818,
+        "bounds": [
+          -184.8,
+          576.4,
+          -139.6,
+          603.5
+        ]
+      },
+      {
+        "key": "Atlantic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -12.3,
+          57.22954545454545
+        ],
+        "width": 6.1828,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -61.51887743882842,
+          5.78314094541841,
+          -52.5954902024356,
+          12.134708867088506
+        ],
+        "scale": 1.45,
+        "name": "Atlantic merchant",
+        "mirror": true,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.63349,
+        "bounds": [
+          -190.7,
+          645.8,
+          -146.8,
+          680
+        ]
+      },
+      {
+        "key": "Irish Sea passage",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          -12.2,
+          53.9
+        ],
+        "width": 6.3016999999999985,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -60.6847419823557,
+          22.55407734553721,
+          -52.315882083134824,
+          26.7929903808119
+        ],
+        "scale": 1.45,
+        "name": "Irish Sea passage",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.32618,
+        "bounds": [
+          -222.5,
+          742,
+          -173.9,
+          769
+        ]
+      },
+      {
+        "key": "Channel trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -5.5045454545454575,
+          48.91818181818182
+        ],
+        "width": 5.350499999999999,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -45.08694413816371,
+          44.86678019778206,
+          -38.05342419039979,
+          48.72538159060062
+        ],
+        "scale": 1.45,
+        "name": "Channel trader",
+        "mirror": false,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.88388,
+        "bounds": [
+          -150.8,
+          903.5,
+          -100.6,
+          936.4
+        ]
+      },
+      {
+        "key": "North Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          9.94090909090909,
+          66.38181818181819
+        ],
+        "width": 5.5883,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -9.680524929742425,
+          -33.76801973230752,
+          -3.8990681095295714,
+          -28.15805546741035
+        ],
+        "scale": 1.45,
+        "name": "North Sea sail",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 44739,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.84378,
+        "bounds": [
+          168.6,
+          475.6,
+          201.1,
+          495.8
+        ]
+      },
+      {
+        "key": "Baltic merchant",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          11,
+          74.6
+        ],
+        "width": 4.518199999999999,
+        "lean": 0.22,
+        "initialVisibility": 0.9507692307692308,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -6.721086018644763,
+          -69.80369501500229,
+          -2.0340804741767617,
+          -64.33849625160786
+        ],
+        "scale": 1.45,
+        "name": "Open-sea merchant",
+        "mirror": false,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 47678,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.1436,
+        "bounds": [
+          186.7,
+          365,
+          209.3,
+          379.7
+        ]
+      },
+      {
+        "key": "Baltic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          12.45909090909091,
+          67.9590909090909
+        ],
+        "width": 4.755999999999999,
+        "lean": 0.22,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -3.567190524393805,
+          -38.54490005170686,
+          1.3700690987908688,
+          -35.10197849460823
+        ],
+        "scale": 1.45,
+        "name": "Open-sea schooner",
+        "mirror": true,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 44739,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.28835,
+        "bounds": [
+          203.3,
+          458.9,
+          230.1,
+          470.7
+        ]
+      },
+      {
+        "key": "Barents trader",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          28,
+          72.4
+        ],
+        "width": 6.3016999999999985,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          29.868849861198626,
+          -64.60083717942649,
+          38.31195746076576,
+          -54.65302432744622
+        ],
+        "scale": 1.45,
+        "name": "Barents trader",
+        "mirror": true,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 18470,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.74057,
+        "bounds": [
+          376.5,
+          379,
+          410.2,
+          407.5
+        ]
+      },
+      {
+        "key": "Arctic schooner",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          16.936363636363637,
+          72.79545454545455
+        ],
+        "width": 6.658399999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          5.336639889742106,
+          -64.27266802941267,
+          12.691537922513241,
+          -56.3940080932272
+        ],
+        "scale": 1.45,
+        "name": "Arctic schooner",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 44739,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 4.56738,
+        "bounds": [
+          248.7,
+          380,
+          283,
+          402.2
+        ]
+      },
+      {
+        "key": "Greenland Sea passage",
+        "asset": "merchant_ship",
+        "drawingCoordinates": [
+          -13,
+          72.7
+        ],
+        "width": 5.944999999999999,
+        "lean": -0.23,
+        "initialVisibility": 0,
+        "paintVisibility": 0,
+        "heroOcclusions": [],
+        "footprint": [
+          -62.899811906717346,
+          -65.39550392372257,
+          -54.25532778217773,
+          -55.97377048868759
+        ],
+        "scale": 1.45,
+        "name": "Greenland Sea passage",
+        "mirror": false,
+        "sampled": 47678,
+        "unmapped": 0,
+        "visible": 0,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 5.41931,
+        "bounds": [
+          -92,
+          376.9,
+          -60,
+          403.6
+        ]
+      },
+      {
+        "key": "Norwegian Sea sail",
+        "asset": "schooner_ship",
+        "drawingCoordinates": [
+          7.9818181818181815,
+          72.8
+        ],
+        "width": 5.707199999999999,
+        "lean": -0.23,
+        "initialVisibility": 1,
+        "paintVisibility": 1,
+        "heroOcclusions": [],
+        "footprint": [
+          -14.207659471011132,
+          -63.12876432606981,
+          -8.188201219602275,
+          -56.41401928982532
+        ],
+        "scale": 1.45,
+        "name": "Norwegian Sea sail",
+        "mirror": false,
+        "sampled": 44739,
+        "unmapped": 0,
+        "visible": 44739,
+        "overLand": 0,
+        "landPercent": 0,
+        "encroachments": [],
+        "minSurfaceGap": 0.065,
+        "maxSurfaceGap": 3.92418,
+        "bounds": [
+          149,
+          383.2,
+          178.4,
+          402.2
         ]
       }
     ]

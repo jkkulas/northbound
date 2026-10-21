@@ -1,44 +1,40 @@
-# Northbound artwork, revision 4
+# Northbound artwork, revision 7
 
-This revision replaces every landmark and maritime subject from the earlier flat atlas. The user's new pictorial-map reference guides the rich ochre, moss, umber, ivory and turquoise palette, engraved linework and dimensional silhouettes.
+Ten architectural illustrations and the Icelandic volcano remain upright isometric ink and watercolor, with painted volume. Bryggen and Oslo Opera House are removed. Brandenburg Gate is 15% smaller than revision 6; Edinburgh Castle and Nyhavn are also reduced so their painted bases fit the land.
 
-## Architecture and scenery
+## Original illustrations and delivery
 
-All nine landmarks are new solid 3D geometry, built for their researched locations. They contain modeled gables, stepped roofs, windows, dormers, masonry courses, piers, rails, timber framing, copper roofs and finials. Borgund Stave Church includes stacked timber roofs, a carved entrance and dragon finials. Tower Bridge has twin towers, upper walkways and suspension members. Nyhavn is a complete ensemble of colored gabled houses and a copper church spire extending over Sjælland.
+The built-in OpenAI image generation tool created the original drawings. The nineteen revision 5 subjects and exact prompts remain in `outputs/paper-v5/` and `outputs/paper-v5-prompts.json`. The Hekla volcano and individual cottage originals remain in `outputs/paper-v6/`, with exact prompts in `outputs/paper-v6-prompts.json`. No new images were generated for revision 7.
 
-- Models: `dist/assets/landmarks.js`
-- Shared pigment and geometry batching: `dist/assets/atlas-models.js`
-- Verified anchors, official references and documented Gdańsk coastal adjustment: `data/landmark-locations.json`
-- Sculpted trees, cottages, lighthouses and offshore rocks: `dist/assets/map-scenery.js`
+All 21 historic land, scenery and vehicle drawings remain packed by `tools/build-paper-v6.mjs` into `dist/assets/paper-atlas-v6.webp` (2560 × 3840; 2,985,302 bytes) and `paper-atlas-v6-mobile.webp` (1280 × 1920; 689,514 bytes). Unused Bryggen and Opera images in the shared atlas are not instantiated. `paper-atlas-v6.json` records each original source path, alpha bounds and delivery rectangle. Packing crops transparent margins, resizes and changes delivery format; it does not redraw subjects.
 
-Models use solid pigment with directional shading, fixed paper grain, fine quill hatching and restrained engraved edges. Foundations follow the shared terrain. Small repeated forms are merged or instanced. No landmark images, camera-facing cards or flat terrain decals are used.
+## Soft ink edges
 
-## Newly generated maritime subjects
+`paper-art.js` premultiplies texture alpha before filtering, then restores straight pigment color in the shader. This prevents arbitrary RGB in transparent pixels from bleeding into the outline. Trilinear filtering and 8× anisotropy preserve engraving. Smooth alpha coverage resolves through a multisampled canvas on desktop and phones. Fully painted interiors remain opaque and depth-writing; only silhouette edges receive partial sample coverage. Maritime artwork uses the same treatment. Topographic height bands remain absent.
 
-The built-in `image_gen` tool generated each subject separately from a fresh prompt. These are new compositions, not edits of the retired atlases. The seven source drawings are retained under `outputs/maritime-v4/`:
+## Painted bases and geography
 
-| Source PNG | Subject |
-| --- | --- |
-| `serpent_attack.png` | Green and gold horned serpent attacking a merchant ship |
-| `kraken_attack.png` | Russet kraken engulfing a sailing ship |
-| `merchant_ship.png` | Detailed cream-sailed merchant galleon |
-| `schooner_ship.png` | Two-masted northern schooner |
-| `offshore_rig.png` | Offshore platform and lattice decks |
-| `northern_whale.png` | Breaching leviathan beside a small Nordic boat |
-| `great_lobster.png` | Copper-vermilion armored sea beast |
+Physical anchors and oversized painted drawing positions are recorded separately in `data/landmark-locations.json`. Placement now uses the actual lower 20% of each affected illustration's alpha silhouette, including the raised isometric base. Its mesh geometry is projected through the overview camera onto the geographic relief and checked against coast water and all drawn river banks. `dist/assets/landmark-base-samples.json` supplies compact source-alpha envelopes; the independent QA reads finer original PNG samples.
 
-Exact final generation prompts are in [outputs/maritime-v4-prompts.json](outputs/maritime-v4-prompts.json). The briefs request detailed copperplate ink, richly shaded watercolor, a 35-degree three-quarter view, believable volume, transparent backgrounds and opaque painted bodies. Faceted monsters, cartoon forms, shadow discs, text and rectangular ocean grounds are explicitly excluded.
+Warsaw's painted base is west/south of the Vistula. Cologne Cathedral is deliberately illustrated east of the Rhine, overriding the former west-bank artistic layout while preserving its surveyed real coordinate in the source record. Brandenburg Gate, the Netherlands windmill, Nyhavn and Edinburgh Castle also fit their complete painted lower bands on dry land. The windmill is reduced to keep its base inside the Netherlands polygon. Nyhavn is reduced further than the other landmarks because Sjælland cannot support its former wide drawing. Tower Bridge intentionally spans the Thames.
 
-`tools/build-maritime-v4.mjs` only packs and resizes the original transparent drawings for delivery; it does not redraw their content. The desktop atlas is `dist/assets/maritime-illustrated-v4.webp` (3072 × 1152, 1,358,412 bytes). The mobile atlas is `dist/assets/maritime-illustrated-v4-mobile.webp` (1536 × 576, 349,810 bytes). Pixel bounds are recorded in `dist/assets/maritime-illustrated-v4.json`.
+Hekla retains its official South Iceland coordinate as provenance, while its drawing is moved centrally on Iceland. Its card is upright with zero lean and no terrain warping. Snow, crater warmth and the exaggerated cone are decorative historic-map imagery, not a statement of volcanic activity.
 
-`sea-creatures.js` arranges seventeen vignettes from these subjects, including twelve sailing passages, two monster attacks and a small boat in the whale composition. The platform is placed in open water west of Stavanger. The painted vignettes have fixed map orientation and dimensional perspective; they do not rotate to face the camera. Their footprints are fitted to the real sea mask using original alpha silhouettes and the overview camera. Fine tidal ink continues their generated waterlines into the chart. Painted bodies remain opaque; no sea or land shows through them.
+## Scenery and sea scenes
 
-`qa-composition.mjs` independently reconstructs texture UV triangles, including mirrored ships, projects original pigment through the live camera and tests the underlying water. It checks millions of original samples across desktop, laptop and phone views.
+Trees, cottages, hamlets and lighthouses have twice their revision 6 width and height. The desktop map retains 1,320 trees and 122 settlements; phones retain 780 trees and 76 settlements. Dense samples across their enlarged feet exclude coasts, river banks and the road corridor, while extra baseline vertices follow the relief. The two lighthouses fit broader coastal land near Kullen and Hirtshals; their real and drawn locations remain separate metadata. Sea rocks retain their existing size. Scenery still uses four batched draws.
 
-## Landscape and vehicles
+Seventeen maritime scenes reuse the seven original subjects in `outputs/maritime-v4/`, with exact prompts in `outputs/maritime-v4-prompts.json`. The Stavanger platform is 30% larger than revision 6, giving a total scale of 1.69 relative to the original. Other ships and creatures retain revision 6 sizes. Placement checks the complete painted alpha fringe against open water and landmark drawings at four camera heights, reserving the constrained offshore platform location before freely placed ships. Wave pigment uses the map's own sea wash; hulls, foam and creature bodies keep opaque paint.
 
-The mountains remain part of the continuous DEM surface. `atlas-terrain.js` adds rough dark rock, broken ivory snow, slope hachures, umber coast banks, meadow pigment and exaggerated geographic rivers. There are no separate mountain sprites. `terrain-height.js` is shared by the map and journeys.
+The original point of view is retained. Scrolling translates camera and target together along Y, preserving direction and field of view. Camera height is bounded to 45–115; journeys return to their original camera choreography. Vehicles remain upright illustrated marginalia, with car clearance measured from its wheel footprint.
 
-The Wizz-inspired Airbus jet and Volkswagen Passat estate in `journey.js` are new dimensional models with smooth body profiles, fitted glazing, modern details and engraved pigment. Their isolated rendered studies and geometry checks are generated by `tools/qa-vehicles-v4.mjs`.
+## Verification
 
-Earlier atlases remain in the working tree as historical production material but are not loaded by the current site.
+- `tools/qa-paper-v7.mjs`: three viewport screenshots, requested removals and exact size changes, doubled scenery, unchanged initial point of view, soft edges, UTF-8 labels and resource health.
+- `qa-landmark-support.mjs`: surveyed roots, physical support and independently sampled painted lower bands against shores and river banks.
+- `qa-composition.mjs`: full maritime source-alpha projection and landmark clearance across three viewports and four camera heights.
+- `qa-camera.mjs`: real wheel events, vertical movement, unchanged viewing direction, bounds, Control-wheel and idle rendering.
+- `qa.mjs`: language journeys, geographic hover/click, touch/keyboard, reduced motion, fallback, nested hosting and early clicks.
+- `qa-performance.mjs`: sleeping renderer, bounded geometry/draws and selected responsive atlas payloads.
+
+Screenshots and measured reports are saved in `outputs/`. Tests use installed Chrome and software rendering. Earlier revision checks and production files remain for history.

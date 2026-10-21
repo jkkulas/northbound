@@ -1,0 +1,154 @@
+{
+  "carModel": {
+    "size": [
+      2.799999952316284,
+      1.2996258989140017,
+      0.23649231060665699
+    ],
+    "meshes": [
+      {
+        "vertices": 4,
+        "triangles": 2,
+        "finite": true
+      }
+    ],
+    "style": "isometric-paper-diorama",
+    "groundProbes": [
+      [
+        -0.59,
+        0,
+        -1.185
+      ],
+      [
+        -0.59,
+        0,
+        -0.765
+      ],
+      [
+        -0.59,
+        0,
+        0
+      ],
+      [
+        -0.59,
+        0,
+        0.765
+      ],
+      [
+        -0.59,
+        0,
+        1.185
+      ],
+      [
+        0,
+        0,
+        -1.185
+      ],
+      [
+        0,
+        0,
+        -0.765
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0.765
+      ],
+      [
+        0,
+        0,
+        1.185
+      ],
+      [
+        0.59,
+        0,
+        -1.185
+      ],
+      [
+        0.59,
+        0,
+        -0.765
+      ],
+      [
+        0.59,
+        0,
+        0
+      ],
+      [
+        0.59,
+        0,
+        0.765
+      ],
+      [
+        0.59,
+        0,
+        1.185
+      ]
+    ],
+    "footprint": {
+      "width": 1.18,
+      "length": 2.37
+    },
+    "ready": true
+  },
+  "flightModel": {
+    "size": [
+      5.400000095367432,
+      2.667089271531683,
+      0.48532898101411526
+    ],
+    "meshes": [
+      {
+        "vertices": 4,
+        "triangles": 2,
+        "finite": true
+      }
+    ],
+    "style": "isometric-paper-diorama",
+    "footprint": {
+      "width": 4.52,
+      "length": 4.85
+    },
+    "ready": true
+  },
+  "routes": {
+    "torp": [
+      10.1,
+      59.9
+    ],
+    "norway": 14
+  },
+  "carRender": [
+    {
+      "calls": 1,
+      "triangles": 2,
+      "upright": 0.9999020016006562,
+      "facing": 1.0000000000000002
+    },
+    {
+      "calls": 1,
+      "triangles": 2,
+      "upright": 0.9999020016006561,
+      "facing": 1
+    }
+  ],
+  "planeRender": [
+    {
+      "calls": 1,
+      "triangles": 2,
+      "upright": 0.9983787134917887,
+      "facing": 1
+    },
+    {
+      "calls": 1,
+      "triangles": 2,
+      "upright": 0.9983787134917887,
+      "facing": 1
+    }
+  ]
+}

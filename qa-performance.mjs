@@ -32,13 +32,13 @@ try {
       assert.equal(settled.active,false,'Idle atlas has no scheduled frame');
     }
     if(!baseline){
-      // Nine genuinely dimensional landmarks, seventeen maritime vignettes,
+      // Eleven upright paper landmarks, seventeen maritime vignettes,
       // forests, rivers and batched settlements share this fixed scene ceiling.
       // Keep the existing culled terrain budget; richer pigment is a shader cost.
-      assert.ok(settled.calls<=75,`Dimensional atlas draw budget (75 max): ${settled.calls}`);
+      assert.ok(settled.calls<=65,`Paper atlas draw budget (65 max): ${settled.calls}`);
       assert.ok(settled.terrainTriangles<(viewport.width<760?100000:350000),`Culled land mesh budget: ${settled.terrainTriangles}`);
       const scene=await inspect();
-      assert.equal(scene.landmarkCount,9,'All nine dimensional landmarks contribute to the measured scene');
+      assert.equal(scene.landmarkCount,11,'All eleven remaining paper landmarks contribute to the measured scene');
       assert.equal(scene.creatureCount,17,'All seventeen sea illustrations contribute to the measured scene');
     }
     await page.screenshot({path:`outputs/${baseline?'before':'refined'}-${viewport.width}.png`});
@@ -47,10 +47,10 @@ try {
     if(!baseline){
       const illustrations=resources.filter(resource=>resource.name.endsWith('.webp'));
       const mobile=viewport.width<760;
-      assert.equal(illustrations.length,1,'Only the one selected new maritime atlas loads');
-      assert.ok(illustrations[0].name.endsWith(mobile?'maritime-illustrated-v4-mobile.webp':'maritime-illustrated-v4.webp'),'The viewport loads its responsive maritime artwork');
+      assert.equal(illustrations.length,2,'Only the two selected responsive illustration atlases load');
+      for(const name of ['maritime-illustrated-v4','paper-atlas-v6'])assert.ok(illustrations.some(resource=>resource.name.endsWith(`${name}${mobile?'-mobile':''}.webp`)),'The viewport loads its responsive artwork');
       illustrationBytes=illustrations.reduce((sum,item)=>sum+item.decodedBodySize,0);
-      assert.ok(illustrationBytes<(mobile?350000:1400000),`Responsive illustration payload: ${illustrationBytes} bytes`);
+      assert.ok(illustrationBytes<(mobile?1200000:4800000),`Responsive illustration payload: ${illustrationBytes} bytes`);
     }
     results.push({viewport,performance:settled,illustrationBytes,resourceBytes:resources.reduce((sum,item)=>sum+item.decodedBodySize,0),resources});
     assert.deepEqual(errors,[],'No runtime or resource failures');

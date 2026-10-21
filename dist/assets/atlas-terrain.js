@@ -52,21 +52,17 @@ void main(){
  // Broad slope shading reads as raised, engraved land. Its pigment and all
  // hatching follow the real DEM; there are no illustrated mountain planes.
  float light=dot(n,normalize(vec3(-.55,.78,-.30)));
- float relief=smoothstep(.65,2.2,h);
  float shade=clamp((.92-light)*.89,0.,.57);
  color=mix(color,vec3(.222,.255,.175),shade*(.51+upland*.32));
  color+=vec3(.112,.086,.043)*max(light-.72,0.);
- float contour=engraved(h*2.1+noise(p*.64)*.12,.022)*relief;
  float hatch=engraved(p.x*4.8+p.y*3.4+noise(p*.76)*.63,.044);
  hatch*=smoothstep(.21,.66,noise(p*2.35+37.))*slope*(1.-snow*.73);
  float fissure=smoothstep(.65,.89,noise(p*5.2+noise(p*1.2)*2.))*slope*upland;
- color-=vec3(.232,.184,.100)*contour*.23;
  color-=vec3(.244,.205,.131)*hatch*.69;
  color-=vec3(.117,.104,.072)*fissure*(1.-snow*.78);
  // Pale summit pigment is printed after the umber wash: its shaded blue-grey
  // creases stay visible instead of disappearing into an olive mountain mass.
  vec3 snowPigment=mix(vec3(.665,.721,.695),vec3(.978,.953,.829),smoothstep(-.1,.88,light));
- snowPigment-=vec3(.09,.087,.065)*contour*.20;
  color=mix(color,snowPigment,snow*.94);
  // Fibres and granular pigment are fixed to the chart, so zooming and a
  // sleeping renderer never turn the sheet into changing screen-space noise.
@@ -138,9 +134,9 @@ void main(){gl_FragColor=vec4(chartWater(vWorld),1.);}
 `;
 
 function seeded(seed=401){return()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};}
-/** Small sculpted groves grow from the same DEM, with no tree billboards. */
-export function addIllustratedVegetation({THREE,scene,worldPoint,heightAt,regionAt,mobile=false}){
- return addSculptedWoodland({THREE,scene,worldPoint,heightAt,regionAt,mobile});
+/** Painted woodland dioramas grow from the same geographic relief. */
+export function addIllustratedVegetation(options){
+ return addSculptedWoodland(options);
 }
 
 function lineBatch(THREE,group,positions,color,opacity,name){
@@ -151,7 +147,7 @@ function lineBatch(THREE,group,positions,color,opacity,name){
 /** Terrain-conforming ridge hachures: mountains are marks in the land itself. */
 export function addIllustratedMountains({THREE,scene,worldPoint,heightAt,regionAt,mobile=false}){
  const group=new THREE.Group();group.name='engraved-mountain-relief';
- const contours=[],hatches=[],random=seeded(901);let count=0;
+ const hatches=[],random=seeded(901);let count=0;
  const point=(x,z)=>worldPoint([x/2.2+13,60-z/4.4],.054);
  const stroke=(points,target)=>{for(let j=1;j<points.length;j++){
   const a=points[j-1],b=points[j];
@@ -163,12 +159,9 @@ export function addIllustratedMountains({THREE,scene,worldPoint,heightAt,regionA
   const h=heightAt(...geo);if(h<.95||!regionAt(geo))continue;
   const p=worldPoint(geo),d=.105,gx=(heightAt(geo[0]+d,geo[1])-heightAt(geo[0]-d,geo[1]))/(d*4.4),gz=(heightAt(geo[0],geo[1]-d*.5)-heightAt(geo[0],geo[1]+d*.5))/(d*4.4),slope=Math.hypot(gx,gz);
   if(slope<.18)continue;
-  const tx=-gz/slope,tz=gx/slope,span=.20+random()*.48,bend=(random()-.5)*.13,points=[];
-  for(let j=0;j<=7;j++){
-   const t=j/7-.5,s=t*span*2,curve=Math.sin((t+.5)*Math.PI)*bend;
-   points.push([p.x+tx*s+gx/slope*curve,p.z+tz*s+gz/slope*curve]);
-  }
-  stroke(points,contours);
+  const tx=-gz/slope,tz=gx/slope,span=.20+random()*.48;
+  // Broken strokes run down the actual rock face. No horizontal height rings
+  // or cartographic contour bands are drawn over the painted mountain relief.
   for(let j=0;j<3;j++){
    const s=(j/2-.5)*span*1.6,x=p.x+tx*s,z=p.z+tz*s,length=.12+random()*.30;
    const end=[x-gx/slope*length,z-gz/slope*length];
@@ -177,14 +170,13 @@ export function addIllustratedMountains({THREE,scene,worldPoint,heightAt,regionA
   }
   count++;
  }
- lineBatch(THREE,group,contours,0x4d503a,.44,'dem-ridge-contours');
  lineBatch(THREE,group,hatches,0x50432e,.43,'dem-slope-hachures');
- scene.add(group);return{group,count,drawCalls:2,vertices:(contours.length+hatches.length)/3};
+ scene.add(group);return{group,count,drawCalls:1,vertices:hatches.length/3};
 }
 
 /** Broad, gently meandering channels follow the real Natural Earth rivers.
  * Both banks and water are one opaque surface shaped to the local terrain. */
-function addRiverRibbons({THREE,group,rivers,worldPoint,heightAt,regionAt}){
+export function createRiverRibbonGeometry({THREE,rivers,worldPoint,heightAt,regionAt}){
  const positions=[],uvs=[],indices=[];let riverCount=0;
  const toGeo=p=>[p.x/2.2+13,60-p.z/4.4];
  for(const river of rivers){
@@ -212,6 +204,35 @@ function addRiverRibbons({THREE,group,rivers,worldPoint,heightAt,regionAt}){
   if(validSegments)riverCount++;
  }
  const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geometry.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));geometry.setIndex(indices);geometry.computeVertexNormals();geometry.computeBoundingSphere();
+ return {geometry,riverCount};
+}
+
+/** Exact, shared exclusion for the rendered river water and both painted banks.
+ * Returns true for [longitude,latitude] or (longitude,latitude) inside a bank. */
+export function createRiverBankExclusion({THREE,geography,worldPoint,heightAt,regionAt}){
+ const {geometry}=createRiverRibbonGeometry({THREE,rivers:geography.rivers,worldPoint,heightAt,regionAt}),p=geometry.attributes.position,a=geometry.index.array,bins=new Map(),cell=1.5;
+ for(let i=0;i<a.length;i+=3){
+  const ax=p.getX(a[i]),az=p.getZ(a[i]),bx=p.getX(a[i+1]),bz=p.getZ(a[i+1]),cx=p.getX(a[i+2]),cz=p.getZ(a[i+2]);
+  const determinant=(bz-cz)*(ax-cx)+(cx-bx)*(az-cz);if(Math.abs(determinant)<1e-12)continue;
+  const triangle={ax,az,bx,bz,cx,cz,determinant};
+  for(let z=Math.floor(Math.min(az,bz,cz)/cell);z<=Math.floor(Math.max(az,bz,cz)/cell);z++)for(let x=Math.floor(Math.min(ax,bx,cx)/cell);x<=Math.floor(Math.max(ax,bx,cx)/cell);x++){
+   const key=`${x},${z}`;if(!bins.has(key))bins.set(key,[]);bins.get(key).push(triangle);
+  }
+ }
+ const predicate=(longitude,latitude)=>{
+  if(Array.isArray(longitude)){latitude=longitude[1];longitude=longitude[0];}
+  const x=(longitude-13)*2.2,z=(60-latitude)*4.4;
+  for(const t of bins.get(`${Math.floor(x/cell)},${Math.floor(z/cell)}`)||[]){
+   const wa=((t.bz-t.cz)*(x-t.cx)+(t.cx-t.bx)*(z-t.cz))/t.determinant,wb=((t.cz-t.az)*(x-t.cx)+(t.ax-t.cx)*(z-t.cz))/t.determinant,wc=1-wa-wb;
+   if(Math.min(wa,wb,wc)>=-1e-7)return true;
+  }
+  return false;
+ };
+ predicate.triangleCount=a.length/3;geometry.dispose();return predicate;
+}
+
+function addRiverRibbons({THREE,group,rivers,worldPoint,heightAt,regionAt}){
+ const {geometry,riverCount}=createRiverRibbonGeometry({THREE,rivers,worldPoint,heightAt,regionAt});
  const material=new THREE.ShaderMaterial({side:THREE.DoubleSide,vertexShader,fragmentShader:`varying vec2 vUv;varying vec3 vNormal,vWorld;${pigmentShader}
  void main(){float across=abs(vUv.x*2.-1.),grain=wash(vWorld.xz*9.);float bank=smoothstep(.68,.95,across);
  vec3 water=mix(vec3(.251,.492,.458),vec3(.507,.685,.574),grain*.63+(.5-.5*across)*.4);
@@ -223,8 +244,8 @@ function addRiverRibbons({THREE,group,rivers,worldPoint,heightAt,regionAt}){
  color+=vec3(.17,.17,.10)*flow*.36;
  color+=(hash(floor(vWorld.xz*130.))-.5)*.027;
  gl_FragColor=vec4(color,1.);}`});
- const mesh=new THREE.Mesh(geometry,material);mesh.name='exaggerated-geographic-river-banks-and-water';mesh.userData={riverCount,triangles:indices.length/3};group.add(mesh);
- return{riverCount,vertices:positions.length/3};
+ const mesh=new THREE.Mesh(geometry,material);mesh.name='exaggerated-geographic-river-banks-and-water';mesh.userData={riverCount,triangles:geometry.index.count/3};group.add(mesh);
+ return{riverCount,vertices:geometry.attributes.position.count};
 }
 
 /** Geographic ink stays tied to real coastlines, waterways and DEM contours. */
@@ -314,5 +335,5 @@ export function addIllustratedGeography({THREE,scene,geography,worldPoint,height
  }
  lineBatch(THREE,group,fieldInk,0x75663b,.30,'meadow-quill-strokes');
  const mountains=addIllustratedMountains({THREE,scene:group,worldPoint,heightAt,regionAt,mobile});
- scene.add(group);return{group,mountains:mountains.count,rivers:riverArtwork.riverCount,drawCalls:8,vertices:riverArtwork.vertices+mountains.vertices+(coastline.length+borders.length+wetInk.length+currents.length+fieldInk.length)/3};
+ scene.add(group);return{group,mountains:mountains.count,rivers:riverArtwork.riverCount,drawCalls:7,vertices:riverArtwork.vertices+mountains.vertices+(coastline.length+borders.length+wetInk.length+currents.length+fieldInk.length)/3};
 }

@@ -17,10 +17,6 @@ function rawTerrainHeight(elevations,lon,lat){
 // pedestal under an otherwise untouched, very coarse mountain DEM. Only these
 // footprints and a narrow, continuously eased shoulder change the height field.
 export const ARCHITECTURAL_TERRACES=Object.freeze([
- // The coarse DEM mixes Bergen's low wharf with its steep hillside. Keep
- // the waterfront at a low coastal bank instead of a tall masonry pedestal.
- {id:'bryggen',coordinates:[5.32309,60.39721],box:[-1.32,2.48,-.78,.91],blend:.55,height:.44},
- {id:'oslo',coordinates:[10.7526806,59.9075238],box:[1.15,4.11,-1.62,1.64],blend:.45},
  {id:'borgund',coordinates:[7.8122905,61.0472015],box:[-.93,.93,-1.03,1.17],blend:.50},
 ]);
 export function sampleTerrainHeight(elevations,lon,lat){

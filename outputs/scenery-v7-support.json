@@ -1,0 +1,370 @@
+{
+  "liveReport": "outputs/paper-v7-review.json",
+  "atlas": "paper-atlas-v6.json",
+  "method": "Actual final landmark metadata, original atlas dimensions, production merged geometry, full enlarged foot samples against real coast/river/DEM, and unchanged sea-rock baseline",
+  "results": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "livePlacementsMatch": true,
+      "liveNumericTolerance": 1e-9,
+      "landmarksUsed": [
+        "landmark-stockholm",
+        "landmark-nyhavn",
+        "landmark-warsaw",
+        "landmark-windmill",
+        "landmark-gdansk",
+        "landmark-london",
+        "landmark-borgund",
+        "landmark-brandenburg",
+        "landmark-cologne",
+        "landmark-edinburgh",
+        "landmark-iceland_volcano"
+      ],
+      "renderScale": 2,
+      "trees": {
+        "count": 1320,
+        "width": [
+          0.9000163298565894,
+          1.4998959190165624
+        ],
+        "height": [
+          1.0035655960861756,
+          2.3225858867741547
+        ]
+      },
+      "settlements": {
+        "count": 122,
+        "width": [
+          1.104542520036921,
+          1.7939453499298543
+        ],
+        "height": [
+          1.134803958942042,
+          1.8090205209376682
+        ]
+      },
+      "lighthouses": [
+        {
+          "name": "Kullen lighthouse",
+          "coordinates": [
+            12.4525,
+            56.3017
+          ],
+          "drawingCoordinates": [
+            13.05525368103397,
+            56.1277
+          ],
+          "position": [
+            0.12155809827473228,
+            0.5933359912976099,
+            17.038120000000013
+          ],
+          "baseWidth": 0.94,
+          "width": 1.88,
+          "renderScale": 2,
+          "footWidth": 1.88,
+          "footDepth": 0.3384,
+          "paperIllustration": true,
+          "asset": "lighthouse",
+          "height": 2.8556962025316457,
+          "baseHeight": 1.4278481012658228
+        },
+        {
+          "name": "Hirtshals lighthouse",
+          "coordinates": [
+            9.941,
+            57.5844
+          ],
+          "drawingCoordinates": [
+            9.67700457399543,
+            57.091777828592576
+          ],
+          "position": [
+            -7.3105899372100565,
+            0.39702167158067847,
+            12.796177554192665
+          ],
+          "baseWidth": 1.05,
+          "width": 2.1,
+          "renderScale": 2,
+          "footWidth": 2.1,
+          "footDepth": 0.378,
+          "paperIllustration": true,
+          "asset": "lighthouse",
+          "height": 3.189873417721519,
+          "baseHeight": 1.5949367088607596
+        }
+      ],
+      "seaRocks": {
+        "count": 41,
+        "renderScale": 1,
+        "unchanged": true
+      },
+      "supportSamples": 96738,
+      "roadChecks": 64980,
+      "spacingChecks": {
+        "treePairs": 870540,
+        "settlementPairs": 7381
+      },
+      "actualGeometry": {
+        "forest": {
+          "widthChecks": 1320,
+          "heightChecks": 8771,
+          "groundChecks": 22353
+        },
+        "scenery": {
+          "widthChecks": 165,
+          "heightChecks": 1027,
+          "groundChecks": 2463
+        },
+        "triangles": 16626,
+        "drawCalls": 4
+      }
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "livePlacementsMatch": true,
+      "liveNumericTolerance": 1e-9,
+      "landmarksUsed": [
+        "landmark-stockholm",
+        "landmark-nyhavn",
+        "landmark-warsaw",
+        "landmark-windmill",
+        "landmark-gdansk",
+        "landmark-london",
+        "landmark-borgund",
+        "landmark-brandenburg",
+        "landmark-cologne",
+        "landmark-edinburgh",
+        "landmark-iceland_volcano"
+      ],
+      "renderScale": 2,
+      "trees": {
+        "count": 1320,
+        "width": [
+          0.9000163298565894,
+          1.4998959190165624
+        ],
+        "height": [
+          1.0035655960861756,
+          2.3225858867741547
+        ]
+      },
+      "settlements": {
+        "count": 122,
+        "width": [
+          1.104542520036921,
+          1.7939453499298543
+        ],
+        "height": [
+          1.134803958942042,
+          1.8090205209376682
+        ]
+      },
+      "lighthouses": [
+        {
+          "name": "Kullen lighthouse",
+          "coordinates": [
+            12.4525,
+            56.3017
+          ],
+          "drawingCoordinates": [
+            13.05525368103397,
+            56.1277
+          ],
+          "position": [
+            0.12155809827473228,
+            0.5933359912976099,
+            17.038120000000013
+          ],
+          "baseWidth": 0.94,
+          "width": 1.88,
+          "renderScale": 2,
+          "footWidth": 1.88,
+          "footDepth": 0.3384,
+          "paperIllustration": true,
+          "asset": "lighthouse",
+          "height": 2.8556962025316457,
+          "baseHeight": 1.4278481012658228
+        },
+        {
+          "name": "Hirtshals lighthouse",
+          "coordinates": [
+            9.941,
+            57.5844
+          ],
+          "drawingCoordinates": [
+            9.67700457399543,
+            57.091777828592576
+          ],
+          "position": [
+            -7.3105899372100565,
+            0.39702167158067847,
+            12.796177554192665
+          ],
+          "baseWidth": 1.05,
+          "width": 2.1,
+          "renderScale": 2,
+          "footWidth": 2.1,
+          "footDepth": 0.378,
+          "paperIllustration": true,
+          "asset": "lighthouse",
+          "height": 3.189873417721519,
+          "baseHeight": 1.5949367088607596
+        }
+      ],
+      "seaRocks": {
+        "count": 41,
+        "renderScale": 1,
+        "unchanged": true
+      },
+      "supportSamples": 96738,
+      "roadChecks": 64980,
+      "spacingChecks": {
+        "treePairs": 870540,
+        "settlementPairs": 7381
+      },
+      "actualGeometry": {
+        "forest": {
+          "widthChecks": 1320,
+          "heightChecks": 8771,
+          "groundChecks": 22353
+        },
+        "scenery": {
+          "widthChecks": 165,
+          "heightChecks": 1027,
+          "groundChecks": 2463
+        },
+        "triangles": 16626,
+        "drawCalls": 4
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "livePlacementsMatch": true,
+      "liveNumericTolerance": 1e-9,
+      "landmarksUsed": [
+        "landmark-stockholm",
+        "landmark-nyhavn",
+        "landmark-warsaw",
+        "landmark-windmill",
+        "landmark-gdansk",
+        "landmark-london",
+        "landmark-borgund",
+        "landmark-brandenburg",
+        "landmark-cologne",
+        "landmark-edinburgh",
+        "landmark-iceland_volcano"
+      ],
+      "renderScale": 2,
+      "trees": {
+        "count": 780,
+        "width": [
+          0.9009320377837867,
+          1.49921878780704
+        ],
+        "height": [
+          1.0019204894258924,
+          2.3225858867741547
+        ]
+      },
+      "settlements": {
+        "count": 76,
+        "width": [
+          1.104542520036921,
+          1.7939453499298543
+        ],
+        "height": [
+          1.134803958942042,
+          1.8090205209376682
+        ]
+      },
+      "lighthouses": [
+        {
+          "name": "Kullen lighthouse",
+          "coordinates": [
+            12.4525,
+            56.3017
+          ],
+          "drawingCoordinates": [
+            13.05525368103397,
+            56.1277
+          ],
+          "position": [
+            0.12155809827473228,
+            0.5933359912976099,
+            17.038120000000013
+          ],
+          "baseWidth": 0.94,
+          "width": 1.88,
+          "renderScale": 2,
+          "footWidth": 1.88,
+          "footDepth": 0.3384,
+          "paperIllustration": true,
+          "asset": "lighthouse",
+          "height": 2.8556962025316457,
+          "baseHeight": 1.4278481012658228
+        },
+        {
+          "name": "Hirtshals lighthouse",
+          "coordinates": [
+            9.941,
+            57.5844
+          ],
+          "drawingCoordinates": [
+            9.67700457399543,
+            57.091777828592576
+          ],
+          "position": [
+            -7.3105899372100565,
+            0.39702167158067847,
+            12.796177554192665
+          ],
+          "baseWidth": 1.05,
+          "width": 2.1,
+          "renderScale": 2,
+          "footWidth": 2.1,
+          "footDepth": 0.378,
+          "paperIllustration": true,
+          "asset": "lighthouse",
+          "height": 3.189873417721519,
+          "baseHeight": 1.5949367088607596
+        }
+      ],
+      "seaRocks": {
+        "count": 20,
+        "renderScale": 1,
+        "unchanged": true
+      },
+      "supportSamples": 57993,
+      "roadChecks": 38610,
+      "spacingChecks": {
+        "treePairs": 303810,
+        "settlementPairs": 2850
+      },
+      "actualGeometry": {
+        "forest": {
+          "widthChecks": 780,
+          "heightChecks": 5207,
+          "groundChecks": 13281
+        },
+        "scenery": {
+          "widthChecks": 98,
+          "heightChecks": 646,
+          "groundChecks": 1584
+        },
+        "triangles": 9950,
+        "drawCalls": 4
+      }
+    }
+  ]
+}

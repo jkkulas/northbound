@@ -1,0 +1,405 @@
+{
+  "width": 2560,
+  "height": 3840,
+  "art": {
+    "bryggen": {
+      "rect": [
+        20,
+        142,
+        620,
+        499
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ],
+      "sourceBounds": [
+        28,
+        73,
+        1508,
+        953
+      ],
+      "source": "outputs/paper-v5/bryggen.png"
+    },
+    "oslo": {
+      "rect": [
+        660,
+        163,
+        1260,
+        477
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ],
+      "sourceBounds": [
+        2,
+        123,
+        1536,
+        926
+      ],
+      "source": "outputs/paper-v5/oslo.png"
+    },
+    "stockholm": {
+      "rect": [
+        1330,
+        20,
+        1871,
+        620
+      ],
+      "sourceSize": [
+        1202,
+        1308
+      ],
+      "sourceBounds": [
+        26,
+        8,
+        1190,
+        1300
+      ],
+      "source": "outputs/paper-v5/stockholm.png"
+    },
+    "nyhavn": {
+      "rect": [
+        1940,
+        22,
+        2540,
+        619
+      ],
+      "sourceSize": [
+        1196,
+        1315
+      ],
+      "sourceBounds": [
+        4,
+        46,
+        1192,
+        1228
+      ],
+      "source": "outputs/paper-v5/nyhavn.png"
+    },
+    "warsaw": {
+      "rect": [
+        32,
+        660,
+        609,
+        1260
+      ],
+      "sourceSize": [
+        1230,
+        1278
+      ],
+      "sourceBounds": [
+        0,
+        0,
+        1230,
+        1278
+      ],
+      "source": "outputs/paper-v5/warsaw.png"
+    },
+    "windmill": {
+      "rect": [
+        756,
+        660,
+        1165,
+        1260
+      ],
+      "sourceSize": [
+        1024,
+        1536
+      ],
+      "sourceBounds": [
+        14,
+        34,
+        1011,
+        1496
+      ],
+      "source": "outputs/paper-v5/windmill.png"
+    },
+    "gdansk": {
+      "rect": [
+        1307,
+        660,
+        1894,
+        1260
+      ],
+      "sourceSize": [
+        1240,
+        1268
+      ],
+      "sourceBounds": [
+        0,
+        0,
+        1240,
+        1268
+      ],
+      "source": "outputs/paper-v5/gdansk.png"
+    },
+    "london": {
+      "rect": [
+        1940,
+        770,
+        2540,
+        1151
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ],
+      "sourceBounds": [
+        6,
+        6,
+        1535,
+        978
+      ],
+      "source": "outputs/paper-v5/london.png"
+    },
+    "borgund": {
+      "rect": [
+        38,
+        1300,
+        603,
+        1900
+      ],
+      "sourceSize": [
+        1214,
+        1295
+      ],
+      "sourceBounds": [
+        1,
+        3,
+        1213,
+        1291
+      ],
+      "source": "outputs/paper-v5/borgund.png"
+    },
+    "brandenburg": {
+      "rect": [
+        660,
+        1363,
+        1260,
+        1838
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ],
+      "sourceBounds": [
+        154,
+        2,
+        1402,
+        990
+      ],
+      "source": "outputs/paper-v5/brandenburg.png"
+    },
+    "cologne": {
+      "rect": [
+        1400,
+        1300,
+        1801,
+        1900
+      ],
+      "sourceSize": [
+        1024,
+        1536
+      ],
+      "sourceBounds": [
+        0,
+        1,
+        1024,
+        1535
+      ],
+      "source": "outputs/paper-v5/cologne.png"
+    },
+    "edinburgh": {
+      "rect": [
+        1941,
+        1300,
+        2539,
+        1900
+      ],
+      "sourceSize": [
+        1243,
+        1266
+      ],
+      "sourceBounds": [
+        10,
+        27,
+        1234,
+        1255
+      ],
+      "source": "outputs/paper-v5/edinburgh.png"
+    },
+    "fir": {
+      "rect": [
+        145,
+        1940,
+        496,
+        2540
+      ],
+      "sourceSize": [
+        1024,
+        1536
+      ],
+      "sourceBounds": [
+        64,
+        3,
+        959,
+        1531
+      ],
+      "source": "outputs/paper-v5/fir.png"
+    },
+    "oak": {
+      "rect": [
+        673,
+        1940,
+        1248,
+        2540
+      ],
+      "sourceSize": [
+        1223,
+        1286
+      ],
+      "sourceBounds": [
+        3,
+        6,
+        1221,
+        1278
+      ],
+      "source": "outputs/paper-v5/oak.png"
+    },
+    "village": {
+      "rect": [
+        1303,
+        1940,
+        1898,
+        2540
+      ],
+      "sourceSize": [
+        1242,
+        1266
+      ],
+      "sourceBounds": [
+        5,
+        6,
+        1241,
+        1253
+      ],
+      "source": "outputs/paper-v5/village.png"
+    },
+    "lighthouse": {
+      "rect": [
+        2043,
+        1940,
+        2438,
+        2540
+      ],
+      "sourceSize": [
+        1024,
+        1536
+      ],
+      "sourceBounds": [
+        9,
+        0,
+        1020,
+        1536
+      ],
+      "source": "outputs/paper-v5/lighthouse.png"
+    },
+    "sea_rocks": {
+      "rect": [
+        31,
+        2580,
+        610,
+        3180
+      ],
+      "sourceSize": [
+        1230,
+        1278
+      ],
+      "sourceBounds": [
+        0,
+        1,
+        1228,
+        1274
+      ],
+      "source": "outputs/paper-v5/sea_rocks.png"
+    },
+    "plane": {
+      "rect": [
+        660,
+        2728,
+        1260,
+        3032
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ],
+      "sourceBounds": [
+        10,
+        85,
+        1528,
+        853
+      ],
+      "source": "outputs/paper-v5/plane.png"
+    },
+    "car": {
+      "rect": [
+        1300,
+        2738,
+        1900,
+        3023
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ],
+      "sourceBounds": [
+        7,
+        149,
+        1534,
+        874
+      ],
+      "source": "outputs/paper-v5/car.png"
+    },
+    "iceland_volcano": {
+      "rect": [
+        1940,
+        2685,
+        2540,
+        3076
+      ],
+      "sourceSize": [
+        1536,
+        1024
+      ],
+      "sourceBounds": [
+        0,
+        2,
+        1536,
+        1004
+      ],
+      "source": "outputs/paper-v6/iceland_volcano.png"
+    },
+    "cottage": {
+      "rect": [
+        28,
+        3220,
+        612,
+        3820
+      ],
+      "sourceSize": [
+        1230,
+        1278
+      ],
+      "sourceBounds": [
+        21,
+        26,
+        1210,
+        1248
+      ],
+      "source": "outputs/paper-v6/cottage.png"
+    }
+  }
+}

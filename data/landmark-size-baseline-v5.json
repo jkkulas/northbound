@@ -1,0 +1,118 @@
+{
+  "version": "paper-v5",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "method": "Projected actual conformed card geometry using the shipped v5 atlas and final v5 placements",
+  "models": [
+    {
+      "id": "bryggen",
+      "width": 20.32191899696636,
+      "height": 11.420193652202784,
+      "drawingCoordinates": [
+        5.595817272727274,
+        60.363119090909095
+      ]
+    },
+    {
+      "id": "oslo",
+      "width": 15.516753887744017,
+      "height": 7.571218339826828,
+      "drawingCoordinates": [
+        11.570862418181818,
+        59.9075238
+      ]
+    },
+    {
+      "id": "stockholm",
+      "width": 39.24487638005189,
+      "height": 38.88144508230198,
+      "drawingCoordinates": [
+        17.531487527272727,
+        59.159312381818175
+      ]
+    },
+    {
+      "id": "nyhavn",
+      "width": 43.76228485817967,
+      "height": 39.27296854888823,
+      "drawingCoordinates": [
+        11.802781363636363,
+        55.671361090909095
+      ]
+    },
+    {
+      "id": "warsaw",
+      "width": 59.807284504140625,
+      "height": 49.88242436587336,
+      "drawingCoordinates": [
+        20.050580636363634,
+        52.225021727272726
+      ]
+    },
+    {
+      "id": "windmill",
+      "width": 34.857380608752464,
+      "height": 44.312366855556434,
+      "drawingCoordinates": [
+        4.803615463636364,
+        52.06066762727273
+      ]
+    },
+    {
+      "id": "gdansk",
+      "width": 27.635288062539303,
+      "height": 30.80112752955506,
+      "drawingCoordinates": [
+        18.448373505609094,
+        54.40283202417273
+      ]
+    },
+    {
+      "id": "london",
+      "width": 26.781102088176283,
+      "height": 61.71578665647746,
+      "drawingCoordinates": [
+        -0.07536649999999945,
+        51.5055158
+      ]
+    },
+    {
+      "id": "borgund",
+      "width": 23.558435160686827,
+      "height": 25.035683106345573,
+      "drawingCoordinates": [
+        7.8122905,
+        61.04038331818182
+      ]
+    },
+    {
+      "id": "brandenburg",
+      "width": 51.08474529737714,
+      "height": 34.62476008112367,
+      "drawingCoordinates": [
+        13.3777034,
+        52.425360809090904
+      ]
+    },
+    {
+      "id": "cologne",
+      "width": 41.655202412862195,
+      "height": 55.87748664344838,
+      "drawingCoordinates": [
+        6.267228909090909,
+        50.91857622727272
+      ]
+    },
+    {
+      "id": "edinburgh",
+      "width": 39.686997536823526,
+      "height": 35.93647225338657,
+      "drawingCoordinates": [
+        -3.145872945454549,
+        55.83732476363637
+      ]
+    }
+  ]
+}

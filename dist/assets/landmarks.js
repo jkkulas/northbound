@@ -1,133 +1,134 @@
-﻿import {createMapModelMaterial,createModelBuilder} from './atlas-models.js';
+﻿import {loadPaperAtlas,createPaperCard} from './paper-art.js';
+import {createRiverBankExclusion} from './atlas-terrain.js';
 
-// Real building anchors researched before modeling; data/landmark-locations.json.
-export const OPERA_FOOTPRINT=Object.freeze({coordinates:[10.7526806,59.9075238],minX:1.2,maxX:4.1,minZ:-1.55,maxZ:1.6});
-const C={stone:0xd4b47c,ivory:0xe8d4a4,light:0xf0dfb8,ochre:0xcaa060,umber:0x806241,ink:0x3f392b,brick:0x9d5039,red:0xb46645,roof:0x695448,copper:0x526d5b,teal:0x4f7770,window:0x344d49,wood:0x68482f,gold:0xd4aa54};
-const sites=[
- {asset:'bryggen',title:'Bergen · Bryggen',coordinates:[5.32309,60.39721],make:bryggen,grounding:'waterfront'},
- {asset:'oslo',title:'Oslo · Opera House',coordinates:[10.7526806,59.9075238],make:opera,footprint:OPERA_FOOTPRINT},
- {asset:'stockholm',title:'Stockholm · City Hall',coordinates:[18.0542148,59.3274942],make:stockholm,grounding:'waterfront'},
- {asset:'nyhavn',title:'Copenhagen · Nyhavn',coordinates:[12.589145,55.680452],make:nyhavn,grounding:'waterfront'},
- {asset:'warsaw',title:'Warsaw · Royal Castle',coordinates:[21.014217,52.247749],make:warsaw},
- {asset:'windmill',title:'Kinderdijk · Nederwaard Mill No. 2',coordinates:[4.6399791,51.8833949],make:windmill},
- {asset:'gdansk',title:'Gdańsk · Żuraw',coordinates:[18.6574644147,54.3505592969],drawingCoordinates:[18.6574644147,54.43],make:gdansk,grounding:'waterfront'},
- {asset:'london',title:'London · Tower Bridge',coordinates:[-.0753665,51.5055158],make:towerBridge,grounding:'river-crossing'},
- {asset:'borgund',title:'Lærdal · Borgund Stave Church',coordinates:[7.8122905,61.0472015],make:borgund},
-];
-function foundation(b,x,y,z,w,d){b.skirt(x,y+.02,z,w+.025,d+.025,b.ground,C.umber);b.box(x,y+.025,z,w,.09,d,C.stone);}
-function courses(b,x,y,z,w,h,d,col=C.stone){for(let k=.28;k<h;k+=.28)b.box(x,y+k,z+d/2+.008,w,.012,.012,col);}
-function gableHouse(b,g,x,z,w=.55,h=1.2,d=1,col=C.ochre,{roof=C.roof,dutch=false,rows=3}={}){
- const y=g.support(x,z,w,d);foundation(b,x,y,z,w,d);b.box(x,y+h/2+.08,z,w,h,d,col,true);b.roof(x,y+h+.08,z,w+.09,.46,d+.11,roof);
- if(dutch){for(let k=0;k<4;k++)b.box(x,y+h+.1+k*.095,z+d/2+.016,w-k*w*.21,.1,.055,col);b.box(x,y+h+.49,z+d/2+.02,.095,.11,.08,C.ivory);}
- else b.prism([[-w*.45,0],[0,.4],[w*.45,0]],.045,col,[x,y+h+.08,z+d/2+.025]);
- for(const side of[-1,1])b.box(x+side*(w/2-.025),y+h/2+.08,z+d/2+.024,.035,h,.028,C.ivory);
- const cols=w>.6?3:2;for(let r=0;r<rows;r++)for(let j=0;j<cols;j++)b.window(x+(j-(cols-1)/2)*w/(cols+.4),y+.28+r*(h-.3)/rows,z+d/2+.034,w/(cols*2.5),.18);
- for(let j=0;j<3;j++)b.window(x+w/2+.015,y+.35+j*.31,z+.1,.12,.18,'side');
- b.box(x,y+.18,z+d/2+.055,.12,.27,.035,C.wood);b.box(x,y+h+.018,z+d/2+.045,w+.05,.055,.06,C.ivory);b.window(x,y+h+.22,z+d/2+.045,.1,.12);
- b.box(x+w*.22,y+h+.46,z-d*.20,.105,.3,.12,C.brick,true);b.box(x,y+h+.25,z+.22,.17,.18,.20,C.stone);b.roof(x,y+h+.34,z+.22,.22,.15,.25,roof);
- b.beam([x,y+h+.55,z-d/2-.04],[x,y+h+.55,z+d/2+.04],.012,C.umber);b.box(x-w*.31,y+.42,z+d/2+.09,.06,.085,.04,C.gold);return y;
-}
-function bryggen({b,g}){
- const pigments=[0xa54e38,0xcd9b50,0xd0b77d,0x9b4d37,0xb26840,0xd2ac6d,0x89513b];
- for(let i=0;i<7;i++){const x=(i-3)*.52+.55,z=-.07*Math.abs(i-3),h=1.28+[.15,.32,0,.22,.34,.12,.18][i],y=gableHouse(b,g,x,z,.49,h,.95,pigments[i],{roof:i%2?C.roof:0x75523b,rows:3});
-  for(let j=0;j<5;j++)b.box(x-.22+j*.11,y+.78,z+.505,.009,1.28,.012,0x624631);b.beam([x-.25,y+.52,z+.52],[x+.25,y+1.03,z+.52],.009,C.umber);for(const sx of[-.2,.2])b.cylinder(x+sx,y-.02,z+.64,.034,.04,.32,C.wood,8);}
- for(let i=0;i<8;i++){const x=-.88+i*.43,y=g(x,.66);b.cylinder(x,y+.12,.66,.075,.075,.24,0x927040,12);b.cylinder(x,y+.12,.66,.079,.079,.025,C.umber,12);}
-}
-function opera({b,g}){
- // Snøhetta's marble slopes, glass foyer, fly tower; west arrival remains clear.
- const y=g(2.6,0)+.04;
- b.skirt(2.61,y,-.16,2.82,2.58,g,C.ivory);
- b.prism([[1.2,0],[4.02,0],[4.02,1.02],[2.78,1.16]],2.58,C.ivory,[0,y,-.16],[0,0,0],true);
- b.prism([[1.2,.045],[3.25,.10],[3.25,.75],[2.72,.96]],1.12,C.light,[0,y,1.0],[0,0,0],true);
- b.box(3.15,y+.76,-.43,1.65,1.06,1.45,0xc6b997,true);b.box(3.15,y+1.34,-.43,1.73,.12,1.53,C.light,true);b.box(3.12,y+1.23,-.80,1.04,.73,.74,0xc4bd9c,true);b.box(3.12,y+1.62,-.8,1.12,.08,.82,C.ivory,true);
- b.box(2.64,y+.67,1.25,1.72,.61,.042,C.window);for(let i=0;i<=14;i++)b.box(1.80+i*.12,y+.67,1.284,.018,.61,.025,C.ivory);b.box(2.64,y+.68,1.29,1.75,.022,.035,C.ivory);
- for(let i=0;i<11;i++){const x=1.24+i*.245,top=x<2.78?(x-1.2)/1.58*1.16:1.16-(x-2.78)*.11;b.beam([x,y+top+.012,-1.44],[x,y+top+.012,.94],.0065,0xacaa8b,5);}
- for(let i=0;i<5;i++)b.beam([1.22,y+.03,-1.36+i*.51],[2.76,y+1.17,-1.36+i*.51],.0065,0xacaa8b,5);
- for(let i=0;i<7;i++)b.box(3.5,y+.38+i*.09,1.3,.75,.027,.12,0xddd0aa);for(let i=0;i<14;i++)b.box(2.36+i*.11,y+.75,-1.18,.018,.82,.02,0x8e8a72);
-}
-function stockholm({b,g}){
- const y=g.support(-1.4,0,2.9,2),red=0x9c543c;
- for(const[x,z,w,d]of[[-1.6,-.95,2.65,.68],[-2.52,-.05,.65,1.9],[-1.38,.76,2.92,.64]]){
-  foundation(b,x,y,z,w,d);b.box(x,y+.74,z,w,1.43,d,red,true);b.hip(x,y+1.47,z,w+.12,d+.12,.62,0x635b46);const count=Math.floor(w/.27);
-  for(let k=0;k<count;k++)for(let r=0;r<3;r++)b.window(x+(k-(count-1)/2)*.27,y+.29+r*.39,z+d/2+.018,.11,.23);courses(b,x,y+.02,z,w,1.4,d,0xa76a49);}
- const x=-.12,z=.18;foundation(b,x,y,z,.74,.82);b.box(x,y+1.56,z,.72,3.1,.80,red,true);for(let r=0;r<5;r++)for(const dx of[-.18,.18])b.window(x+dx,y+.53+r*.46,z+.414,.11,.24);
- b.box(x,y+2.98,z,.84,.10,.91,C.stone,true);b.box(x,y+3.19,z,.62,.39,.68,red,true);
- for(const dx of[-.19,.19]){b.arch(x+dx,y+3.04,z+.354,.13,.32,.035,C.ink);b.arch(x+.334,y+3.04,z+dx,.13,.32,.035,C.ink,Math.PI/2);}
- b.cylinder(x,y+3.58,z,.18,.38,.55,C.copper,12);b.cylinder(x,y+3.99,z,.055,.16,.33,C.copper,12);b.cylinder(x,y+4.25,z,.017,.025,.24,C.gold,8);
- for(const dx of[-.14,0,.14]){b.cylinder(x+dx,y+4.42-Math.abs(dx)*.30,z,.065,.065,.065,C.gold,8);for(let k=0;k<3;k++)b.sphere(x+dx+(k-1)*.04,y+4.48-Math.abs(dx)*.3,z,.018,.036,.018,C.gold);}
- for(let i=0;i<8;i++)b.arch(-2.52+i*.30,y+.10,1.096,.18,.51,.03,C.ink);for(let i=0;i<9;i++)b.cylinder(-2.66+i*.31,y+.36,1.12,.035,.045,.63,C.stone,10);
- b.box(-1.41,y+.025,1.19,3.18,.08,.30,C.ochre);for(let i=0;i<18;i++)b.box(-2.94+i*.18,y+.14,1.34,.025,.21,.035,C.stone);b.box(-1.41,y+.26,1.34,3.18,.035,.055,C.ivory);
-}
-function nyhavn({b,g}){
- const palette=[0xc5a15b,0xb56243,0x778a74,0xe0c386,0xa94f36,0xc6b788,0x9d6c42];
- // Ensemble grows west/south across Sjælland from Copenhagen's east-coast anchor.
- for(let i=0;i<7;i++){const x=-2.58+i*.39,z=.38+Math.sin(i*.45)*.15,h=[1.25,1.61,1.38,1.80,1.48,1.66,1.34][i];gableHouse(b,g,x,z,.365,h,.82,palette[i],{dutch:i%3!==1,rows:4});}
- for(let i=0;i<5;i++){const x=-2.20+i*.43,z=-.88;gableHouse(b,g,x,z,.4,.95+(i%3)*.18,.7,palette[(i+3)%7],{dutch:i%2===0,rows:3});}
- for(let i=0;i<20;i++){const x=-2.8+i*.155,z=1.05,y=g(x,z);b.box(x,y+.025,z,.14,.05,.16,i%3?0xb49d6b:0xc9b37d);}
- for(let i=0;i<7;i++){const x=-2.52+i*.43,z=1.24,y=g(x,z);b.cylinder(x,y+.12,z,.034,.046,.23,C.ink,8);b.cylinder(x,y+.22,z,.055,.055,.035,C.gold,10);}
- const x=-1.45,z=-1.45,y=g(x,z);b.box(x,y+.71,z,.42,1.42,.50,0xc3a979,true);b.roof(x,y+1.42,z,.49,.43,.58,C.copper);b.cylinder(x,y+1.98,z,.14,.23,.75,C.copper,8);b.cylinder(x,y+2.58,z,.018,.13,.54,C.copper,8);b.beam([x,y+2.85,z],[x,y+3.07,z],.012,C.gold);
-}
-function warsaw({b,g,THREE}){
- const y=g(0,0),wall=0xb97551,roof=0x765b49;
- for(const[x,z,w,d,h]of[[0,.95,4.34,.74,1.50],[-1.76,-.12,.82,2.17,1.43],[1.76,-.12,.82,2.17,1.43],[0,-1.15,4.1,.72,1.44]]){
-  foundation(b,x,y,z,w,d);b.box(x,y+h/2,z,w,h,d,wall,true);b.hip(x,y+h,z,w+.13,d+.13,.53,roof);const count=Math.floor(w/.34);
-  for(let r=0;r<3;r++)for(let j=0;j<count;j++)b.window(x+(j-(count-1)/2)*.34,y+.25+r*.43,z+d/2+.02,.14,.25);
-  for(let j=0;j<Math.floor(w/.55);j++){const xx=x+(j-(Math.floor(w/.55)-1)/2)*.55;b.box(xx,y+h+.22,z+d*.22,.17,.22,.20,C.stone);b.roof(xx,y+h+.33,z+d*.22,.23,.16,.27,roof);b.window(xx,y+h+.24,z+d*.22+.12,.08,.11);}
-  b.box(x,y+1.02,z+d/2+.03,w,.045,.055,C.ochre);b.box(x,y+h-.02,z+d/2+.04,w+.09,.075,.08,C.ivory);
+// Surveyed roots stay fixed. Painted lower bands are fitted through the actual
+// overview camera onto the terrain, so they cannot appear to stand in water.
+export const LANDMARK_SITES=Object.freeze([
+ {asset:'stockholm',title:'Stockholm · City Hall',coordinates:[18.0542148,59.3274942],width:1.8,displayWidth:7.5,depth:.24,preferred:[-.65,.45],grounding:'waterfront',region:1},
+ {asset:'nyhavn',title:'Copenhagen · Nyhavn',coordinates:[12.589145,55.680452],width:2.6,displayWidth:3.0,lean:.35,paintedBand:true,depth:.18,preferred:[-1.25,.45],grounding:'island-land',region:1,island:true,displayCoordinates:[11.9,55.4590909091],displayRadius:.4,displayStep:.025,displayYaws:[.80,.85,.90,.95,1,1.05]},
+ {asset:'warsaw',title:'Warsaw · Royal Castle',coordinates:[21.014217,52.247749],width:1.8,displayWidth:7.5,paintedBand:true,depth:.28,preferred:[-1.15,.10],grounding:'west-bank',region:2,westBank:true,displayCoordinates:[18.832398818181815,51.747749],displayRadius:.4,displayYaws:[-.5]},
+ {asset:'windmill',title:'Kinderdijk · Nederwaard Mill No. 2',coordinates:[4.6399791,51.8833949],width:1.2,displayWidth:4.8,lean:.25,paintedBand:true,depth:.19,preferred:[-1.5,-2.5],grounding:'land',region:1,lowland:true,displayCoordinates:[6.1863636363636365,52.51818181818182],displayRadius:.4,displayYaws:[-1]},
+ {asset:'gdansk',title:'Gdańsk · Żuraw',coordinates:[18.6574644147,54.3505592969],width:1.7,displayWidth:7.5,depth:.22,preferred:[-.30,-.25],grounding:'coastal-harbor',region:2,coastal:true,yaw:-.36},
+ {asset:'london',title:'London · Tower Bridge',coordinates:[-.0753665,51.5055158],width:3.75,displayWidth:7.2,depth:.22,preferred:[0,0],grounding:'river-crossing',region:1,yaw:-1.05,bridge:true},
+ {asset:'borgund',title:'Lærdal · Borgund Stave Church',coordinates:[7.8122905,61.0472015],width:1.4,displayWidth:7.2,depth:.2,preferred:[0,.03],grounding:'land',region:3},
+ {asset:'brandenburg',title:'Berlin · Brandenburg Gate',coordinates:[13.3777034,52.5162699],width:1.7,displayWidth:6.375,paintedBand:true,depth:.24,preferred:[0,.4],grounding:'land',region:1,displayCoordinates:[13.286794309090908,52.175360809090904],displayRadius:.4,displayYaws:[-.75]},
+ {asset:'cologne',title:'Cologne · Cathedral',coordinates:[6.958138,50.9413035],width:1.5,displayWidth:7.2,paintedBand:true,displayCoordinates:[8.867228909090908,50.623121681818176],displayRadius:.4,depth:.24,preferred:[-1,.1],grounding:'east-bank',region:1,eastBank:true},
+ {asset:'edinburgh',title:'Edinburgh · Castle',coordinates:[-3.2004184,55.9486884],width:1.4,displayWidth:6.55,paintedBand:true,depth:.26,preferred:[0,.25],grounding:'land',region:1,displayCoordinates:[-3.245872945454547,55.17596112727273],displayRadius:.4,displayYaws:[-.5]},
+ {asset:'iceland_volcano',title:'Iceland - Hekla',coordinates:[-19.7067516667,63.9832686111],width:2.2,displayWidth:9.5,paintedBand:true,displayCoordinates:[-18.718181818181815,64.67272727272727],displayRadius:.4,lean:0,unwarped:true,depth:.35,preferred:[0,0],grounding:'natural-feature',region:1,naturalFeature:true},
+]);
+const toGeo=(x,z)=>[x/2.2+13,60-z/4.4];
+function insideGeometry([x,y],geometry){const ring=points=>{let inside=false;for(let i=0,j=points.length-1;i<points.length;j=i++){const a=points[i],b=points[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])inside=!inside;}return inside;};return(geometry.type==='Polygon'?[geometry.coordinates]:geometry.coordinates).some(p=>ring(p[0])&&!p.slice(1).some(ring));}
+function nearestRiverAxis({THREE,geography,worldPoint,origin}){
+ let best=Infinity,chosen;
+ for(const line of geography.rivers||[])for(let i=1;i<line.length;i++){
+  const a=worldPoint(line[i-1]),b=worldPoint(line[i]),dx=b.x-a.x,dz=b.z-a.z,t=Math.max(0,Math.min(1,((origin.x-a.x)*dx+(origin.z-a.z)*dz)/(dx*dx+dz*dz||1))),d=Math.hypot(origin.x-a.x-dx*t,origin.z-a.z-dz*t);
+  if(d<best){best=d;chosen=line;}
  }
- const z=1;b.box(0,y+1.30,z,.63,2.60,.82,wall,true);b.box(0,y+2.62,z,.79,.13,.94,C.stone,true);b.box(0,y+2.89,z,.59,.47,.69,wall,true);b.cylinder(0,y+3.21,z,.22,.32,.22,C.copper,16);b.sphere(0,y+3.36,z,.27,.24,.27,C.copper);b.cylinder(0,y+3.66,z,.10,.13,.34,C.copper,12);b.sphere(0,y+3.89,z,.13,.16,.13,C.copper);b.cylinder(0,y+4.10,z,.015,.11,.28,C.copper,12);b.beam([0,y+4.22,z],[0,y+4.45,z],.012,C.gold);
- for(const dx of[-.255,.255])b.box(dx,y+1.35,z+.43,.07,2.43,.045,C.stone);b.arch(0,y+.04,z+.44,.28,.61,.04,C.ink);
- b.add(new THREE.CylinderGeometry(.16,.16,.027,24),C.gold,[0,y+2.21,z+.45],[Math.PI/2,0,0]);b.add(new THREE.CylinderGeometry(.127,.127,.028,24),C.ivory,[0,y+2.21,z+.468],[Math.PI/2,0,0]);b.beam([0,y+2.21,z+.491],[0,y+2.31,z+.491],.009,C.ink);b.beam([0,y+2.21,z+.491],[.07,y+2.18,z+.491],.009,C.ink);
- for(const xx of[-1.8,1.8]){b.cylinder(xx,y+1.82,-1.12,.20,.20,.39,wall,12);b.sphere(xx,y+2.06,-1.12,.25,.22,.25,C.copper);b.cylinder(xx,y+2.3,-1.12,.012,.13,.3,C.copper,12);}
+ if(!chosen)return null;
+ const curve=new THREE.CatmullRomCurve3(chosen.map(p=>worldPoint(p)),false,'centripetal');
+ const points=curve.getPoints(Math.max(80,Math.ceil(curve.getLength()/.08)));
+ const axis=z=>{const xs=[];for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i];if(z<Math.min(a.z,b.z)||z>Math.max(a.z,b.z)||Math.abs(a.z-b.z)<1e-8)continue;xs.push(a.x+(b.x-a.x)*(z-a.z)/(b.z-a.z));}if(!xs.length)return null;return xs.reduce((a,b)=>Math.abs(a-origin.x)<Math.abs(b-origin.x)?a:b);};axis.line=chosen;return axis;
 }
-function gdansk({b,g}){
- const y=g(-.35,.50),brick=0xa6623e;
- for(const x of[-.61,.61]){foundation(b,x,y,.42,.77,.80);b.cylinder(x,y+.90,.42,.35,.40,1.80,brick,28,true);b.cylinder(x,y+1.91,.42,.02,.44,.67,0x68503d,28,true);for(let j=0;j<6;j++)b.box(x,y+.23+j*.27,.814,.52,.012,.014,0xc29159);for(let r=0;r<3;r++)b.window(x,y+.51+r*.43,.817,.12,.23);}
- b.box(0,y+1.20,.37,.66,2.26,.78,C.wood,true);b.roof(0,y+2.30,.35,.84,.55,1.05,0x5c4833);b.prism([[-.44,0],[.44,0],[.34,1.09],[-.34,1.09]],.68,0x604630,[0,y+1.05,.88],[0,0,0],true);b.roof(0,y+2.13,.92,.92,.32,.81,0x715039);
- for(let i=0;i<7;i++)b.box(-.31+i*.105,y+1.56,1.24,.018,1.0,.018,0xc3975c);for(let i=0;i<4;i++)b.box(0,y+1.16+i*.27,1.25,.7,.026,.022,0xbd9057);
- b.arch(0,y+.02,1.26,.36,.76,.025,C.ink);b.box(0,y+1.65,1.275,.26,.34,.025,C.ink);b.beam([-.30,y+1.05,1.29],[.30,y+2.05,1.29],.022,C.umber);b.beam([.30,y+1.05,1.29],[-.30,y+2.05,1.29],.022,C.umber);b.beam([0,y+2.21,1.11],[0,y+1.33,1.11],.014,C.ink);
- for(let i=0;i<4;i++)gableHouse(b,g,-1.10-i*.39,.36,.36,1.16+(i%3)*.2,.77,[0xccac6b,0xa95b3e,0xc5b184,0x8f6e48][i],{dutch:true,rows:3});
- for(let i=0;i<12;i++)b.box(-2.67+i*.28,y+.03,1.40,.26,.10,.24,C.stone);for(const x of[-2.4,-1.5,-.6,.3,.9])b.cylinder(x,y+.16,1.56,.04,.05,.28,C.wood,8);
-}
-function windmill({b,g}){
- const y=g(0,0);b.cylinder(0,y+.07,0,.67,.75,.15,C.stone,32,true);b.cylinder(0,y+1.15,0,.34,.58,2.18,0xb18d5b,32,true);b.cylinder(0,y+2.28,0,.38,.38,.14,C.umber,32,true);b.sphere(0,y+2.50,0,.43,.35,.43,0x5c523a);b.box(0,y+.26,.55,.20,.46,.04,C.wood);
- for(let j=0;j<9;j++){const yy=y+.18+j*.235,r=.58-(yy-y)/2.18*.24,points=[];for(let i=0;i<=40;i++)points.push([Math.cos(i/40*Math.PI*2)*r,yy,Math.sin(i/40*Math.PI*2)*r]);b.curve(points,.006,0x8e6a44,40);}
- for(let j=0;j<3;j++)b.window(0,y+.63+j*.53,.56-j*.058,.15,.22);b.sphere(0,y+2.45,.48,.11,.11,.13,C.wood);
- for(let i=0;i<4;i++){
-  const a=Math.PI/4+i*Math.PI/2,dx=Math.cos(a),dy=Math.sin(a),nx=-dy,ny=dx,p=(r,s,z=.56)=>[dx*r+nx*s,y+2.45+dy*r+ny*s,z];
-  b.beam(p(.10,0),p(1.66,0),.028,C.umber);b.beam(p(.45,.24),p(1.66,.24),.015,C.umber);for(let j=0;j<9;j++)b.beam(p(.46+j*.147,-.045),p(.46+j*.147,.27),.009,C.wood,6);
-  const poly=[[.57,.018],[1.6,.018],[1.6,.20],[.57,.20]].map(([r,s])=>{const pnt=p(r,s);return[pnt[0],pnt[1]]});b.prism(poly,.012,0xdbc393,[0,0,.572]);
+const searchOffsets=(()=>{const list=[[0,0]];for(let x=-18;x<=18;x++)for(let z=-18;z<=18;z++)if(x||z){if(Math.hypot(x,z)<=18)list.push([x*.12,z*.12]);}return list.sort((a,b)=>a[0]*a[0]+a[1]*a[1]-(b[0]*b[0]+b[1]*b[1]));})();
+export function sampleLandmarkFootprint({x,z,width,depth,yaw=0,bridge=false}){
+ const c=Math.cos(yaw),s=Math.sin(yaw),points=[],steps=Math.max(12,Math.ceil(width/.065));
+ for(let i=0;i<=steps;i++){
+  const u=i/steps;if(bridge&&u>.18&&u<.82)continue;
+  for(const dz of[-depth/2,0,depth/2]){const dx=(u-.5)*width;points.push([x+dx*c+dz*s,z-dx*s+dz*c]);}
  }
- b.beam([0,y+2.54,-.26],[.92,y+.10,-.98],.035,C.wood);b.beam([0,y+2.54,-.26],[-.92,y+.10,-.98],.035,C.wood);for(let i=0;i<4;i++){const x=-.94+i*.63;b.box(x,g(x,.8)+.08,.8,.31,.045,.12,0xb8a46c);}
+ return points;
 }
-function towerBridge({b,g}){
- const y=g(0,0),stone=0xcbb98a,blue=0x617e79;
- for(const z of[-.91,.91]){b.box(0,y+.11,z,.83,.27,.88,C.umber,true);b.box(0,y+1.23,z,.68,2.12,.66,stone,true);b.box(0,y+2.3,z,.79,.14,.78,C.ivory,true);b.roof(0,y+2.36,z,.70,.51,.72,0x5f6f63);
-  for(const x of[-.33,.33])for(const zz of[-.29,.29]){b.cylinder(x,y+1.46,z+zz,.105,.13,1.89,stone,12,true);b.cylinder(x,y+2.57,z+zz,.008,.15,.52,0x5a6859,12,true);b.sphere(x,y+2.86,z+zz,.028,.045,.028,C.gold);}
-  for(let r=0;r<4;r++)for(const dx of[-.13,.13])b.window(dx,y+.64+r*.38,z+.345,.105,.24);b.arch(0,y+.22,z+.36,.35,.77,.034,C.ink);b.box(0,y+1.7,z+.36,.54,.055,.05,C.ochre);courses(b,0,y+.22,z,.68,2.0,.68,0xa48c62);}
- b.box(0,y+.61,0,.54,.12,4.4,C.umber,true);b.box(0,y+.70,0,.48,.055,4.46,0xa8a98a);
- for(const x of[-.25,.25]){b.box(x,y+2.07,0,.075,.20,1.84,blue,true);for(let i=0;i<6;i++){const z=-.88+i*.30;b.beam([x,y+1.99,z],[x,y+2.17,z+.29],.012,C.ivory);b.beam([x,y+2.17,z],[x,y+1.99,z+.29],.012,C.ivory);}
-  for(const s of[-1,1]){const p=[];for(let j=0;j<=14;j++){const t=j/14;p.push([x,y+2.03-1.27*Math.sin(t*Math.PI/2),s*(.95+t*1.2)]);}b.curve(p,.032,blue,22);for(let j=1;j<8;j++){const t=j/8;b.beam([x,y+.79,s*(.95+t*1.2)],[x,y+2.03-1.27*Math.sin(t*Math.PI/2),s*(.95+t*1.2)],.011,blue);}}
-  b.beam([x,y+.84,-2.2],[x,y+.84,2.2],.018,blue);for(let i=0;i<28;i++)b.beam([x,y+.73,-2.14+i*.16],[x,y+.85,-2.14+i*.16],.008,blue,5);}
+export function fitLandmarkGround({THREE,site,worldPoint,heightAt,regionAt,riverAt,geography,artAspect=1}){
+ const origin=worldPoint(site.coordinates),preferred=site.preferred||[0,0],yaw=site.yaw||0,westLimit=site.westBank?nearestRiverAxis({THREE,geography,worldPoint,origin}):null;
+ for(const scale of[1,.94,.88,.82,.76,.70,.64,.58,.52]){
+  const width=site.width*scale;
+  for(const [dx,dz]of(site.bridge?[[0,0]]:searchOffsets)){
+   const x=origin.x+preferred[0]+dx,z=origin.z+preferred[1]+dz;
+   if(site.lowland&&(toGeo(x,z)[1]<51.70||toGeo(x,z)[1]>53.30||toGeo(x,z)[0]<3.8||toGeo(x,z)[0]>5.5))continue;
+   if(site.asset==='gdansk'&&(Math.abs(x-origin.x)>.55||z-origin.z<-.90||z-origin.z>.35))continue;
+   const footprint=sampleLandmarkFootprint({x,z,width,depth:site.depth,yaw,bridge:site.bridge});let minHeight=Infinity,maxHeight=-Infinity,valid=true;
+   for(const [px,pz]of footprint){
+    const geo=toGeo(px,pz),region=regionAt(geo);if(!region||(site.region&&region!==site.region)||(!site.bridge&&riverAt(geo))){valid=false;break;}
+    if(site.island&&(geo[0]<10.95||geo[0]>12.75||geo[1]<54.95||geo[1]>56.16)){valid=false;break;}
+    if(westLimit){const riverX=westLimit(pz);if(riverX===null||px>riverX-.10){valid=false;break;}}
+    const h=heightAt(...geo);minHeight=Math.min(minHeight,h);maxHeight=Math.max(maxHeight,h);
+   }
+   if(!valid||maxHeight-minHeight>(site.bridge?.40:site.coastal?.65:.38))continue;
+   if(site.coastal&&!footprint.some(([px,pz])=>[[-.30,0],[.30,0],[0,-.30],[0,.30],[-.21,-.21],[.21,-.21]].some(([dx,dz])=>!regionAt(toGeo(px+dx,pz+dz)))))continue;
+   const fit={x,z,width,depth:site.depth,yaw,scale,footprint,minHeight,maxHeight,drawingCoordinates:toGeo(x,z),offset:[x-origin.x,z-origin.z]};
+   return fit;
+  }
+ }
+ throw new Error('No safe geographic paper footprint for '+site.asset);
 }
-function borgund({b,g}){
- const y=g(0,0),wood=0x69492f,tar=0x4a3b2a,roof=0x59442d;
- foundation(b,0,y,0,1.66,2.14);b.box(0,y+.39,0,1.46,.72,1.92,wood,true);b.roof(0,y+.72,0,1.94,.75,2.28,roof);b.box(0,y+1.21,-.09,1.05,.98,1.50,wood,true);b.roof(0,y+1.61,-.09,1.48,.82,1.84,tar);b.box(0,y+2.09,-.12,.65,.71,1.10,wood,true);b.roof(0,y+2.39,-.12,.99,.73,1.41,roof);b.box(0,y+2.99,-.15,.41,.54,.58,wood,true);b.roof(0,y+3.25,-.15,.70,.75,.88,tar);b.beam([0,y+3.95,-.15],[0,y+4.21,-.15],.022,wood);b.beam([-.13,y+4.11,-.15],[.13,y+4.11,-.15],.018,wood);
- for(const x of[-.89,.89]){b.box(x,y+.49,.05,.53,.78,1.19,wood,true);b.roof(x,y+.82,.05,.75,.53,1.47,roof);}
- b.box(0,y+.44,1.15,.68,.83,.50,wood,true);b.roof(0,y+.81,1.15,.89,.60,.71,tar);b.arch(0,y+.06,1.424,.28,.57,.033,0x302b21);
- for(const x of[-.205,.205]){b.cylinder(x,y+.39,1.46,.025,.03,.68,0xb0874c,9);for(let j=0;j<7;j++)b.sphere(x,y+.13+j*.087,1.47,.036,.025,.024,0xa07944);}
- for(const x of[-.65,-.42,.42,.65])b.box(x,y+.39,1,.035,.69,.044,0xa37d46);for(let j=0;j<15;j++)b.box(-.69+j*.098,y+.38,.985,.012,.69,.013,tar);for(let j=0;j<10;j++)b.box(.745,y+.4,-.85+j*.18,.02,.65,.012,tar);
- for(const[yy,d]of[[1.47,1.14],[2.43,.92],[3.12,.70]])for(const s of[-1,1]){b.curve([[0,y+yy,s*d],[0,y+yy+.09,s*(d+.13)],[0,y+yy+.29,s*(d+.26)],[0,y+yy+.36,s*(d+.23)]],.037,wood,16);b.sphere(0,y+yy+.35,s*(d+.23),.057,.044,.073,0x9d7745);b.beam([0,y+yy+.36,s*(d+.26)],[0,y+yy+.46,s*(d+.34)],.014,wood);}
- for(const side of[-1,1])for(let j=0;j<9;j++){const z=-.85+j*.22;b.beam([side*.74,y+.1,z],[side*.74,y+.71,z],.019,C.wood);}
+function projectOnRelief(point,camera,heightAt,regionAt,exact=false){
+ const dx=point.x-camera[0],dy=point.y-camera[1],dz=point.z-camera[2];let t=0;
+ if(exact){
+  const length=Math.hypot(dx,dy,dz),range=Math.max(8,point.y*4+8)/length,start=Math.max(0,1-range),signed=t=>{const x=camera[0]+dx*t,z=camera[2]+dz*t,g=toGeo(x,z);return camera[1]+dy*t-(regionAt(g)?heightAt(...g):-.05);};let lo=start,hi=start+range*2,last=start;
+  for(let i=1;i<=32;i++){const s=start+range*2*i/32;if(signed(s)<=0){hi=s;break;}last=s;}lo=last;for(let i=0;i<16;i++){const s=(lo+hi)/2;if(signed(s)>0)lo=s;else hi=s;}t=(lo+hi)/2;return[camera[0]+dx*t,camera[2]+dz*t];
+ }
+ for(let i=0;i<7;i++){const x=point.x+dx*t,z=point.z+dz*t,g=toGeo(x,z),h=regionAt(g)?heightAt(...g):-.05;t=(h-point.y)/dy;}
+ return[point.x+dx*t,point.z+dz*t];
 }
-export function addLandmarks({THREE,scene,worldPoint,mobile=false,heightAt,regionAt}){
- const material=createMapModelMaterial(THREE),objects=sites.map(site=>{
-  const origin=worldPoint(site.coordinates,.035),draw=site.drawingCoordinates||site.coordinates,drawing=worldPoint(draw,.035),b=createModelBuilder(THREE),shapeScale=site.asset==='borgund'?.72:1;
-  const g=(x,z)=>{const lon=(drawing.x+x*shapeScale)/2.2+13,lat=60-(drawing.z+z*shapeScale)/4.4,h=regionAt&&!regionAt([lon,lat])?-.05:(heightAt?heightAt(lon,lat):worldPoint([lon,lat]).y);return (Math.max(-.05,h)-drawing.y+.045)/shapeScale;};
-  g.support=(x,z,w,d)=>{let highest=g(x,z);for(const dx of[-w/2,0,w/2])for(const dz of[-d/2,0,d/2])highest=Math.max(highest,g(x+dx,z+dz));return highest;};b.ground=g;
-  site.make({b,g,THREE});const model=b.finish('landmark-'+site.asset,material);model.position.copy(origin);model.scale.setScalar(shapeScale);const offset=drawing.clone().sub(origin);for(const child of model.children)child.position.addScaledVector(offset,1/shapeScale);
-  if(site.asset==='london')model.rotation.y=.52;
-  model.userData={...model.userData,title:site.title,kind:'landmark',style:'engraved-dimensional-atlas',coordinates:[...site.coordinates],drawingCoordinates:[...draw],drawingOffset:[offset.x,offset.z],grounding:site.grounding||'land',dimensional:true,geolocationVerified:true,...(site.footprint?{footprint:site.footprint}:{})};
-  model.updateMatrixWorld(true);const bounds=new THREE.Box3().setFromObject(model);model.userData.worldBounds={min:bounds.min.toArray(),max:bounds.max.toArray()};model.userData.surfaceFit={clear:true,support:site.grounding||'land',fullFootprint:false,solidGeometry:true};scene.add(model);return model;
- });return{count:objects.length,objects,ready:Promise.resolve(objects)};
+function paperPoint({u,v,x,z,width,height,yaw,lean,base,site,heightAt,regionAt}){
+ const c=Math.cos(yaw),s=Math.sin(yaw),localX=(u-.5)*width,localZ=v*height*Math.sin(lean);let lift=0;
+ if(!site.unwarped){
+  const gx=u*24,ix=Math.min(23,Math.floor(gx)),tx=gx-ix,gy=v*8,iy=Math.min(7,Math.floor(gy)),ty=gy-iy;
+  const vertex=(a,b)=>{const dx=(a/24-.5)*width,g=toGeo(x+dx*c,z-dx*s),ground=regionAt(g)?heightAt(...g):-.05,delta=Math.max(-height*.10,Math.min(height*.10,ground+.045-base)),t=Math.max(0,Math.min(1,b/8/.20));return delta*(1-t*t*(3-2*t));};
+  const a=vertex(ix,iy),b=vertex(ix+1,iy+1);lift=ty>=tx?a*(1-ty)+vertex(ix,iy+1)*(ty-tx)+b*tx:a*(1-tx)+vertex(ix+1,iy)*(tx-ty)+b*ty;
+ }
+ return{x:x+localX*c+localZ*s,y:base+v*height*Math.cos(lean)+lift,z:z-localX*s+localZ*c};
+}
+function fitPaintedBand({THREE,site,physical,worldPoint,heightAt,regionAt,geography,riverAt,artAspect,alphaRows,geographicAreas}){
+ const origin=worldPoint(site.coordinates),preferred=site.displayCoordinates?worldPoint(site.displayCoordinates):{x:origin.x+(site.displayOffset?.[0]||0),z:origin.z+(site.displayOffset?.[1]||0)},width=site.displayWidth,height=width*artAspect,lean=site.lean??-.23;
+ const axis=site.westBank||site.eastBank?nearestRiverAxis({THREE,geography,worldPoint,origin}):null;
+ const cameras=[[-14,45,104],[-14,65,104],[-14,85,104],[-14,115,104],[-5,45,110],[-5,77,110],[-5,85,110],[-5,115,110]],offsets=[];
+ const radius=site.displayRadius||3,step=site.displayStep||.20;for(let ix=-Math.ceil(radius/step);ix<=Math.ceil(radius/step);ix++)for(let iz=-Math.ceil(radius/step);iz<=Math.ceil(radius/step);iz++)if(Math.hypot(ix*step,iz*step)<=radius+.001)offsets.push([ix*step,iz*step]);offsets.sort((a,b)=>a[0]*a[0]+a[1]*a[1]-b[0]*b[0]-b[1]*b[1]);
+ const samples=[];for(const [v0,v1,lo,hi]of alphaRows)for(const v of[v0,(v0+v1)/2,v1]){const n=Math.max(2,Math.ceil((hi-lo)*width/.14));for(let i=0;i<=n;i++)samples.push([lo+(hi-lo)*i/n,v]);}
+ // Spread the early rejection probes over the whole silhouette before filling
+ // its interior. Every accepted candidate still checks every alpha envelope.
+ samples.sort((a,b)=>Math.abs(b[0]-.5)-Math.abs(a[0]-.5));
+ for(const[dx,dz]of offsets)for(const yaw of site.displayYaws||[0]){
+  const x=preferred.x+dx,z=preferred.z+dz,center=toGeo(x,z);if(!regionAt(center))continue;
+  const base=heightAt(...center)+.045,parameters={x,z,width,height,yaw,lean,base,site,heightAt,regionAt};let valid=true,minMargin=Infinity;
+  for(const exact of[false,true]){for(const[u,v]of samples){const point=paperPoint({...parameters,u,v});for(const camera of cameras){const[px,pz]=projectOnRelief(point,camera,heightAt,regionAt,exact),g=toGeo(px,pz),id=regionAt(g);
+   if(!id||(site.region&&id!==site.region)||riverAt(g)){valid=false;break;}
+   if(site.island&&(g[0]<10.95||g[0]>12.75||g[1]<54.95||g[1]>56.16)){valid=false;break;}
+   if(site.lowland&&!insideGeometry(g,geographicAreas.netherlands)){valid=false;break;}
+   if(axis){const limit=axis(pz),margin=site.eastBank?px-limit:limit-px;if(limit===null||margin<.28){valid=false;break;}minMargin=Math.min(minMargin,margin);}
+   // A small real geographic shoulder keeps antialiasing and in-between alpha
+   // texels clear of both coast water and all tributary banks.
+   for(const[a,b]of[[-.09,0],[.09,0],[0,-.09],[0,.09]]){const probe=toGeo(px+a,pz+b);if(!regionAt(probe)||riverAt(probe)){valid=false;break;}}
+   if(!valid)break;
+  }if(!valid)break;}if(!valid)break;}
+  if(valid)return{x,z,width,yaw,base,paintedBandSamples:samples.length*cameras.length,bankMargin:Number.isFinite(minMargin)?minMargin:null,cameraCount:cameras.length};
+ }
+ throw new Error('No camera-projected painted lower band fits land for '+site.asset+' at width '+width);
+}
+export function addLandmarks({THREE,scene,worldPoint,mobile=false,heightAt,regionAt,geography,riverAt,paperAtlas,baseSamples,camera}){
+ const objects=LANDMARK_SITES.map(site=>{const group=new THREE.Group();group.name='landmark-'+site.asset;group.position.copy(worldPoint(site.coordinates,.035));group.userData={title:site.title,coordinates:[...site.coordinates],kind:site.naturalFeature?'natural-feature':'landmark',dimensional:false,paperIllustration:true,style:'heroic-isometric-paper-atlas',grounding:site.grounding,geolocationVerified:true,...(site.footprint?{footprint:site.footprint}:{})};scene.add(group);return group;});
+ const ready=Promise.all([paperAtlas?Promise.resolve(paperAtlas):loadPaperAtlas({THREE,mobile}),geography?Promise.resolve(geography):fetch(new URL('./geography.json',import.meta.url)).then(r=>r.json()),baseSamples?Promise.resolve(baseSamples):fetch(new URL('./landmark-base-samples.json',import.meta.url)).then(r=>r.json())]).then(([art,geo,alpha])=>{
+  const banks=riverAt||createRiverBankExclusion({THREE,geography:geo,worldPoint,heightAt,regionAt});let heroMaterial;
+  for(let i=0;i<LANDMARK_SITES.length;i++){
+   const site=LANDMARK_SITES[i],model=objects[i],rect=art.atlas.art[site.asset].rect,aspect=(rect[3]-rect[1])/(rect[2]-rect[0]),physical=fitLandmarkGround({THREE,site,worldPoint,heightAt,regionAt,riverAt:banks,geography:geo,artAspect:aspect});
+   const display=site.paintedBand?fitPaintedBand({THREE,site,physical,worldPoint,heightAt,regionAt,geography:geo,riverAt:banks,artAspect:aspect,alphaRows:alpha.assets[site.asset].rows,geographicAreas:alpha.geographicAreas}):{x:physical.x,z:physical.z,width:site.displayWidth,yaw:0};
+   const card=createPaperCard({THREE,...art,asset:site.asset,width:display.width,lean:site.lean??-.23,kind:site.naturalFeature?'volcano':'hero-landmark',segments:[24,8]});
+   // These are deliberately oversized printed atlas emblems. Their geographic
+   // feet stay grounded; the painted architecture may overhang a narrow island.
+   // Draw them after the relief so foreground DEM cells cannot erase the facade.
+   if(!heroMaterial){heroMaterial=card.material.clone();heroMaterial.uniforms=card.material.uniforms;heroMaterial.depthTest=false;}
+   card.material=heroMaterial;
+   card.renderOrder=5+Math.max(0,Math.min(1,(display.z+80)/240))*.01;
+   card.rotation.y=display.yaw;const displayGeo=toGeo(display.x,display.z),base=heightAt(...displayGeo)+.045;card.position.set(display.x-model.position.x,base-model.position.y,display.z-model.position.z);
+   const p=card.geometry.attributes.position,uv=card.geometry.attributes.pictureUv,c=Math.cos(display.yaw),s=Math.sin(display.yaw),maxWarp=card.userData.height*.10;
+   for(let j=0;j<p.count&&!site.unwarped;j++){
+    const x=p.getX(j),foot=toGeo(display.x+x*c,display.z-x*s),ground=regionAt(foot)?heightAt(...foot):-.05;
+    const raw=ground+.045-base,delta=Math.max(-maxWarp,Math.min(maxWarp,raw)),v=uv.getY(j),t=Math.max(0,Math.min(1,v/.20)),fade=1-t*t*(3-2*t);p.setY(j,p.getY(j)+delta*fade);
+   }
+   p.needsUpdate=true;card.geometry.computeBoundingBox();card.geometry.computeBoundingSphere();model.add(card);
+   const samples=fit=>fit.footprint.map(([x,z])=>[x,heightAt(...toGeo(x,z))+.045,z]);
+   model.userData={...model.userData,drawingCoordinates:displayGeo,drawingOffset:[display.x-model.position.x,display.z-model.position.z],physicalGroundCoordinates:physical.drawingCoordinates,illustrationWidth:display.width,displayWidth:display.width,heroAnnotation:true,groundFootprint:{center:[physical.x,physical.z],width:physical.width,depth:physical.depth,yaw:physical.yaw,bridgeAbutments:!!site.bridge,samples:samples(physical),elevationSpread:physical.maxHeight-physical.minHeight},...(site.paintedBand?{paintedBaseFootprint:{band:[0,.20],alphaCutoff:alpha.alphaCutoff,projectedSamples:display.paintedBandSamples,cameraCount:display.cameraCount,bank:site.eastBank?'east':site.westBank?'west':null,bankMargin:display.bankMargin,river:site.asset==='warsaw'?'Vistula':site.asset==='cologne'?'Rhine':null,wholePaintedBottom:true}}:{}),surfaceFit:{scale:1,physicalScale:physical.scale,support:site.grounding,physicalRiverExclusion:!site.bridge,wholeGroundFootprint:true,annotationOverhang:!site.paintedBand}};
+  }
+  return objects;
+ });return{count:objects.length,objects,ready};
 }

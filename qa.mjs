@@ -62,7 +62,7 @@ async function openMap(page, url = rootURL, settle = true) {
   assert.equal(await page.locator('#terrain-canvas').isVisible(), true, 'WebGL canvas is visible');
   assert.equal(await page.locator('#map-loading').isVisible(), false, 'Loading indicator clears');
   assert.equal(await page.locator('.map-label[data-lang]').count(), 3, 'All three geographic language labels exist');
-  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-landmarks'), '9', 'All nine dimensional landmarks, including Borgund, are ready');
+  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-landmarks'), '11', 'All eleven remaining upright landmarks and volcano are ready');
   assert.equal(await page.locator('#terrain-canvas').getAttribute('data-creatures'), '17', 'All seventeen new maritime illustrations are ready');
   assert.equal(await page.locator('#terrain-canvas').getAttribute('data-artwork'), 'illuminated-atlas', 'The map uses ink-and-watercolor artwork');
   assert.ok(await page.locator('.creature-label').count() >= 2, 'The folklore illustrations have names');
@@ -162,14 +162,13 @@ function assertCarRoute(state) {
     assert.ok(sample.position[1] >= sample.terrainHeight, 'The road stays above the terrain');
   }
   assert.ok(journey.carClearance >= 0, `The whole car clears the terrain (${journey.carClearance})`);
-  assert.ok(journey.operaClearance > .15, `The road and parked car clear the opera (${journey.operaClearance})`);
   const steepest = journey.routeSamples.slice(1).reduce((maximum, sample, index) => {
     const previous = journey.routeSamples[index];
     const distance = Math.hypot(sample.position[0] - previous.position[0], sample.position[2] - previous.position[2]);
     return Math.max(maximum, distance > .001 ? Math.abs(sample.terrainHeight - previous.terrainHeight) / distance : 0);
   }, 0);
   const waterFraction = journey.routeSamples.filter(sample => sample.region === 0).length / journey.routeSamples.length;
-  console.log(`ROUTE clearance=${journey.carClearance.toFixed(3)}, opera=${journey.operaClearance.toFixed(3)}, steepest=${steepest.toFixed(2)}, water=${(waterFraction * 100).toFixed(1)}%`);
+  console.log(`ROUTE clearance=${journey.carClearance.toFixed(3)}, steepest=${steepest.toFixed(2)}, water=${(waterFraction * 100).toFixed(1)}%`);
 }
 
 try {
@@ -181,12 +180,14 @@ try {
   assert.equal(await page.locator('#terrain-canvas').getAttribute('data-quality'), 'desktop');
   const overview = await inspect(page);
   const architecture = await page.evaluate(() => window.__qaInspectScene({ artwork: true }).landmarkArtwork);
-  assert.equal(architecture.length, 9, 'The inspect contract reports nine dimensional landmark models');
+  assert.equal(architecture.length, 11, 'The inspect contract reports eleven remaining landmark illustrations');
+  assert.ok(!architecture.some(model => ['landmark-bryggen', 'landmark-oslo'].includes(model.name)), 'Bryggen and Oslo Opera are removed');
   assert.ok(architecture.some(model => model.name === 'landmark-borgund'), 'Borgund Stave Church is modeled');
   for (const model of architecture) {
-    assert.equal(model.userData.dimensional, true, `${model.name} is a dimensional model`);
+    assert.equal(model.userData.dimensional, false, `${model.name} uses an illustrated surface`);
+    assert.equal(model.userData.paperIllustration, true, `${model.name} is upright paper artwork`);
     assert.equal(model.userData.geolocationVerified, true, `${model.name} has a verified real building anchor`);
-    assert.ok(model.meshes.length > 0 && model.meshes.every(mesh => mesh.opaque && mesh.depthWrite), `${model.name} uses opaque solid geometry`);
+    assert.ok(model.meshes.length > 0 && model.meshes.every(mesh => mesh.opaque && mesh.depthWrite), `${model.name} has opaque printed pigment`);
     assert.ok(model.bounds.max[1] > model.bounds.min[1] + .5, `${model.name} has visible vertical relief`);
   }
   const offset = overview.camera.position.map((value, index) => value - overview.camera.target[index]);
@@ -223,8 +224,16 @@ try {
   // laptop width. This inland point exercises the exposed terrain itself.
   for (const [lang, coordinates] of [['en', [9, 53]], ['pl', [20.8, 52]], ['no', [9, 61]]]) {
     await openMap(page);
+    if (lang === 'en') {
+      await page.mouse.wheel(0, -180);
+      await page.waitForFunction(() => window.__qaInspectScene().camera.position[1] > 72.5 && !window.__qaInspectScene().performance.active);
+      assert.ok((await inspect(page)).camera.heightOffset > 8, 'A normal-motion journey starts from a scrolled view');
+    }
     const initialCameraDistance = cameraDistance(await inspect(page));
     await clickLand(page, coordinates, lang);
+    assert.equal((await inspect(page)).camera.heightOffset, 0, 'Starting a journey clears the scroll offset');
+    await page.mouse.wheel(0, -180);
+    assert.equal((await inspect(page)).camera.heightOffset, 0, 'Wheel input leaves the journey camera in control');
     if (lang === 'no') {
       await page.waitForTimeout(160);
       await page.screenshot({ path: path.join(outputDirectory, 'sculpted-norway-zoom.png') });
@@ -340,10 +349,12 @@ try {
   await clocked.clock.pauseAt(await clocked.evaluate(() => Date.now() + 100));
   const beforeClick = await inspect(clocked);
   await clocked.locator('.language-option[data-lang="no"]').click({ force: true });
-  await clocked.clock.runFor(180);
+  // Review the first third of the zoom, while its parchment veil is visible.
+  // This gives the heavier illustrated frame time to settle under software GL.
+  await clocked.clock.runFor(320);
   const zoom = await inspect(clocked);
   assert.equal(zoom.journey.phase, 'zooming', 'An early Norway click starts its own zoom during the introductory camera movement');
-  assert.ok(cameraDistance(zoom) < cameraDistance(beforeClick), 'The early click zooms toward Norway');
+  assert.ok(cameraDistance(zoom) < cameraDistance(beforeClick), `The early click zooms toward Norway (${JSON.stringify({before:cameraDistance(beforeClick),after:cameraDistance(zoom),beforeFrames:beforeClick.performance.framesRendered,afterFrames:zoom.performance.framesRendered})})`);
   assert.ok(zoom.fadeOpacity > .05, 'The early click has a visible parchment fade');
   await clocked.screenshot({ path: path.join(outputDirectory, 'sculpted-norway-zoom.png') });
   await clocked.clock.fastForward(1100);

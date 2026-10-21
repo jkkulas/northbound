@@ -1,0 +1,166 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "initial": {
+      "position": [
+        -14,
+        65,
+        104
+      ],
+      "target": [
+        -14,
+        0,
+        5
+      ],
+      "fov": 40,
+      "aspect": 1.44,
+      "heightOffset": 0,
+      "heightRange": [
+        45,
+        115
+      ]
+    },
+    "raised": {
+      "position": [
+        -14,
+        73.09913098653527,
+        104
+      ],
+      "target": [
+        -14,
+        8.09913098653528,
+        5
+      ],
+      "fov": 40,
+      "aspect": 1.44,
+      "heightOffset": 8.1,
+      "heightRange": [
+        45,
+        115
+      ]
+    },
+    "high": {
+      "position": [
+        -14,
+        114.99955059368534,
+        104
+      ],
+      "target": [
+        -14,
+        49.99955059368534,
+        5
+      ],
+      "fov": 40,
+      "aspect": 1.44,
+      "heightOffset": 50,
+      "heightRange": [
+        45,
+        115
+      ]
+    },
+    "low": {
+      "position": [
+        -14,
+        45.000628414122524,
+        104
+      ],
+      "target": [
+        -14,
+        -19.99937158587748,
+        5
+      ],
+      "fov": 40,
+      "aspect": 1.44,
+      "heightOffset": -20,
+      "heightRange": [
+        45,
+        115
+      ]
+    }
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "initial": {
+      "position": [
+        -5,
+        77,
+        110
+      ],
+      "target": [
+        -5,
+        0,
+        3
+      ],
+      "fov": 44,
+      "aspect": 0.46208530805687204,
+      "heightOffset": 0,
+      "heightRange": [
+        45,
+        115
+      ]
+    },
+    "raised": {
+      "position": [
+        -5,
+        85.09894111195787,
+        110
+      ],
+      "target": [
+        -5,
+        8.09894111195787,
+        3
+      ],
+      "fov": 44,
+      "aspect": 0.46208530805687204,
+      "heightOffset": 8.1,
+      "heightRange": [
+        45,
+        115
+      ]
+    },
+    "high": {
+      "position": [
+        -5,
+        114.99824280306879,
+        110
+      ],
+      "target": [
+        -5,
+        37.998242803068784,
+        3
+      ],
+      "fov": 44,
+      "aspect": 0.46208530805687204,
+      "heightOffset": 38,
+      "heightRange": [
+        45,
+        115
+      ]
+    },
+    "low": {
+      "position": [
+        -5,
+        45.000965629960234,
+        110
+      ],
+      "target": [
+        -5,
+        -31.999034370039766,
+        3
+      ],
+      "fov": 44,
+      "aspect": 0.46208530805687204,
+      "heightOffset": -32,
+      "heightRange": [
+        45,
+        115
+      ]
+    }
+  }
+]

@@ -9,7 +9,11 @@
     "test:performance": "node qa-performance.mjs",
     "test:composition": "node qa-composition.mjs",
     "test:landmarks": "node qa-landmark-support.mjs",
-    "test:scenery": "node tools/qa-3d-world.mjs"
+    "test:scenery": "node tools/qa-3d-world.mjs",
+    "test:railway": "node tools/qa-railway.mjs",
+    "test:sea-motion": "node tools/qa-sea-motion.mjs",
+    "test:ambient": "node tools/qa-ambient-life.mjs",
+    "test:motion": "node tools/qa-life-browser.mjs"
   },
   "devDependencies": {
     "playwright-core": "1.56.1",

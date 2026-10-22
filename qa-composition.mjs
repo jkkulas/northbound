@@ -70,9 +70,9 @@ for(const viewport of[{width:1440,height:1000},{width:1366,height:768},{width:39
  const rasterWidth=Math.ceil(viewport.width/1.5),rasterHeight=Math.ceil(viewport.height/1.5),landmarkGeometry=landmarks.objects.flatMap(m=>geometryOf(THREE,m).triangles),landmarkDepth=rasterize(THREE,landmarkGeometry,camera,rasterWidth,rasterHeight),models=[];
  for(const model of sea.objects){
   const geometry=geometryOf(THREE,model),{min,max}=geometry.bounds,size=geometry.bounds.getSize(new THREE.Vector3());
-  assert.equal(geometry.meshes,1,`${model.name}: geometry is merged into one draw`);
+  assert.equal(geometry.meshes,model.userData.asset==='great_lobster'?3:1,`${model.name}: painted body and any articulated claws are merged`);
   assert.ok(geometry.triangles.length>2500,`${model.name}: modeled detail, not a quad`);
-  assert.ok(size.x>2&&size.y>1&&size.z>1,`${model.name}: genuine volume on every axis`);
+  assert.ok(Math.max(size.x,size.z)>2&&size.y>1&&Math.min(size.x,size.z)>1,`${model.name}: genuine volume at any sailing heading`);
   assert.ok(geometry.area>5&&geometry.volume>.06,`${model.name}: measurable three-dimensional solid`);
   let waterSamples=0,overLand=0;
   // The grid is finer than production placement and independently derived from
@@ -95,4 +95,4 @@ for(const viewport of[{width:1440,height:1000},{width:1366,height:768},{width:39
  scene.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();});
 }
 fs.writeFileSync('outputs/composition-regression.json',JSON.stringify(reports,null,2));
-console.log(`Solid composition passes: 17 models at ${reports.length} viewports, ${reports.flatMap(r=>r.models).reduce((n,m)=>n+m.waterSamples,0).toLocaleString()} independent water samples; no model hidden behind a landmark; ${reports[0].triangles.toLocaleString()} maritime triangles in 17 draws.`);
+console.log(`Solid composition passes: 17 models at ${reports.length} viewports, ${reports.flatMap(r=>r.models).reduce((n,m)=>n+m.waterSamples,0).toLocaleString()} independent water samples; no model hidden behind a landmark; ${reports[0].triangles.toLocaleString()} maritime triangles in ${reports[0].models.reduce((n,m)=>n+m.drawCalls,0)} draws.`);

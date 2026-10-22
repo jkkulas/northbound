@@ -9,17 +9,23 @@ import {createLandMeshGeometry} from './terrain-mesh.js';
 import {sampleTerrainHeight} from './terrain-height.js';
 import {addMapScenery,addSculptedWoodland} from './map-scenery.js';
 import {createVehicles,animateVehicle,routeNorway,routeTorpToOslo,OSLO_FORECOURT} from './journey.js';
+import {addRailway} from './railway.js';
+import {addAmbientLife} from './ambient-life.js';
 
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),canvas=$('#terrain-canvas');
 const names={en:'English',pl:'Polski',no:'Norsk'},ids={en:1,pl:2,no:3},langs=['','en','pl','no'];
-const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
+let reduced=motionPreference.matches;
 const mobile=matchMedia('(max-width:760px)').matches;
 let busy=false,selected=null,ready=false,renderer,scene,camera,terrain,maskPixels,maskWidth,elevations,geography;
 let raf=null,lastActivity=0,lastPointer=0,lastFrame=0,cameraMotion=0;
 let framesRendered=0,readyAt=0;
+let ambientTime=0,ambientLife,railway,seaLife;
+const ambientUpdaters=[];
 const tweens=[],labels=[],hover=[0,0,0],hoverTarget=[0,0,0],pointer=new THREE.Vector2(),raycaster=new THREE.Raycaster();
 const projectedLabel=new THREE.Vector3();
 let labelLayoutDirty=true,labelObstacles=[];
+let labelsWereBusy=false;
 const cameraBase=new THREE.Vector3(),cameraTarget=new THREE.Vector3(),look=new THREE.Vector3();
 const cities={oslo:[10.7522,59.9139],torp:[10.2586,59.1867],hovik:[10.5817,59.9],pl:[19.1,52.1],en:[-.2,53.6],no:[8.7,62.1]};
 let flightModel,carModel,routeLine,routeGlow,arrival;
@@ -37,6 +43,7 @@ function worldPoint([lon,lat],lift=0){return new THREE.Vector3((lon-13)*2.2,heig
 function geographic(point){return[point.x/2.2+13,60-point.z/4.4]}
 function regionAt([lon,lat]){const b=geography.bounds,x=Math.floor((lon-b.west)/(b.east-b.west)*maskWidth),y=Math.floor((b.north-lat)/(b.north-b.south)*maskWidth);return x>=0&&x<maskWidth&&y>=0&&y<maskWidth?Math.round(maskPixels[(y*maskWidth+x)*4]/85):0}
 export function projectToScreen(lon,lat){if(!camera)return null;const p=worldPoint([lon,lat],.3).project(camera);return{x:(p.x+1)*innerWidth/2,y:(1-p.y)*innerHeight/2}}
+export function inspectAmbientLife(){return{enabled:ready&&!reduced&&!document.hidden,time:ambientTime,atmosphere:ambientLife?.inspect(),railway:railway?.inspect?.()||railway?.group?.userData,maritime:seaLife?.motion};}
 export function inspectScene({artwork=false}={}){
  const model=flightModel?.visible?flightModel:carModel?.visible?carModel:null;
  let width=0,height=0;
@@ -66,23 +73,33 @@ canvas.addEventListener('pointermove',e=>{
 canvas.addEventListener('pointerleave',()=>{if(busy)return;pointer.set(0,0);highlight(null);wake()});
 canvas.addEventListener('click',e=>{if(!ready||busy)return;const hit=hitMap(e);if(hit)journey(hit.lang,hit.geo)});
 
-function wake(){lastActivity=performance.now();if(renderer&&raf===null&&!document.hidden)raf=requestAnimationFrame(frame)}
+function wake(){lastActivity=performance.now();if(renderer&&raf===null&&!document.hidden){lastFrame=lastActivity;raf=requestAnimationFrame(frame)}}
 function tween(duration,update){return new Promise(resolve=>{tweens.push({start:performance.now(),duration,update,resolve});wake()})}
 const ease=p=>p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
 function frame(now){
  raf=null;if(document.hidden)return;
- const delta=Math.min(.12,(now-lastFrame)/1000||.016);lastFrame=now;const damping=1-Math.exp(-delta*12);
- for(let i=tweens.length-1;i>=0;i--){const tw=tweens[i],p=Math.min(1,(now-tw.start)/tw.duration);tw.update(p);if(p===1){tweens.splice(i,1);tw.resolve()}}
+ // Ambient motion is deliberately gentle and capped at 30 rendered frames/sec.
+ // Interactions and journeys retain the browser's full frame cadence.
+ const ambientActive=ready&&!reduced;
+ if(ambientActive&&!busy&&!tweens.length&&now-lastActivity>400&&now-lastFrame<1000/30){raf=requestAnimationFrame(frame);return;}
+ // RAF's timestamp may precede wake() when scene setup consumes this frame.
+ // A nonnegative delta also prevents camera damping from extrapolating wildly.
+ const delta=Math.min(.12,Math.max(0,(now-lastFrame)/1000));lastFrame=now;const damping=1-Math.exp(-delta*12);
+ if(ambientActive){ambientTime+=delta;for(const update of ambientUpdaters)update(ambientTime);}
+ for(let i=tweens.length-1;i>=0;i--){const tw=tweens[i],p=Math.max(0,Math.min(1,(now-tw.start)/tw.duration));tw.update(p);if(p===1){tweens.splice(i,1);tw.resolve()}}
  let changing=false;for(let i=0;i<3;i++){hover[i]+=(hoverTarget[i]-hover[i])*damping;if(Math.abs(hoverTarget[i]-hover[i])>.002)changing=true}
  if(terrain)terrain.material.uniforms.uHover.value.set(...hover);
  if(scene?.userData.water)scene.userData.water.material.uniforms.uHover.value.set(...hover);
  const desired=cameraBase;
+ const cameraChanged=camera.position.distanceTo(desired)>.00001||look.distanceTo(cameraTarget)>.00001;
  if(camera.position.distanceTo(desired)>.005||look.distanceTo(cameraTarget)>.005)changing=true;
  camera.position.lerp(desired,damping);look.lerp(cameraTarget,damping);camera.lookAt(look);
- updateLabels();renderer.render(scene,camera);framesRendered++;
- if(tweens.length||changing||busy||now-lastActivity<400)raf=requestAnimationFrame(frame);
+ if(cameraChanged||labelLayoutDirty||busy!==labelsWereBusy){updateLabels();labelsWereBusy=busy;}
+ renderer.render(scene,camera);framesRendered++;
+ if(ambientActive||tweens.length||changing||busy||now-lastActivity<400)raf=requestAnimationFrame(frame);
 }
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)wake()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){if(raf!==null)cancelAnimationFrame(raf);raf=null;}else wake();});
+motionPreference.addEventListener('change',event=>{reduced=event.matches;wake();});
 
 function makeWater(aura){
  const geometry=new THREE.PlaneGeometry(1800,1800);geometry.rotateX(-Math.PI/2);
@@ -238,13 +255,17 @@ async function init(){
   const reservedBounds=landmarks.reservedBounds;
   const bridges=addIslandBridges({THREE,scene,worldPoint,heightAt,regionAt,isDry,reservedBounds});
   scene.userData.islandBridges=bridges.group?.userData||bridges;
+  railway=addRailway({THREE,scene,worldPoint,heightAt,regionAt,isDry,reservedBounds,mobile});
   const scenery=addMapScenery({THREE,scene,worldPoint,heightAt,regionAt,mobile,isDry,reservedBounds});
   const woodland=addSculptedWoodland({THREE,scene,worldPoint,heightAt,regionAt,mobile,isDry,reservedBounds});
   scene.userData.mapScenery={...(scenery.group?.userData||scenery),woodland:woodland.group?.userData};
   const creatures=addSeaCreatures({THREE,scene,mobile,regionAt,camera,landmarks:landmarkObjects});
+  seaLife=creatures;
   creatureObjects=creatures.objects;
   addCompassModel({THREE,scene,worldPoint});
   await Promise.all([landmarks.ready,creatures.ready,document.fonts.ready]);
+  ambientLife=addAmbientLife({THREE,scene,worldPoint,heightAt,regionAt,mobile,chimneyEmitters:scenery.chimneyEmitters,landmarks:landmarkObjects});
+  ambientUpdaters.push(railway.update,woodland.update,creatures.update,ambientLife.update);
 
   canvas.dataset.landmarks=String(landmarks.count);canvas.dataset.creatures=String(creatures.count);canvas.dataset.artwork='solid-painted-diorama';addLabels(creatures.decorations);makeVehicles();overview();camera.position.copy(cameraBase);look.copy(cameraTarget);camera.lookAt(look);
   ready=true;readyAt=performance.now();canvas.dataset.renderer='webgl';canvas.dataset.quality=mobile?'mobile':'desktop';document.body.classList.add('has-webgl','is-ready');$('#map-loading').hidden=true;

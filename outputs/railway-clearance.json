@@ -1,0 +1,36 @@
+[
+  {
+    "mobile": false,
+    "routeSamples": 675,
+    "routeChecks": 3375,
+    "roundTripSeconds": 112,
+    "frames": 897,
+    "vertexChecks": 832416,
+    "minimumTerrainClearance": 0.17567970245952313,
+    "minimumBuildingClearance": 0.7892539348801519,
+    "maximumTrainCorridorExtent": 0.4694964961929436,
+    "landmarkCorridorClearance": 0.49273005183835805,
+    "riverCrossings": 6,
+    "houses": 141,
+    "trees": 760,
+    "drawCalls": 4,
+    "triangles": 16164
+  },
+  {
+    "mobile": true,
+    "routeSamples": 675,
+    "routeChecks": 3375,
+    "roundTripSeconds": 112,
+    "frames": 897,
+    "vertexChecks": 832416,
+    "minimumTerrainClearance": 0.17567970245952313,
+    "minimumBuildingClearance": 0.7892539348801519,
+    "maximumTrainCorridorExtent": 0.4694964961929436,
+    "landmarkCorridorClearance": 0.49273005183835805,
+    "riverCrossings": 6,
+    "houses": 108,
+    "trees": 440,
+    "drawCalls": 4,
+    "triangles": 16164
+  }
+]

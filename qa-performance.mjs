@@ -32,10 +32,10 @@ try {
       assert.equal(settled.active,false,'Idle atlas has no scheduled frame');
     }
     if(!baseline){
-      // Seventeen solid landmarks, seventeen solid maritime scenes,
-      // forests, rivers and batched settlements share this fixed scene ceiling.
+      // Existing scene ceiling plus four railway draws, two claw joints and
+      // five ambient batches (birds, smoke and waves). Reduced motion sleeps.
       // Keep the existing culled terrain budget; richer pigment is a shader cost.
-      assert.ok(settled.calls<=75,`Dimensional atlas draw budget (75 max): ${settled.calls}`);
+      assert.ok(settled.calls<=86,`Living atlas draw budget (86 max): ${settled.calls}`);
       assert.ok(settled.terrainTriangles<(viewport.width<760?100000:350000),`Culled land mesh budget: ${settled.terrainTriangles}`);
       const scene=await inspect();
       assert.equal(scene.landmarkCount,17,'All seventeen solid landmarks contribute to the measured scene');

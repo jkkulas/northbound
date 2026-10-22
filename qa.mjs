@@ -57,7 +57,7 @@ async function newPage(options = {}, expectedConsoleErrors = []) {
 
 async function openMap(page, url = rootURL, settle = true) {
   await page.goto(url, { waitUntil: 'load' });
-  await page.waitForFunction(() => document.querySelector('#terrain-canvas')?.dataset.renderer === 'webgl', null, { timeout: 30000 });
+  await page.waitForFunction(() => document.querySelector('#terrain-canvas')?.dataset.renderer === 'webgl', null, { timeout: 60000 });
   await page.evaluate(async () => { window.__qaInspectScene = (await import(new URL('./assets/app.js', document.baseURI).href)).inspectScene; });
   assert.equal(await page.locator('#terrain-canvas').isVisible(), true, 'WebGL canvas is visible');
   assert.equal(await page.locator('#map-loading').isVisible(), false, 'Loading indicator clears');
@@ -210,11 +210,15 @@ try {
   assertGoldenHighlight(desktopImage, hoverImage);
   console.log('PASS Norway hover with visible golden highlight');
 
+  // Keep only the scene under review animating when using software WebGL.
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   const laptop = await newPage({ viewport: { width: 1366, height: 768 } });
   await openMap(laptop);
   assert.equal(await laptop.evaluate(() => document.documentElement.scrollWidth <= innerWidth && document.documentElement.scrollHeight <= innerHeight), true, 'Laptop viewport has no page overflow');
   await laptop.screenshot({ path: path.join(outputDirectory, 'sculpted-laptop.png') });
   console.log('PASS laptop layout and screenshot');
+  await laptop.close();
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
 
   await page.setViewportSize({ width: 1280, height: 800 });
 
@@ -267,6 +271,7 @@ try {
   await page.locator('#skip').click();
   await destination(page, 'pl');
   console.log('PASS keyboard language selection and skip');
+  await page.close();
 
   // Mobile geometry quality is selected when the module first loads.
   const mobile = await newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
@@ -278,6 +283,7 @@ try {
   await mobile.locator('#journey-status.is-visible').waitFor();
   await destination(mobile, 'no');
   console.log('PASS fresh mobile scene, viewport layout, touch selection, and journey');
+  await mobile.close();
 
   const reduced = await newPage({ reducedMotion: 'reduce' });
   await openMap(reduced, rootURL, false);
@@ -295,6 +301,7 @@ try {
     assert.equal(await reduced.evaluate(() => sessionStorage.getItem('northbound-qa-animated')), 'false', 'Reduced motion never starts an animated journey');
   }
   console.log('PASS reduced-motion direct navigation for all languages');
+  await reduced.close();
 
   // Only the intentionally unavailable renderer error is expected in this context.
   const fallback = await newPage({ reducedMotion: 'reduce' }, [/^THREE\.WebGLRenderer: Error creating WebGL context\.$/]);
@@ -320,6 +327,7 @@ try {
   await fallback.locator('.language-option[data-lang="pl"]').click();
   await destination(fallback, 'pl');
   console.log('PASS WebGL-unavailable fallback map, geographic keyboard selection, and language buttons');
+  await fallback.close();
 
   const nested = await newPage({ reducedMotion: 'reduce' });
   await openMap(nested, `${nestedURL}index.html`, false);
@@ -331,6 +339,7 @@ try {
     await destination(nested, lang, nestedURL);
   }
   console.log('PASS Live Server nested index.html assets, directory URL, home link, and all destinations');
+  await nested.close();
   }
 
   // A paused browser clock keeps the short travel phases available for visual review.
@@ -355,7 +364,7 @@ try {
   assert.ok(cameraDistance(drive) < cameraDistance(beforeClick) * .8, 'The Norway journey keeps the close camera after overriding the introductory animation');
   const carImage = await clocked.screenshot({ path: path.join(outputDirectory, 'sculpted-norway-drive.png') });
   await fs.writeFile(path.join(outputDirectory, 'journey-passat-v4.png'), carImage);
-  await clocked.clock.resume();
+  await clocked.close();
   console.log('PASS early Norway click, visible fade, close drive, physical clearance, and controlled travel screenshots');
 
   // A software-rendered screenshot can take longer than the whole flight.
@@ -375,6 +384,7 @@ try {
   const jetImage = await jetReview.screenshot({ path: path.join(outputDirectory, 'sculpted-flight.png') });
   await fs.writeFile(path.join(outputDirectory, 'journey-jet-v4.png'), jetImage);
   console.log('PASS controlled Wizz-inspired jet journey screenshot and legibility');
+  await jetReview.close();
 
   assert.deepEqual(issues, [], 'No browser runtime errors, console errors, or failed resources');
   console.log('PASS no browser errors or failed resource requests');

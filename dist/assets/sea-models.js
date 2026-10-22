@@ -151,20 +151,25 @@ function whale(THREE,b){
  for(let i=0;i<6;i++)a.ellipsoid(.4+i*.34,2.18-.07*Math.sin(i),.07,.055,.07,.04,P.foam,7,5);waves(THREE,a,8.4,1.05,.5);
 }
 
-function lobster(THREE,b){
- const a=workshop(THREE,b),red=0xa94f37,light=0xc5764b;
+function lobster(THREE,b,material){
+ const a=workshop(THREE,b),red=0xa94f37,light=0xc5764b,claws=[];
  for(let i=0;i<7;i++){const x=-2.0+i*.35,r=.28+i*.043;a.ellipsoid(x,.30,0,.32,.31+i*.035,r,i%2?red:light,14,8);a.tube([[x-.16,.32,-r],[x-.14,.59,0],[x-.16,.32,r]],.028,0x823f2c,12,5);}
  a.ellipsoid(.35,.42,0,.79,.52,.54,red,20,12);a.ellipsoid(.8,.55,0,.40,.31,.43,light,16,10);
  for(const s of[-1,1]){
-  sweep(THREE,a,[[.48,.35,s*.4],[1.10,.47,s*.95],[1.55,.75,s*1.22],[2.0,1.0,s*1.32]],t=>.16-.045*t,red,22,10);a.ellipsoid(1.52,.74,s*1.20,.24,.24,.23,light,12,8);
-  a.ellipsoid(2.23,1.05,s*1.24,.62,.40,.36,red,20,12);
-  sweep(THREE,a,[[2.38,1.18,s*1.42],[2.88,1.35,s*1.42],[3.19,1.43,s*1.19],[3.04,1.37,s*.95]],t=>.21*(1-t)+.025,light,22,10);
-  sweep(THREE,a,[[2.34,.94,s*1.12],[2.73,1.0,s*.82],[3.05,1.2,s*.80]],t=>.17*(1-t)+.02,red,19,10);
+  // Each complete arm is one painted mesh, hinged at its shoulder. Keeping
+  // the joint separate avoids deforming the body or uploading vertices.
+  const cb=createModelBuilder(THREE),c=workshop(THREE,cb);
+  sweep(THREE,c,[[.48,.35,s*.4],[1.10,.47,s*.95],[1.55,.75,s*1.22],[2.0,1.0,s*1.32]],t=>.16-.045*t,red,22,10);c.ellipsoid(1.52,.74,s*1.20,.24,.24,.23,light,12,8);
+  c.ellipsoid(2.23,1.05,s*1.24,.62,.40,.36,red,20,12);
+  sweep(THREE,c,[[2.38,1.18,s*1.42],[2.88,1.35,s*1.42],[3.19,1.43,s*1.19],[3.04,1.37,s*.95]],t=>.21*(1-t)+.025,light,22,10);
+  sweep(THREE,c,[[2.34,.94,s*1.12],[2.73,1.0,s*.82],[3.05,1.2,s*.80]],t=>.17*(1-t)+.02,red,19,10);
+  const claw=cb.finish(`lobster-claw-${s<0?'left':'right'}`,material),pivot=new THREE.Group();
+  pivot.name=`lobster-shoulder-${s}`;pivot.position.set(.48,.35,s*.4);claw.position.copy(pivot.position).multiplyScalar(-1);pivot.add(claw);pivot.userData={kind:'lobster-claw-joint',side:s};claws.push(pivot);
   for(let i=0;i<5;i++){const x=-1.2+i*.34;a.tube([[x,.25,s*.32],[x+.12,.48,s*.80],[x+.42,.18,s*1.25],[x+.62,.02,s*1.40]],.052,red,14,7);}
   a.beam([.76,.65,s*.20],[1.04,.99,s*.34],.045,light,.035);a.ellipsoid(1.05,1.0,s*.34,.085,.10,.08,P.ink,10,6);
   a.tube([[.99,.66,s*.23],[1.6,.9,s*.30],[1.9,1.70,s*.53],[1.55,2.35,s*.70],[.75,2.52,s*.95]],.028,light,32,6);
   a.ellipsoid(-2.32,.24,s*.24,.47,.10,.29,red,14,8);
- }a.ellipsoid(-2.45,.24,0,.45,.11,.22,light,14,8);waves(THREE,a,7.0,1.7,1.2);
+ }a.ellipsoid(-2.45,.24,0,.45,.11,.22,light,14,8);waves(THREE,a,7.0,1.7,1.2);return claws;
 }
 
 function rig(THREE,b){
@@ -186,12 +191,14 @@ function rig(THREE,b){
 }
 
 export function createMaritimeModel(THREE,kind,{material,name=kind,schooner=false}={}){
- const b=createModelBuilder(THREE);
+ const b=createModelBuilder(THREE);let claws=[];
  if(kind==='serpent_attack')serpent(THREE,b);
  else if(kind==='kraken_attack')kraken(THREE,b);
  else if(kind==='northern_whale')whale(THREE,b);
- else if(kind==='great_lobster')lobster(THREE,b);
+ else if(kind==='great_lobster')claws=lobster(THREE,b,material);
  else if(kind==='offshore_rig')rig(THREE,b);
  else{ship(THREE,b,{schooner:kind==='schooner_ship'||schooner});waves(THREE,workshop(THREE,b),7.4,1.1);}
- const group=b.finish(name,material);group.userData={...group.userData,style:'hand-painted-solid-diorama',maritimeModel:kind,geometryOnly:true};return group;
+ const group=b.finish(name,material);if(claws.length)group.add(...claws);
+ for(const claw of claws){const data=claw.children[0].userData;group.userData.parts+=data.parts;group.userData.triangles+=data.triangles;group.userData.drawCalls+=data.drawCalls;}
+ group.userData={...group.userData,style:'hand-painted-solid-diorama',maritimeModel:kind,geometryOnly:true,animatedClaws:claws.length};return group;
 }

@@ -41,9 +41,9 @@ function occupiedGround(scene,reservedBounds){
  });return bounds;
 }
 
-function sceneryGround(regionAt,heightAt,isDry,reservedBounds){
+function sceneryGround(regionAt,heightAt,isDry,reservedBounds,railwayCorridor){
  const dry=isDry||((x,z)=>!!regionAt(geoFrom(x,z)));
- const reserved=(x,z,r)=>reservedBounds.some(b=>{const a=b.min,c=b.max,ax=a.x??a[0],az=a.z??a[2],cx=c.x??c[0],cz=c.z??c[2];return x+r>ax-.20&&x-r<cx+.20&&z+r>az-.20&&z-r<cz+.20;});
+ const reserved=(x,z,r)=>!!railwayCorridor?.intersectsDisc(x,z,r)||reservedBounds.some(b=>{const a=b.min,c=b.max,ax=a.x??a[0],az=a.z??a[2],cx=c.x??c[0],cz=c.z??c[2];return x+r>ax-.20&&x-r<cx+.20&&z+r>az-.20&&z-r<cz+.20;});
  const corridor=(x,z)=>{const[lon,lat]=geoFrom(x,z);return lon>9.7&&lon<11.6&&lat>58.5&&lat<61.2;};
  function footprint(x,z,width,depth,angle=0,maxRelief=.36){
   if(reserved(x,z,Math.hypot(width,depth)/2)||corridor(x,z))return null;
@@ -77,9 +77,32 @@ function coniferCrown(THREE){
  g.computeVertexNormals();return g;
 }
 
+function woodlandPigment(THREE){
+ const material=sceneryPigment(THREE);
+ material.uniforms.uWoodlandTime={value:0};
+ // The same world-space wind deforms trunks and crowns. The root collar stays
+ // fixed; no per-frame instance matrix uploads are needed for the woodland.
+ material.vertexShader=`uniform float uWoodlandTime;
+ varying vec3 vPigment,vAtlasPoint,vAtlasNormal;
+ void main(){vec4 p=vec4(position,1.);vec3 n=normal;vPigment=color;
+ #ifdef USE_INSTANCING
+ float height=max(position.y-.10,0.);
+ float phase=dot(instanceMatrix[3].xz,vec2(.37,.23));
+ float breeze=sin(uWoodlandTime*.65+phase)*.026+sin(uWoodlandTime*1.13+phase*1.7)*.008;
+ vec2 wind=vec2(.86,.50)*breeze;
+ float treeScale=length(instanceMatrix[1].xyz);
+ p=instanceMatrix*p;n=mat3(instanceMatrix)*n;
+ p.xz+=wind*height*height*treeScale;
+ n.y-=dot(n.xz,wind*(2.*height));
+ #endif
+ vec4 world=modelMatrix*p;vAtlasPoint=world.xyz;vAtlasNormal=normalize(mat3(modelMatrix)*n);
+ gl_Position=projectionMatrix*viewMatrix*world;}`;
+ return material;
+}
+
 export function addSculptedWoodland({THREE,scene,worldPoint,heightAt,regionAt,isDry,reservedBounds=[],mobile=false}){
  const group=new THREE.Group();group.name='sculpted-manuscript-woodlands';
- const random=randomFrom(218),ground=sceneryGround(regionAt,heightAt,isDry,occupiedGround(scene,reservedBounds)),material=sceneryPigment(THREE),pine=new Batch(THREE),broad=new Batch(THREE),trunks=new Batch(THREE);
+ const random=randomFrom(218),ground=sceneryGround(regionAt,heightAt,isDry,occupiedGround(scene,reservedBounds),scene.userData.railwayCorridor),material=woodlandPigment(THREE),pine=new Batch(THREE),broad=new Batch(THREE),trunks=new Batch(THREE);
  const cone=coniferCrown(THREE),crown=irregularCrown(THREE),stem=new THREE.CylinderGeometry(.027,.047,.64,6);
  pine.add(cone,[0,0,0],[1,1,1],[0,0,0],0x3e593c);
  broad.add(crown,[-.16,.65,0],[.25,.31,.23],[0,0,.15],0x536b3e);broad.add(crown,[.15,.72,.03],[.25,.33,.23],[0,0,-.15],0x6b7d40);broad.add(crown,[0,.87,-.09],[.29,.31,.26],[0,0,0],0x798644);
@@ -101,7 +124,8 @@ export function addSculptedWoodland({THREE,scene,worldPoint,heightAt,regionAt,is
   const t=random()*Math.PI*2,r=Math.sqrt(random()),geo=[lon+Math.cos(t)*r*rx,lat+Math.sin(t)*r*ry],h=heightAt(...geo);
   if(!regionAt(geo)||h>5.3)continue;
   const p=worldPoint(geo),scale=.76+random()*.66,support=ground.footprint(p.x,p.z,scale*.22,scale*.22,0,.43);
-  if(!support||ground.reserved(p.x,p.z,scale*.38)||placements.some(q=>q.p.distanceToSquared(p)<.105))continue;
+  // Reserve the entire oak crown plus its maximum wind drift, not only roots.
+  if(!support||ground.reserved(p.x,p.z,scale*.48+.07)||placements.some(q=>q.p.distanceToSquared(p)<.105))continue;
   p.y=support.min-.035;
   placements.push({geo,p,scale,pine:lat>58||h>1.9||random()>.62,rotation:random()*Math.PI*2,groundSamples:support.points});
  }
@@ -109,11 +133,12 @@ export function addSculptedWoodland({THREE,scene,worldPoint,heightAt,regionAt,is
  const install=(type,geometry,name)=>{
   const list=placements.filter(type),mesh=new THREE.InstancedMesh(geometry,material,list.length);mesh.name=name;mesh.userData.dimensional=true;
   list.forEach((tree,i)=>{q.setFromAxisAngle(new THREE.Vector3(0,1,0),tree.rotation);s.set(tree.scale,tree.scale,tree.scale);matrix.compose(tree.p,q,s);mesh.setMatrixAt(i,matrix);});
-  mesh.instanceMatrix.needsUpdate=true;mesh.computeBoundingSphere();group.add(mesh);
+  mesh.instanceMatrix.needsUpdate=true;mesh.computeBoundingSphere();mesh.boundingSphere.radius+=.07;group.add(mesh);
  };
  install(t=>t.pine,pine.geometry(),'sculpted-fir-canopies');install(t=>!t.pine,broad.geometry(),'sculpted-oak-canopies');install(()=>true,trunks.geometry(),'woodland-trunks');
- group.userData={dimensional:true,trees:placements.length,conifers:placements.filter(p=>p.pine).length,broadleaf:placements.filter(p=>!p.pine).length,placements:placements.map(p=>({coordinates:p.geo,position:p.p.toArray(),scale:p.scale,groundSamples:p.groundSamples})),grounding:'whole root footprint excludes coast, lakes, rivers and landmark foundations'};
- cone.dispose();crown.dispose();stem.dispose();scene.add(group);return{group,count:placements.length,drawCalls:3};
+ group.userData={dimensional:true,trees:placements.length,conifers:placements.filter(p=>p.pine).length,broadleaf:placements.filter(p=>!p.pine).length,placements:placements.map(p=>({coordinates:p.geo,position:p.p.toArray(),scale:p.scale,groundSamples:p.groundSamples})),maximumWindDrift:.07,grounding:'whole root footprint excludes coast, lakes, rivers and landmark foundations; crowns and wind drift clear the railway'};
+ const update=timeSeconds=>{material.uniforms.uWoodlandTime.value=Number.isFinite(timeSeconds)?timeSeconds:0;};
+ cone.dispose();crown.dispose();stem.dispose();scene.add(group);return{group,count:placements.length,drawCalls:3,update};
 }
 
 const villageSites=[
@@ -137,11 +162,11 @@ const lighthouseSites=[
 
 export function addMapScenery({THREE,scene,worldPoint,heightAt,regionAt,isDry,reservedBounds=[],mobile=false}){
  const group=new THREE.Group();group.name='geographic-manuscript-scenery';
- const ground=sceneryGround(regionAt,heightAt,isDry,occupiedGround(scene,reservedBounds)),material=sceneryPigment(THREE),buildings=new Batch(THREE),rocks=new Batch(THREE),random=randomFrom(1502);
+ const ground=sceneryGround(regionAt,heightAt,isDry,occupiedGround(scene,reservedBounds),scene.userData.railwayCorridor),material=sceneryPigment(THREE),buildings=new Batch(THREE),rocks=new Batch(THREE),random=randomFrom(1502);
  const cube=new THREE.BoxGeometry(1,1,1),cylinder=new THREE.CylinderGeometry(1,1,1,16),sphere=irregularCrown(THREE);
  const roofShape=new THREE.Shape();roofShape.moveTo(-.5,0);roofShape.lineTo(0,.42);roofShape.lineTo(.5,0);roofShape.closePath();
  const roof=new THREE.ExtrudeGeometry(roofShape,{depth:1,bevelEnabled:false,steps:1});roof.translate(0,0,-.5);
- const houses=[],lighthouses=[],seaRocks=[],settlements=[];
+ const houses=[],lighthouses=[],seaRocks=[],settlements=[],chimneyEmitters=[];
  function foundation(p,width,depth,angle){
   const c=Math.cos(angle),s=Math.sin(angle),points=[],vertices=[],corners=[[-width/2,-depth/2],[width/2,-depth/2],[width/2,depth/2],[-width/2,depth/2]];
   for(let k=0;k<4;k++){const a=corners[k],b=corners[(k+1)%4],n=Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1])/.10);
@@ -159,6 +184,8 @@ export function addMapScenery({THREE,scene,worldPoint,heightAt,regionAt,isDry,re
   foundation(p,.72*scale,.55*scale,angle);
   add(cube,[0,body/2,0],[.70,body,.53],color);add(cube,[0,.065,0],[.74,.13,.57],0x9c8d69);add(roof,[0,body,0],[.84,.78,.68],roofColor);
   add(cube,[.21,body+.24,-.10],[.085,.28,.085],0x8b7651);add(cube,[.21,body+.385,-.10],[.115,.035,.115],0xb4a279);
+  // These coordinates use the same house transform as the visible chimney.
+  if(index%5===2)chimneyEmitters.push({position:local(.21,body+.4075,-.10),scale,settlement:name,houseIndex:index});
   for(const y of(tall?[.29,.57]:[.31]))for(const x of[-.22,.22]){
    add(cube,[x,y,.273],[.12,.15,.025],0x405449);add(cube,[x,y,.291],[.018,.16,.015],0xdfce9e);add(cube,[x,y,.30],[.12,.018,.014],0xceba84);
    add(cube,[x-.09,y,.283],[.035,.16,.018],roofColor);add(cube,[x+.09,y,.283],[.035,.16,.018],roofColor);
@@ -203,6 +230,6 @@ export function addMapScenery({THREE,scene,worldPoint,heightAt,regionAt,isDry,re
   seaRocks.push({geo,size});
  }
  group.add(buildings.mesh(material,'rural-towns-and-coastal-lighthouses'));group.add(rocks.mesh(material,'sculpted-offshore-rocks'));
- group.userData={dimensional:true,houses,lighthouses,seaRocks,settlements,houseCount:houses.length,lighthouseCount:lighthouses.length,rockCount:seaRocks.length,grounding:'whole foundation grid excludes sea, lakes, visible river ribbons and landmark foundations; masonry skirts conform to the DEM'};
- for(const g of[cube,cylinder,sphere,roof,tower,lanternGlass,lanternRoof,ring])g.dispose();scene.add(group);return{group,houses:houses.length,lighthouses:lighthouses.length,rocks:seaRocks.length,drawCalls:2};
+ group.userData={dimensional:true,houses,lighthouses,seaRocks,settlements,chimneyEmitters,houseCount:houses.length,lighthouseCount:lighthouses.length,rockCount:seaRocks.length,grounding:'whole foundation grid excludes sea, lakes, visible river ribbons, landmark foundations and railway; masonry skirts conform to the DEM'};
+ for(const g of[cube,cylinder,sphere,roof,tower,lanternGlass,lanternRoof,ring])g.dispose();scene.add(group);return{group,houses:houses.length,lighthouses:lighthouses.length,rocks:seaRocks.length,chimneyEmitters,drawCalls:2};
 }

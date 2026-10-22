@@ -257,8 +257,8 @@ export function makeHekla({b,g,THREE}){
  for(const a of[.18,1.12,2.45,3.70,5.2]){
   const path=[];for(let j=0;j<17;j++){const r=.12+j*.035,p=surface(r,a+Math.sin(j*.6)*.04);path.push([p[0],p[1]+.027,p[2]]);}b.curve(path,.035,0x974b30,28);b.curve(path.map(([x,y,z])=>[x,y+.016,z]),.012,0xd59b45,28);
  }
- // Soft sculpted ash plume: several lobes of a single shared opaque clay pigment.
- for(let i=0;i<7;i++){const r=.17+i*.036;ellipsoid(b,THREE,.06+Math.sin(i*.9)*.10,craterY+.33+i*.29,-i*.075,r*.83,r*1.08,r,0xa49982);}
+ // The atmosphere system emits a soft, rising plume from the actual crater.
+ b.smokeEmitter=[0,craterY+.10,0];
 }
 
 export const EXTRA_LANDMARK_SITES=Object.freeze([

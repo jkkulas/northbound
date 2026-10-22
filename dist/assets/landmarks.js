@@ -178,6 +178,7 @@ export function addLandmarks({THREE,scene,worldPoint,mobile=false,heightAt,regio
   const model=b.finish('landmark-'+site.asset,material);model.position.copy(drawing);model.scale.set(xzScale,yScale,xzScale);model.rotation.y=yaw;
   model.updateMatrixWorld(true);const bounds=new THREE.Box3().setFromObject(model),worldBounds={min:bounds.min.toArray(),max:bounds.max.toArray()};occupied.push(worldBounds);
   model.userData={...model.userData,title:site.title,kind:'landmark',style:'painted-solid-diorama',coordinates:[...site.coordinates],drawingCoordinates:fit.coordinates,drawingOffset:[drawing.x-origin.x,drawing.z-origin.z],grounding:site.asset==='london'?'river-crossing':'land',dimensional:true,geolocationVerified:true,worldBounds,localFoundation:localBox,scale:[xzScale,yScale,xzScale],surfaceFit:{clear:true,fullFootprint:true,solidGeometry:true,samples:fit.samples,riverClear:true},...(fit.supportPoints?{bankSupportPoints:fit.supportPoints}:{})};
+  if(b.smokeEmitter)model.userData.smokeEmitter=new THREE.Vector3(...b.smokeEmitter).applyMatrix4(model.matrixWorld).toArray();
   scene.add(model);objects.push(model);
  }
  return{count:objects.length,objects,ready:Promise.resolve(objects),reservedBounds:occupied};

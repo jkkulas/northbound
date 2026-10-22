@@ -41,8 +41,15 @@ function supportSamples(bounds){
  return {samples,footprint:[x0,z0,x1,z1],quick:[[x0,z0],[x1,z0],[x1,z1],[x0,z1],[(x0+x1)/2,(z0+z1)/2]]};
 }
 
-function placeAtSea({THREE,origin,bounds,regionAt,camera,occupied,landmarks,maxDistance=15}){
- const support=supportSamples(bounds),candidates=[{x:origin[0],z:origin[1],distance:0}];
+function circularSupport(radius){
+ const samples=[],n=Math.ceil(radius*2/SAMPLE_STEP),quick=[[0,0]];
+ for(let i=0;i<32;i++){const a=i/32*Math.PI*2;quick.push([Math.cos(a)*radius,Math.sin(a)*radius]);}
+ for(let j=0;j<=n;j++)for(let i=0;i<=n;i++){const x=-radius+2*radius*i/n,z=-radius+2*radius*j/n;if(x*x+z*z<=radius*radius)samples.push([x,z]);}
+ return {samples:[...quick,...samples],quick,footprint:[-radius,-radius,radius,radius]};
+}
+
+function placeAtSea({THREE,origin,bounds,regionAt,camera,occupied,landmarks,maxDistance=15,support=supportSamples(bounds)}){
+ const candidates=[{x:origin[0],z:origin[1],distance:0}];
  for(let dz=-maxDistance;dz<=maxDistance;dz+=.8)for(let dx=-maxDistance;dx<=maxDistance;dx+=.8){const distance=Math.hypot(dx,dz);if(distance<.1||distance>maxDistance)continue;candidates.push({x:origin[0]+dx,z:origin[1]+dz,distance});}
  candidates.sort((a,b)=>a.distance-b.distance);
  const water=(c,list)=>list.every(([x,z])=>!regionAt(toGeo(c.x+x,c.z+z)));
@@ -62,25 +69,52 @@ function placeAtSea({THREE,origin,bounds,regionAt,camera,occupied,landmarks,maxD
 }
 
 export function addSeaCreatures({THREE,scene,mobile=false,regionAt,camera,landmarks=[]}){
- const objects=[],decorations=[],material=createMapModelMaterial(THREE),occupied=[];
+ const objects=[],decorations=[],material=createMapModelMaterial(THREE),occupied=[],boats=[],claws=[];
+ const motion={boatCount:0,clawCount:0,validatedRoutes:0,waterSamples:0,lastTime:0};
+ function update(timeSeconds){
+  const time=Number.isFinite(timeSeconds)?Math.max(0,timeSeconds):0;motion.lastTime=time;
+  for(const {model,route}of boats){
+   const a=route.phase+time*Math.PI*2/route.period*route.direction;
+   model.position.x=route.center[0]+Math.cos(a)*route.radius;model.position.z=route.center[1]+Math.sin(a)*route.radius;
+   // The bow points along +X in the source model. Follow the circle tangent
+   // continuously, including its closing seam, without snapping headings.
+   model.rotation.y=-a-route.direction*Math.PI/2;model.position.y=SEA+.012*Math.sin(time*.85+route.phase);
+  }
+  for(let i=0;i<claws.length;i++)claws[i].rotation.z=.12+.12*Math.sin(time*.82+i*2.1);
+ }
  const ready=Promise.resolve().then(()=>{
   camera.updateMatrixWorld(true);
   const landmarkBoxes=landmarks.map(model=>{model.updateMatrixWorld(true);return projectionBox(THREE,new THREE.Box3().setFromObject(model),camera);});
   for(const item of ITEMS){
    const model=createMaritimeModel(THREE,item.asset,{material,name:item.name}),sourceBounds=new THREE.Box3().setFromObject(model),width=mobile?(item.mobileWidth||item.width*.82):item.width,baseScale=width/(sourceBounds.max.x-sourceBounds.min.x),geo=mobile&&item.mobileGeo?item.mobileGeo:item.geo,origin=[(geo[0]-13)*2.2,(60-geo[1])*4.4];
+   const moving=item.asset==='merchant_ship'||item.asset==='schooner_ship';
    model.rotation.y=item.yaw||0;model.position.y=SEA;
-   let fit=null,bounds=null,scale=baseScale;
+   let fit=null,bounds=null,scale=baseScale,routeRadius=0,clearanceRadius=0;
    for(const factor of[1,.92,.84,.74]){
     scale=baseScale*factor;model.scale.setScalar(scale);model.updateMatrixWorld(true);bounds=new THREE.Box3().setFromObject(model);
-    fit=placeAtSea({THREE,origin,bounds,regionAt,camera,occupied,landmarks:landmarkBoxes,maxDistance:item.offshore?7:18});if(fit)break;
+    let support;
+    if(moving){
+     routeRadius=(mobile?1.05:1.45)*factor;
+     const x=Math.max(Math.abs(sourceBounds.min.x),Math.abs(sourceBounds.max.x)),z=Math.max(Math.abs(sourceBounds.min.z),Math.abs(sourceBounds.max.z));
+     // A swept disk contains the entire model (including sails and wake) at
+     // every heading and every point on the loop, not just sampled keyframes.
+     clearanceRadius=Math.hypot(x,z)*scale+routeRadius+MARGIN;
+     bounds=new THREE.Box3(new THREE.Vector3(-clearanceRadius,bounds.min.y,-clearanceRadius),new THREE.Vector3(clearanceRadius,bounds.max.y,clearanceRadius));support=circularSupport(clearanceRadius);
+    }
+    fit=placeAtSea({THREE,origin,bounds,regionAt,camera,occupied,landmarks:landmarkBoxes,maxDistance:item.offshore?7:moving?26:18,support});if(fit)break;
    }
    if(!fit)throw new Error(`No open-water support for the ${item.name} model`);
    model.position.x=fit.x;model.position.z=fit.z;model.updateMatrixWorld(true);
    const worldBounds=new THREE.Box3().setFromObject(model),drawn=toGeo(fit.x,fit.z),footprint=fit.support.footprint.map((n,i)=>n+(i%2?fit.z:fit.x));
    model.userData={...model.userData,title:item.name,kind:'sea-model',asset:item.asset,coordinates:[...item.geo],drawingCoordinates:drawn,width:worldBounds.max.x-worldBounds.min.x,height:worldBounds.max.y-worldBounds.min.y,depth:worldBounds.max.z-worldBounds.min.z,footprint,worldBounds:{min:worldBounds.min.toArray(),max:worldBounds.max.toArray()},fullWaterSupport:true,fullViewportVisibility:fit.visible,landmarkOcclusionClear:true,sourceSamples:fit.support.samples.length,supportSamples:fit.support.samples.length,supportStep:SAMPLE_STEP,supportMargin:MARGIN,geometryOnly:true,dimensional:true,scale};
+   if(moving){
+    const route={kind:'closed-water-loop',center:[fit.x,fit.z],radius:routeRadius,clearanceRadius,period:68+boats.length*4.7,direction:boats.length%2?-1:1,phase:boats.length*2.39996,waterSamples:fit.support.samples.length,fullLoopWaterSupport:true};
+    model.userData.motion=route;boats.push({model,route});motion.boatCount++;motion.validatedRoutes++;motion.waterSamples+=route.waterSamples;
+   }
+   for(const joint of model.children)if(joint.userData.kind==='lobster-claw-joint')claws.push(joint);
    objects.push(model);scene.add(model);decorations.push({name:item.name,geo:drawn,label:item.label,model});
   }
-  return objects;
+  motion.clawCount=claws.length;update(0);return objects;
  });
- return {count:ITEMS.length,objects,ready,decorations};
+ return {count:ITEMS.length,objects,ready,decorations,update,motion};
 }

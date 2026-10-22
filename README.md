@@ -6,15 +6,21 @@ Run `npm.cmd ci`, then `npm.cmd run dev`, and open http://127.0.0.1:4173. On oth
 
 ## The 3D fork
 
-All object artwork is geometry, including the compass, boats, sea monsters, rig, aircraft and car. No raster object atlas or illustrated billboard is loaded. Models have solid depth-tested surfaces, fine dimensional details and a shared pigment shader. Repeated scenery is instanced or merged, and the renderer sleeps when the map settles.
+All object artwork is geometry, including the compass, boats, sea monsters, rig, aircraft and car. No raster object atlas or illustrated billboard is loaded. Models have solid depth-tested surfaces, fine dimensional details and a shared pigment shader. Repeated scenery is instanced or merged. Ambient animation runs at up to 30 rendered frames per second; hidden tabs pause and reduced-motion visitors get a still scene that sleeps when settled.
 
 The landmark collection includes Stockholm City Hall, Nyhavn, Warsaw Royal Castle, Kinderdijk windmill, Gdańsk Żuraw, Tower Bridge, Borgund Stave Church, Brandenburg Gate, Eiffel Tower, Cologne Cathedral, Trakai Castle, Helsinki Cathedral, Tallinn's Toompea, Riga's House of the Blackheads, Rosenholm Castle in Jutland, Edinburgh Castle and Iceland's Hekla. Bryggen and Oslo Opera remain removed. Landmark heights are exaggerated, while coastal footprints narrow where necessary to fit dry land.
 
 `ground-support.js` checks full foundations against the same land mask and triangulated river ribbons used by the renderer. Geographic source coordinates are retained separately from each artistic drawing position. Masonry skirts descend into sampled terrain; towers remain upright. Tower Bridge crosses the Thames with dry tower foundations and two approaches meeting the banks. Little Belt, Øresund and Storstrøm connect actual land on both ends. A prospective Great Belt crossing is omitted when the exaggerated Nyhavn ensemble blocks its available landing.
 
-The assembled desktop scene contains 760 trees, 144 houses, 3 lighthouses and 38 offshore rocks; mobile uses 440 trees, 110 houses and 20 rocks. Scenery avoids rivers, coastline, landmark footprints, bridge approaches and the Norwegian journey corridor. Houses have terrain-fitted masonry, sloped roofs, chimneys and windows; towns have regional towers and enclosed streets. Trees have shaped layered crowns and modeled trunks.
+The assembled desktop scene contains 760 trees, 141 houses, 3 lighthouses and 38 offshore rocks; mobile uses 440 trees, 108 houses and 20 rocks. Scenery avoids rivers, coastline, landmark footprints, bridge approaches, the railway and the Norwegian journey corridor. Houses have terrain-fitted masonry, sloped roofs, chimneys and windows; towns have regional towers and enclosed streets. Trees have shaped layered crowns and modeled trunks.
 
 Ships include curved hulls, thick bowed sails, rigging and rails. The serpent has a smooth swept body, raised scales, fins, eyes and teeth. The kraken has curling arms and modeled suckers; the offshore platform has decks, bracing, cranes and a helipad. Complete sea footprints remain over water and are separated from landmark silhouettes in the overview. Narrow mobile framing naturally shows a subset of the full European scene.
+
+## Life on the map
+
+Five coastal gull flocks and three inland bird swarms circle above the terrain with articulated wings. Twelve ships sail slow circular routes, with their complete turning envelopes checked against the water mask. The lobster raises and lowers its claws. A modern three-car train travels between Paris and Warsaw, pauses at each terminus, and reverses. Rails, sleepers and river decks follow the terrain; a reserved corridor keeps buildings and gently swaying tree crowns clear of the train.
+
+Soft smoke rises from Hekla's crater and selected actual chimney tops. Scattered wavelets drift and fade on verified water patches. Tree, bird, smoke, wave, boat and train motion share one elapsed clock that pauses with page visibility and honors live changes to `prefers-reduced-motion`. `inspectAmbientLife()` exposes animation and route diagnostics.
 
 ## Journeys and access
 
@@ -27,6 +33,10 @@ Norway and Poland select their own languages; other land selects English. Hoveri
 - `npm.cmd run test:composition`: actual maritime geometry, complete water footprints and camera-space landmark occlusion.
 - `npm.cmd run test:scenery`: assembled-world foundations, dry bridge abutments and tree/building separation.
 - `npm.cmd run test:performance`: idle rendering, draw/triangle budgets and no raster object downloads.
+- `npm.cmd run test:railway`: complete train return cycle, actual vertex clearance, track support and building/tree exclusion.
+- `npm.cmd run test:sea-motion`: complete ship loops and articulated lobster clearance over water.
+- `npm.cmd run test:ambient`: bird flight clearance, actual smoke emission points, wave water support and shared animation clocks.
+- `npm.cmd run test:motion`: desktop/mobile live animation, reduced-motion changes, visibility pause/resume and shader errors.
 - `node tools/qa-atlas-v4.mjs`: desktop, laptop and mobile captures of the current diorama, scene completeness and runtime/resource errors.
 
 Screenshots and reports are in `outputs/`; current overview images are `diorama-1440.png`, `diorama-1366.png` and `diorama-390.png`. `inspectScene({artwork:true})` exposes model bounds, geometry statistics and support records. The browser checks use installed Chrome with software rendering; draw counts are not a frame-rate promise.

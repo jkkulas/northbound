@@ -44,7 +44,7 @@ async function newPage(options = {}, expectedConsoleErrors = []) {
   page.setDefaultNavigationTimeout(60000);
   page.on('pageerror', error => issues.push(`Runtime: ${error.message}`));
   page.on('console', message => {
-    if (message.type() === 'error' && !expectedConsoleErrors.some(pattern => pattern.test(message.text()))) {
+    if ((message.type() === 'error' || message.text().includes('Using static map fallback')) && !expectedConsoleErrors.some(pattern => pattern.test(message.text()))) {
       issues.push(`Console: ${message.text()} (${message.location().url || page.url()})`);
     }
   });
@@ -57,7 +57,8 @@ async function newPage(options = {}, expectedConsoleErrors = []) {
 
 async function openMap(page, url = rootURL, settle = true) {
   await page.goto(url, { waitUntil: 'load' });
-  await page.waitForFunction(() => document.querySelector('#terrain-canvas')?.dataset.renderer === 'webgl', null, { timeout: 60000 });
+  await page.waitForFunction(() => document.querySelector('#terrain-canvas')?.dataset.renderer === 'webgl' || document.body.classList.contains('no-webgl'), null, { timeout: 60000 });
+  assert.equal(await page.locator('#terrain-canvas').getAttribute('data-renderer'),'webgl',`Scene initializes: ${issues.join('; ')}`);
   await page.evaluate(async () => { window.__qaInspectScene = (await import(new URL('./assets/app.js', document.baseURI).href)).inspectScene; });
   assert.equal(await page.locator('#terrain-canvas').isVisible(), true, 'WebGL canvas is visible');
   assert.equal(await page.locator('#map-loading').isVisible(), false, 'Loading indicator clears');
@@ -65,9 +66,12 @@ async function openMap(page, url = rootURL, settle = true) {
   assert.equal(await page.locator('#terrain-canvas').getAttribute('data-landmarks'), '17', 'All seventeen solid landmarks are ready');
   assert.equal(await page.locator('#terrain-canvas').getAttribute('data-creatures'), '17', 'All seventeen solid maritime scenes are ready');
   assert.equal(await page.locator('#terrain-canvas').getAttribute('data-artwork'), 'solid-painted-diorama', 'The map uses ink-and-watercolor artwork');
-  assert.ok(await page.locator('.creature-label').count() >= 2, 'The folklore illustrations have names');
-  for (const name of ['J\u00f6rmungandr', 'Kraken']) {
-    assert.equal(await page.locator('.creature-label').filter({ hasText: name }).count(), 1, `${name} has a label`);
+  assert.equal(await page.locator('.creature-label,.sea-label,.atlas-caption,.intro,.map-hint,.map-credits,.map-coordinates').count(), 0, 'Decorative labels and corner copy are removed');
+  for (const [lang, name] of Object.entries(names)) {
+    const label=page.locator(`.map-label[data-lang="${lang}"]`);
+    assert.equal(await label.textContent(),name,'Map labels show only the language');
+    assert.equal(await label.isVisible(),true,`${name} remains visible`);
+    assert.ok(await label.locator('.label-name').evaluate(el=>parseFloat(getComputedStyle(el).fontSize)>=25),'Language names have a readable size');
   }
   assert.equal(await page.locator('.city-label').count(), 0, 'City names and dot markers are removed');
   assert.equal(await page.locator('#map-tooltip').count(), 0, 'The hover tooltip is removed');
@@ -265,9 +269,11 @@ try {
   }
 
   await openMap(page, rootURL, false);
-  await page.locator('.language-option[data-lang="pl"]').focus();
+  await page.locator('.map-label[data-lang="pl"]').focus();
   await page.keyboard.press('Enter');
   await page.locator('#journey-status.is-visible').waitFor();
+  assert.equal(await page.locator('#skip').evaluate(el=>document.activeElement===el),true,'Journey focus moves to the skip control');
+  assert.equal(await page.locator('button.map-label:enabled').count(),0,'Faded language buttons leave the keyboard tab order');
   await page.locator('#skip').click();
   await destination(page, 'pl');
   console.log('PASS keyboard language selection and skip');
@@ -279,7 +285,7 @@ try {
   assert.equal(await mobile.locator('#terrain-canvas').getAttribute('data-quality'), 'mobile');
   assert.equal(await mobile.evaluate(() => document.documentElement.scrollWidth <= innerWidth && document.documentElement.scrollHeight <= innerHeight), true, 'Mobile viewport has no page overflow');
   await mobile.screenshot({ path: path.join(outputDirectory, 'sculpted-mobile.png') });
-  await mobile.locator('.language-option[data-lang="no"]').tap();
+  await mobile.locator('.map-label[data-lang="no"]').tap();
   await mobile.locator('#journey-status.is-visible').waitFor();
   await destination(mobile, 'no');
   console.log('PASS fresh mobile scene, viewport layout, touch selection, and journey');
@@ -296,7 +302,7 @@ try {
         if (status.classList.contains('is-visible')) sessionStorage.setItem('northbound-qa-animated', 'true');
       }).observe(status, { attributes: true, attributeFilter: ['class'] });
     });
-    await reduced.locator(`.language-option[data-lang="${lang}"]`).click();
+    await reduced.locator(`.map-label[data-lang="${lang}"]`).click();
     await destination(reduced, lang);
     assert.equal(await reduced.evaluate(() => sessionStorage.getItem('northbound-qa-animated')), 'false', 'Reduced motion never starts an animated journey');
   }
@@ -304,7 +310,7 @@ try {
   await reduced.close();
 
   // Only the intentionally unavailable renderer error is expected in this context.
-  const fallback = await newPage({ reducedMotion: 'reduce' }, [/^THREE\.WebGLRenderer: Error creating WebGL context\.$/]);
+  const fallback = await newPage({ reducedMotion: 'reduce' }, [/^THREE\.WebGLRenderer: Error creating WebGL context\.$/, /^Using static map fallback: Error creating WebGL context\.$/]);
   await fallback.addInitScript(() => {
     const getContext = HTMLCanvasElement.prototype.getContext;
     HTMLCanvasElement.prototype.getContext = function (type, ...args) {
@@ -335,7 +341,7 @@ try {
   assert.equal(new URL(home, nested.url()).href, nestedURL, 'Home remains inside the subdirectory');
   for (const lang of ['en', 'pl', 'no']) {
     if (lang !== 'en') await openMap(nested, nestedURL, false);
-    await nested.locator(`.language-option[data-lang="${lang}"]`).click();
+    await nested.locator(`.map-label[data-lang="${lang}"]`).click();
     await destination(nested, lang, nestedURL);
   }
   console.log('PASS Live Server nested index.html assets, directory URL, home link, and all destinations');
@@ -348,7 +354,7 @@ try {
   await openMap(clocked, rootURL, false);
   await clocked.clock.pauseAt(await clocked.evaluate(() => Date.now() + 100));
   const beforeClick = await inspect(clocked);
-  await clocked.locator('.language-option[data-lang="no"]').click({ force: true });
+  await clocked.locator('.map-label[data-lang="no"]').click({ force: true });
   await clocked.clock.runFor(180);
   const zoom = await inspect(clocked);
   assert.equal(zoom.journey.phase, 'zooming', 'An early Norway click starts its own zoom during the introductory camera movement');
@@ -373,7 +379,7 @@ try {
   await jetReview.clock.install();
   await openMap(jetReview, rootURL, false);
   await jetReview.clock.pauseAt(await jetReview.evaluate(() => Date.now() + 100));
-  await jetReview.locator('.language-option[data-lang="en"]').click({ force: true });
+  await jetReview.locator('.map-label[data-lang="en"]').click({ force: true });
   await jetReview.clock.fastForward(1400);
   await jetReview.clock.runFor(100);
   const flight = await inspect(jetReview);
@@ -389,6 +395,7 @@ try {
   assert.deepEqual(issues, [], 'No browser runtime errors, console errors, or failed resources');
   console.log('PASS no browser errors or failed resource requests');
 } catch (error) {
+  if(issues.length)console.error(issues);
   console.error(error);
   throw error;
 } finally {

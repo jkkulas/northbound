@@ -117,33 +117,33 @@ function makeTerrain(texture,aura){
 }
 function addGeography(){addIllustratedGeography({THREE,scene,geography,worldPoint,heightAt,regionAt,mobile})}
 function addForests(){addIllustratedVegetation({THREE,scene,worldPoint,heightAt,regionAt,mobile})}
-function label(name,geo,className,lang,native){
- const el=document.createElement(lang?'button':'span');el.className=className;el.innerHTML=native?`<span class="label-name">${name}</span><span class="label-native">${native}</span>`:name;
- if(lang){el.type='button';el.dataset.lang=lang;el.setAttribute('aria-label',names[lang]+' — begin your journey');bindLanguage(el)}
+function label(name,geo,className,lang){
+ const el=document.createElement(lang?'button':'span');el.className=className;el.innerHTML=`<span class="label-name">${name}</span>`;
+ if(lang){el.type='button';el.dataset.lang=lang;el.lang=lang==='no'?'nb':lang;el.setAttribute('aria-label',names[lang]+' — begin your journey');bindLanguage(el)}
  $('#map-labels').append(el);const entry={el,geo,position:worldPoint(geo,.55)};labels.push(entry);return entry;
 }
-function addLabels(decorations=[]){
+function addLabels(){
  $('#map-labels').removeAttribute('aria-hidden');
- label('Norge',[9.5,64.8],'map-label country-label','no','Norsk ↗');
- label('Polska',[23.2,53.5],'map-label country-label','pl','Polski ↗');
- label('Europe',[6.1,54.1],'map-label country-label','en','English ↗');
- label('Norwegian Sea',[-13,72],'map-label sea-label');
- label('Baltic Sea',[20.5,57.2],'map-label sea-label');
- for(const decoration of decorations)if(decoration.label)label(decoration.name,[decoration.geo[0],decoration.geo[1]-.35],'map-label sea-label creature-label');
+ label('Norsk',[9.5,64.8],'map-label country-label','no');
+ label('Polski',[23.2,53.5],'map-label country-label','pl');
+ label('English',[6.1,54.1],'map-label country-label','en');
 }
 function updateLabels(){
  if(labelLayoutDirty){
-  labelObstacles=[$('.intro'),$('.language-picker'),$('.wordmark'),$('.atlas-caption')].filter(Boolean).map(el=>el.getBoundingClientRect());
+  labelObstacles=[$('.wordmark')].filter(Boolean).map(el=>el.getBoundingClientRect());
   for(const entry of labels){entry.halfWidth=entry.el.offsetWidth/2;entry.halfHeight=entry.el.offsetHeight/2}
   labelLayoutDirty=false;
  }
  const obstacles=busy?[]:labelObstacles;
  for(const entry of labels){
-  const p=projectedLabel.copy(entry.position).project(camera),x=(p.x+1)*innerWidth/2,y=(1-p.y)*innerHeight/2;
+  const p=projectedLabel.copy(entry.position).project(camera);
   const {halfWidth,halfHeight}=entry;
+  // Keep the language controls readable even where the narrow map crops land.
+  const x=Math.max(halfWidth+18,Math.min(innerWidth-halfWidth-18,(p.x+1)*innerWidth/2));
+  const y=Math.max(halfHeight+18,Math.min(innerHeight-halfHeight-18,(1-p.y)*innerHeight/2));
   const covered=obstacles.some(rect=>x+halfWidth>rect.left-8&&x-halfWidth<rect.right+8&&y+halfHeight>rect.top-8&&y-halfHeight<rect.bottom+8);
   entry.el.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;
-  entry.el.style.visibility=p.z<1&&p.z>0&&!covered&&y>20&&y<innerHeight-20&&(!mobile||x>24&&x<innerWidth-24)?'visible':'hidden';
+  entry.el.style.visibility=p.z<1&&p.z>0&&!covered?'visible':'hidden';
   entry.el.style.opacity=busy&&!entry.el.classList.contains('is-destination')?'0':'1';
  }
 }
@@ -218,7 +218,7 @@ async function zoomToRoad(geo){
 }
 async function journey(lang,start){
  if(busy)return;selected=lang;if(reduced||!ready){go();return}
- highlight(lang);busy=true;document.body.classList.add('is-traveling');$$('.language-option').forEach(el=>el.disabled=true);$('#journey-status').classList.add('is-visible');
+ highlight(lang);busy=true;document.body.classList.add('is-traveling');$$('button[data-lang]').forEach(el=>el.disabled=true);$('#journey-status').classList.add('is-visible');$('#skip').focus({preventScroll:true});
  try{
  if(lang==='no'){
   status('A little road trip','Driving to Høvik.');
@@ -265,14 +265,14 @@ async function init(){
   addCompassModel({THREE,scene,worldPoint});
   await Promise.all([landmarks.ready,creatures.ready,document.fonts.ready]);
   ambientLife=addAmbientLife({THREE,scene,worldPoint,heightAt,regionAt,mobile,chimneyEmitters:scenery.chimneyEmitters,landmarks:landmarkObjects});
-  ambientUpdaters.push(railway.update,woodland.update,creatures.update,ambientLife.update);
+  ambientUpdaters.push(railway.update,woodland.update,landmarks.update,creatures.update,ambientLife.update);
 
-  canvas.dataset.landmarks=String(landmarks.count);canvas.dataset.creatures=String(creatures.count);canvas.dataset.artwork='solid-painted-diorama';addLabels(creatures.decorations);makeVehicles();overview();camera.position.copy(cameraBase);look.copy(cameraTarget);camera.lookAt(look);
+  canvas.dataset.landmarks=String(landmarks.count);canvas.dataset.creatures=String(creatures.count);canvas.dataset.artwork='solid-painted-diorama';addLabels();makeVehicles();overview();camera.position.copy(cameraBase);look.copy(cameraTarget);camera.lookAt(look);
   ready=true;readyAt=performance.now();canvas.dataset.renderer='webgl';canvas.dataset.quality=mobile?'mobile':'desktop';document.body.classList.add('has-webgl','is-ready');$('#map-loading').hidden=true;
   $$('#terrain-fallback [tabindex]').forEach(el=>el.setAttribute('tabindex','-1'));
   if(!reduced){const final=cameraBase.clone();cameraBase.add(new THREE.Vector3(0,8,8));camera.position.copy(cameraBase);cameraTo(final,cameraTarget.clone(),1800)}wake();
  }catch(error){console.warn('Using static map fallback:',error.message);renderer?.dispose();renderer=null;canvas.hidden=true;$('#map-loading').hidden=true;document.body.classList.add('is-ready','no-webgl');$('#map-labels').hidden=true}
 }
 addEventListener('resize',()=>{labelLayoutDirty=true;if(!renderer)return;camera.aspect=innerWidth/innerHeight;if(!busy)overview();else camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);wake()});
-canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();ready=false;document.body.classList.remove('has-webgl');canvas.hidden=true;$('#map-labels').hidden=true});
+canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();ready=false;document.body.classList.remove('has-webgl');document.body.classList.add('no-webgl');canvas.hidden=true;$('#map-labels').hidden=true});
 init();

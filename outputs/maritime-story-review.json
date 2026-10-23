@@ -1,0 +1,407 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "labels": [
+      {
+        "text": "Norsk",
+        "x": 725.3463745117188,
+        "y": 321.1006774902344,
+        "width": 113.140625,
+        "height": 61.390625,
+        "font": 36,
+        "visible": "visible"
+      },
+      {
+        "text": "Polski",
+        "x": 1174.7210693359375,
+        "y": 633.6107177734375,
+        "width": 113.359375,
+        "height": 61.390625,
+        "font": 36,
+        "visible": "visible"
+      },
+      {
+        "text": "English",
+        "x": 636.0220336914062,
+        "y": 616.4942626953125,
+        "width": 135.671875,
+        "height": 61.390625,
+        "font": 36,
+        "visible": "visible"
+      }
+    ],
+    "poses": [
+      {
+        "time": 0,
+        "phase": "sailing",
+        "shipVisible": true,
+        "krakenVisible": false,
+        "bubblesVisible": false,
+        "shipY": 0.03,
+        "clip": {
+          "x": 439,
+          "y": 310,
+          "width": 197,
+          "height": 135
+        }
+      },
+      {
+        "time": 7,
+        "phase": "emerging",
+        "shipVisible": true,
+        "krakenVisible": true,
+        "bubblesVisible": false,
+        "shipY": 0.03,
+        "clip": {
+          "x": 439,
+          "y": 310,
+          "width": 197,
+          "height": 135
+        }
+      },
+      {
+        "time": 10,
+        "phase": "grasping",
+        "shipVisible": true,
+        "krakenVisible": true,
+        "bubblesVisible": false,
+        "shipY": 0.03,
+        "clip": {
+          "x": 439,
+          "y": 310,
+          "width": 197,
+          "height": 135
+        }
+      },
+      {
+        "time": 13,
+        "phase": "sinking",
+        "shipVisible": true,
+        "krakenVisible": true,
+        "bubblesVisible": false,
+        "shipY": -3.22,
+        "clip": {
+          "x": 439,
+          "y": 310,
+          "width": 197,
+          "height": 135
+        }
+      },
+      {
+        "time": 17,
+        "phase": "bubbles",
+        "shipVisible": false,
+        "krakenVisible": false,
+        "bubblesVisible": true,
+        "shipY": -6.47,
+        "clip": {
+          "x": 439,
+          "y": 310,
+          "width": 197,
+          "height": 135
+        }
+      },
+      {
+        "time": 22,
+        "phase": "resurfacing",
+        "shipVisible": true,
+        "krakenVisible": false,
+        "bubblesVisible": false,
+        "shipY": -2.258,
+        "clip": {
+          "x": 439,
+          "y": 310,
+          "width": 197,
+          "height": 135
+        }
+      },
+      {
+        "time": 26,
+        "phase": "sailing",
+        "shipVisible": true,
+        "krakenVisible": false,
+        "bubblesVisible": false,
+        "shipY": 0.03,
+        "clip": {
+          "x": 439,
+          "y": 310,
+          "width": 197,
+          "height": 135
+        }
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "labels": [
+      {
+        "text": "Norsk",
+        "x": 132.504638671875,
+        "y": 294.45562744140625,
+        "width": 87.609375,
+        "height": 50.03125,
+        "font": 26.13,
+        "visible": "visible"
+      },
+      {
+        "text": "Polski",
+        "x": 278.6171875,
+        "y": 527.281005859375,
+        "width": 87.765625,
+        "height": 50.03125,
+        "font": 26.13,
+        "visible": "visible"
+      },
+      {
+        "text": "English",
+        "x": 48.64350891113281,
+        "y": 514.6126098632812,
+        "width": 103.96875,
+        "height": 50.03125,
+        "font": 26.13,
+        "visible": "visible"
+      }
+    ],
+    "poses": [
+      {
+        "time": 0,
+        "phase": "sailing",
+        "shipVisible": true,
+        "krakenVisible": false,
+        "bubblesVisible": false,
+        "shipY": 0.03,
+        "clip": {
+          "x": 0,
+          "y": 306,
+          "width": 108,
+          "height": 97
+        }
+      },
+      {
+        "time": 7,
+        "phase": "emerging",
+        "shipVisible": true,
+        "krakenVisible": true,
+        "bubblesVisible": false,
+        "shipY": 0.03,
+        "clip": {
+          "x": 0,
+          "y": 306,
+          "width": 108,
+          "height": 97
+        }
+      },
+      {
+        "time": 10,
+        "phase": "grasping",
+        "shipVisible": true,
+        "krakenVisible": true,
+        "bubblesVisible": false,
+        "shipY": 0.03,
+        "clip": {
+          "x": 0,
+          "y": 306,
+          "width": 108,
+          "height": 97
+        }
+      },
+      {
+        "time": 13,
+        "phase": "sinking",
+        "shipVisible": true,
+        "krakenVisible": true,
+        "bubblesVisible": false,
+        "shipY": -3.22,
+        "clip": {
+          "x": 0,
+          "y": 306,
+          "width": 108,
+          "height": 97
+        }
+      },
+      {
+        "time": 17,
+        "phase": "bubbles",
+        "shipVisible": false,
+        "krakenVisible": false,
+        "bubblesVisible": true,
+        "shipY": -6.47,
+        "clip": {
+          "x": 0,
+          "y": 306,
+          "width": 108,
+          "height": 97
+        }
+      },
+      {
+        "time": 22,
+        "phase": "resurfacing",
+        "shipVisible": true,
+        "krakenVisible": false,
+        "bubblesVisible": false,
+        "shipY": -2.258,
+        "clip": {
+          "x": 0,
+          "y": 306,
+          "width": 108,
+          "height": 97
+        }
+      },
+      {
+        "time": 26,
+        "phase": "sailing",
+        "shipVisible": true,
+        "krakenVisible": false,
+        "bubblesVisible": false,
+        "shipY": 0.03,
+        "clip": {
+          "x": 0,
+          "y": 306,
+          "width": 108,
+          "height": 97
+        }
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 320,
+      "height": 568
+    },
+    "labels": [
+      {
+        "text": "Norsk",
+        "x": 105.07769775390625,
+        "y": 190.62460327148438,
+        "width": 84.6875,
+        "height": 48.75,
+        "font": 25,
+        "visible": "visible"
+      },
+      {
+        "text": "Polski",
+        "x": 211.5859375,
+        "y": 347.31280517578125,
+        "width": 84.828125,
+        "height": 48.75,
+        "font": 25,
+        "visible": "visible"
+      },
+      {
+        "text": "English",
+        "x": 46.32484436035156,
+        "y": 338.787109375,
+        "width": 100.328125,
+        "height": 48.75,
+        "font": 25,
+        "visible": "visible"
+      }
+    ],
+    "poses": [
+      {
+        "time": 0,
+        "phase": "sailing",
+        "shipVisible": true,
+        "krakenVisible": false,
+        "bubblesVisible": false,
+        "shipY": 0.03,
+        "clip": {
+          "x": 0,
+          "y": 197,
+          "width": 104,
+          "height": 84
+        }
+      },
+      {
+        "time": 7,
+        "phase": "emerging",
+        "shipVisible": true,
+        "krakenVisible": true,
+        "bubblesVisible": false,
+        "shipY": 0.03,
+        "clip": {
+          "x": 0,
+          "y": 197,
+          "width": 104,
+          "height": 84
+        }
+      },
+      {
+        "time": 10,
+        "phase": "grasping",
+        "shipVisible": true,
+        "krakenVisible": true,
+        "bubblesVisible": false,
+        "shipY": 0.03,
+        "clip": {
+          "x": 0,
+          "y": 197,
+          "width": 104,
+          "height": 84
+        }
+      },
+      {
+        "time": 13,
+        "phase": "sinking",
+        "shipVisible": true,
+        "krakenVisible": true,
+        "bubblesVisible": false,
+        "shipY": -3.22,
+        "clip": {
+          "x": 0,
+          "y": 197,
+          "width": 104,
+          "height": 84
+        }
+      },
+      {
+        "time": 17,
+        "phase": "bubbles",
+        "shipVisible": false,
+        "krakenVisible": false,
+        "bubblesVisible": true,
+        "shipY": -6.47,
+        "clip": {
+          "x": 0,
+          "y": 197,
+          "width": 104,
+          "height": 84
+        }
+      },
+      {
+        "time": 22,
+        "phase": "resurfacing",
+        "shipVisible": true,
+        "krakenVisible": false,
+        "bubblesVisible": false,
+        "shipY": -2.258,
+        "clip": {
+          "x": 0,
+          "y": 197,
+          "width": 104,
+          "height": 84
+        }
+      },
+      {
+        "time": 26,
+        "phase": "sailing",
+        "shipVisible": true,
+        "krakenVisible": false,
+        "bubblesVisible": false,
+        "shipY": 0.03,
+        "clip": {
+          "x": 0,
+          "y": 197,
+          "width": 104,
+          "height": 84
+        }
+      }
+    ]
+  }
+]

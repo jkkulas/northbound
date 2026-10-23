@@ -27,7 +27,7 @@
           <path id="land-pl" class="land land-pl" data-lang="pl" d="{{pl}}" role="button" tabindex="0" aria-label="Polski — fly to Norway"/>
         </g>
       </svg>
-      <div id="map-labels" class="map-labels" aria-hidden="true"></div>
+      <nav id="map-labels" class="map-labels" aria-label="Choose your language" aria-hidden="true"></nav>
       <div id="journey-fade" class="journey-fade" aria-hidden="true"></div>
       <div id="map-loading" class="map-loading"><span class="loading-orbit"></span><span>Heading north<span class="loading-dots">…</span></span></div>
     </section>
@@ -37,26 +37,13 @@
       <span>northbound</span>
     </a>
 
-    <div class="atlas-caption" aria-hidden="true"><span>Septentrionalis</span><small>A chart of the northern lands</small></div>
-
-    <section class="intro" aria-labelledby="headline">
-      <p class="eyebrow"><span></span> A little closer to the north</p>
-      <h1 id="headline">Select your<br><span>language.</span></h1>
-      <div class="translations"><p lang="pl">Wybierz język.</p><span class="translation-divider">/</span><p lang="nb">Velg språk.</p></div>
-    </section>
-
     <nav class="language-picker" aria-label="Choose your language">
-      <p class="picker-caption">Choose your way north <span>↗</span></p>
       <div class="language-options">
         <button class="language-option" type="button" data-lang="en" aria-label="English — fly to Norway"><span class="language-code">EN</span><span class="option-name">English</span><span class="option-arrow">↗</span></button>
         <button class="language-option" type="button" data-lang="pl" aria-label="Polski — fly to Norway"><span class="language-code">PL</span><span class="option-name">Polski</span><span class="option-arrow">↗</span></button>
         <button class="language-option" type="button" data-lang="no" aria-label="Norsk — drive to Høvik"><span class="language-code">NO</span><span class="option-name">Norsk</span><span class="option-arrow">↗</span></button>
       </div>
     </nav>
-
-    <div class="map-hint" id="map-hint"><span class="hint-cross">↗</span><span>Explore the map. Find your way.</span></div>
-    <div class="map-coordinates" aria-hidden="true"><span class="coordinate-dot"></span>59°54′ N &nbsp; 10°35′ E</div>
-    <a class="map-credits" href="./assets/credits.html" target="_blank" rel="noopener">Map credits</a>
 
     <div class="journey-status" id="journey-status" role="status" aria-live="polite">
       <span class="status-icon" aria-hidden="true">↗</span>

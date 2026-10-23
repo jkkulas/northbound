@@ -50,7 +50,7 @@ h1 > span { color: var(--gold); font-family: var(--serif); font-weight: 500; fon
 .translations { display: flex; align-items: center; gap: 15px; color: #455c4c; }
 .translations p { margin: 0; font-size: 15px; letter-spacing: -.015em; }
 .translation-divider { color: #8c997e; font-size: 12px; }
-.language-picker { position: absolute; z-index: 7; right: 5.1vw; bottom: 13.1vh; width: 420px; transition: opacity .5s, transform .6s; }
+.language-picker { display: none; position: absolute; z-index: 7; right: 5.1vw; bottom: 13.1vh; width: 420px; transition: opacity .5s, transform .6s; }
 .picker-caption { display: flex; justify-content: space-between; align-items: center; font-size: 11px; letter-spacing: .005em; font-weight: 500; color: #405447; margin: 0 0 13px; }
 .picker-caption > span { font-size: 17px; font-weight: 400; line-height: 1; color: var(--gold); }
 .language-options { display: flex; gap: 8px; }
@@ -115,7 +115,7 @@ button.map-label:focus-visible { outline: 2px solid var(--gold); outline-offset:
 .atlas-caption { position: absolute; top: 36px; right: 3.6vw; z-index: 5; text-align: right; color: #42564a; pointer-events: none; }
 .atlas-caption > span { display: block; font: italic 21px var(--serif); letter-spacing: -.025em; }
 .atlas-caption > small { display: block; margin-top: 6px; font-size: 8px; text-transform: uppercase; letter-spacing: .19em; color: #586c5a; }
-.country-label .label-name { font: italic 27px var(--serif); letter-spacing: .015em; color: #443f28; }
+.country-label .label-name { font: 650 clamp(30px, 2.5vw, 42px)/1.15 var(--serif); letter-spacing: -.025em; color: #263c2d; -webkit-text-stroke: 1px #f5ebca; paint-order: stroke fill; text-shadow: 0 1px 2px #fff4d6, 0 0 6px #fff0c9, 0 0 12px #fff0c9; }
 .country-label .label-native { font-size: 13px; margin-top: 5px; color: #464f33; }
 .creature-label { color: #5b513e !important; }
 .map-label.sea-label { color: #756951; text-shadow: 0 1px 3px #e5dfcc; }
@@ -151,7 +151,7 @@ button.map-label:focus-visible { outline: 2px solid var(--gold); outline-offset:
   .experience:before { inset: 9px; }
   .wordmark { left: 23px; top: 25px; font-size: 22px; gap: 7px; }
   .wordmark svg { height: 28px; width: 23px; }
-  .map-panel:after { background: linear-gradient(0deg, #efe2c2eb, #efe2c2b8 22%, #efe2c224 46%, transparent 62%); }
+  .map-panel:after { background: none; }
   .intro { left: 26px; bottom: 181px; }
   h1 { font-size: clamp(60px, 12vw, 84px); line-height: .99; margin-bottom: 19px; }
   .translations { gap: 12px; }
@@ -181,7 +181,7 @@ button.map-label:focus-visible { outline: 2px solid var(--gold); outline-offset:
   .atlas-caption { top: 30px; right: 23px; }
   .atlas-caption > span { font-size: 14px; }
   .atlas-caption > small { max-width: 120px; font-size: 6px; letter-spacing: .1em; }
-  .country-label .label-name { font-size: 22px; }
+  .country-label .label-name { font-size: clamp(25px, 6.7vw, 30px); }
   .country-label .label-native { font-size: 12px; }
 }
 @media (max-width: 380px) {
@@ -213,6 +213,10 @@ button.map-label:focus-visible { outline: 2px solid var(--gold); outline-offset:
   .language-option { padding-top: 14px; padding-bottom: 14px; }
   .map-hint, .map-credits { bottom: 19px; }
 }
+.no-webgl .language-picker { display: block; left: 50%; right: auto; bottom: 32px; width: min(440px, calc(100% - 36px)); transform: translateX(-50%); }
+.no-webgl .option-name { font-size: 21px; font-weight: 650; }
+.no-webgl .language-code, .no-webgl .option-arrow { display: none; }
+.no-webgl .language-option { justify-content: center; }
 @media (prefers-reduced-motion: reduce) {
   *, *:before, *:after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

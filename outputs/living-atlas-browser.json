@@ -4,18 +4,18 @@
       "width": 1440,
       "height": 1000
     },
-    "birds": 63,
+    "birds": 87,
     "smokeSources": 29,
     "waves": 80,
     "boats": 12,
     "performance": {
-      "readyAt": 15050,
+      "readyAt": 13096.699999988079,
       "framesRendered": 18,
       "active": true,
-      "calls": 79,
-      "triangles": 992236,
+      "calls": 83,
+      "triangles": 936810,
       "textures": 2,
-      "geometries": 78,
+      "geometries": 82,
       "terrainTriangles": 221972
     }
   },
@@ -24,18 +24,18 @@
       "width": 390,
       "height": 844
     },
-    "birds": 41,
+    "birds": 56,
     "smokeSources": 12,
     "waves": 42,
     "boats": 12,
     "performance": {
-      "readyAt": 16410.90000000596,
+      "readyAt": 9800.300000011921,
       "framesRendered": 18,
       "active": true,
-      "calls": 60,
-      "triangles": 612114,
+      "calls": 63,
+      "triangles": 555018,
       "textures": 2,
-      "geometries": 63,
+      "geometries": 66,
       "terrainTriangles": 52988
     }
   }

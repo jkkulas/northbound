@@ -12,6 +12,8 @@
     "test:scenery": "node tools/qa-3d-world.mjs",
     "test:railway": "node tools/qa-railway.mjs",
     "test:sea-motion": "node tools/qa-sea-motion.mjs",
+    "test:creature-motion": "node tools/qa-creature-motion.mjs",
+    "test:maritime-story": "node tools/qa-maritime-story.mjs",
     "test:ambient": "node tools/qa-ambient-life.mjs",
     "test:motion": "node tools/qa-life-browser.mjs"
   },

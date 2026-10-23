@@ -7,9 +7,10 @@ const reports=[];
 try{
  for(const viewport of[{width:1440,height:1000},{width:390,height:844}]){
   const page=await browser.newPage({viewport,reducedMotion:'no-preference'}),errors=[];
-  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`);});
+  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'||m.text().includes('Using static map fallback'))errors.push(m.text());});page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`);});
   await page.goto(process.env.NORTHBOUND_TEST_URL||'http://127.0.0.1:4173/');
-  await page.waitForFunction(()=>document.querySelector('#terrain-canvas').dataset.renderer==='webgl',null,{timeout:60000});
+  await page.waitForFunction(()=>document.querySelector('#terrain-canvas').dataset.renderer==='webgl'||document.body.classList.contains('no-webgl'),null,{timeout:60000}).catch(error=>{throw new Error(`${error.message}: ${errors.join('; ')}`);});
+  assert.deepEqual(errors,[],'Scene initializes without errors');
   await page.evaluate(async()=>{const app=await import('./assets/app.js');window.__life=app.inspectAmbientLife;window.__scene=app.inspectScene;});
   await page.waitForFunction(()=>window.__life().time>.6,null,{timeout:60000});
   const camera=await page.evaluate(()=>window.__scene().camera);
@@ -21,7 +22,7 @@ try{
   assert.notEqual(after.life.railway.motion.distance,before.railway.motion.distance,'Train advances without input');
   assert.ok(after.life.maritime.lastTime>before.maritime.lastTime,'Ships and claws advance');
   assert.equal(after.life.maritime.boatCount,12);assert.equal(after.life.maritime.clawCount,2);
-  assert.equal(after.life.atmosphere.flocks.length,8);assert.ok(after.life.atmosphere.smokeSources.some(s=>s.kind==='volcano'));
+  assert.equal(after.life.atmosphere.flocks.length,11);assert.ok(after.life.atmosphere.smokeSources.some(s=>s.kind==='volcano'));
   assert.ok(after.life.atmosphere.smokeSources.filter(s=>s.kind==='chimney').length>8);
   // Preference changes pause already-running animation and let rendering sleep.
   await page.emulateMedia({reducedMotion:'reduce'});

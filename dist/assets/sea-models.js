@@ -97,33 +97,30 @@ function ship(THREE,b,{origin=[0,0,0],size=1,yaw=0,schooner=false,damaged=false}
  return a;
 }
 
-function waves(THREE,a,length,depth,phase=0){
- for(let side=-1;side<=1;side+=2)for(let band=0;band<2;band++){
-  const p=[];for(let i=0;i<=15;i++){const t=i/15,x=(t-.5)*length,z=side*(depth+band*.19+.18*Math.sin(t*Math.PI));p.push([x,.025+.026*Math.sin(t*12+phase),z]);}
-  a.tube(p,.028,P.sea,22,5);a.tube(p.map(([x,y,z])=>[x,y+.038,z+.01]),.017,P.foam,22,5);
+function serpent(THREE,material){
+ const b=createModelBuilder(THREE),a=workshop(THREE,b);
+ // The troughs sit well below the real water surface. Only three rounded
+ // coils, a small tail tip and the low swimming head break through it.
+ const points=[[-4.7,.48,-.10],[-4.45,.18,-.07],[-4.15,-.65,0],[-3.83,-.55,0],[-3.52,.30,.04],[-3.10,.88,.09],[-2.67,.80,.13],[-2.28,.18,.16],[-2.05,-.67,.16],[-1.74,-.66,.15],[-1.43,.40,.10],[-.94,1.02,.04],[-.43,.80,-.02],[-.12,.08,-.04],[.12,-.69,-.04],[.45,-.65,-.04],[.76,.40,-.01],[1.13,1.12,.04],[1.50,.76,.06],[1.75,-.55,.05],[2.06,-.57,.03],[2.30,.28,.02],[2.42,1.25,0],[2.78,2.0,0],[3.18,2.12,0]];
+ const curve=sweep(THREE,a,points,t=>.055+.27*Math.sin(Math.min(t*2.5,1)*Math.PI*.5),P.green,142,12);
+ for(let row=3;row<113;row++){
+  const t=row/115,p=curve.path.getPointAt(t);if(p.y<-.25)continue;
+  for(let column=0;column<7;column++){const angle=column/7*Math.PI*2+(row%2)*.18;framedPart(THREE,a,curve,t,angle,.004,new THREE.SphereGeometry(1,6,4),column<2?0xb6a466:(row%3?0x7e8b52:0x596e46),[.082,.018,.09]);}
  }
- for(let i=0;i<11;i++){const x=(i/10-.5)*length*.9,z=(i%2?1:-1)*(depth+.13+.09*Math.sin(i*2.3));a.ellipsoid(x,.07,z,.09,.035,.055,P.foam,6,4);}
+ for(let i=11;i<106;i+=3){const t=i/111,p=curve.path.getPointAt(t);if(p.y<.15)continue;const r=curve.radius(t);a.polygon([[p.x-.13,p.y+r*.78],[p.x-.19,p.y+r+.28],[p.x+.14,p.y+r*.75]],.055,0x9c653d,[0,0,p.z]);}
+ // Broad brow, long toothed muzzle and pale jaw echo the engraved sea beast.
+ a.ellipsoid(3.20,2.10,0,.53,.39,.36,P.green,22,14);a.ellipsoid(3.70,1.95,.015,.63,.22,.28,0x839050,20,12);
+ a.ellipsoid(3.67,1.65,.015,.60,.12,.25,P.belly,20,10);a.ellipsoid(3.76,1.78,.02,.51,.07,.245,0x49392e,16,8);
+ for(const side of[-1,1]){const z=side*.32;a.ellipsoid(3.14,2.24,z,.15,.145,.05,P.belly,12,8);a.ellipsoid(3.18,2.24,z*1.09,.065,.08,.025,P.ink,10,8);a.ellipsoid(3.83,2.06,z*.65,.075,.04,.035,P.ink,10,6);a.tube([[2.95,2.32,z],[2.83,2.55,z*1.2],[2.98,2.77,z*1.18]],.045,P.gold,14,6);
+  for(let i=0;i<6;i++){const x=3.32+i*.16;a.beam([x,1.87,side*.25],[x+.035,1.72,side*.25],.035,0xe8ddb4,.002,7);a.beam([x,1.69,side*.25],[x+.015,1.78,side*.25],.026,0xe8ddb4,.002,6);}
+ }
+ const creature=b.finish('serpent-swimming-coils',material);creature.position.set(4.65,0,0);creature.rotation.y=-Math.PI/2;creature.userData.kind='serpent-creature';
+ const sb=createModelBuilder(THREE);ship(THREE,sb,{size:.82});const vessel=sb.finish('serpent-stationary-ship',material);vessel.position.y=.03;vessel.userData.kind='serpent-ship';
+ const group=new THREE.Group();group.add(vessel,creature);group.animation={kind:'serpent',ship:vessel,creature,orbitRadius:[4.65,2.7],waterline:0};return group;
 }
 
-function serpent(THREE,b){
- const a=workshop(THREE,b),points=[[-5.0,.10,-.4],[-4.5,.4,-.5],[-4.1,1.35,-.65],[-3.3,1.6,-.65],[-2.5,.65,-.4],[-2.65,.17,.3],[-3.4,1.3,.7],[-3.4,3.25,.7],[-2.9,4.9,.55],[-1.9,5.75,.3],[-.8,5.55,.1],[-.10,4.8,.0]];
- const curve=sweep(THREE,a,points,t=>.065+.40*Math.sin(Math.min(t*1.6,1)*Math.PI*.5),P.green,88,14);
- // Hundreds of individually raised, rounded scales follow the curved spine.
- for(let row=4;row<67;row++){const t=row/69;for(let column=0;column<7;column++){const angle=column/7*Math.PI*2+(row%2)*.19;framedPart(THREE,a,curve,t,angle,.004,new THREE.SphereGeometry(1,7,4),column<2?0xb6a466:(row%3?0x7e8b52:0x596e46),[.105,.022,.115]);}}
- // Dorsal fins are bevelled blades, seated on the back of the long neck.
- for(let i=8;i<57;i+=3){const t=i/60,frameI=Math.round(t*curve.steps),p=curve.path.getPointAt(t),n=curve.frame.normals[frameI].clone();if(n.y<0)n.multiplyScalar(-1);const tangent=curve.path.getTangentAt(t),base=p.clone().addScaledVector(n,curve.radius(t)*.85),tip=base.clone().addScaledVector(n,.48).addScaledVector(tangent,-.24);a.polygon([[base.x-.12,base.y],[tip.x,tip.y],[base.x+.2,base.y+.02]],.08,P.red,[0,0,base.z-.1]);}
- a.ellipsoid(.12,4.83,.02,.69,.45,.44,P.green,24,14);a.ellipsoid(.73,4.63,.04,.59,.26,.34,0x839050,20,12);
- a.ellipsoid(.70,4.30,.045,.57,.14,.30,P.belly,20,10);a.ellipsoid(.70,4.43,.055,.48,.09,.27,0x49392e,16,8);
- for(const z of[-.31,.38]){a.ellipsoid(-.07,5.05,z,.18,.16,.06,P.belly,12,8);a.ellipsoid(.00,5.05,z*1.10,.075,.09,.035,P.ink,12,8);a.ellipsoid(.48,4.81,z*.70,.10,.055,.05,P.ink,10,6);a.tube([[-.32,5.10,z],[-.56,5.45,z*1.45],[-.38,5.75,z*1.5],[-.08,5.92,z*1.2]],.055,P.gold,18,7);}
- for(let i=0;i<6;i++){const x=.32+i*.17;a.beam([x,4.52,.315],[x+.04,4.34,.315],.048,0xe8ddb4,.002,8);a.beam([x,4.33,.32],[x+.02,4.43,.32],.035,0xe8ddb4,.002,7);}
- a.tube([[1.13,4.42,.11],[1.4,4.33,.1],[1.58,4.45,.12]],.032,P.red,12,6);
- for(const side of[-1,1])a.tube([[.65,4.52,.34*side],[1.12,4.64,.57*side],[1.53,4.94,.54*side],[1.60,5.12,.38*side]],.025,P.belly,18,6);
- a.polygon([[-2.8,.4],[-2.25,1.45],[-1.75,1.1],[-2.2,.3]],.12,0x8a7946,[0,0,.7]);
- ship(THREE,b,{origin:[2.55,.02,-.15],size:.78,yaw:-.10,damaged:true});waves(THREE,a,11.2,1.35,.8);
-}
-
-function kraken(THREE,b){
- const a=workshop(THREE,b);ship(THREE,b,{origin:[1.35,.03,0],size:.86,yaw:.16,damaged:true});
+function kraken(THREE,material){
+ const b=createModelBuilder(THREE),a=workshop(THREE,b);
  a.ellipsoid(-1.5,.53,.22,1.10,1.17,.82,0x9d5940,24,16);a.ellipsoid(-1.66,1.28,.14,.80,.77,.67,0xb36f4b,20,12);
  for(const z of[-.67,1.10]){a.ellipsoid(-1.05,1.0,z,.22,.25,.08,0xd2b776,16,10);a.ellipsoid(-.98,1.0,z*1.045,.10,.14,.045,P.ink,12,8);a.ellipsoid(-.94,1.055,z*1.075,.025,.035,.02,P.cream,8,5);}
  const paths=[
@@ -138,7 +135,27 @@ function kraken(THREE,b){
  paths.forEach((p,index)=>{
   const c=sweep(THREE,a,p,t=>.26*Math.pow(1-t,.7)+.025,index%2?0x9b513d:0xb86b46,42,10);
   for(let i=3;i<24;i++){const t=i/26,r=(1-t)*.078+.025;for(const side of[-.34,.34])framedPart(THREE,a,c,t,side,.005,new THREE.SphereGeometry(1,8,4),0xd9b97e,[r,.035,r*.9]);}
- });waves(THREE,a,10.7,2.05,2.2);
+ });
+ const creature=b.finish('kraken-emerging-creature',material);creature.userData.kind='kraken-creature';
+ const sb=createModelBuilder(THREE);ship(THREE,sb,{size:.86,yaw:.16});const vessel=sb.finish('kraken-returning-ship',material);vessel.position.set(1.35,.03,0);vessel.userData.kind='kraken-ship';
+ // One instanced draw keeps the little rising bubbles inexpensive. The atlas
+ // pigment shader needs the instance transform as well as the world transform.
+ const bubbleGeometry=new THREE.SphereGeometry(1,10,7),bubbleColors=[],bubbleColor=new THREE.Color();
+ for(let i=0;i<bubbleGeometry.attributes.position.count;i++){bubbleColor.setHex(bubbleGeometry.attributes.position.getY(i)>.55?0xf3edce:0xdce5cb);bubbleColors.push(bubbleColor.r,bubbleColor.g,bubbleColor.b);}
+ bubbleGeometry.setAttribute('color',new THREE.Float32BufferAttribute(bubbleColors,3));
+ const bubbleMaterial=creature.children[0].material.clone();bubbleMaterial.vertexShader=`varying vec3 vPigment;varying vec3 vAtlasPoint;varying vec3 vAtlasNormal;
+  void main(){vPigment=color;vec4 point=vec4(position,1.);vec3 n=normal;
+  #ifdef USE_INSTANCING
+   point=instanceMatrix*point;n=mat3(instanceMatrix)*n;
+  #endif
+   vAtlasPoint=(modelMatrix*point).xyz;vAtlasNormal=normalize(mat3(modelMatrix)*n);gl_Position=projectionMatrix*viewMatrix*vec4(vAtlasPoint,1.);
+  }`;
+ const bubbles=new THREE.InstancedMesh(bubbleGeometry,bubbleMaterial,9),bubbleTransform=new THREE.Object3D();bubbles.name='kraken-surface-bubbles';bubbles.position.set(1.35,0,0);bubbles.visible=false;bubbles.frustumCulled=false;bubbles.instanceMatrix.setUsage(THREE.DynamicDrawUsage);bubbles.userData={parts:9,particles:[]};
+ for(let i=0;i<9;i++){
+  const radius=.10+(i%3)*.035,angle=i*2.39996,rad=.30+Math.sqrt(i/8)*1.4,basePosition=[Math.cos(angle)*rad,.08,Math.sin(angle)*rad*.55];
+  bubbleTransform.position.fromArray(basePosition);bubbleTransform.scale.setScalar(radius);bubbleTransform.updateMatrix();bubbles.setMatrixAt(i,bubbleTransform.matrix);bubbles.userData.particles.push({index:i,basePosition,phase:i/9,radius});
+ }
+ const group=new THREE.Group();group.add(vessel,creature,bubbles);group.animation={kind:'kraken',ship:vessel,creature,bubbles,waterline:0,submergedDepth:5.7};return group;
 }
 
 function whale(THREE,b){
@@ -148,7 +165,7 @@ function whale(THREE,b){
  for(let i=0;i<8;i++){const z=.34+i*.055;a.tube([[2.55,.25,z],[1.7,.04,z*1.25],[.75,-.06,z*1.1]],.012,0x73795c,14,4);}
  a.ellipsoid(2.1,.55,.72,.10,.10,.045,P.ink,12,8);a.ellipsoid(2.12,.57,.752,.027,.027,.012,P.cream,8,6);
  a.tube([[1.5,1.00,0],[1.45,1.6,0],[1.10,2.15,.02],[.6,2.30,.05],[.35,2.12,.1]],.039,P.foam,24,6);a.tube([[1.5,1.01,0],[1.55,1.65,0],[1.9,2.1,-.03],[2.3,2.13,-.08]],.031,P.foam,20,6);
- for(let i=0;i<6;i++)a.ellipsoid(.4+i*.34,2.18-.07*Math.sin(i),.07,.055,.07,.04,P.foam,7,5);waves(THREE,a,8.4,1.05,.5);
+ for(let i=0;i<6;i++)a.ellipsoid(.4+i*.34,2.18-.07*Math.sin(i),.07,.055,.07,.04,P.foam,7,5);
 }
 
 function lobster(THREE,b,material){
@@ -169,10 +186,10 @@ function lobster(THREE,b,material){
   a.beam([.76,.65,s*.20],[1.04,.99,s*.34],.045,light,.035);a.ellipsoid(1.05,1.0,s*.34,.085,.10,.08,P.ink,10,6);
   a.tube([[.99,.66,s*.23],[1.6,.9,s*.30],[1.9,1.70,s*.53],[1.55,2.35,s*.70],[.75,2.52,s*.95]],.028,light,32,6);
   a.ellipsoid(-2.32,.24,s*.24,.47,.10,.29,red,14,8);
- }a.ellipsoid(-2.45,.24,0,.45,.11,.22,light,14,8);waves(THREE,a,7.0,1.7,1.2);return claws;
+ }a.ellipsoid(-2.45,.24,0,.45,.11,.22,light,14,8);return claws;
 }
 
-function rig(THREE,b){
+function rig(THREE,b,material){
  const a=workshop(THREE,b),iron=0x7d6b43,red=0x985039;
  for(const x of[-1.95,1.95])for(const z of[-1.15,1.15]){a.cylinder(x,1.48,z,.17,.24,3.05,iron,14);a.cylinder(x,.15,z,.33,.38,.35,0x655e43,14);for(let y=.3;y<2.9;y+=.82){a.beam([x,y,z],[-x,y+.82,z],.045,P.gold,.04);a.beam([x,y,z],[x,y+.82,-z],.044,iron,.04);}}
  a.box(0,3.0,0,5.0,.25,3.0,0xb69b61);a.box(0,2.8,0,5.05,.18,3.08,iron);a.box(-1.25,3.65,-.25,1.7,1.05,1.6,0xd2be86);a.box(-1.25,4.23,-.25,1.9,.15,1.8,red);
@@ -184,21 +201,26 @@ function rig(THREE,b){
  for(let level=0;level<7;level++){const y=3.2+level*.55,w=.64-level*.063,next=w-.063;for(const s of[-1,1]){a.beam([.8-w,y,s*w],[.8+w,y,s*w],.036,P.gold);a.beam([.8+s*w,y,-w],[.8+s*w,y,w],.036,P.gold);a.beam([.8-w,y,s*w],[.8+next,y+.55,s*next],.029,iron);a.beam([.8+s*w,y,-w],[.8+s*next,y+.55,next],.029,iron);}}
  a.box(.8,7.2,0,.48,.12,.48,red);a.cylinder(.8,7.5,0,.04,.04,.55,P.gold,8);
  a.box(-2.4,4.55,-.05,2.2,.11,2.15,0x657b64);a.box(-2.4,4.62,-.05,1.5,.025,1.6,0xd0bd86);a.box(-2.4,4.64,-.05,1.25,.025,1.35,0x657b64);for(const x of[-2.68,-2.12])a.box(x,4.665,-.05,.12,.022,.7,P.cream);a.box(-2.4,4.665,-.05,.6,.022,.12,P.cream);
- a.cylinder(1.9,3.65,-.85,.18,.18,1.0,red,12);a.beam([1.9,4.1,-.85],[3.95,5.6,-.85],.08,P.gold,.05);a.beam([1.9,4.1,-.85],[3.8,5.9,-.85],.07,P.gold,.045);for(let i=0;i<5;i++){const t=i/5;a.beam([1.9+2.05*t,4.1+1.5*t,-.85],[1.9+1.9*(t+.2),4.1+1.8*(t+.2),-.85],.027,iron);}
- a.beam([3.9,5.7,-.85],[3.9,3.4,-.85],.014,P.dark);a.tube([[3.9,3.4,-.85],[3.9,3.2,-.85],[3.78,3.13,-.85],[3.72,3.24,-.85]],.035,iron,12,6);
+ a.cylinder(1.9,3.65,-.85,.18,.18,1.0,red,12);
+ const cb=createModelBuilder(THREE),c=workshop(THREE,cb);c.beam([0,0,0],[2.05,1.5,0],.08,P.gold,.05);c.beam([0,0,0],[1.9,1.8,0],.07,P.gold,.045);
+ for(let i=0;i<5;i++){const t=i/5;c.beam([2.05*t,1.5*t,0],[1.9*(t+.2),1.8*(t+.2),0],.027,iron);}
+ c.ellipsoid(0,0,0,.18,.18,.22,iron,12,8);c.box(-.18,.18,0,.55,.35,.42,red);
+ const crane=cb.finish('oil-rig-crane-boom',material);crane.position.set(1.9,4.1,-.85);crane.userData.kind='rig-crane-joint';
+ const hb=createModelBuilder(THREE),h=workshop(THREE,hb);h.beam([0,0,0],[0,-2.3,0],.014,P.dark);h.tube([[0,-2.3,0],[0,-2.5,0],[-.12,-2.57,0],[-.18,-2.46,0]],.035,iron,12,6);
+ const hoist=hb.finish('oil-rig-hanging-hook',material);hoist.position.set(2,1.6,0);hoist.userData.kind='rig-hoist-joint';crane.add(hoist);
  for(let i=0;i<3;i++){a.cylinder(.15+i*.36,3.52,.87,.13,.13,.7,0x9b6544,12);a.tube([[.15+i*.36,3.9,.87],[.15+i*.36,4.03,.7],[.15+i*.36,4.0,.35]],.045,iron,12,6);}
- a.ellipsoid(-1.3,3.4,1.64,.64,.22,.22,0xc1793f,18,10);waves(THREE,a,6.7,1.75,.4);
+ a.ellipsoid(-1.3,3.4,1.64,.64,.22,.22,0xc1793f,18,10);return {kind:'rig',crane,hoist};
 }
 
 export function createMaritimeModel(THREE,kind,{material,name=kind,schooner=false}={}){
- const b=createModelBuilder(THREE);let claws=[];
- if(kind==='serpent_attack')serpent(THREE,b);
- else if(kind==='kraken_attack')kraken(THREE,b);
+ const b=createModelBuilder(THREE);let claws=[],group,animation;
+ if(kind==='serpent_attack')group=serpent(THREE,material);
+ else if(kind==='kraken_attack')group=kraken(THREE,material);
  else if(kind==='northern_whale')whale(THREE,b);
  else if(kind==='great_lobster')claws=lobster(THREE,b,material);
- else if(kind==='offshore_rig')rig(THREE,b);
- else{ship(THREE,b,{schooner:kind==='schooner_ship'||schooner});waves(THREE,workshop(THREE,b),7.4,1.1);}
- const group=b.finish(name,material);if(claws.length)group.add(...claws);
- for(const claw of claws){const data=claw.children[0].userData;group.userData.parts+=data.parts;group.userData.triangles+=data.triangles;group.userData.drawCalls+=data.drawCalls;}
- group.userData={...group.userData,style:'hand-painted-solid-diorama',maritimeModel:kind,geometryOnly:true,animatedClaws:claws.length};return group;
+ else if(kind==='offshore_rig')animation=rig(THREE,b,material);
+ else ship(THREE,b,{schooner:kind==='schooner_ship'||schooner});
+ group=group||b.finish(name,material);group.name=name;if(claws.length)group.add(...claws);if(animation){group.add(animation.crane);group.animation=animation;}
+ let parts=0,triangles=0,drawCalls=0;group.traverse(child=>{if(child.isMesh){parts+=child.userData.parts||0;triangles+=(child.geometry.index?.count||child.geometry.attributes.position.count)/3*(child.isInstancedMesh?child.count:1);drawCalls++;}});
+ group.userData={...group.userData,parts,triangles,drawCalls,dimensional:true,style:'hand-painted-solid-diorama',maritimeModel:kind,geometryOnly:true,animatedClaws:claws.length,animationKind:group.animation?.kind||null,waterBase:false};return group;
 }

@@ -18,13 +18,15 @@ Ships include curved hulls, thick bowed sails, rigging and rails. The serpent ha
 
 ## Life on the map
 
-Five coastal gull flocks and three inland bird swarms circle above the terrain with articulated wings. Twelve ships sail slow circular routes, with their complete turning envelopes checked against the water mask. The lobster raises and lowers its claws. A modern three-car train travels between Paris and Warsaw, pauses at each terminus, and reverses. Rails, sleepers and river decks follow the terrain; a reserved corridor keeps buildings and gently swaying tree crowns clear of the train.
+Eight coastal gull flocks and three inland bird swarms circle above the terrain with articulated wings. Larger flocks near Norwich, Oslo and Skåne remain visible on phones. Twelve ships sail elongated closed routes, with the bow following the direction of travel. Each ship reserves its complete swept footprint over water, including clearance from neighboring routes and static sea scenes, so safe spacing does not depend on animation timing.
+
+The Kraken starts underwater beside an intact ship. Its 26-second cycle emerges, grasps the ship, pulls it under, leaves bubbles, then lets the ship float back up. The serpent circles a stationary ship with raised coils separated by submerged body sections. The oil rig crane raises and lowers, the windmill sails rotate around their hub, and the lobster moves its claws. Parallel base strokes have been removed from every sea model. A modern three-car train travels between Paris and Warsaw, pauses at each terminus, and reverses.
 
 Soft smoke rises from Hekla's crater and selected actual chimney tops. Scattered wavelets drift and fade on verified water patches. Tree, bird, smoke, wave, boat and train motion share one elapsed clock that pauses with page visibility and honors live changes to `prefers-reduced-motion`. `inspectAmbientLife()` exposes animation and route diagnostics.
 
 ## Journeys and access
 
-Norway and Poland select their own languages; other land selects English. Hovering a region traces its golden boundary. Norway selections zoom into a road journey; other selections fly to Torp and continue by car toward Oslo. The Wizz-inspired jet and Passat estate remain solid 3D models. Every journey has a skip control; reduced-motion visitors navigate directly. Keyboard, touch, nested hosting and a functional SVG fallback remain supported. City pins and hover tooltips remain removed.
+Norway and Poland select their own languages; other land selects English. Large Norsk, Polski and English controls replace country names and stay within the screen edges. Corner copy and labels for seas and creatures are removed. Hovering a region traces its golden boundary. Norway selections zoom into a road journey; other selections fly to Torp and continue by car toward Oslo. The Wizz-inspired jet and Passat estate remain solid 3D models. Every journey has a skip control; keyboard focus moves to it while the language controls are disabled. Reduced-motion visitors navigate directly. Keyboard, touch, nested hosting and a functional SVG fallback remain supported.
 
 ## Verification
 
@@ -34,7 +36,9 @@ Norway and Poland select their own languages; other land selects English. Hoveri
 - `npm.cmd run test:scenery`: assembled-world foundations, dry bridge abutments and tree/building separation.
 - `npm.cmd run test:performance`: idle rendering, draw/triangle budgets and no raster object downloads.
 - `npm.cmd run test:railway`: complete train return cycle, actual vertex clearance, track support and building/tree exclusion.
-- `npm.cmd run test:sea-motion`: complete ship loops and articulated lobster clearance over water.
+- `npm.cmd run test:sea-motion`: complete ship loops, independent route separation and articulated lobster clearance over water.
+- `npm.cmd run test:creature-motion`: serpent orbit, stationary ship, Kraken phases, crane movement and complete animated water footprints.
+- `npm.cmd run test:maritime-story`: browser captures of the complete Kraken cycle and readable language controls down to 320px wide.
 - `npm.cmd run test:ambient`: bird flight clearance, actual smoke emission points, wave water support and shared animation clocks.
 - `npm.cmd run test:motion`: desktop/mobile live animation, reduced-motion changes, visibility pause/resume and shader errors.
 - `node tools/qa-atlas-v4.mjs`: desktop, laptop and mobile captures of the current diorama, scene completeness and runtime/resource errors.

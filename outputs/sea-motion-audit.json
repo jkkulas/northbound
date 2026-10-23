@@ -6,9 +6,12 @@
     },
     "boats": 12,
     "claws": 2,
-    "drawCalls": 19,
-    "footprintSamples": 4008960,
-    "vertexSamples": 6887808
+    "drawCalls": 24,
+    "footprintSamples": 2407680,
+    "vertexSamples": 5645952,
+    "phasePairClearances": 1689600,
+    "staticClearances": 9600,
+    "minTravelInHullLengths": 1.5999999999999999
   },
   {
     "viewport": {
@@ -17,9 +20,26 @@
     },
     "boats": 12,
     "claws": 2,
-    "drawCalls": 19,
-    "footprintSamples": 4008960,
-    "vertexSamples": 6887808
+    "drawCalls": 24,
+    "footprintSamples": 2407680,
+    "vertexSamples": 5645952,
+    "phasePairClearances": 1689600,
+    "staticClearances": 9600,
+    "minTravelInHullLengths": 1.5999999999999999
+  },
+  {
+    "viewport": {
+      "width": 1896,
+      "height": 942
+    },
+    "boats": 12,
+    "claws": 2,
+    "drawCalls": 24,
+    "footprintSamples": 2407680,
+    "vertexSamples": 5645952,
+    "phasePairClearances": 1689600,
+    "staticClearances": 9600,
+    "minTravelInHullLengths": 1.5999999999999999
   },
   {
     "viewport": {
@@ -28,8 +48,25 @@
     },
     "boats": 12,
     "claws": 2,
-    "drawCalls": 19,
-    "footprintSamples": 4008960,
-    "vertexSamples": 6887808
+    "drawCalls": 24,
+    "footprintSamples": 2407680,
+    "vertexSamples": 5645952,
+    "phasePairClearances": 1689600,
+    "staticClearances": 9600,
+    "minTravelInHullLengths": 1.6
+  },
+  {
+    "viewport": {
+      "width": 320,
+      "height": 740
+    },
+    "boats": 12,
+    "claws": 2,
+    "drawCalls": 24,
+    "footprintSamples": 2407680,
+    "vertexSamples": 5645952,
+    "phasePairClearances": 1689600,
+    "staticClearances": 9600,
+    "minTravelInHullLengths": 1.6
   }
 ]

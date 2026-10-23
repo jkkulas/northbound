@@ -27,6 +27,17 @@ for(const mobile of[false,true]){
  assert.ok(initial.flocks.filter(f=>!f.gulls).length>=2,'Other birds form inland flocks');
  assert.ok(body.count>=(mobile?30:50)&&body.count<100,'Bird population stays within its instance budget');
 
+ const viewport=mobile?{width:390,height:844}:{width:1440,height:1000};
+ const camera=new THREE.PerspectiveCamera(mobile?44:40,viewport.width/viewport.height,.1,600);
+ camera.position.set(mobile?-5:-14,mobile?77:65,mobile?110:104);camera.lookAt(new THREE.Vector3(mobile?-5:-14,0,mobile?3:5));camera.updateMatrixWorld(true);
+ const featured=new Set();let flockStart=0;
+ for(const flock of initial.flocks){if(['Norwich gulls','Oslofjord gulls','Skåne gulls'].includes(flock.name))for(let i=0;i<flock.count;i++)featured.add(flockStart+i);flockStart+=flock.count;}
+ assert.ok(featured.size>=(mobile?15:24),'Norwich, Oslo and Skåne each have a visible flock');
+ const mill=landmarks.objects.find(o=>o.name==='landmark-windmill'),rotor=mill.getObjectByName('windmill-sails');
+ assert.ok(rotor,'Windmill sails are articulated separately from the tower');
+ const hub=rotor.getWorldPosition(new THREE.Vector3()),towerMatrix=mill.children[0].matrixWorld.clone();
+ const sailTip=new THREE.Vector3(1.6,0,0).applyMatrix4(rotor.matrixWorld);let turned=false,minGullPixels=Infinity;
+
  const matrix=new THREE.Matrix4(),wingMatrix=new THREE.Matrix4(),point=new THREE.Vector3();
  const bodyQ=new THREE.Quaternion(),wingQ=new THREE.Quaternion(),scale=new THREE.Vector3();
  const initialBirds=[],initialWings=[],changedWings=new Set(),movedBirds=new Set();
@@ -44,13 +55,23 @@ for(const mobile of[false,true]){
   probes.set(mesh,vertices);
  }
  for(let step=0;step<=96;step++){
-  const time=step*.61;life.update(time);woodland.update(time);
+  const time=step*.61;life.update(time);woodland.update(time);landmarks.update(time);scene.updateMatrixWorld(true);
+  assert.ok(rotor.getWorldPosition(new THREE.Vector3()).distanceTo(hub)<1e-6,'Spinning sails keep their axle anchored');
+  assert.deepEqual(mill.children[0].matrixWorld.elements,towerMatrix.elements,'The mill tower stays still');
+  if(new THREE.Vector3(1.6,0,0).applyMatrix4(rotor.matrixWorld).distanceTo(sailTip)>.5)turned=true;
+  const sailBounds=new THREE.Box3().setFromObject(rotor,true),reserved=mill.userData.worldBounds;
+  for(let axis=0;axis<3;axis++)assert.ok(sailBounds.min.getComponent(axis)>=reserved.min[axis]-1e-5&&sailBounds.max.getComponent(axis)<=reserved.max[axis]+1e-5,'Reserved scenery space contains every sail angle');
   assert.equal(life.inspect().time,time);assert.equal(smoke.material.uniforms.uTime.value,time);assert.equal(waves.material.uniforms.uTime.value,time);
   for(const mesh of woodland.group.children)assert.equal(mesh.material.uniforms.uWoodlandTime.value,time);
   for(let i=0;i<body.count;i++){
    body.getMatrixAt(i,matrix);matrix.decompose(point,bodyQ,scale);
    if(point.distanceTo(initialBirds[i])>.15)movedBirds.add(i);
    const center=point.clone();
+   if(featured.has(i)){
+    const screen=center.clone().project(camera),oneUnit=center.clone().add(new THREE.Vector3(1,0,0)).project(camera);
+    assert.ok(Math.abs(screen.x)<.95&&Math.abs(screen.y)<.95,'Featured gulls remain inside the desktop and phone overview');
+    minGullPixels=Math.min(minGullPixels,(oneUnit.x-screen.x)*viewport.width/2*scale.x*1.34);
+   }
    for(const mesh of[left,right]){
     mesh.getMatrixAt(i,wingMatrix);wingMatrix.decompose(point,wingQ,scale);
     assert.ok(point.distanceTo(center)<.15,'Wings stay attached to the moving body');
@@ -69,6 +90,8 @@ for(const mobile of[false,true]){
  }
  assert.equal(movedBirds.size,body.count,'Every bird changes position');
  assert.equal(changedWings.size,body.count,'Every bird flaps between glides');
+ assert.ok(turned,'Windmill sails move around their hub');assert.ok(minGullPixels>8,'Featured gulls have a legible wingspan at overview scale');
+ landmarks.update(0);assert.ok(Math.abs(rotor.rotation.z)<1e-6,'The shared clock restores the initial sail angle');const heldSails=rotor.rotation.toArray();landmarks.update(0);assert.deepEqual(rotor.rotation.toArray(),heldSails,'A frozen clock stops the windmill');
  life.update(0);assert.deepEqual(life.inspect().firstBird,initial.firstBird,'Animation uses a reproducible clock');
  const held=Array.from(body.instanceMatrix.array);life.update(0);assert.deepEqual(Array.from(body.instanceMatrix.array),held,'An unchanged clock freezes all birds');
 
@@ -106,7 +129,7 @@ for(const mobile of[false,true]){
   assert.equal(regionAt(toGeo(x,z)),0,'Every wave vertex remains over water at both drift extremes');
   assert.ok(vertices.getY(i)>-.05,'Wavelets sit above the ocean surface');waterSamples++;
  }
- reports.push({mobile,birds:body.count,flocks:initial.flocks.length,smokeSources:sources.length,smokeParticles:initial.smokeParticles,waves:initial.waveCount,flightSamples,waterSamples,minGroundClearance});
+ reports.push({mobile,birds:body.count,flocks:initial.flocks.length,smokeSources:sources.length,smokeParticles:initial.smokeParticles,waves:initial.waveCount,flightSamples,waterSamples,minGroundClearance,minGullPixels});
 }
 assert.ok(reports[1].birds<reports[0].birds&&reports[1].smokeParticles<reports[0].smokeParticles&&reports[1].waves<reports[0].waves,'Mobile reduces ambient rendering work');
 console.log(JSON.stringify(reports,null,2));

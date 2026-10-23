@@ -13,7 +13,7 @@ fs.mkdirSync('outputs',{recursive:true});
 function geometryOf(THREE,model){
  const triangles=[],bounds=new THREE.Box3(),point=new THREE.Vector3();let vertices=0,area=0,volume=0,meshes=0;
  model.updateMatrixWorld(true);
- model.traverse(part=>{
+ model.traverseVisible(part=>{
   if(!part.isMesh)return;
   meshes++;assert.ok(!part.material.map&&!part.material.uniforms?.uArtwork,`${model.name}: geometry carries its pigment`);
   assert.equal(part.material.transparent,false,`${model.name}: solid surfaces write opaque depth`);
@@ -32,7 +32,7 @@ function geometryOf(THREE,model){
    // A translated reference keeps signed volumes numerically stable.
    const ra=a.clone().sub(model.position),rb=b.clone().sub(model.position),rc=c.clone().sub(model.position);
    volume+=ra.dot(new THREE.Vector3().crossVectors(rb,rc))/6;
-   triangles.push([a,b,c]);
+   if(Math.max(a.y,b.y,c.y)>=-.05)triangles.push([a,b,c]);
   }
  });
  return {triangles,bounds,vertices,area,volume:Math.abs(volume),meshes};
@@ -65,14 +65,14 @@ for(const viewport of[{width:1440,height:1000},{width:1366,height:768},{width:39
  const landmarks=addLandmarks({...f,mobile,camera});await landmarks.ready;
  const sea=addSeaCreatures({...f,mobile,camera,landmarks:landmarks.objects});await sea.ready;scene.updateMatrixWorld(true);
  assert.equal(sea.objects.length,17,'All seventeen maritime scenes are modeled');
- assert.ok(sea.decorations.some(d=>d.name==='Jörmungandr'&&d.label),'Serpent label is retained');
- assert.ok(sea.decorations.some(d=>d.name==='Kraken'&&d.label),'Kraken label is retained');
+ assert.ok(sea.decorations.every(d=>!d.label),'Sea creature names are removed from the map');
  const rasterWidth=Math.ceil(viewport.width/1.5),rasterHeight=Math.ceil(viewport.height/1.5),landmarkGeometry=landmarks.objects.flatMap(m=>geometryOf(THREE,m).triangles),landmarkDepth=rasterize(THREE,landmarkGeometry,camera,rasterWidth,rasterHeight),models=[];
  for(const model of sea.objects){
   const geometry=geometryOf(THREE,model),{min,max}=geometry.bounds,size=geometry.bounds.getSize(new THREE.Vector3());
-  assert.equal(geometry.meshes,model.userData.asset==='great_lobster'?3:1,`${model.name}: painted body and any articulated claws are merged`);
+  const expectedMeshes={great_lobster:3,offshore_rig:3,serpent_attack:2}[model.userData.asset]||1;
+  assert.equal(geometry.meshes,expectedMeshes,`${model.name}: visible sculptures and articulated parts are merged`);
   assert.ok(geometry.triangles.length>2500,`${model.name}: modeled detail, not a quad`);
-  assert.ok(Math.max(size.x,size.z)>2&&size.y>1&&Math.min(size.x,size.z)>1,`${model.name}: genuine volume at any sailing heading`);
+  assert.ok(Math.max(size.x,size.z)>2&&size.y>1&&Math.min(size.x,size.z)>.5*model.scale.x,`${model.name}: genuine volume at any sailing heading, including narrow hulls without wake strokes`);
   assert.ok(geometry.area>5&&geometry.volume>.06,`${model.name}: measurable three-dimensional solid`);
   let waterSamples=0,overLand=0;
   // The grid is finer than production placement and independently derived from

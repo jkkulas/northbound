@@ -91,16 +91,22 @@ function gdansk({b,g}){
  for(let i=0;i<4;i++)gableHouse(b,g,-1.10-i*.39,.36,.36,1.16+(i%3)*.2,.77,[0xccac6b,0xa95b3e,0xc5b184,0x8f6e48][i],{dutch:true,rows:3});
  for(let i=0;i<12;i++)b.box(-2.67+i*.28,y+.03,1.40,.26,.10,.24,C.stone);for(const x of[-2.4,-1.5,-.6,.3,.9])b.cylinder(x,y+.16,1.56,.04,.05,.28,C.wood,8);
 }
-function windmill({b,g}){
+function windmill({b,g,THREE,material}){
  const y=g.support(0,0,1.55,1.55);b.skirt(0,y,0,1.48,1.48,g,C.umber);b.cylinder(0,y+.07,0,.67,.75,.15,C.stone,32,true);b.cylinder(0,y+1.15,0,.34,.58,2.18,0xb18d5b,32,true);b.cylinder(0,y+2.28,0,.38,.38,.14,C.umber,32,true);b.sphere(0,y+2.50,0,.43,.35,.43,0x5c523a);b.box(0,y+.26,.55,.20,.46,.04,C.wood);
  for(let j=0;j<9;j++){const yy=y+.18+j*.235,r=.58-(yy-y)/2.18*.24,points=[];for(let i=0;i<=40;i++)points.push([Math.cos(i/40*Math.PI*2)*r,yy,Math.sin(i/40*Math.PI*2)*r]);b.curve(points,.006,0x8e6a44,40);}
  for(let j=0;j<3;j++)b.window(0,y+.63+j*.53,.56-j*.058,.15,.22);b.sphere(0,y+2.45,.48,.11,.11,.13,C.wood);
+ // The four sails are a single rigid rotor in coordinates local to the axle.
+ // Keeping their geometry separate lets the mill turn without moving its tower.
+ const sails=createModelBuilder(THREE);
  for(let i=0;i<4;i++){
-  const a=Math.PI/4+i*Math.PI/2,dx=Math.cos(a),dy=Math.sin(a),nx=-dy,ny=dx,p=(r,s,z=.56)=>[dx*r+nx*s,y+2.45+dy*r+ny*s,z];
-  b.beam(p(.10,0),p(1.66,0),.028,C.umber);b.beam(p(.45,.24),p(1.66,.24),.015,C.umber);for(let j=0;j<9;j++)b.beam(p(.46+j*.147,-.045),p(.46+j*.147,.27),.009,C.wood,6);
-  const poly=[[.57,.018],[1.6,.018],[1.6,.20],[.57,.20]].map(([r,s])=>{const pnt=p(r,s);return[pnt[0],pnt[1]]});b.prism(poly,.012,0xdbc393,[0,0,.572]);
+  const a=Math.PI/4+i*Math.PI/2,dx=Math.cos(a),dy=Math.sin(a),nx=-dy,ny=dx,p=(r,s,z=0)=>[dx*r+nx*s,dy*r+ny*s,z];
+  sails.beam(p(.10,0),p(1.66,0),.028,C.umber);sails.beam(p(.45,.24),p(1.66,.24),.015,C.umber);for(let j=0;j<9;j++)sails.beam(p(.46+j*.147,-.045),p(.46+j*.147,.27),.009,C.wood,6);
+  const poly=[[.57,.018],[1.6,.018],[1.6,.20],[.57,.20]].map(([r,s])=>{const pnt=p(r,s);return[pnt[0],pnt[1]]});sails.prism(poly,.012,0xdbc393,[0,0,.012]);
  }
+ const rotor=sails.finish('windmill-sails',material);rotor.position.set(0,y+2.45,.56);rotor.userData.angularSpeed=-.42;
+ rotor.userData.sweepRadius=rotor.children[0].geometry.boundingSphere.radius;
  b.beam([0,y+2.54,-.26],[.92,y+.10,-.98],.035,C.wood);b.beam([0,y+2.54,-.26],[-.92,y+.10,-.98],.035,C.wood);for(let i=0;i<4;i++){const x=-.94+i*.63;b.box(x,g(x,.8)+.08,.8,.31,.045,.12,0xb8a46c);}
+ return[rotor];
 }
 function towerBridge({b,g}){
  const y=Math.max(g.support(0,-1.24,.88,.9),g.support(0,1.24,.88,.9)),stone=0xcbb98a,blue=0x617e79;
@@ -132,9 +138,9 @@ function borgund({b,g}){
 export const LANDMARK_SITES=[...sites.filter(s=>!['oslo','bryggen'].includes(s.asset)),...EXTRA_LANDMARK_SITES];
 
 function recipeFootprint(THREE,site,material){
- const b=createModelBuilder(THREE),g=()=>0;g.support=()=>0;b.ground=g;site.make({b,g,THREE});
- const model=b.finish('measure',material),bounds=new THREE.Box3().setFromObject(model),low=[];
- model.traverse(o=>{if(!o.isMesh)return;const p=o.geometry.attributes.position;for(let i=0;i<p.count;i++)if(p.getY(i)<bounds.min.y+.24)low.push([p.getX(i),p.getZ(i)]);});
+ const b=createModelBuilder(THREE),g=()=>0;g.support=()=>0;b.ground=g;const articulated=site.make({b,g,THREE,material})||[];
+ const model=b.finish('measure',material);if(articulated.length)model.add(...articulated);const bounds=new THREE.Box3().setFromObject(model),low=[],point=new THREE.Vector3();
+ model.traverse(o=>{if(!o.isMesh)return;const p=o.geometry.attributes.position;for(let i=0;i<p.count;i++){point.fromBufferAttribute(p,i).applyMatrix4(o.matrixWorld);if(point.y<bounds.min.y+.24)low.push([point.x,point.z]);}});
  const box=low.length?[Math.min(...low.map(p=>p[0])),Math.max(...low.map(p=>p[0])),Math.min(...low.map(p=>p[1])),Math.max(...low.map(p=>p[1]))]:[bounds.min.x,bounds.max.x,bounds.min.z,bounds.max.z];
  model.traverse(o=>o.geometry?.dispose());return box;
 }
@@ -157,7 +163,7 @@ function fitThamesBridge({site,worldPoint,isDry}){
 
 export function addLandmarks({THREE,scene,worldPoint,mobile=false,heightAt,regionAt,isDry}){
  if(!isDry)throw new Error('Landmarks require the rendered river and coast support checker');
- const material=createMapModelMaterial(THREE),objects=[],occupied=[];
+ const material=createMapModelMaterial(THREE),objects=[],occupied=[],rotors=[];
  for(const site of LANDMARK_SITES){
   const origin=worldPoint(site.coordinates),localBox=recipeFootprint(THREE,site,material);
   let xzScale=site.asset==='borgund'?.90:site.asset==='nyhavn'?1.05:1.22,yScale=site.asset==='borgund'?1.05:1.28,fit,yaw=0;
@@ -174,12 +180,18 @@ export function addLandmarks({THREE,scene,worldPoint,mobile=false,heightAt,regio
   const drawing=worldPoint(fit.coordinates),b=createModelBuilder(THREE),c=Math.cos(yaw),s=Math.sin(yaw);
   const g=(x,z)=>(heightAt(...toGeo(drawing.x+(x*c+z*s)*xzScale,drawing.z+(-x*s+z*c)*xzScale))-drawing.y+.018)/yScale;
   g.support=(x,z,w,d)=>{let highest=-Infinity;for(const [dx,dz]of footprintSamples([x-w/2,x+w/2,z-d/2,z+d/2],.18))highest=Math.max(highest,g(dx,dz));return highest;};b.ground=g;
-  site.make({b,g,THREE});
-  const model=b.finish('landmark-'+site.asset,material);model.position.copy(drawing);model.scale.set(xzScale,yScale,xzScale);model.rotation.y=yaw;
-  model.updateMatrixWorld(true);const bounds=new THREE.Box3().setFromObject(model),worldBounds={min:bounds.min.toArray(),max:bounds.max.toArray()};occupied.push(worldBounds);
+  const articulated=site.make({b,g,THREE,material})||[];
+  const model=b.finish('landmark-'+site.asset,material);if(articulated.length)model.add(...articulated);rotors.push(...articulated.filter(part=>Number.isFinite(part.userData.angularSpeed)));model.position.copy(drawing);model.scale.set(xzScale,yScale,xzScale);model.rotation.y=yaw;
+  for(const part of articulated)for(const key of['parts','triangles','drawCalls'])model.userData[key]+=part.userData[key]||0;
+  model.updateMatrixWorld(true);const bounds=new THREE.Box3().setFromObject(model);
+  // Reserve the complete spinning disc so planted scenery clears every angle.
+  for(const part of articulated)if(part.userData.sweepRadius){const r=part.userData.sweepRadius;bounds.union(new THREE.Box3(new THREE.Vector3(-r,-r,-.04),new THREE.Vector3(r,r,.04)).applyMatrix4(part.matrixWorld));}
+  const worldBounds={min:bounds.min.toArray(),max:bounds.max.toArray()};occupied.push(worldBounds);
   model.userData={...model.userData,title:site.title,kind:'landmark',style:'painted-solid-diorama',coordinates:[...site.coordinates],drawingCoordinates:fit.coordinates,drawingOffset:[drawing.x-origin.x,drawing.z-origin.z],grounding:site.asset==='london'?'river-crossing':'land',dimensional:true,geolocationVerified:true,worldBounds,localFoundation:localBox,scale:[xzScale,yScale,xzScale],surfaceFit:{clear:true,fullFootprint:true,solidGeometry:true,samples:fit.samples,riverClear:true},...(fit.supportPoints?{bankSupportPoints:fit.supportPoints}:{})};
   if(b.smokeEmitter)model.userData.smokeEmitter=new THREE.Vector3(...b.smokeEmitter).applyMatrix4(model.matrixWorld).toArray();
   scene.add(model);objects.push(model);
  }
- return{count:objects.length,objects,ready:Promise.resolve(objects),reservedBounds:occupied};
+ function update(time){for(const rotor of rotors)rotor.rotation.z=time*rotor.userData.angularSpeed;}
+ update(0);
+ return{count:objects.length,objects,ready:Promise.resolve(objects),reservedBounds:occupied,update};
 }

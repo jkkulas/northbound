@@ -5,17 +5,17 @@
       "height": 1000
     },
     "performance": {
-      "readyAt": 6711.800000011921,
-      "framesRendered": 4,
+      "readyAt": 18275.100000023842,
+      "framesRendered": 3,
       "active": false,
-      "calls": 79,
-      "triangles": 992236,
+      "calls": 83,
+      "triangles": 936810,
       "textures": 2,
-      "geometries": 78,
+      "geometries": 82,
       "terrainTriangles": 221972
     },
     "illustrationBytes": 0,
-    "resourceBytes": 2342837,
+    "resourceBytes": 2270204,
     "resources": [
       {
         "name": "/assets/fonts.css",
@@ -24,13 +24,13 @@
       },
       {
         "name": "/assets/style.css",
-        "transferSize": 16710,
-        "decodedBodySize": 16410
+        "transferSize": 17163,
+        "decodedBodySize": 16863
       },
       {
         "name": "/assets/app.js",
-        "transferSize": 25613,
-        "decodedBodySize": 25313
+        "transferSize": 25365,
+        "decodedBodySize": 25065
       },
       {
         "name": "/assets/font-0.ttf",
@@ -43,39 +43,24 @@
         "decodedBodySize": 48200
       },
       {
-        "name": "/assets/font-4.ttf",
-        "transferSize": 111468,
-        "decodedBodySize": 111168
-      },
-      {
-        "name": "/assets/font-1.ttf",
-        "transferSize": 48608,
-        "decodedBodySize": 48308
-      },
-      {
-        "name": "/assets/font-2.ttf",
-        "transferSize": 48580,
-        "decodedBodySize": 48280
-      },
-      {
-        "name": "/assets/landmarks.js",
-        "transferSize": 20598,
-        "decodedBodySize": 20298
-      },
-      {
         "name": "/assets/vendor/three.module.min.js",
         "transferSize": 339208,
         "decodedBodySize": 338908
       },
       {
         "name": "/assets/sea-creatures.js",
-        "transferSize": 9854,
-        "decodedBodySize": 9554
+        "transferSize": 16481,
+        "decodedBodySize": 16181
       },
       {
-        "name": "/assets/compass-model.js",
-        "transferSize": 1756,
-        "decodedBodySize": 1456
+        "name": "/assets/landmarks.js",
+        "transferSize": 21936,
+        "decodedBodySize": 21636
+      },
+      {
+        "name": "/assets/island-bridges.js",
+        "transferSize": 7052,
+        "decodedBodySize": 6752
       },
       {
         "name": "/assets/ground-support.js",
@@ -83,9 +68,9 @@
         "decodedBodySize": 3676
       },
       {
-        "name": "/assets/island-bridges.js",
-        "transferSize": 7052,
-        "decodedBodySize": 6752
+        "name": "/assets/compass-model.js",
+        "transferSize": 1756,
+        "decodedBodySize": 1456
       },
       {
         "name": "/assets/atlas-terrain.js",
@@ -108,9 +93,9 @@
         "decodedBodySize": 18976
       },
       {
-        "name": "/assets/journey.js",
-        "transferSize": 30476,
-        "decodedBodySize": 30176
+        "name": "/assets/ambient-life.js",
+        "transferSize": 11020,
+        "decodedBodySize": 10720
       },
       {
         "name": "/assets/railway.js",
@@ -118,9 +103,9 @@
         "decodedBodySize": 9282
       },
       {
-        "name": "/assets/ambient-life.js",
-        "transferSize": 10302,
-        "decodedBodySize": 10002
+        "name": "/assets/journey.js",
+        "transferSize": 30476,
+        "decodedBodySize": 30176
       },
       {
         "name": "/assets/atlas-models.js",
@@ -129,8 +114,8 @@
       },
       {
         "name": "/assets/sea-models.js",
-        "transferSize": 20240,
-        "decodedBodySize": 19940
+        "transferSize": 22867,
+        "decodedBodySize": 22567
       },
       {
         "name": "/assets/landmark-models-3d.js",
@@ -153,14 +138,19 @@
         "decodedBodySize": 321602
       },
       {
+        "name": "/assets/regions.png",
+        "transferSize": 63761,
+        "decodedBodySize": 63461
+      },
+      {
         "name": "/assets/aura.png",
         "transferSize": 340023,
         "decodedBodySize": 339723
       },
       {
-        "name": "/assets/regions.png",
-        "transferSize": 63761,
-        "decodedBodySize": 63461
+        "name": "/assets/font-5.ttf",
+        "transferSize": 123908,
+        "decodedBodySize": 123608
       }
     ]
   },
@@ -170,17 +160,17 @@
       "height": 844
     },
     "performance": {
-      "readyAt": 7192.5999999940395,
+      "readyAt": 17456,
       "framesRendered": 3,
       "active": false,
-      "calls": 61,
-      "triangles": 612622,
+      "calls": 64,
+      "triangles": 555526,
       "textures": 2,
-      "geometries": 60,
+      "geometries": 63,
       "terrainTriangles": 52988
     },
     "illustrationBytes": 0,
-    "resourceBytes": 2342837,
+    "resourceBytes": 2272511,
     "resources": [
       {
         "name": "/assets/fonts.css",
@@ -189,13 +179,13 @@
       },
       {
         "name": "/assets/style.css",
-        "transferSize": 16710,
-        "decodedBodySize": 16410
+        "transferSize": 17163,
+        "decodedBodySize": 16863
       },
       {
         "name": "/assets/app.js",
-        "transferSize": 25613,
-        "decodedBodySize": 25313
+        "transferSize": 25365,
+        "decodedBodySize": 25065
       },
       {
         "name": "/assets/font-0.ttf",
@@ -208,19 +198,9 @@
         "decodedBodySize": 48200
       },
       {
-        "name": "/assets/font-1.ttf",
-        "transferSize": 48608,
-        "decodedBodySize": 48308
-      },
-      {
-        "name": "/assets/font-4.ttf",
-        "transferSize": 111468,
-        "decodedBodySize": 111168
-      },
-      {
-        "name": "/assets/font-2.ttf",
-        "transferSize": 48580,
-        "decodedBodySize": 48280
+        "name": "/assets/landmarks.js",
+        "transferSize": 21936,
+        "decodedBodySize": 21636
       },
       {
         "name": "/assets/vendor/three.module.min.js",
@@ -228,14 +208,9 @@
         "decodedBodySize": 338908
       },
       {
-        "name": "/assets/landmarks.js",
-        "transferSize": 20598,
-        "decodedBodySize": 20298
-      },
-      {
         "name": "/assets/sea-creatures.js",
-        "transferSize": 9854,
-        "decodedBodySize": 9554
+        "transferSize": 18788,
+        "decodedBodySize": 18488
       },
       {
         "name": "/assets/compass-model.js",
@@ -253,14 +228,14 @@
         "decodedBodySize": 6752
       },
       {
-        "name": "/assets/atlas-terrain.js",
-        "transferSize": 19253,
-        "decodedBodySize": 18953
-      },
-      {
         "name": "/assets/terrain-mesh.js",
         "transferSize": 2396,
         "decodedBodySize": 2096
+      },
+      {
+        "name": "/assets/atlas-terrain.js",
+        "transferSize": 19253,
+        "decodedBodySize": 18953
       },
       {
         "name": "/assets/terrain-height.js",
@@ -278,14 +253,14 @@
         "decodedBodySize": 30176
       },
       {
-        "name": "/assets/ambient-life.js",
-        "transferSize": 10302,
-        "decodedBodySize": 10002
-      },
-      {
         "name": "/assets/railway.js",
         "transferSize": 9582,
         "decodedBodySize": 9282
+      },
+      {
+        "name": "/assets/ambient-life.js",
+        "transferSize": 11020,
+        "decodedBodySize": 10720
       },
       {
         "name": "/assets/atlas-models.js",
@@ -299,8 +274,8 @@
       },
       {
         "name": "/assets/sea-models.js",
-        "transferSize": 20240,
-        "decodedBodySize": 19940
+        "transferSize": 22867,
+        "decodedBodySize": 22567
       },
       {
         "name": "/assets/vendor/three.core.min.js",
@@ -318,14 +293,19 @@
         "decodedBodySize": 321602
       },
       {
+        "name": "/assets/aura.png",
+        "transferSize": 340023,
+        "decodedBodySize": 339723
+      },
+      {
         "name": "/assets/regions.png",
         "transferSize": 63761,
         "decodedBodySize": 63461
       },
       {
-        "name": "/assets/aura.png",
-        "transferSize": 340023,
-        "decodedBodySize": 339723
+        "name": "/assets/font-5.ttf",
+        "transferSize": 123908,
+        "decodedBodySize": 123608
       }
     ]
   }

@@ -1,0 +1,208 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "vertexSamples": 8431500,
+    "minShipClearance": 0.19513419693317977,
+    "aboveWaterFrames": 273,
+    "submergedFrames": 273,
+    "poses": [
+      {
+        "time": 0,
+        "phase": "sailing",
+        "shipTop": 5.412829891898045,
+        "creatureTop": -1.308327674875768,
+        "bubblesVisible": false
+      },
+      {
+        "time": 4,
+        "phase": "emerging",
+        "shipTop": 5.412829891898045,
+        "creatureTop": -1.308327674875768,
+        "bubblesVisible": false
+      },
+      {
+        "time": 7,
+        "phase": "emerging",
+        "shipTop": 5.412829891898045,
+        "creatureTop": 3.2441465269390095,
+        "bubblesVisible": false
+      },
+      {
+        "time": 9,
+        "phase": "grasping",
+        "shipTop": 5.412829891898045,
+        "creatureTop": 5.667745984118747,
+        "bubblesVisible": false
+      },
+      {
+        "time": 10,
+        "phase": "grasping",
+        "shipTop": 5.412829891898045,
+        "creatureTop": 5.6202290386582225,
+        "bubblesVisible": false
+      },
+      {
+        "time": 11,
+        "phase": "sinking",
+        "shipTop": 5.412829891898045,
+        "creatureTop": 5.65848589853526,
+        "bubblesVisible": false
+      },
+      {
+        "time": 13,
+        "phase": "sinking",
+        "shipTop": 1.774315912991359,
+        "creatureTop": 1.5997044560747913,
+        "bubblesVisible": false
+      },
+      {
+        "time": 15,
+        "phase": "bubbles",
+        "shipTop": -1.9267692503364344,
+        "creatureTop": -2.4084270389958506,
+        "bubblesVisible": true
+      },
+      {
+        "time": 17,
+        "phase": "bubbles",
+        "shipTop": -1.9267692503364344,
+        "creatureTop": -2.4084270389958506,
+        "bubblesVisible": true
+      },
+      {
+        "time": 19,
+        "phase": "resurfacing",
+        "shipTop": -1.9267692503364344,
+        "creatureTop": -2.4084270389958506,
+        "bubblesVisible": true
+      },
+      {
+        "time": 22,
+        "phase": "resurfacing",
+        "shipTop": 2.857682491603941,
+        "creatureTop": -2.4084270389958506,
+        "bubblesVisible": false
+      },
+      {
+        "time": 24,
+        "phase": "sailing",
+        "shipTop": 5.412829891898045,
+        "creatureTop": -1.308327674875768,
+        "bubblesVisible": false
+      },
+      {
+        "time": 26,
+        "phase": "sailing",
+        "shipTop": 5.412829891898045,
+        "creatureTop": -1.308327674875768,
+        "bubblesVisible": false
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "vertexSamples": 8431500,
+    "minShipClearance": 0.1430093087113052,
+    "aboveWaterFrames": 273,
+    "submergedFrames": 273,
+    "poses": [
+      {
+        "time": 0,
+        "phase": "sailing",
+        "shipTop": 3.8527967261895886,
+        "creatureTop": -0.9401598992966549,
+        "bubblesVisible": false
+      },
+      {
+        "time": 4,
+        "phase": "emerging",
+        "shipTop": 3.8527967261895886,
+        "creatureTop": -0.9401598992966549,
+        "bubblesVisible": false
+      },
+      {
+        "time": 7,
+        "phase": "emerging",
+        "shipTop": 3.8527967261895886,
+        "creatureTop": 2.3062766216696207,
+        "bubblesVisible": false
+      },
+      {
+        "time": 9,
+        "phase": "grasping",
+        "shipTop": 3.8527967261895886,
+        "creatureTop": 4.034581152609269,
+        "bubblesVisible": false
+      },
+      {
+        "time": 10,
+        "phase": "grasping",
+        "shipTop": 3.8527967261895886,
+        "creatureTop": 4.000696117731683,
+        "bubblesVisible": false
+      },
+      {
+        "time": 11,
+        "phase": "sinking",
+        "shipTop": 3.8527967261895886,
+        "creatureTop": 4.027977648955472,
+        "bubblesVisible": false
+      },
+      {
+        "time": 13,
+        "phase": "sinking",
+        "shipTop": 1.2581187248381003,
+        "creatureTop": 1.133600718676286,
+        "bubblesVisible": false
+      },
+      {
+        "time": 15,
+        "phase": "bubbles",
+        "shipTop": -1.3811797113054896,
+        "creatureTop": -1.7246569868249098,
+        "bubblesVisible": true
+      },
+      {
+        "time": 17,
+        "phase": "bubbles",
+        "shipTop": -1.3811797113054896,
+        "creatureTop": -1.7246569868249098,
+        "bubblesVisible": true
+      },
+      {
+        "time": 19,
+        "phase": "resurfacing",
+        "shipTop": -1.3811797113054896,
+        "creatureTop": -1.7246569868249098,
+        "bubblesVisible": true
+      },
+      {
+        "time": 22,
+        "phase": "resurfacing",
+        "shipTop": 2.0306834161437934,
+        "creatureTop": -1.7246569868249098,
+        "bubblesVisible": false
+      },
+      {
+        "time": 24,
+        "phase": "sailing",
+        "shipTop": 3.8527967261895886,
+        "creatureTop": -0.9401598992966549,
+        "bubblesVisible": false
+      },
+      {
+        "time": 26,
+        "phase": "sailing",
+        "shipTop": 3.8527967261895886,
+        "creatureTop": -0.9401598992966549,
+        "bubblesVisible": false
+      }
+    ]
+  }
+]

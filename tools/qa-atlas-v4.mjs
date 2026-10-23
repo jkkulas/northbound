@@ -6,9 +6,10 @@ const reports=[];
 try{
  for(const viewport of[{width:1440,height:1000},{width:1366,height:768},{width:390,height:844}]){
   const page=await browser.newPage({viewport,reducedMotion:'reduce'}),errors=[];
-  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`);});
+  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'||m.text().includes('Using static map fallback'))errors.push(m.text());});page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`);});
   await page.goto('http://127.0.0.1:4173',{waitUntil:'load'});
-  await page.waitForFunction(()=>document.querySelector('#terrain-canvas')?.dataset.renderer==='webgl',null,{timeout:60000});
+  await page.waitForFunction(()=>document.querySelector('#terrain-canvas')?.dataset.renderer==='webgl'||document.body.classList.contains('no-webgl'),null,{timeout:60000});
+  assert.deepEqual(errors,[],'Scene initializes without falling back');
   await page.evaluate(async()=>{window.__inspectAtlas=(await import('./assets/app.js')).inspectScene;});
   await page.waitForFunction(()=>{const p=window.__inspectAtlas().performance;return p.framesRendered>0&&!p.active;},null,{timeout:60000});
   const state=await page.evaluate(()=>window.__inspectAtlas({artwork:true}));

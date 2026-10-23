@@ -30,18 +30,25 @@ function addBirds({THREE,group,worldPoint,heightAt,mobile}){
   {name:'Norwegian coast gulls',geo:[5.0,60.4],radius:1.9,gulls:true},
   {name:'Baltic gulls',geo:[19.2,55.0],radius:1.8,gulls:true},
   {name:'Danish coast gulls',geo:[8.0,56.4],radius:1.5,gulls:true},
+  // Larger, open formations keep these foreground gulls legible at overview
+  // scale, with room above the nearby roofs and the Oslofjord hills.
+  {name:'Norwich gulls',geo:[1.45,52.75],radius:1.8,gulls:true,prominent:true,mobileOffset:[4.4,0]},
+  {name:'Oslofjord gulls',geo:[10.65,59.75],radius:1.65,gulls:true,prominent:true},
+  {name:'Skåne gulls',geo:[13.35,55.85],radius:1.75,gulls:true,prominent:true},
   {name:'French swallows',geo:[4.5,49.2],radius:2.1,gulls:false},
   {name:'Polish starlings',geo:[18.1,53.2],radius:2.0,gulls:false},
   {name:'Swedish swallows',geo:[15.7,61.2],radius:2.2,gulls:false},
  ];
  const random=seeded(693),birds=[],flocks=[];
  for(const site of sites){
-  const center=worldPoint(site.geo),count=site.gulls?(mobile?4:6):(mobile?7:11);
+  const center=worldPoint(site.geo),count=site.prominent?(mobile?5:8):site.gulls?(mobile?4:6):(mobile?7:11);
+  // Norfolk sits at the phone crop's edge, so its gulls fly just offshore there.
+  if(mobile&&site.mobileOffset){center.x+=site.mobileOffset[0];center.z+=site.mobileOffset[1];}
   // One safe flight floor for the complete flock and orbit, including relief.
-  let floor=0;const envelope=site.radius+2;
+  let floor=0;const envelope=site.radius+(site.prominent?3:2);
   for(let x=-envelope;x<=envelope;x+=.35)for(let z=-envelope;z<=envelope;z+=.35)floor=Math.max(floor,heightAt(...geoFrom(center.x+x,center.z+z)));
-  const flock={...site,center:center.toArray(),count,phase:flocks.length*1.7,altitude:floor+(site.gulls?2.5:3.2)};flocks.push(flock);
-  for(let i=0;i<count;i++)birds.push({flock,phase:random()*TAU,offset:(i-(count-1)/2)*.35,lane:random()*.55,scale:(site.gulls?.62:.36)*( .85+random()*.28)});
+  const flock={...site,center:center.toArray(),count,phase:flocks.length*1.7,altitude:floor+(site.prominent?3.6:site.gulls?2.5:3.2)};flocks.push(flock);
+  for(let i=0;i<count;i++)birds.push({flock,phase:random()*TAU,offset:(i-(count-1)/2)*(site.prominent?.68:.35),lane:random()*(site.prominent?.85:.55),scale:(site.prominent?.98:site.gulls?.62:.36)*( .85+random()*.28)});
  }
  const body=new THREE.InstancedMesh(bodyGeometry,material,birds.length),left=new THREE.InstancedMesh(wing(-1),material,birds.length),right=new THREE.InstancedMesh(wing(1),material,birds.length);
  const meshes=[body,left,right],wings=[[left,-1],[right,1]];meshes.forEach((mesh,i)=>{mesh.name=['flocking-bird-bodies','bird-left-wings','bird-right-wings'][i];mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);mesh.frustumCulled=false;group.add(mesh);});

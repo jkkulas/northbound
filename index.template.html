@@ -13,7 +13,7 @@
 <body>
   <main class="experience" id="experience">
     <section class="map-panel" id="map-panel" aria-label="Interactive aerial map of northern Europe">
-      <canvas id="terrain-canvas" aria-label="Choose a language by clicking Norway, Poland, or the rest of Europe"></canvas>
+      <canvas id="terrain-canvas" tabindex="0" aria-label="Interactive language map. Drag or use arrow keys to orbit. Scroll, pinch or use plus and minus to zoom. Home resets the view. Click a country to choose its language."></canvas>
       <svg id="terrain-fallback" viewBox="0 0 1000 800" role="group" aria-label="Language map of Europe">
         <defs>
           <linearGradient id="fallback-land" x2="1" y2="1"><stop stop-color="#e4ce87"/><stop offset=".55" stop-color="#d6bd75"/><stop offset="1" stop-color="#a8ad69"/></linearGradient>
@@ -36,6 +36,12 @@
       <svg viewBox="0 0 32 40" aria-hidden="true"><path d="M16 2 27 37 16 27 5 37Z" fill="currentColor"/><path d="M16 2V27L5 37Z" fill="#688775"/></svg>
       <span>northbound</span>
     </a>
+
+    <nav class="map-controls" aria-label="Map camera controls">
+      <button id="zoom-in" type="button" aria-label="Zoom in" title="Zoom in (+)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+      <button id="zoom-out" type="button" aria-label="Zoom out" title="Zoom out (−)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+      <button id="reset-view" type="button" aria-label="Reset map view" title="Reset map view (Home)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9a8 8 0 1 1-1 6M5 3v6h6"/></svg></button>
+    </nav>
 
     <nav class="language-picker" aria-label="Choose your language">
       <div class="language-options">

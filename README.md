@@ -26,6 +26,8 @@ Soft smoke rises from Hekla's crater and selected actual chimney tops. Scattered
 
 ## Journeys and access
 
+Drag with the mouse or one finger to orbit around the map's focal point. The orbit stays on the upper hemisphere, at a fixed distance, with a minimum altitude above the terrain. The wheel, trackpad pinch, two-finger touch pinch and zoom buttons change the camera's field of view; labels keep their readable size. Focus the map to use arrow keys, plus/minus, or Home to reset. Camera position and zoom survive resizing, and camera gestures never select a language. Automated journeys temporarily take over the camera.
+
 Norway and Poland select their own languages; other land selects English. Large Norsk, Polski and English controls replace country names and stay within the screen edges. Corner copy and labels for seas and creatures are removed. Hovering a region traces its golden boundary. Norway selections zoom into a road journey; other selections fly to Torp and continue by car toward Oslo. The Wizz-inspired jet and Passat estate remain solid 3D models. Every journey has a skip control; keyboard focus moves to it while the language controls are disabled. Reduced-motion visitors navigate directly. Keyboard, touch, nested hosting and a functional SVG fallback remain supported.
 
 ## Verification
@@ -39,6 +41,7 @@ Norway and Poland select their own languages; other land selects English. Large 
 - `npm.cmd run test:sea-motion`: complete ship loops, independent route separation and articulated lobster clearance over water.
 - `npm.cmd run test:creature-motion`: serpent orbit, stationary ship, Kraken phases, crane movement and complete animated water footprints.
 - `npm.cmd run test:maritime-story`: browser captures of the complete Kraken cycle and readable language controls down to 320px wide.
+- `npm.cmd run test:camera-controls`: optical zoom, bounded mouse/touch orbit, real two-finger input, keyboard controls, resize preservation and gesture/click separation.
 - `npm.cmd run test:ambient`: bird flight clearance, actual smoke emission points, wave water support and shared animation clocks.
 - `npm.cmd run test:motion`: desktop/mobile live animation, reduced-motion changes, visibility pause/resume and shader errors.
 - `node tools/qa-atlas-v4.mjs`: desktop, laptop and mobile captures of the current diorama, scene completeness and runtime/resource errors.

@@ -6,11 +6,12 @@ import {createDryGround} from './ground-support.js';
 import {addIslandBridges} from './island-bridges.js';
 import {vertexShader,fragmentShader,waterFragmentShader,addIllustratedVegetation,addIllustratedGeography} from './atlas-terrain.js';
 import {createLandMeshGeometry} from './terrain-mesh.js';
-import {sampleTerrainHeight} from './terrain-height.js';
+import {sampleTerrainHeight,RELIEF_SCALE} from './terrain-height.js';
 import {addMapScenery,addSculptedWoodland} from './map-scenery.js';
 import {createVehicles,animateVehicle,routeNorway,routeTorpToOslo,OSLO_FORECOURT} from './journey.js';
 import {addRailway} from './railway.js';
 import {addAmbientLife} from './ambient-life.js';
+import {createMapCameraControls} from './camera-controls.js';
 
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),canvas=$('#terrain-canvas');
 const names={en:'English',pl:'Polski',no:'Norsk'},ids={en:1,pl:2,no:3},langs=['','en','pl','no'];
@@ -20,11 +21,11 @@ const mobile=matchMedia('(max-width:760px)').matches;
 let busy=false,selected=null,ready=false,renderer,scene,camera,terrain,maskPixels,maskWidth,elevations,geography;
 let raf=null,lastActivity=0,lastPointer=0,lastFrame=0,cameraMotion=0;
 let framesRendered=0,readyAt=0;
-let ambientTime=0,ambientLife,railway,seaLife;
+let ambientTime=0,ambientLife,railway,seaLife,cameraControls;
 const ambientUpdaters=[];
 const tweens=[],labels=[],hover=[0,0,0],hoverTarget=[0,0,0],pointer=new THREE.Vector2(),raycaster=new THREE.Raycaster();
 const projectedLabel=new THREE.Vector3();
-let labelLayoutDirty=true,labelObstacles=[];
+let labelLayoutDirty=true,viewProjectionDirty=false,labelObstacles=[];
 let labelsWereBusy=false;
 const cameraBase=new THREE.Vector3(),cameraTarget=new THREE.Vector3(),look=new THREE.Vector3();
 const cities={oslo:[10.7522,59.9139],torp:[10.2586,59.1867],hovik:[10.5817,59.9],pl:[19.1,52.1],en:[-.2,53.6],no:[8.7,62.1]};
@@ -53,7 +54,7 @@ export function inspectScene({artwork=false}={}){
   object.traverse(part=>{if(part.isMesh)meshes.push({name:part.name,vertices:part.geometry.attributes.position.count,triangles:(part.geometry.index?.count||part.geometry.attributes.position.count)/3,opaque:part.material.transparent===false,depthWrite:part.material.depthWrite});});
   return {name:object.name,userData:object.userData,anchor:object.position.toArray(),bounds:{min:bounds.min.toArray(),max:bounds.max.toArray()},meshes};
  }):[];
- return{camera:{position:camera?.position.toArray(),target:look.toArray(),fov:camera?.fov,aspect:camera?.aspect},hover:[...hover],terrainMaxHeight,landmarkCount:landmarkObjects.length,creatureCount:Number(canvas.dataset.creatures),artwork:canvas.dataset.artwork,scenery:scene?.userData.mapScenery,landmarkArtwork:architecture,bridges:scene?.userData.islandBridges,seaArtwork:!artwork?[]:creatureObjects.map(object=>{object.updateMatrixWorld(true);const box=new THREE.Box3().setFromObject(object),meshes=[];object.traverse(o=>{if(o.isMesh)meshes.push({name:o.name,triangles:(o.geometry.index?.count||o.geometry.attributes.position.count)/3,opaque:!o.material.transparent,depthWrite:o.material.depthWrite,textured:!!o.material.map||!!o.material.uniforms?.uArtwork});});return {name:object.name,userData:object.userData,bounds:{min:box.min.toArray(),max:box.max.toArray()},meshes};}),performance:{readyAt,framesRendered,active:raf!==null,calls:renderer?.info.render.calls,triangles:renderer?.info.render.triangles,textures:renderer?.info.memory.textures,geometries:renderer?.info.memory.geometries,terrainTriangles:terrain?.geometry.index?.count/3},fadeOpacity:Number(getComputedStyle($('#journey-fade')).opacity),journey:{phase:journeyPhase,vehicle:{type:model===flightModel?'plane':model?'car':null,visible:!!model,screenSize:{width,height}},routeSamples,carClearance,landmarkClearance}};
+ return{camera:{position:camera?.position.toArray(),target:look.toArray(),fov:camera?.fov,aspect:camera?.aspect,controls:cameraControls?.inspect()},hover:[...hover],terrainMaxHeight,landmarkCount:landmarkObjects.length,creatureCount:Number(canvas.dataset.creatures),artwork:canvas.dataset.artwork,scenery:scene?.userData.mapScenery,landmarkArtwork:architecture,bridges:scene?.userData.islandBridges,seaArtwork:!artwork?[]:creatureObjects.map(object=>{object.updateMatrixWorld(true);const box=new THREE.Box3().setFromObject(object),meshes=[];object.traverse(o=>{if(o.isMesh)meshes.push({name:o.name,triangles:(o.geometry.index?.count||o.geometry.attributes.position.count)/3,opaque:!o.material.transparent,depthWrite:o.material.depthWrite,textured:!!o.material.map||!!o.material.uniforms?.uArtwork});});return {name:object.name,userData:object.userData,bounds:{min:box.min.toArray(),max:box.max.toArray()},meshes};}),performance:{readyAt,framesRendered,active:raf!==null,calls:renderer?.info.render.calls,triangles:renderer?.info.render.triangles,textures:renderer?.info.memory.textures,geometries:renderer?.info.memory.geometries,terrainTriangles:terrain?.geometry.index?.count/3},fadeOpacity:Number(getComputedStyle($('#journey-fade')).opacity),journey:{phase:journeyPhase,vehicle:{type:model===flightModel?'plane':model?'car':null,visible:!!model,screenSize:{width,height}},routeSamples,carClearance,landmarkClearance}};
 }
 function pointerPosition(e){pointer.set(e.clientX/innerWidth*2-1,-e.clientY/innerHeight*2+1)}
 function hitMap(e){
@@ -67,7 +68,7 @@ function hitMap(e){
  ray.at(high,point);const geo=geographic(point),id=regionAt(geo);return id?{lang:langs[id],geo}:null;
 }
 canvas.addEventListener('pointermove',e=>{
- if(!ready||busy)return;if(performance.now()-lastPointer<35)return;lastPointer=performance.now();const hit=hitMap(e);highlight(hit?.lang);canvas.style.cursor=hit?'pointer':'default';
+ if(!ready||busy||cameraControls?.active)return;if(performance.now()-lastPointer<35)return;lastPointer=performance.now();const hit=hitMap(e);highlight(hit?.lang);canvas.style.cursor=hit?'pointer':'grab';
  wake();
 });
 canvas.addEventListener('pointerleave',()=>{if(busy)return;pointer.set(0,0);highlight(null);wake()});
@@ -91,10 +92,20 @@ function frame(now){
  if(terrain)terrain.material.uniforms.uHover.value.set(...hover);
  if(scene?.userData.water)scene.userData.water.material.uniforms.uHover.value.set(...hover);
  const desired=cameraBase;
- const cameraChanged=camera.position.distanceTo(desired)>.00001||look.distanceTo(cameraTarget)>.00001;
- if(camera.position.distanceTo(desired)>.005||look.distanceTo(cameraTarget)>.005)changing=true;
- camera.position.lerp(desired,damping);look.lerp(cameraTarget,damping);camera.lookAt(look);
- if(cameraChanged||labelLayoutDirty||busy!==labelsWereBusy){updateLabels();labelsWereBusy=busy;}
+ const manual=cameraControls?.engaged&&!busy;
+ let cameraChanged;
+ if(manual){
+  const x=camera.position.x,y=camera.position.y,z=camera.position.z;
+  changing=cameraControls.update(delta,reduced)||changing;look.copy(cameraTarget);
+  cameraChanged=Math.abs(camera.position.x-x)+Math.abs(camera.position.y-y)+Math.abs(camera.position.z-z)>.000001;
+ }
+ else{
+  cameraChanged=camera.position.distanceTo(desired)>.00001||look.distanceTo(cameraTarget)>.00001;
+  if(camera.position.distanceTo(desired)>.005||look.distanceTo(cameraTarget)>.005)changing=true;
+  camera.position.lerp(desired,damping);look.lerp(cameraTarget,damping);camera.lookAt(look);
+ }
+ camera.updateMatrixWorld(true);
+ if(cameraChanged||viewProjectionDirty||labelLayoutDirty||busy!==labelsWereBusy){updateLabels();labelsWereBusy=busy;viewProjectionDirty=false;}
  renderer.render(scene,camera);framesRendered++;
  if(ambientActive||tweens.length||changing||busy||now-lastActivity<400)raf=requestAnimationFrame(frame);
 }
@@ -130,20 +141,32 @@ function addLabels(){
 }
 function updateLabels(){
  if(labelLayoutDirty){
-  labelObstacles=[$('.wordmark')].filter(Boolean).map(el=>el.getBoundingClientRect());
+  labelObstacles=[$('.wordmark'),$('.map-controls')].filter(Boolean).map(el=>el.getBoundingClientRect());
   for(const entry of labels){entry.halfWidth=entry.el.offsetWidth/2;entry.halfHeight=entry.el.offsetHeight/2}
   labelLayoutDirty=false;
  }
  const obstacles=busy?[]:labelObstacles;
+ const placed=[];
  for(const entry of labels){
   const p=projectedLabel.copy(entry.position).project(camera);
   const {halfWidth,halfHeight}=entry;
   // Keep the language controls readable even where the narrow map crops land.
-  const x=Math.max(halfWidth+18,Math.min(innerWidth-halfWidth-18,(p.x+1)*innerWidth/2));
-  const y=Math.max(halfHeight+18,Math.min(innerHeight-halfHeight-18,(1-p.y)*innerHeight/2));
-  const covered=obstacles.some(rect=>x+halfWidth>rect.left-8&&x-halfWidth<rect.right+8&&y+halfHeight>rect.top-8&&y-halfHeight<rect.bottom+8);
+  const clampX=x=>Math.max(halfWidth+18,Math.min(innerWidth-halfWidth-18,x));
+  const clampY=y=>Math.max(halfHeight+18,Math.min(innerHeight-halfHeight-18,y));
+  let x=clampX((p.x+1)*innerWidth/2),y=clampY((1-p.y)*innerHeight/2);
+  // A zoomed or rotated map can put several anchors beyond the same edge.
+  // Keep all language buttons inside the frame without stacking their text.
+  const candidates=[];
+  for(const dx of[0,-1,1])for(const dy of[0,-1,1,-2,2,-3,3]){
+   const xx=clampX(x+dx*(halfWidth*2+12)),yy=clampY(y+dy*(halfHeight*2+12));
+   candidates.push({x:xx,y:yy,distance:(xx-x)**2+(yy-y)**2});
+  }
+  candidates.sort((a,b)=>a.distance-b.distance);
+  const fits=c=>[...obstacles,...placed].every(rect=>c.x+halfWidth<rect.left-6||c.x-halfWidth>rect.right+6||c.y+halfHeight<rect.top-6||c.y-halfHeight>rect.bottom+6);
+  const choice=candidates.find(fits);if(choice){x=choice.x;y=choice.y;}
+  placed.push({left:x-halfWidth,right:x+halfWidth,top:y-halfHeight,bottom:y+halfHeight});
   entry.el.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;
-  entry.el.style.visibility=p.z<1&&p.z>0&&!covered?'visible':'hidden';
+  entry.el.style.visibility=p.z<1&&p.z>0?'visible':'hidden';
   entry.el.style.opacity=busy&&!entry.el.classList.contains('is-destination')?'0':'1';
  }
 }
@@ -161,6 +184,13 @@ function overview(){
  if(innerWidth<=760){cameraBase.set(-5,77,110);cameraTarget.set(-5,0,3);camera.fov=44}
  else{cameraBase.set(-14,65,104);cameraTarget.set(-14,0,5);camera.fov=40}
  camera.updateProjectionMatrix();
+}
+function configureCameraControls(){
+ cameraControls=createMapCameraControls({element:$('#map-panel'),canvas,camera,position:cameraBase,target:cameraTarget,enabled:()=>ready&&!busy,minAltitude:()=>terrainMaxHeight+RELIEF_SCALE*2,wake,
+  onStart:()=>{cameraMotion++;cameraTarget.copy(look);highlight(null);},onChange:()=>{viewProjectionDirty=true;}});
+ $('#zoom-in').addEventListener('click',()=>cameraControls.zoom(1.25));
+ $('#zoom-out').addEventListener('click',()=>cameraControls.zoom(1/1.25));
+ $('#reset-view').addEventListener('click',()=>cameraControls.reset());
 }
 async function cameraTo(position,target,duration=850){const motion=++cameraMotion,from=cameraBase.clone(),fromTarget=cameraTarget.clone();await tween(duration,p=>{if(motion!==cameraMotion)return;p=ease(p);cameraBase.lerpVectors(from,position,p);cameraTarget.lerpVectors(fromTarget,target,p)})}
 function status(step,text){$('#journey-step').textContent=step;$('#journey-text').textContent=text}
@@ -218,6 +248,7 @@ async function zoomToRoad(geo){
 }
 async function journey(lang,start){
  if(busy)return;selected=lang;if(reduced||!ready){go();return}
+ cameraControls?.stop();camera.fov=innerWidth<=760?44:40;camera.updateProjectionMatrix();
  highlight(lang);busy=true;document.body.classList.add('is-traveling');$$('button[data-lang]').forEach(el=>el.disabled=true);$('#journey-status').classList.add('is-visible');$('#skip').focus({preventScroll:true});
  try{
  if(lang==='no'){
@@ -268,11 +299,14 @@ async function init(){
   ambientUpdaters.push(railway.update,woodland.update,landmarks.update,creatures.update,ambientLife.update);
 
   canvas.dataset.landmarks=String(landmarks.count);canvas.dataset.creatures=String(creatures.count);canvas.dataset.artwork='solid-painted-diorama';addLabels();makeVehicles();overview();camera.position.copy(cameraBase);look.copy(cameraTarget);camera.lookAt(look);
-  ready=true;readyAt=performance.now();canvas.dataset.renderer='webgl';canvas.dataset.quality=mobile?'mobile':'desktop';document.body.classList.add('has-webgl','is-ready');$('#map-loading').hidden=true;
+  configureCameraControls();ready=true;readyAt=performance.now();canvas.dataset.renderer='webgl';canvas.dataset.quality=mobile?'mobile':'desktop';document.body.classList.add('has-webgl','is-ready');$('#map-loading').hidden=true;
   $$('#terrain-fallback [tabindex]').forEach(el=>el.setAttribute('tabindex','-1'));
   if(!reduced){const final=cameraBase.clone();cameraBase.add(new THREE.Vector3(0,8,8));camera.position.copy(cameraBase);cameraTo(final,cameraTarget.clone(),1800)}wake();
  }catch(error){console.warn('Using static map fallback:',error.message);renderer?.dispose();renderer=null;canvas.hidden=true;$('#map-loading').hidden=true;document.body.classList.add('is-ready','no-webgl');$('#map-labels').hidden=true}
 }
-addEventListener('resize',()=>{labelLayoutDirty=true;if(!renderer)return;camera.aspect=innerWidth/innerHeight;if(!busy)overview();else camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);wake()});
+addEventListener('resize',()=>{labelLayoutDirty=true;if(!renderer)return;camera.aspect=innerWidth/innerHeight;
+ if(!busy&&!cameraControls?.engaged)overview();else camera.updateProjectionMatrix();
+ if(cameraControls){const small=innerWidth<=760;cameraControls.setHome(new THREE.Vector3(...(small?[-5,77,110]:[-14,65,104])),new THREE.Vector3(...(small?[-5,0,3]:[-14,0,5])),small?44:40);}
+ renderer.setSize(innerWidth,innerHeight);wake();});
 canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();ready=false;document.body.classList.remove('has-webgl');document.body.classList.add('no-webgl');canvas.hidden=true;$('#map-labels').hidden=true});
 init();

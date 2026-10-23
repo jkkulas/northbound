@@ -23,7 +23,7 @@ button:focus-visible, a:focus-visible, .land:focus-visible { outline: 2px solid 
   content: ''; position: absolute; inset: 0; z-index: 20; pointer-events: none; opacity: .13; mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.7' filter='url(%23paper)'/%3E%3C/svg%3E");
 }
-.map-panel { position: absolute; inset: 0; background: var(--black); overflow: hidden; }
+.map-panel { position: absolute; inset: 0; background: var(--black); overflow: hidden; touch-action: none; user-select: none; }
 .map-panel:after {
   content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background: radial-gradient(ellipse at 12% 87%, #f1e6c690 0, #f1e6c635 17%, transparent 38%), radial-gradient(ellipse at 84% 86%, #eee1bc30 0, transparent 30%);
@@ -32,6 +32,15 @@ button:focus-visible, a:focus-visible, .land:focus-visible { outline: 2px solid 
 .journey-fade { position: absolute; inset: 0; z-index: 4; pointer-events: none; background: #f4e7c7; opacity: 0; transition: opacity .28s ease-out; }
 .is-zooming .journey-fade { opacity: .48; }
 #terrain-canvas { display: block; width: 100%; height: 100%; outline: none; touch-action: none; position: absolute; inset: 0; z-index: 1; }
+#terrain-canvas:focus-visible { outline: 2px solid #ad6d3699; outline-offset: -20px; }
+#terrain-canvas.is-orbiting { cursor: grabbing !important; }
+.map-controls { display: none; position: absolute; z-index: 12; left: 3.6vw; top: 80px; gap: 5px; }
+.has-webgl .map-controls { display: flex; }
+.map-controls button { width: 40px; height: 40px; padding: 10px; border: 1px solid #405c4540; border-radius: 4px; background: #f1e9d4c9; color: #304b38; cursor: pointer; }
+.map-controls svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.map-controls button:hover { background: #fff4d9; }
+.is-traveling .map-controls { display: none; }
+@media (max-width: 760px) { .map-controls { left: 23px; top: 69px; } .map-controls button { width: 44px; height: 44px; } }
 #terrain-fallback { position: absolute; width: 100%; height: 100%; inset: 0; object-fit: cover; z-index: 0; transform: perspective(1200px) rotateX(18deg) scale(1.5); transform-origin: 54% 45%; }
 .has-webgl #terrain-fallback { display: none; }
 .fallback-land { transform-origin: 500px 350px; }

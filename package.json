@@ -14,6 +14,7 @@
     "test:sea-motion": "node tools/qa-sea-motion.mjs",
     "test:creature-motion": "node tools/qa-creature-motion.mjs",
     "test:maritime-story": "node tools/qa-maritime-story.mjs",
+    "test:camera-controls": "node tools/qa-camera-controls.mjs",
     "test:ambient": "node tools/qa-ambient-life.mjs",
     "test:motion": "node tools/qa-life-browser.mjs"
   },
